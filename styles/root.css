@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 :root {
-  --font-family: "Montserrat", sans-serif;
+  --font-family-primary: "Montserrat", sans-serif;
+  --font-family-secondary: "Roboto", sans-serif;
   --font-weight-bold: 700;
   --width-100: 100%;
   --min-height-100: 100vh;
@@ -32,6 +34,7 @@
   --placeholder-font: 80%;
   --checkbox-cont-margin: 15px;
   --login-btn-margin: 30px;
+  --fs-1rem: 16px;
 }
 
 @media (max-width: 750px) {

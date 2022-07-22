@@ -57,13 +57,17 @@ const LoginForm = () => {
             onClick={togglePassword}
           />
 
-          <div className={styles.checkbox_cont}>
-            <Input
-              type='checkbox'
-              style={styles.checkbox}
-            />
+          <div className={styles.checkbox_forgot_password}>
+            <div className={styles.checkbox_cont}>
+              <Input
+                type='checkbox'
+                style={styles.checkbox}
+              />
 
-            <p className={styles.text}> {loginFormText.remeber_me} </p>
+              <p className={styles.text}> {loginFormText.remember_me} </p>
+            </div>
+
+            <p className={styles.forgot_password}>{loginFormText.forgot_passwword}</p>
           </div>
 
           <SubmitButton
