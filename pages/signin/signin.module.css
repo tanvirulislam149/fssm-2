@@ -1,0 +1,8 @@
+.container {
+  width: var(--width-100);
+  min-height: var(--min-height-100);
+  background: var(--bg-login-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

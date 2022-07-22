@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --font-weight-bold: 700;
+  --width-100: 100%;
+  --min-height-100: 100vh;
+
+  /* login page */
+  --bg-main-button: #024c73;
+  --bg-main-button-hov: #024b73d8;
+  --white-color: #fff;
+  --login-page-title-color: #3ec70b;
+  --light-gray-color: #8e8e8e;
+  --input-border-color: #e3e3e3;
+  --bg-login-gray: #cdcdcd;
+
+  --login-title-font-size: 64px;
+  --login-checkbox-dimensions: 20px;
+  --login-title-margin: 40px;
+  --login-form-padding: 54px;
+  --primary-border-radius: 12px;
+  --primary-margin-top: 10px;
+  --login-form-cont-width: 630px;
+  --login-form-padding-top: 65px;
+  --login-checkbox-margin: 0 1rem 0 0.5rem;
+  --login-checkbox-font: 14px;
+  --login-input-font: 32px;
+  --input-padding: 12px;
+  --eye-icon-margin-top: 33px;
+  --eye-icon-margin-left: -50px;
+  --placeholder-font: 80%;
+  --checkbox-cont-margin: 15px;
+  --login-btn-margin: 30px;
+}
+
+@media (max-width: 750px) {
+  :root {
+    --login-form-cont-width: 90%;
+    --login-form-padding: 20px;
+    --login-title-font-size: 35px;
+    --eye-icon-margin-left: -40px;
+    --login-input-font: 20px;
+  }
+}

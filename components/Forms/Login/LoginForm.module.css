@@ -1,0 +1,79 @@
+.container {
+  height: max-content;
+  width: var(--login-form-cont-width);
+  border-radius: var(--primary-border-radius);
+  background: var(--white-color);
+  text-align: center;
+  padding: var(--login-form-padding);
+  padding-top: var(--login-form-padding-top);
+}
+
+.header_blue {
+  color: var(--bg-main-button);
+  font-size: var(--login-title-font-size);
+  margin-bottom: var(--login-title-margin);
+}
+
+.header_green {
+  color: var(--login-page-title-color);
+  font-size: var(--login-title-font-size);
+  margin-bottom: var(--login-title-margin);
+}
+
+.checkbox {
+  margin: var(--login-checkbox-margin);
+  height: var(--login-checkbox-dimensions);
+  width: var(--login-checkbox-dimensions);
+}
+
+.text {
+  font-size: var(--login-checkbox-font);
+  color: var(--light-gray-color);
+}
+
+.input {
+  width: var(--width-100);
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--primary-border-radius);
+  padding: var(--input-padding);
+  margin-top: var(--primary-margin-top);
+  font-size: var(--login-input-font);
+}
+
+.passwordInput + span {
+  position: absolute !important;
+  margin-top: var(--eye-icon-margin-top) !important;
+  margin-left: var(--eye-icon-margin-left) !important;
+}
+
+.input::-webkit-input-placeholder {
+  font-size: var(--placeholder-font);
+  color: var(--light-gray-color);
+  font-family: var(--font-family);
+}
+
+.img,
+.btn {
+  cursor: pointer;
+}
+
+.checkbox_cont {
+  display: flex;
+  margin-top: var(--checkbox-cont-margin);
+}
+
+.btn {
+  color: var(--white-color);
+  background: var(--bg-main-button);
+  border-radius: var(--primary-border-radius);
+  width: var(--width-100);
+  padding: var(--input-padding);
+  border-width: 0;
+  margin-top: var(--login-btn-margin);
+  font-size: var(--login-input-font);
+  font-weight: var(--font-weight-bold);
+}
+
+.btn:hover {
+  background: var(--bg-main-button-hov);
+}
