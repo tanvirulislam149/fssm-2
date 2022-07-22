@@ -1,0 +1,35 @@
+.container {
+  padding: var(--size-18);
+  padding-left: var(--header-padding);
+  padding-right: var(--header-padding);
+  background: var(--white-color);
+  display: flex;
+  width: var(--hundred);
+}
+
+.logo_2 + span {
+  position: absolute;
+  left: var(--ministry-logo-margin);
+  height: var(--logo2-height) !important;
+  width: var(--logo2-width) !important;
+}
+
+.div {
+  margin-left: auto;
+  display: flex;
+}
+
+.logo_1 + span {
+  height: var(--logo1-height) !important;
+  width: var(--logo1-width) !important;
+}
+
+.logo_3 + span {
+  height: var(--logo3-height) !important;
+  width: var(--logo3-width) !important;
+}
+
+.logo_4 + span {
+  height: var(--logo4-height) !important;
+  width: var(--logo4-width) !important;
+}

@@ -5,7 +5,7 @@
   --font-family-primary: "Montserrat", sans-serif;
   --font-family-secondary: "Roboto", sans-serif;
   --font-weight-bold: 700;
-  --width-100: 100%;
+  --hundred: 100%;
   --min-height-100: 100vh;
 
   /* login page */
@@ -34,7 +34,34 @@
   --placeholder-font: 80%;
   --checkbox-cont-margin: 15px;
   --login-btn-margin: 30px;
+
+  /* homepage */
   --fs-1rem: 16px;
+  --size-18: 18px;
+  --logo1-height: 91px;
+  --logo1-width: 77px;
+  --logo2-height: 86px;
+  --logo2-width: 149px;
+  --logo3-height: 74px;
+  --logo3-width: 139px;
+  --logo3-height: 73px;
+  --logo3-width: 166px;
+  --ministry-logo-margin: 35%;
+  --header-padding: 54px;
+}
+
+@media (max-width: 950px) {
+  :root {
+    --logo1-height: 65px;
+    --logo1-width: 54px;
+    --logo2-height: 60px;
+    --logo2-width: 104px;
+    --logo3-height: 51px;
+    --logo3-width: 95px;
+    --logo4-width: 116px;
+    --logo4-height: 51px;
+    --header-padding: 36px;
+  }
 }
 
 @media (max-width: 750px) {
