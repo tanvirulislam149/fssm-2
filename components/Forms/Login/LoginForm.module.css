@@ -9,7 +9,7 @@
 }
 
 .header_blue {
-  color: var(--bg-main-button);
+  color: var(--primary-blue);
   font-size: var(--login-title-font-size);
   margin-bottom: var(--login-title-margin);
 }
@@ -64,7 +64,7 @@
 
 .btn {
   color: var(--white-color);
-  background: var(--bg-main-button);
+  background: var(--primary-blue);
   border-radius: var(--primary-border-radius);
   width: var(--hundred);
   padding: var(--input-padding);
@@ -79,7 +79,7 @@
 }
 
 .forgot_password {
-  color: var(--bg-main-button);
+  color: var(--primary-blue);
   text-decoration: underline;
   cursor: pointer;
   font-size: var(--fs-1rem);

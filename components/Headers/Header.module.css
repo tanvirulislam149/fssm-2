@@ -1,0 +1,105 @@
+.container {
+  padding: var(--size-18);
+  padding-left: var(--header-padding);
+  padding-right: var(--header-padding);
+  display: flex;
+  align-items: center;
+  width: var(--hundred);
+}
+
+.div {
+  margin-left: auto;
+  display: flex;
+}
+
+.logo_1 + span {
+  height: var(--logo1-height) !important;
+  width: var(--logo1-width) !important;
+}
+
+.logo_2 + span {
+  position: absolute;
+  left: var(--ministry-logo-margin);
+  height: var(--logo2-height) !important;
+  width: var(--logo2-width) !important;
+}
+
+.logo_3 + span {
+  height: var(--logo3-height) !important;
+  width: var(--logo3-width) !important;
+}
+
+.logo_4 + span {
+  height: var(--logo4-height) !important;
+  width: var(--logo4-width) !important;
+}
+
+.cont_2 {
+  padding: var(--pa-header-bottom);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-header-bottom);
+  font-size: var(--fs-14);
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0 var(--fs-14);
+}
+
+.links li {
+  margin: 0 var(--links-gap);
+  font-weight: var(--fw-500);
+  cursor: pointer;
+}
+
+.search {
+  padding: var(--pa-search);
+}
+
+.text {
+  font-weight: var(--fw-400);
+  color: var(--header-txt);
+}
+
+.search_cont {
+  display: flex;
+  align-items: center;
+}
+
+.search_icon + span {
+  position: absolute !important;
+  right: var(--search-icon-right) !important;
+}
+
+.down + span {
+  height: var(--links-gap) !important;
+  width: var(--input-padding) !important;
+  margin-left: var(--ma-down-icon) !important;
+}
+
+.flex_align_center {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (max-width: 950px) {
+  .cont_2 {
+    flex-direction: column;
+  }
+
+  .links li {
+    margin: var(--fs-1rem) var(--links-gap);
+    font-size: var(--fs-10);
+  }
+
+  .search_cont,
+  .search {
+    width: var(--hundred);
+  }
+}

@@ -5,17 +5,28 @@
   --font-family-primary: "Montserrat", sans-serif;
   --font-family-secondary: "Roboto", sans-serif;
   --font-weight-bold: 700;
+  --fw-400: 400;
+  --fw-500: 500;
   --hundred: 100%;
   --min-height-100: 100vh;
+  --br4: 4px;
+  --fifty: 50%;
+  --thirty: 30%;
+  --lh-35: 35px;
+  --fs-14: 14px;
+  --fs-10: 10px;
+  --fs-12: 12px;
 
   /* login page */
-  --bg-main-button: #024c73;
+  --primary-blue: #024c73;
   --bg-main-button-hov: #024b73d8;
   --white-color: #fff;
   --login-page-title-color: #3ec70b;
   --light-gray-color: #8e8e8e;
   --input-border-color: #e3e3e3;
   --bg-login-gray: #cdcdcd;
+  --bg-header-bottom: #f8f9fa;
+  --header-txt: #555555;
 
   --login-title-font-size: 64px;
   --login-checkbox-dimensions: 20px;
@@ -35,7 +46,25 @@
   --checkbox-cont-margin: 15px;
   --login-btn-margin: 30px;
 
-  /* homepage */
+  /* about page */
+  --fs-48: 48px;
+  --fs-36: 36px;
+  --fs-24: 24px;
+  --sub-title-margin: 16px;
+  --pa-about-main: 32px;
+  --ma-about-main: 30px 170px;
+  --bg-about: #393939;
+  --pa-title: 28px 50px;
+
+  /* footer */
+  --brands-size: 50px;
+  --pa-footer: 100px 50px;
+  --pb-footer: 165px;
+  --pa-btn-footer: 12px 47px;
+  --footer-logo-h: 85px;
+  --footer-logo-w: 130px;
+
+  /* header */
   --fs-1rem: 16px;
   --size-18: 18px;
   --logo1-height: 91px;
@@ -44,22 +73,27 @@
   --logo2-width: 149px;
   --logo3-height: 74px;
   --logo3-width: 139px;
-  --logo3-height: 73px;
-  --logo3-width: 166px;
+  --logo4-height: 73px;
+  --logo4-width: 166px;
   --ministry-logo-margin: 35%;
   --header-padding: 54px;
+  --pa-header-bottom: 10px 20px;
+  --pa-search: 5px 10px;
+  --links-gap: 8px;
+  --search-icon-right: 30px;
+  --ma-down-icon: 2px;
 }
 
 @media (max-width: 950px) {
   :root {
-    --logo1-height: 65px;
-    --logo1-width: 54px;
-    --logo2-height: 60px;
-    --logo2-width: 104px;
-    --logo3-height: 51px;
-    --logo3-width: 95px;
-    --logo4-width: 116px;
-    --logo4-height: 51px;
+    --logo1-height: 58px;
+    --logo1-width: 48px;
+    --logo2-height: 52px;
+    --logo2-width: 90px;
+    --logo3-height: 44px;
+    --logo3-width: 82px;
+    --logo4-width: 100px;
+    --logo4-height: 44px;
     --header-padding: 36px;
   }
 }
@@ -71,5 +105,17 @@
     --login-title-font-size: 35px;
     --eye-icon-margin-left: -40px;
     --login-input-font: 20px;
+    --header-padding: 15px;
+    --pa-title: 18px 25px;
+    --pa-about-main: 20px;
+    --ma-about-main: 10px 10px;
+    --pa-btn-footer: 12px 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  :root {
+    --ministry-logo-margin: 0;
+    --links-gap: 6px;
   }
 }
