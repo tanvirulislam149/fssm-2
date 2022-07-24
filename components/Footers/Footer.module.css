@@ -25,10 +25,6 @@
   cursor: pointer;
 }
 
-.btn:hover {
-  background: var(--bg-main-button-hov);
-}
-
 .btn:nth-last-child(1) {
   margin-left: var(--login-checkbox-dimensions);
 }

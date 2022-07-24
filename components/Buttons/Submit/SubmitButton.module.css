@@ -1,0 +1,7 @@
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--bg-main-button-hov);
+}

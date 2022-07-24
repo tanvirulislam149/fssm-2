@@ -21,9 +21,18 @@
   --fs-12: 12px;
   --size-5: 5px;
   --size-3: 3px;
+  --s-50: 50px;
+  --s-40: 40px;
+  --s-30: 30px;
+  --s-20: 20px;
+  --s-10: 10px;
+  --s-75: 75px;
+  --s-300: 300px;
+  --primary-border-radius: 12px;
 
   /* colors */
   --primary-blue: #024c73;
+  --transparent-blue: #024c73b3;
   --bg-main-button-hov: #024b73d8;
   --white-color: #fff;
   --login-page-title-color: #3ec70b;
@@ -33,13 +42,25 @@
   --bg-header-bottom: #f8f9fa;
   --header-txt: #555555;
   --search-bg: #eeeded;
+  --shadow: #00000033;
+
+  /* home page */
+  --pa-home-h1: 20px;
+  --card-h: 490px;
+  --sub-heading-h: 70px;
+  --bg-img-h: 420px;
+  --ma-homepage: 3%;
+  --pa-btn-card: 10px;
+  --ma-down-icon2: 15px 0 0 -20px;
+  --card-btn-w: 135px;
+  --card2-h: 65px;
+  --ma-btm-home-top: 170px;
 
   /* login page */
   --login-title-font-size: 64px;
   --login-checkbox-dimensions: 20px;
   --login-title-margin: 40px;
   --login-form-padding: 54px;
-  --primary-border-radius: 12px;
   --primary-margin-top: 10px;
   --login-form-cont-width: 630px;
   --login-form-padding-top: 65px;

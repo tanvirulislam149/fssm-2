@@ -74,10 +74,6 @@
   font-weight: var(--font-weight-bold);
 }
 
-.btn:hover {
-  background: var(--bg-main-button-hov);
-}
-
 .forgot_password {
   color: var(--primary-blue);
   text-decoration: underline;
