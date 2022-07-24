@@ -5,6 +5,7 @@ import AboutDescription from '../../components/Sections/AboutDescription/AboutDe
 import Footer from '../../components/Footers/Footer';
 
 const About = () => {
+
   return (
     <>
       <div className={styles.container}>

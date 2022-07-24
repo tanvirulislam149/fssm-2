@@ -7,7 +7,7 @@ const AboutDescription = () => {
       <h1 className={styles.title}>About</h1>
 
       <div className={styles.main}>
-        <h2 className={styles.sub_heading}>Who are we</h2>
+        <h2 className={styles.sub_heading}>Who we are</h2>
 
         <p className={styles.body}>The Swachh Bharat Mission - Urban is poised at a crucial juncture. While cities and towns have become cleaner and free of open defecation, and SBM-U has captured the mind-space of citizens, there is still a lot that remains to be done to ensure that the gains made under the current SBM-U are sustained and carried forward. As outlined by the Hon’ble Finance Minister of India in the 2021 Budget, the focus on complete faecal sludge and septage management (FSSM) will be central to this effort. <br /><br />
 
