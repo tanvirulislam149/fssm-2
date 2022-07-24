@@ -8,16 +8,21 @@
   --fw-400: 400;
   --fw-500: 500;
   --hundred: 100%;
+  --size-75: 75%;
+  --size-25: 25%;
   --min-height-100: 100vh;
   --br4: 4px;
   --fifty: 50%;
   --thirty: 30%;
   --lh-35: 35px;
+  --lh-16: 1.6;
   --fs-14: 14px;
   --fs-10: 10px;
   --fs-12: 12px;
+  --size-5: 5px;
+  --size-3: 3px;
 
-  /* login page */
+  /* colors */
   --primary-blue: #024c73;
   --bg-main-button-hov: #024b73d8;
   --white-color: #fff;
@@ -27,7 +32,9 @@
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
   --header-txt: #555555;
+  --search-bg: #eeeded;
 
+  /* login page */
   --login-title-font-size: 64px;
   --login-checkbox-dimensions: 20px;
   --login-title-margin: 40px;
@@ -52,12 +59,12 @@
   --fs-24: 24px;
   --sub-title-margin: 16px;
   --pa-about-main: 32px;
-  --ma-about-main: 30px 170px;
+  --ma-about-main: 30px 120px;
   --bg-about: #393939;
   --pa-title: 28px 50px;
 
   /* footer */
-  --brands-size: 50px;
+  --brands-size: 45px;
   --pa-footer: 100px 50px;
   --pb-footer: 165px;
   --pa-btn-footer: 12px 47px;
@@ -82,19 +89,23 @@
   --links-gap: 8px;
   --search-icon-right: 30px;
   --ma-down-icon: 2px;
+  --searchbox-h: 60px;
+  --size-87: 87%;
+  --pa-hambuger: 5px 10px;
 }
 
 @media (max-width: 950px) {
   :root {
-    --logo1-height: 58px;
-    --logo1-width: 48px;
-    --logo2-height: 52px;
-    --logo2-width: 90px;
-    --logo3-height: 44px;
-    --logo3-width: 82px;
-    --logo4-width: 100px;
-    --logo4-height: 44px;
+    --logo1-height: 30px;
+    --logo1-width: 24.6px;
+    --logo2-height: 40.3px;
+    --logo2-width: 69.8px;
+    --logo3-height: 25px;
+    --logo3-width: 46.7px;
+    --logo4-width: 57px;
+    --logo4-height: 25px;
     --header-padding: 36px;
+    --ministry-logo-margin: 40%;
   }
 }
 
@@ -115,7 +126,12 @@
 
 @media (max-width: 575px) {
   :root {
-    --ministry-logo-margin: 0;
     --links-gap: 6px;
+  }
+}
+
+@media (max-width: 410px) {
+  :root {
+    --ministry-logo-margin: 30%;
   }
 }

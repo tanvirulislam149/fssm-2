@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Headers/Header';
 import styles from '../styles/Home.module.css';
+import Footer from '../components/Footers/Footer';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
 
         <Header />
 
+        <Footer />
       </div>
     </>
   )
