@@ -37,3 +37,7 @@ span {
 .none {
   display: none;
 }
+
+button:hover {
+  cursor: pointer;
+}
