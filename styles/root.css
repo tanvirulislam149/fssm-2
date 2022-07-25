@@ -43,6 +43,8 @@
   --header-txt: #555555;
   --search-bg: #eeeded;
   --shadow: #00000033;
+  --faded-black: #000000b3;
+  --black: black;
 
   /* home page */
   --pa-home-h1: 20px;
@@ -55,6 +57,9 @@
   --card-btn-w: 135px;
   --card2-h: 65px;
   --ma-btm-home-top: 170px;
+
+  /* carousel */
+  --slide-h: 530px;
 
   /* login page */
   --login-title-font-size: 64px;

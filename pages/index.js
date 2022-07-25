@@ -5,6 +5,8 @@ import Footer from '../components/Footers/Footer';
 import HomePageTopSection from '../components/Sections/HomePageTopSection/HomePageTopSection';
 import HeaderComponent from '../components/Headers/HeaderComponent';
 import { homePageText } from '../components/TextArrays';
+import HomePageMidSection from '../components/Sections/HomePageMidSection/HomePageMidSection';
+import HomePageBottomSlider from '../components/Sections/HomePageBottomSlider/HomePageBottomSlider';
 
 export default function Home() {
   return (
@@ -21,6 +23,10 @@ export default function Home() {
         <h1 className={styles.title}>{homePageText.h1}</h1>
 
         <HomePageTopSection />
+
+        <HomePageMidSection />
+
+        <HomePageBottomSlider />
 
         <Footer />
       </div>
