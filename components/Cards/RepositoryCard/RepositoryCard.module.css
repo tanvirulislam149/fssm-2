@@ -1,0 +1,15 @@
+.container {
+  border: solid 1px var(--bg-login-gray);
+  border-radius: var(--s-10);
+  padding: var(--s-10);
+  background: var(--white-color);
+  color: var(--light-gray-color);
+  font-size: var(--fs-12);
+  overflow-wrap: break-word;
+  height: var(--card2-h);
+}
+
+.container:hover {
+  background: var(--primary-blue);
+  color: var(--white-color);
+}

@@ -5,8 +5,16 @@ import styles from './Footer.module.css';
 import nfssm from '../../assets/nfssm.png';
 import Image from 'next/image';
 import SubmitButton from '../Buttons/Submit/SubmitButton';
+import { useRouter } from 'next/router';
+import { footerText } from '../TextArrays';
 
 const Footer = () => {
+  const navigate = useRouter();
+
+  const clickHandler = () => {
+    navigate.push('/signin');
+  }
+
   return (
     <>
       <footer className={styles.container}>
@@ -27,16 +35,10 @@ const Footer = () => {
 
         <div className={styles.right}>
           <div className={styles.btn_cont}>
-            <SubmitButton
-              title='Sign In'
-              style={styles.btn}
-            />
-            <SubmitButton
-              title='Get Involved'
-              style={styles.btn}
-            />
+            <SubmitButton title='Sign In' style={styles.btn} onClick={clickHandler} />
+            <SubmitButton title='Get Involved' style={styles.btn} />
           </div>
-          <p className={styles.bottom_text}>Total Visitors : 5590 - Total Downloads : 1419</p>
+          <p className={styles.bottom_text}>{footerText.visitors}</p>
         </div>
       </footer>
     </>

@@ -1,0 +1,114 @@
+.container {
+  margin-left: var(--ma-homepage);
+  margin-right: var(--ma-homepage);
+  margin-bottom: var(--ma-btm-home-top);
+}
+
+.card_cont {
+  display: flex;
+  width: var(--hundred);
+  justify-content: space-between;
+}
+
+.card_1,
+.card_2,
+.card_3 {
+  background-size: auto;
+  height: var(--bg-img-h);
+  padding: var(--s-10);
+}
+
+.card_1 {
+  background: url(../../../assets/Rectangle\ 10.png) no-repeat center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_2 {
+  background: url(../../../assets/Rectangle\ 10\ 1.png) no-repeat center center;
+  display: grid;
+  grid-template-columns: 47% 47%;
+  gap: 6%;
+  padding-top: var(--s-50);
+  padding-bottom: var(--s-50);
+}
+
+.card_3 {
+  background: url(../../../assets/Rectangle\ 10\ 2.png) no-repeat center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  height: var(--card-h);
+  width: var(--thirty);
+  box-shadow: 0 0 2px var(--shadow);
+}
+
+.btn_cont {
+  display: flex;
+  justify-content: space-between;
+  width: var(--hundred);
+}
+
+.sub_heading {
+  color: var(--white-color);
+  background: var(--transparent-blue);
+  height: var(--sub-heading-h);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub_heading h2 {
+  font-size: var(--s-20);
+}
+
+.sub_heading p {
+  font-size: var(--fs-12);
+  margin-top: var(--size-3);
+}
+
+.btn {
+  background: var(--primary-blue);
+  color: var(--white-color);
+  border-radius: var(--s-10);
+  border-width: 0;
+  padding-top: var(--pa-btn-card);
+  padding-bottom: var(--pa-btn-card);
+  width: var(--card-btn-w);
+  font-size: var(--fs-12);
+}
+
+.input {
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--s-10);
+  width: var(--hundred);
+  padding: var(--s-10);
+}
+
+.input_cont {
+  margin-bottom: var(--s-50);
+  width: var(--hundred);
+}
+
+.input + span {
+  position: absolute !important;
+  margin: var(--ma-down-icon2) !important;
+}
+
+@media (max-width: 1050px) {
+  .card_cont {
+    flex-direction: column;
+  }
+
+  .card {
+    height: var(--card-h);
+    width: var(--hundred);
+    margin-bottom: var(--s-20);
+  }
+}

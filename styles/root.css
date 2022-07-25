@@ -10,6 +10,9 @@
   --hundred: 100%;
   --size-75: 75%;
   --size-25: 25%;
+  --size-95: 95%;
+  --size-94: 94%;
+  --eighty: 80%;
   --min-height-100: 100vh;
   --br4: 4px;
   --fifty: 50%;
@@ -21,9 +24,21 @@
   --fs-12: 12px;
   --size-5: 5px;
   --size-3: 3px;
+  --s-50: 50px;
+  --s-40: 40px;
+  --s-30: 30px;
+  --s-20: 20px;
+  --s-10: 10px;
+  --s-75: 75px;
+  --s-300: 300px;
+  --s-320: 320px;
+  --s-500: 500px;
+  --s-150: 150px;
+  --primary-border-radius: 12px;
 
   /* colors */
   --primary-blue: #024c73;
+  --transparent-blue: #024c73b3;
   --bg-main-button-hov: #024b73d8;
   --white-color: #fff;
   --login-page-title-color: #3ec70b;
@@ -32,14 +47,36 @@
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
   --header-txt: #555555;
+  --dark-gray: #333;
   --search-bg: #eeeded;
+  --shadow: #00000033;
+  --faded-black: #000000b3;
+  --black: black;
+
+  /* home page */
+  --pa-home-h1: 20px;
+  --card-h: 490px;
+  --sub-heading-h: 70px;
+  --bg-img-h: 420px;
+  --ma-homepage: 3%;
+  --pa-btn-card: 10px;
+  --ma-down-icon2: 15px 0 0 -20px;
+  --card-btn-w: 135px;
+  --card2-h: 65px;
+  --ma-btm-home-top: 170px;
+  --pa-btn: 13px 30px;
+  --size-550: 550px;
+  --size-31: 31.33%;
+  --fs-2em: 2em;
+  --s-255: 255px;
+  --s-220: 220px;
+  --slide-h: 530px;
 
   /* login page */
   --login-title-font-size: 64px;
   --login-checkbox-dimensions: 20px;
   --login-title-margin: 40px;
   --login-form-padding: 54px;
-  --primary-border-radius: 12px;
   --primary-margin-top: 10px;
   --login-form-cont-width: 630px;
   --login-form-padding-top: 65px;

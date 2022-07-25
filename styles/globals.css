@@ -24,6 +24,7 @@ p,
 span {
   margin: 0;
 }
+
 .onroute {
   background: var(--primary-blue) !important;
   color: var(--white-color) !important;
@@ -35,112 +36,4 @@ span {
 
 .none {
   display: none;
-}
-
-.dropdown {
-  display: none;
-}
-
-.hamburger {
-  display: grid;
-  place-items: center;
-  margin: 0;
-  margin-right: 0;
-  padding: var(--pa-hambuger);
-  border: solid 1px var(--bg-login-gray);
-  border-radius: var(--size-5);
-  height: var(--hundred);
-}
-
-.hamburger label {
-  display: flex;
-  flex-direction: column;
-  width: var(--login-btn-margin);
-  cursor: pointer;
-}
-
-.hamburger label span {
-  background: black;
-  border-radius: var(--primary-margin-top);
-  height: var(--size-3);
-  margin: var(--size-3) 0;
-  transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-}
-
-.hamburger span:nth-of-type(1) {
-  width: var(--hundred);
-}
-
-.hamburger span:nth-of-type(2) {
-  width: var(--hundred);
-}
-
-.hamburger span:nth-of-type(3) {
-  width: var(--hundred);
-}
-
-.hamburger input[type="checkbox"] {
-  display: none;
-}
-
-.hamburger input[type="checkbox"]:checked ~ span:nth-of-type(1) {
-  transform-origin: bottom;
-  transform: rotatez(45deg) translate(3px, 1px);
-  width: var(--fifty);
-}
-
-.hamburger input[type="checkbox"]:checked ~ span:nth-of-type(2) {
-  transform-origin: top;
-  transform: rotatez(-45deg);
-}
-
-.hamburger input[type="checkbox"]:checked ~ span:nth-of-type(3) {
-  transform-origin: bottom;
-  width: var(--fifty);
-  transform: translate(13px, -4px) rotatez(45deg);
-}
-
-.show {
-  display: flex;
-  flex-direction: column;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
-}
-
-.nav {
-  height: 0;
-}
-
-.nav div {
-  position: relative;
-  top: 0;
-  z-index: 3;
-  background: white;
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media (max-width: 950px) {
-  .dropdown {
-    display: block;
-  }
 }
