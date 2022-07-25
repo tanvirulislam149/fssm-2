@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Carousel.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
+import { homePageMidSectionText } from '../../TextArrays';
 
 const Carousel = () => {
   return (
@@ -13,68 +14,92 @@ const Carousel = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}>
                 <div className={styles.one}>
-                  <h3 className={styles.title}>Latest News</h3>
+                  <h3 className={styles.title}>{homePageMidSectionText.slide1}</h3>
                   <ul className={styles.list}>
-                    <li>Amet minim mollit non deserunt ullamco est sit aliqua</li>
-                    <li>Amet minim mollit non deserunt ullamco est sit aliqua</li>
-                    <li>Amet minim mollit non deserunt ullamco est sit aliqua</li>
+                    <li>{homePageMidSectionText.cardText}</li>
+                    <li>{homePageMidSectionText.cardText}</li>
+                    <li>{homePageMidSectionText.cardText}</li>
                   </ul>
                   <Button title='Show more' style={styles.btn} />
                 </div>
                 <a href="#carousel__slide4"
-                  className={styles.carousel__prev}>Go to last slide</a>
+                  className={styles.carousel__prev}></a>
                 <a href="#carousel__slide2"
-                  className={styles.carousel__next}>Go to next slide</a>
+                  className={styles.carousel__next}></a>
               </div>
             </li>
             <li id="carousel__slide2"
               tabindex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
-              <div className={styles.two}></div>
+              <div className={styles.two}>
+                <h3 className={styles.title}>{homePageMidSectionText.slide2}</h3>
+                <ul className={styles.list}>
+                  <li>{homePageMidSectionText.cardText}</li>
+                  <li>{homePageMidSectionText.cardText}</li>
+                  <li>{homePageMidSectionText.cardText}</li>
+                </ul>
+                <Button title='Show more' style={styles.btn} />
+              </div>
               <a href="#carousel__slide1"
-                className={styles.carousel__prev}>Go to previous slide</a>
+                className={styles.carousel__prev}></a>
               <a href="#carousel__slide3"
-                className={styles.carousel__next}>Go to next slide</a>
+                className={styles.carousel__next}></a>
             </li>
             <li id="carousel__slide3"
               tabindex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
-              <div className={styles.three}></div>
+              <div className={styles.three}>
+                <h3 className={styles.title}>{homePageMidSectionText.slide3}</h3>
+                <ul className={styles.list}>
+                  <li>{homePageMidSectionText.cardText}</li>
+                  <li>{homePageMidSectionText.cardText}</li>
+                  <li>{homePageMidSectionText.cardText}</li>
+                </ul>
+                <Button title='Show more' style={styles.btn} />
+              </div>
               <a href="#carousel__slide2"
-                className={styles.carousel__prev}>Go to previous slide</a>
+                className={styles.carousel__prev}></a>
               <a href="#carousel__slide4"
-                className={styles.carousel__next}>Go to next slide</a>
+                className={styles.carousel__next}></a>
             </li>
             <li id="carousel__slide4"
               tabindex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
-              <div className={styles.four}></div>
+              <div className={styles.four}>
+                <h3 className={styles.title}>{homePageMidSectionText.slide4}</h3>
+                <ul className={styles.list}>
+                  <li>{homePageMidSectionText.cardText}</li>
+                  <li>{homePageMidSectionText.cardText}</li>
+                  <li>{homePageMidSectionText.cardText}</li>
+                </ul>
+                <Button title='Show more' style={styles.btn} />
+              </div>
               <a href="#carousel__slide3"
-                className={styles.carousel__prev}>Go to previous slide</a>
+                className={styles.carousel__prev}></a>
               <a href="#carousel__slide1"
-                className={styles.carousel__next}>Go to first slide</a>
+                className={styles.carousel__next}></a>
             </li>
           </ol>
           <aside className={styles.carousel__navigation}>
             <ol className={styles.carousel__navigation_list}>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide1"
-                  className={styles.carousel__navigation_button}>Go to slide 1</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide2"
-                  className={styles.carousel__navigation_button}>Go to slide 2</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide3"
-                  className={styles.carousel__navigation_button}>Go to slide 3</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide4"
-                  className={styles.carousel__navigation_button}>Go to slide 4</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
             </ol>
           </aside>

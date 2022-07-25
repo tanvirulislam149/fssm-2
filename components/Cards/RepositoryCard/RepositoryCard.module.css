@@ -8,3 +8,8 @@
   overflow-wrap: break-word;
   height: var(--card2-h);
 }
+
+.container:hover {
+  background: var(--primary-blue);
+  color: var(--white-color);
+}

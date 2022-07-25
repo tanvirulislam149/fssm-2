@@ -10,6 +10,9 @@
   --hundred: 100%;
   --size-75: 75%;
   --size-25: 25%;
+  --size-95: 95%;
+  --size-94: 94%;
+  --eighty: 80%;
   --min-height-100: 100vh;
   --br4: 4px;
   --fifty: 50%;
@@ -28,6 +31,9 @@
   --s-10: 10px;
   --s-75: 75px;
   --s-300: 300px;
+  --s-320: 320px;
+  --s-500: 500px;
+  --s-150: 150px;
   --primary-border-radius: 12px;
 
   /* colors */
@@ -41,6 +47,7 @@
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
   --header-txt: #555555;
+  --dark-gray: #333;
   --search-bg: #eeeded;
   --shadow: #00000033;
   --faded-black: #000000b3;
@@ -57,8 +64,12 @@
   --card-btn-w: 135px;
   --card2-h: 65px;
   --ma-btm-home-top: 170px;
-
-  /* carousel */
+  --pa-btn: 13px 30px;
+  --size-550: 550px;
+  --size-31: 31.33%;
+  --fs-2em: 2em;
+  --s-255: 255px;
+  --s-220: 220px;
   --slide-h: 530px;
 
   /* login page */

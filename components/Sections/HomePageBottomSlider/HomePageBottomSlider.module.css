@@ -1,5 +1,5 @@
 .container {
-  height: 300px;
+  height: var(--s-300);
   width: var(--hundred);
   margin-top: var(--card-btn-w);
 }
@@ -20,21 +20,26 @@
 .btn {
   background-color: var(--white-color);
   color: var(--black);
-  padding: 10px 25px;
+  padding: var(--pa-btn);
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
   margin-top: var(--card2-h);
+  box-shadow: 0 0 var(--size-5) var(--shadow);
 }
 
 .btn:hover {
-  background: white;
+  background: var(--white-color);
   color: var(--faded-black);
+}
+
+.helpers {
+  display: none;
 }
 
 .carousel {
   position: relative;
-  height: 550px;
+  height: var(--s-320);
 }
 
 .carousel__viewport {
@@ -52,24 +57,24 @@
 
 .carousel__slide {
   position: relative;
-  flex: 0 0 31.33%;
-  width: 100%;
+  flex: 0 0 var(--size-31);
+  width: var(--hundred);
 }
 
 .carousel__slide:before {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: var(--fifty);
+  left: var(--fifty);
   transform: translate3d(-50%, -40%, 70px);
-  color: #fff;
-  font-size: 2em;
+  color: var(--white-color);
+  font-size: var(--fs-2em);
 }
 .carousel__snapper {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: var(--hundred);
+  height: var(--hundred);
   scroll-snap-align: center;
 }
 
@@ -90,11 +95,11 @@
 .carousel__next {
   position: absolute;
   top: 0;
-  margin-top: 255px;
+  margin-top: var(--s-255);
   width: var(--fs-36);
   height: var(--fs-36);
   transform: translateY(-50%);
-  border-radius: 50%;
+  border-radius: var(--fifty);
   font-size: 0;
   outline: 0;
   display: none;
@@ -114,13 +119,13 @@
 .carousel::after {
   content: "";
   z-index: 1;
-  background-color: #333;
-  background-size: 1.5rem 1.5rem;
+  background-color: var(--primary-blue);
+  background-size: var(--fs-1rem) var(--fs-1rem);
   background-repeat: no-repeat;
   background-position: center center;
-  color: #fff;
-  font-size: 2.5rem;
-  line-height: 4rem;
+  color: var(--white-color);
+  font-size: var(--fs-36);
+  line-height: var(--card2-h);
   text-align: center;
   pointer-events: none;
 }
@@ -128,7 +133,7 @@
 .carousel__navigation {
   position: absolute;
   right: 0;
-  bottom: 220px;
+  bottom: 0;
   left: 0;
   text-align: center;
 }
@@ -142,10 +147,10 @@
   display: inline-block;
   width: var(--fs-1rem);
   height: var(--fs-1rem);
-  background-color: #333;
+  background-color: var(--dark-gray);
   background-clip: content-box;
-  border: 0.25rem solid transparent;
-  border-radius: 50%;
+  border: var(--size-5) solid transparent;
+  border-radius: var(--fifty);
   font-size: 0;
   transition: transform 0.1s;
 }
@@ -161,9 +166,9 @@
 .one,
 .two,
 .three {
-  width: 95%;
+  width: var(--size-95);
   margin: 0 auto;
-  height: 300px;
+  height: var(--s-300);
   background-size: auto;
   display: flex;
   flex-direction: column;
@@ -195,51 +200,6 @@
   scrollbar-width: 0px;
 }
 
-@keyframes tonext {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: 100%;
-  }
-  98% {
-    left: 100%;
-  }
-  99% {
-    left: 0;
-  }
-}
-
-@keyframes tostart {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: -300%;
-  }
-  98% {
-    left: -300%;
-  }
-  99% {
-    left: 0;
-  }
-}
-
-@keyframes snap {
-  96% {
-    scroll-snap-align: center;
-  }
-  97% {
-    scroll-snap-align: none;
-  }
-  99% {
-    scroll-snap-align: none;
-  }
-  100% {
-    scroll-snap-align: center;
-  }
-}
-
 .carousel__navigation_list::-webkit-scrollbar,
 .carousel__viewport::-webkit-scrollbar {
   width: 0;
@@ -260,12 +220,12 @@
   .one,
   .two,
   .three {
-    width: 94%;
+    width: var(--size-94);
     background-size: cover;
   }
 
   .carousel__slide {
-    flex: 0 0 100%;
+    flex: 0 0 var(--hundred);
   }
 
   .carousel::before,
@@ -278,16 +238,20 @@
   .carousel::before,
   .carousel__prev {
     left: var(--s-40);
-    margin-top: 150px;
+    margin-top: var(--s-150);
   }
 
   .carousel::after,
   .carousel__next {
     right: var(--s-40);
-    margin-top: 150px;
+    margin-top: var(--s-150);
   }
 
   .btn {
     margin-top: var(--card-btn-w);
+  }
+
+  .helpers {
+    display: block;
   }
 }

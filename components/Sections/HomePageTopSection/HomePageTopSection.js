@@ -15,7 +15,7 @@ const HomePageTopSection = () => {
         <div className={styles.card_cont}>
           <div className={styles.card}>
             <div className={styles.sub_heading}>
-              <h2>Quick Search</h2>
+              <h2>{homePageText.sub_title1}</h2>
             </div>
             <div className={styles.card_1}>
               <div className={styles.input_cont}>
@@ -40,8 +40,8 @@ const HomePageTopSection = () => {
 
           <div className={styles.card}>
             <div className={styles.sub_heading}>
-              <h2>Repository</h2>
-              <p>Curated Knowledge for user-profiles</p>
+              <h2>{homePageText.sub_title2}</h2>
+              <p>{homePageText.sub_title3}</p>
             </div>
             <div className={styles.card_2}>
               {homePageText.repository.map((text, i) => {
@@ -54,7 +54,7 @@ const HomePageTopSection = () => {
 
           <div className={styles.card}>
             <div className={styles.sub_heading}>
-              <h2>Help Desk</h2>
+              <h2>{homePageText.sub_title4}</h2>
             </div>
             <div className={styles.card_3}>
               <Button

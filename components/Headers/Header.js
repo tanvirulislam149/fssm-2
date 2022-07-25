@@ -5,12 +5,7 @@ import Image from 'next/image';
 import moshua from '../../assets/MOHUA.png';
 import amrut from '../../assets/AMRUT.png';
 import sbm from '../../assets/sbm.png';
-import Input from '../../components/Inputs/Input';
-import Link from 'next/link';
-import search from '../../assets/search.png';
-import down from '../../assets/down.png';
 import { useRouter } from 'next/router';
-import HeaderComponent from './HeaderComponent';
 
 const Header = () => {
   const router = useRouter();

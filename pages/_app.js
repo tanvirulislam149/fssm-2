@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import '../styles/root.css';
+import '../styles/dropdown.css';
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

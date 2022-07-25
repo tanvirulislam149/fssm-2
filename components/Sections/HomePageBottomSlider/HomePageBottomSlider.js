@@ -8,6 +8,9 @@ const HomePageBottomSlider = () => {
       <div className={styles.container}>
         <section className={styles.carousel} aria-label="Gallery">
           <ol className={styles.carousel__viewport}>
+            <li className={`${styles.carousel__slide} ${styles.helpers}`}></li>
+            <li className={`${styles.carousel__slide} ${styles.helpers}`}></li>
+
             <li id="carousel__slide_1"
               tabindex="0"
               className={styles.carousel__slide}>
@@ -16,9 +19,9 @@ const HomePageBottomSlider = () => {
                   <Button title='Click here' style={styles.btn} />
                 </div>
                 <a href="#carousel__slide_3"
-                  className={styles.carousel__prev}>Go to last slide</a>
+                  className={styles.carousel__prev}></a>
                 <a href="#carousel__slide_2"
-                  className={styles.carousel__next}>Go to next slide</a>
+                  className={styles.carousel__next}></a>
               </div>
             </li>
             <li id="carousel__slide_2"
@@ -29,9 +32,9 @@ const HomePageBottomSlider = () => {
                 <Button title='Click here' style={styles.btn} />
               </div>
               <a href="#carousel__slide_1"
-                className={styles.carousel__prev}>Go to previous slide</a>
+                className={styles.carousel__prev}></a>
               <a href="#carousel__slide_3"
-                className={styles.carousel__next}>Go to next slide</a>
+                className={styles.carousel__next}></a>
             </li>
             <li id="carousel__slide_3"
               tabindex="0"
@@ -41,9 +44,9 @@ const HomePageBottomSlider = () => {
                 <Button title='Click here' style={styles.btn} />
               </div>
               <a href="#carousel__slide_2"
-                className={styles.carousel__prev}>Go to previous slide</a>
+                className={styles.carousel__prev}></a>
               <a href="#carousel__slide_1"
-                className={styles.carousel__next}>Go to next slide</a>
+                className={styles.carousel__next}></a>
             </li>
           </ol>
 
@@ -51,15 +54,15 @@ const HomePageBottomSlider = () => {
             <ol className={styles.carousel__navigation_list}>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide_1"
-                  className={styles.carousel__navigation_button}>Go to slide 1</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide_2"
-                  className={styles.carousel__navigation_button}>Go to slide 2</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
               <li className={styles.carousel__navigation_item}>
                 <a href="#carousel__slide_3"
-                  className={styles.carousel__navigation_button}>Go to slide 3</a>
+                  className={styles.carousel__navigation_button}></a>
               </li>
             </ol>
           </aside>
