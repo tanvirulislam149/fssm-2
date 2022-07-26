@@ -1,6 +1,6 @@
 .container {
   padding: var(--s-40) var(--ma-homepage);
-  background: #e9efd3b3;
+  background: var(--quest-green);
 }
 
 .fileUpload {

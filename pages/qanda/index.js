@@ -3,19 +3,22 @@ import Header from '../../components/Headers/Header';
 import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
 import styles from './HelpDesk.module.css';
-import QuestionForm from '../../components/Forms/Help Desk/QuestionForm';
+import HelpDesk from '../../components/Sections/HelpDesk/HelpDesk';
+import Disclaimer from '../../components/Sections/Disclaimer/Disclaimer';
 
-const HelpDesk = () => {
+const HelpDeskCont = () => {
   return (
     <>
       <Header />
       <HeaderComponent />
 
-      <QuestionForm />
+      <HelpDesk />
+
+      <Disclaimer />
 
       <Footer />
     </>
   )
 }
 
-export default HelpDesk
+export default HelpDeskCont

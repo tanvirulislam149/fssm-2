@@ -41,3 +41,14 @@ span {
 button:hover {
   cursor: pointer;
 }
+
+.question-btn1,
+.question-btn2 {
+  background: var(--white-color);
+  color: var(--light-gray-color);
+  padding: var(--fs-1rem);
+  width: var(--fifty);
+  border-width: 0;
+  font-size: var(--fs-24);
+  cursor: pointer;
+}

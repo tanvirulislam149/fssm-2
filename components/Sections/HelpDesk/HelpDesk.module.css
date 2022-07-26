@@ -1,0 +1,20 @@
+.container {
+  background: var(--bg-login-gray);
+  padding: var(--ma-about-main);
+}
+
+.btn_cont {
+  width: var(--hundred);
+  display: flex;
+}
+
+.instruction {
+  color: var(--header-txt);
+  padding: var(--fs-1rem);
+}
+
+.main {
+  background: var(--light-green);
+  padding: 0 var(--fs-1rem);
+  padding-bottom: var(--fs-1rem);
+}

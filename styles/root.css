@@ -9,6 +9,7 @@
   --fw-500: 500;
   --hundred: 100%;
   --size-75: 75%;
+  --sixty: 60%;
   --seventy: 70%;
   --size-25: 25%;
   --size-45: 45%;
@@ -44,6 +45,7 @@
   --primary-blue: #024c73;
   --transparent-blue: #024c73b3;
   --bg-main-button-hov: #024b73d8;
+  --blue: #2f6ce5;
   --red: #cb1537;
   --red-hov: #cb1536d0;
   --white-color: #fff;
@@ -53,6 +55,9 @@
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
   --header-txt: #555555;
+  --quest-green: #e9efd3b3;
+  --light-green: #dfe9ba;
+  --shadow-green: #ccd6a6;
   --dark-gray: #333;
   --search-bg: #eeeded;
   --shadow: #00000033;
