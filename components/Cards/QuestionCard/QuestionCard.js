@@ -11,6 +11,7 @@ const QuestionCard = ({ details, theme, organization, name, date }) => {
           <div className={styles.img_cont}>
             <Image src={profile} width={18} height={21} alt='profile icon' />
           </div>
+
           <div className={styles.details}>
             <p>{details}</p>
             <div className={styles.footer}>
@@ -19,6 +20,7 @@ const QuestionCard = ({ details, theme, organization, name, date }) => {
               <p>{organization}</p>
             </div>
           </div>
+
           <div className={styles.theme}>{theme}</div>
         </div>
       </div>

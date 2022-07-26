@@ -52,3 +52,11 @@ button:hover {
   font-size: var(--fs-24);
   cursor: pointer;
 }
+
+@media (max-width: 950px) {
+  .question-btn1,
+  .question-btn2 {
+    padding: var(--fs-14);
+    font-size: var(--fs-1rem);
+  }
+}

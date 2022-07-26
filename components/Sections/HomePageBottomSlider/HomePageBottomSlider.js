@@ -12,7 +12,7 @@ const HomePageBottomSlider = () => {
             <li className={`${styles.carousel__slide} ${styles.helpers}`}></li>
 
             <li id="carousel__slide_1"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}>
                 <div className={styles.one}>
@@ -25,7 +25,7 @@ const HomePageBottomSlider = () => {
               </div>
             </li>
             <li id="carousel__slide_2"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.two}>
@@ -37,7 +37,7 @@ const HomePageBottomSlider = () => {
                 className={styles.carousel__next}></a>
             </li>
             <li id="carousel__slide_3"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.three}>

@@ -2,16 +2,16 @@ import React from 'react';
 import Header from '../../components/Headers/Header';
 import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
-import HelpDesk from '../../components/Sections/HelpDesk/HelpDesk';
 import Disclaimer from '../../components/Sections/Disclaimer/Disclaimer';
+import GlossaryComponent from '../../components/Sections/GlossaryComponent/GlossaryComponent';
 
-const HelpDeskCont = () => {
+const Glossary = () => {
   return (
     <>
       <Header />
       <HeaderComponent />
 
-      <HelpDesk />
+      <GlossaryComponent />
 
       <Disclaimer />
 
@@ -20,4 +20,4 @@ const HelpDeskCont = () => {
   )
 }
 
-export default HelpDeskCont
+export default Glossary

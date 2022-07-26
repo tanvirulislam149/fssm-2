@@ -14,14 +14,17 @@ const Header = () => {
     var id = router.pathname.slice(1);
 
     var option = document.getElementById(id);
-    if (!option) {
+
+    if (id === 'glossary') {
+      document.querySelector('#faq').classList.add('onroute');
+      document.querySelector('#faq-desktop').classList.add('onroute-desktop');
+    } else if (!option) {
       document.querySelector('#home').classList.add('onroute');
       document.querySelector('#home-desktop').classList.add('onroute-desktop');
     } else {
       option.classList.add('onroute');
       document.getElementById(id + '-desktop').classList.add('onroute-desktop');
     }
-
   }, [])
 
   return (

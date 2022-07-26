@@ -4,7 +4,7 @@
 }
 
 .title {
-  font-size: var(--fs-36);
+  font-size: var(--fs-24);
   color: var(--white-color);
   font-weight: var(--font-weight-bold);
 }

@@ -24,7 +24,6 @@ const PreviousQuestions = () => {
                 defaultValue={''}
                 required
                 className={styles.select}
-              //onChange={(e) => { setTheme(e.target.value) }}
               >
                 <option value={''} disabled hidden>Select Theme</option>
                 <option>Sunday</option>

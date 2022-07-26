@@ -60,3 +60,23 @@
   border-radius: var(--primary-border-radius);
   background: var(--white-color);
 }
+
+@media (max-width: 950px) {
+  .inputs {
+    flex-direction: column;
+  }
+
+  .select_cont {
+    width: var(--hundred);
+    margin-bottom: var(--s-10);
+  }
+
+  .input_cont {
+    width: var(--hundred);
+    margin-bottom: var(--s-10);
+  }
+
+  .btn {
+    width: var(--hundred);
+  }
+}

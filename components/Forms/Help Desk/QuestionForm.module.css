@@ -49,6 +49,7 @@
   max-width: var(--s-400);
   float: left;
   padding: 0 var(--fs-14);
+  color: var(--light-gray-color);
 }
 
 .file_cont {
@@ -164,4 +165,24 @@
 
 .btn_cont {
   margin-top: var(--s-40);
+}
+
+@media (max-width: 950px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .select_cont {
+    width: var(--hundred);
+    margin-bottom: var(--s-20);
+  }
+
+  .input_cont {
+    width: var(--hundred);
+    margin-bottom: var(--s-20);
+  }
+
+  .f_input {
+    width: var(--thirty);
+  }
 }

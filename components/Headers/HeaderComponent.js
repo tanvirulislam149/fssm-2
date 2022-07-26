@@ -16,7 +16,7 @@ const HeaderComponent = () => {
             <li id='home-desktop'><Link href='/'>Home</Link></li>
             <li id='fssmalliance-desktop'><Link href='/fssmalliance'>About</Link></li>
             <li id='qanda-desktop'><Link href='/qanda'>Help Desk</Link></li>
-            <li><Link href='/'>PAQs and Glosarry</Link></li>
+            <li id='faq-desktop'><Link href='/faq'>FAQs and Glosarry</Link></li>
 
             <div className={styles.flex_align_center}>
               <li>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} /></li>
@@ -72,7 +72,7 @@ const HeaderComponent = () => {
             <Link href='/'><h2 className={styles.item} id='home'>Home</h2></Link>
             <Link href='/fssmalliance'><h2 className={styles.item} id='fssmalliance'>About</h2></Link>
             <Link href='/qanda'><h2 className={styles.item} id='qanda'>Help Desk</h2></Link>
-            <Link href='/'><h2 className={styles.item}>PAQs and Glosarry</h2></Link>
+            <Link href='/faq'><h2 className={styles.item} id='faq'>FAQs and Glosarry</h2></Link>
             <h2 className={styles.item}>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} /></h2>
             <h2 className={styles.item}>States <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} /></h2>
             <Link href='/'><h2 className={styles.item}>Tenders</h2></Link>

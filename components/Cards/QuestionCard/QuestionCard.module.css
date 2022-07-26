@@ -54,3 +54,25 @@
   width: var(--sixty);
   line-height: var(--lh-35);
 }
+
+@media (max-width: 950px) {
+  .container {
+    padding: var(--s-10);
+  }
+
+  .cont {
+    flex-direction: column;
+  }
+
+  .details {
+    width: var(--hundred);
+  }
+
+  .footer p {
+    margin-right: var(--s-30);
+  }
+
+  .theme {
+    width: max-content;
+  }
+}

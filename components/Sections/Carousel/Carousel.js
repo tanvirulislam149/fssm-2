@@ -10,7 +10,7 @@ const Carousel = () => {
         <section className={styles.carousel} aria-label="Gallery">
           <ol className={styles.carousel__viewport}>
             <li id="carousel__slide1"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}>
                 <div className={styles.one}>
@@ -29,7 +29,7 @@ const Carousel = () => {
               </div>
             </li>
             <li id="carousel__slide2"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.two}>
@@ -47,7 +47,7 @@ const Carousel = () => {
                 className={styles.carousel__next}></a>
             </li>
             <li id="carousel__slide3"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.three}>
@@ -65,7 +65,7 @@ const Carousel = () => {
                 className={styles.carousel__next}></a>
             </li>
             <li id="carousel__slide4"
-              tabindex="0"
+              tabIndex="0"
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.four}>

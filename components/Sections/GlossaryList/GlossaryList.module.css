@@ -1,0 +1,14 @@
+.footer_text {
+  padding: var(--s-10);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-400);
+  color: var(--light-gray-color);
+  border-radius: var(--primary-border-radius);
+  background: var(--white-color);
+}
+
+.footer_text2 {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-400);
+  margin-bottom: var(--s-20);
+}

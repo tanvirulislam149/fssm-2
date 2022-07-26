@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './HelpDesk.module.css';
 import QuestionForm from '../../Forms/Help Desk/QuestionForm';
-import Button from '../../Buttons/Submit/SubmitButton';
 import PreviousQuestions from '../PreviousQuestions/PreviousQuestions';
+import { helpDeskText } from '../../TextArrays';
 
 const HelpDesk = () => {
   const [routeId, setRouteId] = useState(null);
@@ -57,7 +57,7 @@ const HelpDesk = () => {
         </div>
 
         <main className={styles.main}>
-          <p className={styles.instruction}> Have all your questions answered directly by FSSM subject matter experts within 3-5 business days! Simply select a theme, insert your question and click submit below.</p>
+          <p className={styles.instruction}>{helpDeskText.text}</p>
           <div id='question-form'>
             <QuestionForm />
           </div>
