@@ -4,8 +4,29 @@
   padding: var(--s-20) var(--s-30);
   border-radius: var(--primary-border-radius);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: var(--s-20) 0;
+}
+
+.cont {
+  width: var(--hundred);
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  border-bottom: 1px solid var(--light-gray-color);
+  margin: var(--s-10) 0;
+}
+
+.footer p {
+  margin-right: var(--s-50);
+  font-size: var(--fs-12);
+}
+
+.footer p:nth-last-child(2) span {
+  text-transform: capitalize;
 }
 
 .img_cont {
@@ -25,11 +46,11 @@
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   height: max-content;
+  text-transform: uppercase;
 }
 
 .details {
   font-weight: var(--fw-400);
   width: var(--sixty);
   line-height: var(--lh-35);
-  text-transform: capitalize;
 }

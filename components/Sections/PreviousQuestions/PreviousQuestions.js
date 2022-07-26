@@ -44,9 +44,9 @@ const PreviousQuestions = () => {
           </div>
         </div>
 
-        {questionsList.map(({ id, details, theme }) => {
+        {questionsList.map(({ id, details, theme, name, date, organization }) => {
           return (
-            <QuestionCard key={id} details={details} theme={theme} />
+            <QuestionCard key={id} organization={organization} name={name} date={date} details={details} theme={theme} />
           )
         })}
 

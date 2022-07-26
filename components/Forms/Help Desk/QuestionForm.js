@@ -40,7 +40,7 @@ const QuestionForm = () => {
               className={styles.select}
               onChange={(e) => { setTheme(e.target.value) }}
             >
-              <option value={''} disabled hidden>Inclusion and Equity</option>
+              <option value={''} disabled hidden>Select Theme</option>
               <option>Sunday</option>
               <option>Monday</option>
               <option>Tuesday</option>

@@ -42,11 +42,17 @@ export const questionsList = [
   {
     details: 'I am a professor in Bangalore University and I teach a course on Urban development for my masters class. Unfortunately, students are barely aware of the current FSSM situation in India. I believe that FSSM should also be brought into academic curriculum to create better awareness. I have over 8 years of experience in researching FSSM in India. Is there anyway I can contribute academia engagement in FSSM in India.',
     theme: 'Technical',
-    id: '1'
+    id: '1',
+    name: 'AMAN',
+    date: 'February 06, 2020',
+    organization: 'Bangalore University'
   },
   {
     details: 'I am a professor in Bangalore University and I teach a course on Urban development for my masters class. Unfortunately, students are barely aware of the current FSSM situation in India. I believe that FSSM should also be brought into academic curriculum to create better awareness. I have over 8 years of experience in researching FSSM in India. Is there anyway I can contribute academia engagement in FSSM in India.',
     theme: 'Technical',
-    id: '2'
+    id: '2',
+    name: 'AMAN',
+    date: 'February 06, 2020',
+    organization: 'Bangalore University'
   },
 ]
