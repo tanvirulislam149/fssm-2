@@ -1,0 +1,13 @@
+.container {
+  padding: var(--s-40);
+  background: var(--white-color);
+}
+
+.container p {
+  line-height: var(--lh-35);
+}
+
+.container p:first-child {
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+}

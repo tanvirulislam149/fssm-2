@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './SubmitButton.module.css';
 
-const SubmitButton = ({ title, style, onClick }) => {
+const SubmitButton = ({ title, style, onClick, id }) => {
   return (
     <>
-      <button onClick={onClick} className={`${style} ${styles.btn}`}>{title}</button>
+      <button id={id} onClick={onClick} className={`${style} ${styles.btn}`}>{title}</button>
     </>
   )
 }

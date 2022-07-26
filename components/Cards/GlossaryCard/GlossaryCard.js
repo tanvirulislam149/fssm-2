@@ -1,0 +1,48 @@
+import React, { useState } from 'react';
+import styles from './GlossaryCard.module.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
+
+const GlossaryCard = ({ title, id, body }) => {
+  const [clicked, setClicked] = useState(true);
+
+  const dropDown = (e) => {
+    if (e.classList.contains("active-dropdown")) {
+      e.style.maxHeight = 0;
+      e.classList.remove("active-dropdown");
+    } else {
+      e.style.maxHeight = 'max-content';
+      e.classList.add("active-dropdown");
+    }
+  }
+
+  return (
+    <>
+      <div className={styles.cont}>
+        <div className={styles.container}>
+          <div
+            className={clicked ? styles.plus : styles.minus}
+            onClick={() => {
+              dropDown(document.getElementById('drop' + `${id}`));
+              setClicked(!clicked);
+            }}
+          >
+            {
+              clicked ?
+                <FontAwesomeIcon color='white' icon={faPlus} size="1x" /> :
+                <FontAwesomeIcon color='white' icon={faMinus} size="1x" />
+            }
+          </div>
+          <p className={styles.title}>{title}</p>
+        </div>
+
+        <div id={'drop' + `${id}`} className='dropdown-content'>
+          <p>{body}</p>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default GlossaryCard
