@@ -7,13 +7,6 @@ import { helpDeskText } from '../../TextArrays';
 const HelpDesk = () => {
   const [routeId, setRouteId] = useState(null);
 
-
-  const handleClick = (id) => {
-    val = null;
-    val = id;
-    console.log({ val: val })
-  }
-
   useEffect(() => {
     console.log('ran', routeId)
     const prev = document.getElementById('previous-questions');
