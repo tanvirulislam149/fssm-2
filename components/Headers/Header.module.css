@@ -116,7 +116,7 @@
 }
 
 .item {
-  padding: var(--login-checkbox-dimensions);
+  padding: var(--s-20);
   color: var(--primary-blue);
   font-size: var(--fs-16);
   width: var(--size-87);
@@ -128,6 +128,96 @@
 .item:hover {
   background: var(--primary-blue);
   color: var(--white-color);
+}
+
+.ul {
+  background: darkorange;
+  list-style: none;
+  width: var(--hundred);
+  box-shadow: 0 var(--size-3) var(--size-3) var(--shadow);
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.li {
+  color: var(--primary-blue);
+  background: var(--white-color);
+  display: block;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+}
+
+.li ul li:hover {
+  float: left;
+  color: var(--primary-blue);
+  background: var(--input-border-color);
+  cursor: pointer;
+}
+
+.li ul {
+  background: var(--white-color);
+  visibility: hidden;
+  opacity: 0;
+  min-width: var(--s-60);
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: var(--fs-1rem);
+  left: 0;
+  display: none;
+}
+
+.li2 ul li {
+  background: var(--faded-white);
+}
+
+.li2 ul {
+  margin-top: 0;
+  border-bottom: 1px solid var(--bg-login-gray);
+  box-shadow: 0 var(--size-5) var(--size-5) -2px var(--shadow);
+  background: var(--transparent);
+  width: auto;
+}
+
+.li2 {
+  background: var(--transparent);
+  color: var(--black);
+}
+
+.li:hover > ul,
+.li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+
+.li ul li {
+  clear: both;
+  width: var(--hundred);
+  padding: var(--fs-14) var(--s-20);
+  z-index: 5;
+  color: var(--black);
+  margin: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 950px) {

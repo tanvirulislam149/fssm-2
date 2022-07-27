@@ -31,7 +31,7 @@ span {
 }
 
 .onroute-desktop {
-  color: var(--primary-blue);
+  color: var(--primary-blue) !important;
 }
 
 .none {

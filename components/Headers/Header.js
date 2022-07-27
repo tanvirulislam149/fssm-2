@@ -18,6 +18,9 @@ const Header = () => {
     if (id === 'glossary') {
       document.querySelector('#faq').classList.add('onroute');
       document.querySelector('#faq-desktop').classList.add('onroute-desktop');
+    } else if (id === 'knowledgecontent') {
+      document.querySelector('#knowledgebase').classList.add('onroute');
+      document.querySelector('#knowledgebase-desktop').classList.add('onroute-desktop');
     } else if (!option) {
       document.querySelector('#home').classList.add('onroute');
       document.querySelector('#home-desktop').classList.add('onroute-desktop');

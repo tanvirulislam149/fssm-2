@@ -174,3 +174,69 @@ export const disclaimerText = {
 export const helpDeskText = {
   text: 'Have all your questions answered directly by FSSM subject matter experts within 3-5 business days! Simply select a theme, insert your question and click submit below.'
 }
+
+export const knowledgeContentText = {
+  categories: [
+    { title: 'All', role: '1' },
+    { title: 'Govt-National/state', role: '2' },
+    { title: 'Technical consultants/Agencies', role: '3' },
+    { title: 'Private Sector', role: '4' },
+    { title: 'Academia/ Training', role: '5' },
+    { title: 'NGO’s/Development Partners', role: '6' },
+    { title: 'Donor/Philanthropist/CSR', role: '7' },
+    { title: 'General Citizen /CBO', role: '8' }
+  ],
+  sections: [
+    {
+      id: 1,
+      title: 'What is FSSM?',
+      categories: [
+        {
+          id: 2, heading: 'Why FSSM matters', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' },
+            { id: 3, topic: 'What is the FSSM value chain?' },
+            { id: 4, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 1, heading: 'Understanding FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 3, heading: 'Global Perspective FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+          ]
+        },
+      ]
+    },
+    {
+      id: 2,
+      title: 'FSSM in India',
+      categories: [
+        {
+          id: 1, heading: 'Understanding FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 2, heading: 'Why FSSM matters', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' },
+            { id: 3, topic: 'What is the FSSM value chain?' },
+            { id: 4, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 3, heading: 'Global Perspective FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+          ]
+        },
+      ]
+    },
+  ]
+}
+

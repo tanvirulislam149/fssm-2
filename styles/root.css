@@ -28,6 +28,7 @@
   --size-5: 5px;
   --size-3: 3px;
   --s-80: 80px;
+  --s-60: 60px;
   --s-50: 50px;
   --s-42: 42.5px;
   --s-40: 40px;
@@ -51,6 +52,7 @@
   --blue: #2f6ce5;
   --red: #cb1537;
   --red-hov: #cb1536d0;
+  --orange: #e68406;
   --white-color: #fff;
   --login-page-title-color: #3ec70b;
   --light-gray-color: #8e8e8e;
@@ -63,8 +65,10 @@
   --shadow-green: #ccd6a6;
   --dark-gray: #333;
   --search-bg: #eeeded;
+  --faded-white: #ffffffea;
   --shadow: #00000033;
   --faded-black: #000000b3;
+  --transparent: #00000000;
   --black: black;
 
   /* home page */

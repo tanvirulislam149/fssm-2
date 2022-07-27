@@ -1,0 +1,18 @@
+.container {
+  background: var(--bg-login-gray);
+  padding-top: var(--size-5);
+}
+
+.container section {
+  padding: var(--s-20) var(--s-50);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--s-30);
+}
+
+@media (max-width: 950px) {
+  .container section {
+    padding: var(--s-20) var(--fs-1rem);
+    grid-template-columns: 1fr;
+  }
+}
