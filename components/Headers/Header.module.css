@@ -189,8 +189,8 @@
   visibility: visible;
   opacity: 1;
   display: block;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
 }
 
 .li ul li {

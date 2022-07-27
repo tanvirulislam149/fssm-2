@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Button from '../../Buttons/Submit/SubmitButton';
 import styles from './FaqNavigation.module.css';
-import Link from 'next/link';
 
 const FaqNavigation = () => {
   const router = useRouter();
@@ -46,4 +45,4 @@ const FaqNavigation = () => {
   )
 }
 
-export default FaqNavigation
+export default FaqNavigation 

@@ -13,9 +13,17 @@ const KnowledgeCategories = () => {
           <div className={styles.cont}>
             {knowledgeContentText.categories.map(({ title, role }) => {
               return (
-                <div className={styles.card}>
-                  <Link href={'/knowledgecontent?role=' + `${role}`}><p className={styles.link}>{title}</p></Link>
-                </div>
+                <>
+                  {
+                    title === 'All' ?
+                      <div key={role} className={styles.card}>
+                        <Link href='/knowledgecontent'><p className={styles.link}>{title}</p></Link>
+                      </div> :
+                      <div key={role} className={styles.card}>
+                        <Link href={'/knowledgecontent?role=' + `${role}`}><p className={styles.link}>{title}</p></Link>
+                      </div>
+                  }
+                </>
               )
             })}
           </div>

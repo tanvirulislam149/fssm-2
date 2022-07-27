@@ -185,7 +185,58 @@ export const knowledgeContentText = {
     { title: 'NGO’s/Development Partners', role: '6' },
     { title: 'Donor/Philanthropist/CSR', role: '7' },
     { title: 'General Citizen /CBO', role: '8' }
+  ],
+  sections: [
+    {
+      id: 1,
+      title: 'What is FSSM?',
+      categories: [
+        {
+          id: 2, heading: 'Why FSSM matters', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' },
+            { id: 3, topic: 'What is the FSSM value chain?' },
+            { id: 4, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 1, heading: 'Understanding FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 3, heading: 'Global Perspective FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+          ]
+        },
+      ]
+    },
+    {
+      id: 2,
+      title: 'FSSM in India',
+      categories: [
+        {
+          id: 1, heading: 'Understanding FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 2, heading: 'Why FSSM matters', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+            { id: 2, topic: 'FSSM and urbanization' },
+            { id: 3, topic: 'What is the FSSM value chain?' },
+            { id: 4, topic: 'FSSM and urbanization' }
+          ]
+        },
+        {
+          id: 3, heading: 'Global Perspective FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+          ]
+        },
+      ]
+    },
   ]
 }
-
 

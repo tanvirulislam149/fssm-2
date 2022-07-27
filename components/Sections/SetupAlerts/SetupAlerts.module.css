@@ -1,0 +1,8 @@
+.container {
+  background: var(--primary-blue);
+  color: var(--white-color);
+  padding: var(--s-10);
+  text-align: center;
+  border-radius: var(--primary-border-radius);
+  margin: var(--s-30) 0;
+}
