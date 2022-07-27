@@ -174,3 +174,18 @@ export const disclaimerText = {
 export const helpDeskText = {
   text: 'Have all your questions answered directly by FSSM subject matter experts within 3-5 business days! Simply select a theme, insert your question and click submit below.'
 }
+
+export const knowledgeContentText = {
+  categories: [
+    { title: 'All', role: '1' },
+    { title: 'Govt-National/state', role: '2' },
+    { title: 'Technical consultants/Agencies', role: '3' },
+    { title: 'Private Sector', role: '4' },
+    { title: 'Academia/ Training', role: '5' },
+    { title: 'NGO’s/Development Partners', role: '6' },
+    { title: 'Donor/Philanthropist/CSR', role: '7' },
+    { title: 'General Citizen /CBO', role: '8' }
+  ]
+}
+
+

@@ -1,0 +1,25 @@
+.container {
+  background: var(--bg-login-gray);
+  padding-top: var(--size-5);
+}
+
+.container section {
+  padding: var(--ma-about-main);
+  padding-top: var(--s-50);
+}
+
+.title {
+  font-size: var(--fs-48);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-blue);
+  padding: var(--pa-title);
+  background: var(--white-color);
+  margin-top: var(--primary-margin-top);
+}
+
+@media (max-width: 575px) {
+  .title {
+    font-size: var(--fs-36);
+    padding: var(--pa-title);
+  }
+}

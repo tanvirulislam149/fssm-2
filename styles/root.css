@@ -28,6 +28,7 @@
   --size-5: 5px;
   --size-3: 3px;
   --s-80: 80px;
+  --s-60: 60px;
   --s-50: 50px;
   --s-42: 42.5px;
   --s-40: 40px;
@@ -63,8 +64,10 @@
   --shadow-green: #ccd6a6;
   --dark-gray: #333;
   --search-bg: #eeeded;
+  --faded-white: #ffffffc1;
   --shadow: #00000033;
   --faded-black: #000000b3;
+  --transparent: #00000000;
   --black: black;
 
   /* home page */
