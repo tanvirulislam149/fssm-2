@@ -14,12 +14,11 @@ const FaqNavigation = () => {
     var faq = document.getElementById('faq-btn');
     var glossary = document.getElementById('glossary-btn');
     id === 'faq' ? faq.classList.add('onroute') : glossary.classList.add('onroute');
-  }, [])
+  }, [router])
 
   const navigate = (id) => {
     id === 2 ? router.push('/glossary') : router.push('/faq');
   }
-
 
   const handleError = (err) => {
     setError(err.response.statusText);
@@ -54,7 +53,7 @@ const FaqNavigation = () => {
             onClick={() => {
               navigate(1);
             }}
-          >FAQ's
+          >FAQ&apos;s
           </p>
           <p
             id='glossary-btn'

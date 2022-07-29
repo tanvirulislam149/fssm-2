@@ -31,7 +31,7 @@ const GlossaryList = () => {
         }
       });
     }
-  }, [router])
+  }, [alphabet])
 
   return (
     <>

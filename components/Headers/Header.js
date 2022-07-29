@@ -28,7 +28,7 @@ const Header = () => {
       option.classList.add('onroute');
       document.getElementById(id + '-desktop').classList.add('onroute-desktop');
     }
-  }, [])
+  }, [router])
 
   return (
     <>

@@ -24,7 +24,7 @@ const Faqs = () => {
   return (
     <>
       <div className={styles.container}>
-        <h1 className={styles.title}>FAQ's</h1>
+        <h1 className={styles.title}>FAQ&apos;s</h1>
         <section>
           <FaqNavigation />
 

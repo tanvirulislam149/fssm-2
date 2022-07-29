@@ -37,7 +37,7 @@ const KnowledgeSectionNav = () => {
         setTitle('All')
         break;
     }
-  }, [router])
+  }, [id])
 
   return (
     <>
