@@ -7,3 +7,4 @@ I dummied the data inthe Previous Questions section because there is no endpoint
 The endpoint for the knowledge categories returns an error 404 on my end.
 ----------------
 I don't understand setup alert request data, but I made API definition
+----------------
