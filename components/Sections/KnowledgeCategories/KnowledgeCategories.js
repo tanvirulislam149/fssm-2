@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './KnowledgeCategories.module.css';
 import { knowledgeContentText } from '../../TextArrays';
 import Link from 'next/link';
+import { getAllKnowledgeRepo } from '../../../services/authService';
 
 const KnowledgeCategories = () => {
+  const [knowledgeData, setKnowledgeData] = useState([]);
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    console.log(err);  // 404 not found
+    setError(err.response.statusText);
+  }
+
+  useEffect(() => {
+    getAllKnowledgeRepo((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log(res)
+        // setKnowledgeData(res.data);
+      }
+    });
+  }, [])
+
   return (
     <>
       <div className={styles.container}>
@@ -20,7 +39,7 @@ const KnowledgeCategories = () => {
                         <Link href='/knowledgecontent'><p className={styles.link}>{title}</p></Link>
                       </div> :
                       <div className={styles.card}>
-                        <Link href={'/knowledgecontent?role=' + `${role}`}><p className={styles.link}>{title}</p></Link>
+                        <Link href={'/knowledgecontent?category=' + `${role}`}><p className={styles.link}>{title}</p></Link>
                       </div>
                   }
                 </span>

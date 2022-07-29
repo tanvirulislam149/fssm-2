@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './LoginForm.module.css';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import Image from 'next/image';
@@ -9,14 +9,19 @@ import * as Yup from 'yup';
 import { loginUser } from '../../../services/authService';
 
 const LoginForm = () => {
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    console.log(err); // testing
+    setError(err.response.statusText);
+  }
+
   const handleSubmit = (loginData) => {
     loginUser(loginData, (err, res) => {
-      if (err) {
-        console.log({ e: err });
-        return;
-      }
+      console.log(loginData)
+      if (err) return handleError(err);
       if (res !== null) {
-        console.log(res);
+        console.log(res); // I don't have any valid user credentials to test this
       }
     })
   }
@@ -30,7 +35,9 @@ const LoginForm = () => {
   return (
     <>
       <div className={styles.container}>
-        <h1 className={styles.header_green}> {loginFormText.header_text_1} <span className={styles.header_blue}> {loginFormText.header_text_2} </span></h1>
+        <div className={styles.header}>
+          <h1 className={styles.header_green}> {loginFormText.header_text_1} <span className={styles.header_blue}> {loginFormText.header_text_2} </span></h1>
+        </div>
 
         <Formik
           initialValues={{ email: '', password: '', rememberMe: false }}
@@ -42,23 +49,24 @@ const LoginForm = () => {
             email: Yup.string().email('Invalid email address').required('Required'),
           })}
           onSubmit={(loginData) => {
-            console.log(loginData);
-            handleSubmit(loginData);
+            handleSubmit({ email: loginData.email, password: loginData.password });
           }}
         >
           <Form>
             <Field name="email" id='email' className={styles.input} placeholder='Email' type="email" />
-            <ErrorMessage name="email" />
+            <span className='form-error'><ErrorMessage name="email" /></span>
 
             <Field name="password" id='password' className={`${styles.input} ${styles.passwordInput}`} placeholder='Password' type="password" />
-            <ErrorMessage name="password" />
 
+            <span className={styles.passwordInput}></span>
             <Image
               className={styles.img}
               alt='reveal/hide' src={eye}
               height={16} width={22}
               onClick={togglePassword}
             />
+
+            <span className='form-error'><ErrorMessage name="password" /></span>
 
             <div className={styles.checkbox_forgot_password}>
               <div className={styles.checkbox_cont}>

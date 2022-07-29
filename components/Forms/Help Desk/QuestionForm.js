@@ -2,177 +2,163 @@ import React, { useEffect, useState } from 'react';
 import styles from './QuestionForm.module.css';
 import Input from '../../Inputs/Input';
 import Button from '../../Buttons/Submit/SubmitButton';
+import { submitQuestion } from '../../../services/authService';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 const QuestionForm = () => {
-  const [name, setName] = useState('');
-  const [organization, setOrganization] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [file, setFile] = useState(null);
-  const [email, setEmail] = useState('');
-  const [question, setQuestion] = useState('');
-  const [userProfile, setUserProfile] = useState('');
-  const [theme, setTheme] = useState('');
-  const [highPriority, setHighPriority] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("attachment").onchange = function () {
       document.getElementById("uploadFile").value = this.value.replace("C:\\fakepath\\", "");
     };
   }, [])
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  const handleError = (err) => {
+    console.log(err); // testing
+    setError(err.response.statusText);
+  }
+
+  const handleSubmit = (values) => {
+    console.log(values);
+    submitQuestion(values, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log(res); // testing
+      }
+    });
   }
 
   return (
     <>
-      <form
-        className={styles.container}
-        onSubmit={handleSubmit}
+      <Formik
+        initialValues={{
+          theme: '',
+          userprofile: '',
+          attachment: null,
+          name: '',
+          question: '',
+          email: '',
+          mobile: '',
+          organization: '',
+          high_priority: false
+        }}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .max(20, 'Must be 20 characters or less')
+            .min(3, 'Must be 4-20 characters')
+            .required('Required'),
+          organization: Yup.string()
+            .max(20, 'Must be 20 characters or less')
+            .min(3, 'Must be 4-20 characters')
+            .required('Required'),
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+          question: Yup.string()
+            .required('Required'),
+          theme: Yup.string()
+            .required('Required'),
+          userprofile: Yup.string()
+            .required('Required'),
+        })}
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
       >
-        <div className={styles.row}>
-          <div className={styles.select_cont}>
-            <label className={styles.label} htmlFor="theme">Theme <span>*</span></label>
-            <select
-              defaultValue={''}
-              required
-              id='theme'
-              className={styles.select}
-              onChange={(e) => { setTheme(e.target.value) }}
-            >
-              <option value={''} disabled hidden>Select Theme</option>
-              <option>Sunday</option>
-              <option>Monday</option>
-              <option>Tuesday</option>
-              <option>Wednesday</option>
-              <option>Thursday</option>
-              <option>Friday</option>
-              <option>Saturday</option>
-            </select>
-          </div>
+        {({ setFieldValue }) => (
+          <Form
+            className={styles.container}
+          >
+            <div className={styles.row}>
+              <div className={styles.select_cont}>
+                <label className={styles.label} htmlFor="theme">Theme <span>*</span></label>
+                <Field name='theme' as='select' id='theme' className={styles.select}>
+                  <option hidden value=''>Select Theme</option>
+                  <option value={1}>CAPACITY BUILDING</option>
+                  <option value={2}>COMMUNICATIONS</option>
+                  <option value={3}>COMMUNITY ENGAGEMENT</option>
+                </Field>
+                <span className='form-error'><ErrorMessage name="theme" /></span>
+              </div>
 
-          <div className={styles.select_cont}>
-            <label className={styles.label} htmlFor="user">User Profile <span>*</span></label>
-            <select
-              defaultValue={''}
-              required
-              id='user'
-              className={styles.select}
-              onChange={(e) => { setUserProfile(e.target.value) }}
-            >
-              <option className={styles.placeholder} value={''} disabled hidden>Select User Profile</option>
-              <option>Sunday</option>
-              <option>Monday</option>
-              <option>Tuesday</option>
-              <option>Wednesday</option>
-              <option>Thursday</option>
-              <option>Friday</option>
-              <option>Saturday</option>
-            </select>
-          </div>
+              <div className={styles.select_cont}>
+                <label className={styles.label} htmlFor="userprofile">User Profile <span>*</span></label>
+                <Field name='userprofile' as='select' id='userprofile' className={styles.select}>
+                  <option hidden value=''>Select User Profile</option>
+                  <option value={1}>Academia/Training</option>
+                  <option value={2}>Donor/Philanthropist/CSR</option>
+                  <option value={3}>General citizen/ CBO</option>
+                </Field>
+                <span className='form-error'><ErrorMessage name="userprofile" /></span>
+              </div>
 
-          <div className={styles.select_cont}>
-            <label className={styles.label}>Attachment</label>
-            <div className={styles.file_cont}>
-              <Input id="uploadFile" style={styles.f_input} />
-              <div className={`${styles.btn_browse} ${styles.fileUpload}`}>
-                <span>Browse</span>
-                <Input
-                  id="uploadBtn"
-                  type='file'
-                  style={styles.upload}
-                  onChange={(e) => { setFile(e.target.value) }}
-                />
+              <div className={styles.select_cont}>
+                <label className={styles.label}>Attachment</label>
+                <div className={styles.file_cont}>
+                  <Input id="uploadFile" style={styles.f_input} />
+                  <div className={`${styles.btn_browse} ${styles.fileUpload}`}>
+                    <span>Browse</span>
+                    <Input
+                      id="attachment"
+                      type='file'
+                      name='attachment'
+                      style={styles.upload}
+                      onChange={(e) => {
+                        setFieldValue('attachment', e.currentTarget.files[0])
+                      }} />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.text_cont}>
-          <label htmlFor="textarea" className={styles.label}>Question <span>*</span></label>
-          <textarea
-            placeholder='Your question here....'
-            className={styles.textarea}
-            id="textarea"
-            cols="30"
-            rows="10"
-            value={question}
-            onChange={(e) => { setQuestion(e.target.value) }}>
-          </textarea>
-        </div>
+            <div className={styles.text_cont}>
+              <label htmlFor="question" className={styles.label}>Question <span>*</span></label>
+              <Field name="question" id='question' className={styles.textarea} cols="30" rows="10" placeholder='Your question here....' as='textarea' />
+              <span className='form-error'><ErrorMessage name="question" /></span>
+            </div>
 
-        <label className={styles.radio} htmlFor="radio">
-          <Input
-            id='radio'
-            type='checkbox'
-            onChange={() => {
-              setHighPriority(!highPriority);
-            }}
-          />
-          <span>High Priority</span>
-        </label>
+            <label className={styles.radio} htmlFor="radio">
+              <Field name='high_priority' id='high_priority' type='checkbox' className={styles.radio} />
+              <span>High Priority</span>
+            </label>
 
+            <div className={`${styles.row} ${styles.mt5}`}>
+              <div className={styles.input_cont}>
+                <label className={styles.label} htmlFor="name">Name <span>*</span></label>
+                <Field name="name" id='name' className={styles.input} placeholder='Name' type="text" />
+                <span className='form-error'><ErrorMessage name="name" /></span>
+              </div>
 
-        <div className={`${styles.row} ${styles.mt5}`}>
-          <div className={styles.input_cont}>
-            <label className={styles.label} htmlFor="name">Name <span>*</span></label>
-            <Input
-              required
-              id='name'
-              value={name}
-              type='text'
-              placeholder='Name'
-              style={styles.input}
-              onChange={(e) => { setName(e.target.value) }}
-            />
-          </div>
+              <div className={styles.input_cont}>
+                <label className={styles.label} htmlFor="email">Email <span>*</span></label>
+                <Field name="email" id='email' className={styles.input} placeholder='Email' type="email" />
+                <span className='form-error'><ErrorMessage name="email" /></span>
+              </div>
+            </div>
 
-          <div className={styles.input_cont}>
-            <label className={styles.label} htmlFor="email">Email <span>*</span></label>
-            <Input
-              required
-              id='email'
-              value={email}
-              type='email'
-              placeholder='Email'
-              style={styles.input}
-              onChange={(e) => { setEmail(e.target.value) }}
-            />
-          </div>
-        </div>
+            <div className={`${styles.row} ${styles.mt5}`}>
+              <div className={styles.input_cont}>
+                <label className={styles.label} htmlFor="mobile">Mobile</label>
+                <Field name="mobile" id='mobile' className={styles.input} placeholder='Mobile' type="number" />
+              </div>
 
-        <div className={`${styles.row} ${styles.mt5}`}>
-          <div className={styles.input_cont}>
-            <label className={styles.label} htmlFor="mobile">Mobile</label>
-            <Input
-              type='number'
-              id='mobile'
-              value={mobile}
-              placeholder='Mobile'
-              style={styles.input}
-              onChange={(e) => { setMobile(e.target.value) }}
-            />
-          </div>
+              <div className={styles.input_cont}>
+                <label className={styles.label} htmlFor="organization">Organization <span>*</span></label>
+                <Field name="organization" id='organization' className={styles.input} placeholder='Organization' type="text" />
+                <span className='form-error'><ErrorMessage name="organization" /></span>
+              </div>
+            </div>
 
-          <div className={styles.input_cont}>
-            <label className={styles.label} htmlFor="organization">Organization <span>*</span></label>
-            <Input
-              required
-              type='text'
-              value={organization}
-              placeholder='Organization'
-              id='organization'
-              style={styles.input}
-              onChange={(e) => { setOrganization(e.target.value) }}
-            />
-          </div>
-        </div>
-
-        <div className={styles.btn_cont}>
-          <Button title='Submit' style={styles.submit_btn} />
-          <button disabled className={styles.cancel_btn}>Cancel</button>
-        </div>
-      </form>
+            <div className={styles.btn_cont}>
+              <Button type='submit' title='Submit' style={styles.submit_btn} />
+              <button disabled className={styles.cancel_btn}>Cancel</button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </>
   )
 }

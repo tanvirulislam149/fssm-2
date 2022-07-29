@@ -3,9 +3,12 @@
   width: var(--login-form-cont-width);
   border-radius: var(--primary-border-radius);
   background: var(--white-color);
-  text-align: center;
   padding: var(--login-form-padding);
   padding-top: var(--login-form-padding-top);
+}
+
+.header {
+  text-align: center;
 }
 
 .header_blue {

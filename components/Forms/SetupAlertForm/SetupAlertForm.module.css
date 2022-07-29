@@ -18,10 +18,6 @@
   background: var(--red-hov);
 }
 
-.error {
-  color: var(--dark-red);
-}
-
 .instruction {
   margin: var(--s-20) 0;
 }

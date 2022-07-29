@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SetupAlertForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
+import { setAlert } from '../../../services/authService';
 
 const SetupAlertForm = () => {
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    console.log(err); // testing
+    setError(err.response.statusText);
+  }
+
   const handleSubmit = (data) => {
-    console.log(data);
+    setAlert(data, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log(res); // testing
+      }
+    });
   }
 
   return (
@@ -43,13 +56,13 @@ const SetupAlertForm = () => {
             <div className={styles.textInput}>
               <label htmlFor="name">Name</label>
               <Field name="name" id='name' className={styles.input} placeholder='Name' type="text" />
-              <span className={styles.error}><ErrorMessage name="name" /></span>
+              <span className='form-error'><ErrorMessage name="name" /></span>
             </div>
 
             <div className={styles.textInput}>
               <label htmlFor="email">Email</label>
               <Field name="email" id='email' className={styles.input} placeholder='Email' type="email" />
-              <span className={styles.error}><ErrorMessage name="email" /></span>
+              <span className='form-error'><ErrorMessage name="email" /></span>
             </div>
 
             <p className={styles.instruction}>Please Select the user profile to get the notification</p>

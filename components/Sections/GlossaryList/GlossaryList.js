@@ -1,35 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import GlossaryCard from '../../Cards/GlossaryCard/GlossaryCard';
-import { glossaryItems } from '../../TextArrays';
 import { useRouter } from 'next/router';
 import styles from './GlossaryList.module.css';
+import { getGlossary } from '../../../services/authService';
 
 const GlossaryList = () => {
-  const [items, setItems] = useState([]);
+  const [glossaryData, setGlossaryData] = useState([]);
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    setError(err.response.statusText);
+  }
 
   const router = useRouter();
   const alphabet = router.query.alphabet;
 
   useEffect(() => {
     if (!alphabet) {
-      setItems(glossaryItems);
+      getGlossary('', (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          setGlossaryData(res.data.glossary);
+        }
+      });
     } else {
-      const filteredGlossary = glossaryItems.filter(item => {
-        return item.title[0] === alphabet;
-      })
-      setItems(filteredGlossary);
+      getGlossary(alphabet, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          setGlossaryData(res.data.glossary);
+        }
+      });
     }
   }, [router])
 
   return (
     <>
-      {items.map(({ title, id, body }) => {
-        return (
-          <GlossaryCard title={title} body={body} id={id} key={id} />
-        )
-      })}
+      {!error ?
+        glossaryData.map(({ word, id, answer }) => {
+          return (
+            <GlossaryCard title={word} body={answer} id={id} key={id} />
+          )
+        }) :
+        <p className='error'>{error}</p>
+      }
 
-      {items.length ? <p className={styles.footer_text}>Showing 0-20 of {items.length} Results</p> : <p className={styles.footer_text2}>No records found</p>}
+      {glossaryData.length ? <p className={styles.footer_text}>Showing 0-20 of {glossaryData.length} Results</p> : <p className={styles.footer_text2}>No records found</p>}
     </>
   )
 }

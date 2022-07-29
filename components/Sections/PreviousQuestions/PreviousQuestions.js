@@ -1,48 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './PreviousQuestions.module.css';
-import Input from '../../Inputs/Input';
 import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
 import { questionsList } from '../../TextArrays';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { searchQuestion } from '../../../services/authService';
 
 const PreviousQuestions = () => {
+  const [questionsData, setQuestionsData] = useState([]);
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    console.log(err);
+    setError(err.response.statusText);
+  }
+
+  const handleSubmit = (values) => {
+    console.log(values);
+    searchQuestion(values, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log(res);
+        setQuestionsData(res.data.questions);
+      }
+    });
+  }
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.row}>
           <p>Help Desk</p>
           <div className={styles.inputs}>
-            <div className={styles.input_cont}>
-              <Input
-                placeholder='Search your question'
-                style={styles.input}
-              />
-            </div>
+            <Formik
+              initialValues={{ search: '', theme: '' }}
+              onSubmit={values => {
+                handleSubmit(values);
+              }}
+            >
+              <Form className={styles.inputs}>
+                <div className={styles.input_cont}>
+                  <Field name="search" id='search' className={styles.input} placeholder='Search Your Question' type="text" />
+                </div>
 
-            <div className={styles.select_cont}>
-              <select
-                defaultValue={''}
-                required
-                className={styles.select}
-              >
-                <option value={''} disabled hidden>Select Theme</option>
-                <option>Sunday</option>
-                <option>Monday</option>
-                <option>Tuesday</option>
-                <option>Wednesday</option>
-                <option>Thursday</option>
-                <option>Friday</option>
-                <option>Saturday</option>
-              </select>
-            </div>
+                <div className={styles.select_cont}>
+                  <Field name='theme' as='select' id='theme' className={styles.select}>
+                    <option hidden value=''>Select Theme</option>
+                    <option value={1}>CAPACITY BUILDING</option>
+                    <option value={2}>COMMUNICATIONS</option>
+                    <option value={3}>COMMUNITY ENGAGEMENT</option>
+                  </Field>
+                </div>
 
-            <Button
-              title='Search'
-              style={styles.btn}
-            />
+                <Button type='submit' title='Search' style={styles.btn} />
+              </Form>
+            </Formik>
           </div>
         </div>
 
+        {/* I dummied this data because there is no endpoint to display all questions yet */}
         {questionsList.map(({ id, details, theme, name, date, organization }) => {
           return (
             <QuestionCard key={id} organization={organization} name={name} date={date} details={details} theme={theme} />
