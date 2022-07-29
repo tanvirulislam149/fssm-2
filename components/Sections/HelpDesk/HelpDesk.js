@@ -8,7 +8,6 @@ const HelpDesk = () => {
   const [routeId, setRouteId] = useState(null);
 
   useEffect(() => {
-    console.log('ran', routeId)
     const prev = document.getElementById('previous-questions');
     const quest = document.getElementById('question-form');
     const btn1 = document.getElementById('btn1');
@@ -18,13 +17,11 @@ const HelpDesk = () => {
       btn2.classList.add('onroute');
       quest.classList.add('none');
       prev.classList.remove('none');
-      console.log({ btn1: btn1.classList })
     } else if (quest.classList.value === 'none' && routeId === 1) {
       btn2.classList.remove('onroute');
       btn1.classList.add('onroute');
       quest.classList.remove('none');
       prev.classList.add('none');
-      console.log({ btn1: btn1.classList })
     }
 
   }, [routeId])

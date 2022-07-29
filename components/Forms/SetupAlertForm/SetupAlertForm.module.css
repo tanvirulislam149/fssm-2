@@ -1,0 +1,75 @@
+.container {
+  font-family: var(--font-family-secondary);
+}
+
+.btn {
+  color: var(--white-color);
+  background: var(--red);
+  border-radius: var(--s-10);
+  width: max-content;
+  padding: var(--s-10) var(--s-30);
+  border-width: 0;
+  margin-top: var(--s-20);
+  font-size: var(--fs-14);
+  font-weight: var(--font-weight-bold);
+}
+
+.btn:hover {
+  background: var(--red-hov);
+}
+
+.instruction {
+  margin: var(--s-20) 0;
+}
+
+.input {
+  width: var(--hundred);
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--s-10);
+  padding: var(--fs-14);
+  margin-top: var(--size-5);
+  font-size: var(--fs-14);
+}
+
+.input::-webkit-input-placeholder {
+  font-size: var(--fs-14);
+  color: var(--light-gray-color);
+  font-family: var(--font-family-primary);
+}
+
+.checkbox {
+  margin: var(--login-checkbox-margin);
+  height: var(--login-checkbox-dimensions);
+  width: var(--login-checkbox-dimensions);
+}
+
+.textInput {
+  margin-bottom: var(--s-10);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-10);
+  font-size: var(--fs-14);
+  color: var(--black);
+  font-weight: var(--fw-400);
+  margin-bottom: var(--s-20);
+}
+
+.btn_cont {
+  display: flex;
+  justify-content: center;
+}
+
+.row div {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 950px) {
+  .row {
+    grid-template-columns: 1fr;
+    margin-bottom: var(--s-10);
+  }
+}

@@ -1,15 +1,17 @@
 import React from 'react';
 import FaqCard from '../../Cards/FaqCard/FaqCard';
-import { faqArray } from '../../TextArrays';
 
-const FaqList = () => {
+const FaqList = ({ faqData, error }) => {
   return (
     <>
-      {faqArray.map(({ title, id, body }) => {
-        return (
-          <FaqCard title={title} body={body} id={id} key={id} />
-        )
-      })}
+      {!error ?
+        faqData.map(({ question, id, answer }) => {
+          return (
+            <FaqCard title={question} body={answer} id={id} key={id} />
+          )
+        }) :
+        <p className='error'>{error}</p>
+      }
     </>
   )
 }

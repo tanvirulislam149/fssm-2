@@ -8,7 +8,6 @@ const KnowledgeContent = () => {
   return (
     <>
       <Header />
-      <HeaderComponent />
 
       <KnowledgeCont />
 

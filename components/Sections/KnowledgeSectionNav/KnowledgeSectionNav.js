@@ -8,7 +8,7 @@ const KnowledgeSectionNav = () => {
 
   const router = useRouter();
 
-  const id = router.query.role;
+  const id = router.query.category;
 
   useEffect(() => {
     switch (id) {

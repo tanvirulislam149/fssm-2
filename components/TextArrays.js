@@ -57,114 +57,8 @@ export const questionsList = [
   },
 ]
 
-export const faqArray = [
-  {
-    title: 'What is the sanitation value chain?',
-    id: 1,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 2,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 3,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 4,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 5,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 6,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 7,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    id: 8,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 9,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-  {
-    title: 'What is the sanitation value chain?',
-    id: 10,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt quisquam voluptate utnostrum veniam eius sed repellendus accusamus, libero, distinctio id laborum? Libero earum non assumenda, qui possimus eum.'
-  },
-]
-
 export const alphabets = [
   'All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-]
-
-export const glossaryItems = [
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Cesspit',
-    id: 1,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Combined Sewer',
-    id: 2,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Blocked',
-    id: 3,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Drainage',
-    id: 4,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Kanal',
-    id: 5,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Rain-guage',
-    id: 6,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Railway',
-    id: 7,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Yelena',
-    id: 8,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'Airport',
-    id: 9,
-  },
-  {
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nesciunt',
-    title: 'India',
-    id: 10,
-  },
 ]
 
 export const disclaimerText = {
@@ -232,6 +126,11 @@ export const knowledgeContentText = {
         },
         {
           id: 3, heading: 'Global Perspective FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+          ]
+        },
+        {
+          id: 4, heading: 'FSSM', subcategories: [
             { id: 1, topic: 'What is the FSSM value chain?' },
           ]
         },

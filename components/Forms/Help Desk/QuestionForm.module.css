@@ -95,7 +95,7 @@
 }
 
 .select option {
-  font-size: var(--s-20);
+  font-size: var(--fs-1rem);
 }
 
 .textarea {

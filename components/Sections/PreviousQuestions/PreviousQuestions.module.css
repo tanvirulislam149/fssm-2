@@ -7,6 +7,14 @@
   border: solid 1px var(--input-border-color);
 }
 
+.select option:not(:first-of-type) {
+  color: var(--black);
+}
+
+.select option {
+  font-size: var(--fs-1rem);
+}
+
 .select_cont {
   display: flex;
   flex-direction: column;
@@ -40,6 +48,7 @@
 .inputs {
   margin-top: var(--s-10);
   display: flex;
+  width: var(--hundred);
   justify-content: space-between;
 }
 

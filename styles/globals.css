@@ -53,6 +53,27 @@ button:hover {
   cursor: pointer;
 }
 
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.error {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-500);
+  text-align: center;
+  margin: var(--s-20) 0;
+}
+
+.form-error {
+  color: var(--dark-red);
+}
+
 @media (max-width: 950px) {
   .question-btn1,
   .question-btn2 {

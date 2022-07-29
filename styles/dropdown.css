@@ -157,3 +157,25 @@
   padding: var(--s-10);
   z-index: 3;
 }
+
+/*  */
+/*  */
+
+.modal {
+  display: none;
+  align-items: center;
+  position: fixed;
+  z-index: 6;
+  padding: auto 0;
+  left: 0;
+  top: 0;
+  width: var(--hundred);
+  height: var(--hundred);
+  overflow: auto;
+  background-color: var(--black);
+  background-color: var(--faded-black);
+}
+
+.modal::-webkit-scrollbar {
+  width: 0;
+}
