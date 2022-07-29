@@ -5,6 +5,7 @@
   padding: var(--pa-title);
   background: var(--white-color);
   margin-top: var(--primary-margin-top);
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 575px) {
