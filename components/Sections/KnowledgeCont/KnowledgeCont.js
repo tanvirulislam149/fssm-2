@@ -5,23 +5,27 @@ import Vendors from '../Vendors/Vendors';
 import SetupAlerts from '../SetupAlerts/SetupAlerts';
 import KnowledgeList from '../KnowledgeList/KnowledgeList';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
+import HeaderComponent from '../../Headers/HeaderComponent';
 
 const KnowledgeCont = () => {
   return (
     <>
       <div className={styles.container}>
-        <KnowledgeSectionNav />
-
         <section>
-          <div>
-            <KnowledgeCategories />
+          <HeaderComponent />
+          <KnowledgeSectionNav />
+          <div className={styles.cont}>
 
-            <SetupAlerts />
+            <div>
+              <KnowledgeCategories />
 
-            <Vendors />
+              <SetupAlerts />
+
+              <Vendors />
+            </div>
+
+            <KnowledgeList />
           </div>
-
-          <KnowledgeList />
         </section>
       </div>
     </>

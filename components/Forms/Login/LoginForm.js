@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './LoginForm.module.css';
-import Input from '../../Inputs/Input';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import Image from 'next/image';
 import eye from '../../../assets/eye.png';
 import { loginFormText } from '../../TextArrays';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { loginUser } from '../../../services/authService';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (loginData) => {
+    loginUser(loginData, (err, res) => {
+      if (err) {
+        console.log({ e: err });
+        return;
+      }
+      if (res !== null) {
+        console.log(res);
+      }
+    })
   }
 
   const togglePassword = () => {
     const password = document.getElementById('password');
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-    password.setAttribute('type', type)
+    password.setAttribute('type', type);
   }
 
   return (
@@ -25,56 +32,47 @@ const LoginForm = () => {
       <div className={styles.container}>
         <h1 className={styles.header_green}> {loginFormText.header_text_1} <span className={styles.header_blue}> {loginFormText.header_text_2} </span></h1>
 
-        <form
-          onSubmit={handleSubmit}
+        <Formik
+          initialValues={{ email: '', password: '', rememberMe: false }}
+          validationSchema={Yup.object({
+            password: Yup.string()
+              .max(20, 'Must be 20 characters or less')
+              .min(4, 'Must be 4-20 characters')
+              .required('Required'),
+            email: Yup.string().email('Invalid email address').required('Required'),
+          })}
+          onSubmit={(loginData) => {
+            console.log(loginData);
+            handleSubmit(loginData);
+          }}
         >
-          <Input
-            type='text'
-            placeholder='Email'
-            style={styles.input}
-            value={email}
-            id='email'
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
+          <Form>
+            <Field name="email" id='email' className={styles.input} placeholder='Email' type="email" />
+            <ErrorMessage name="email" />
 
-          <Input
-            type='password'
-            placeholder='Password'
-            style={`${styles.input} ${styles.passwordInput}`}
-            value={password}
-            id='password'
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+            <Field name="password" id='password' className={`${styles.input} ${styles.passwordInput}`} placeholder='Password' type="password" />
+            <ErrorMessage name="password" />
 
-          <Image
-            className={styles.img}
-            alt='reveal/hide' src={eye}
-            height={16} width={22}
-            onClick={togglePassword}
-          />
+            <Image
+              className={styles.img}
+              alt='reveal/hide' src={eye}
+              height={16} width={22}
+              onClick={togglePassword}
+            />
 
-          <div className={styles.checkbox_forgot_password}>
-            <div className={styles.checkbox_cont}>
-              <Input
-                type='checkbox'
-                style={styles.checkbox}
-              />
+            <div className={styles.checkbox_forgot_password}>
+              <div className={styles.checkbox_cont}>
+                <Field name='rememberMe' type='checkbox' className={styles.checkbox} />
 
-              <p className={styles.text}> {loginFormText.remember_me} </p>
+                <p className={styles.text}> {loginFormText.remember_me} </p>
+              </div>
+
+              <p className={styles.forgot_password}>{loginFormText.forgot_passwword}</p>
             </div>
 
-            <p className={styles.forgot_password}>{loginFormText.forgot_passwword}</p>
-          </div>
-
-          <SubmitButton
-            style={styles.btn}
-            title='Login'
-          />
-        </form>
+            <SubmitButton type='submit' style={styles.btn} title='Login' />
+          </Form>
+        </Formik>
       </div>
     </>
   )

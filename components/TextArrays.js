@@ -235,6 +235,11 @@ export const knowledgeContentText = {
             { id: 1, topic: 'What is the FSSM value chain?' },
           ]
         },
+        {
+          id: 4, heading: 'FSSM', subcategories: [
+            { id: 1, topic: 'What is the FSSM value chain?' },
+          ]
+        },
       ]
     },
   ]

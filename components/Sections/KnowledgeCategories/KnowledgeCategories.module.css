@@ -16,7 +16,7 @@
   padding: var(--s-10);
 }
 
-.card:nth-last-child(1) {
+.span:nth-last-child(1) .card {
   border-bottom: none;
 }
 

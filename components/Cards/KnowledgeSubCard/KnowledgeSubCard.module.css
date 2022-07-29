@@ -11,7 +11,7 @@
 }
 
 .container:hover {
-  transform: scale(1.03);
+  transform: scale(1.015);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   box-shadow: 0 5px 5px -2px var(--shadow);

@@ -4,6 +4,7 @@
 :root {
   --font-family-primary: "Montserrat", sans-serif;
   --font-family-secondary: "Roboto", sans-serif;
+
   --font-weight-bold: 700;
   --fw-400: 400;
   --fw-500: 500;
@@ -36,13 +37,16 @@
   --s-20: 20px;
   --s-10: 10px;
   --s-75: 75px;
+  --s-8: 8px;
   --s-2: 2px;
+  --s-600: 600px;
   --s-400: 400px;
   --s-300: 300px;
   --s-320: 320px;
   --s-200: 200px;
   --s-500: 500px;
   --s-150: 150px;
+  --s-100: 100px;
   --primary-border-radius: 12px;
 
   /* colors */
@@ -50,6 +54,7 @@
   --transparent-blue: #024c73b3;
   --bg-main-button-hov: #024b73d8;
   --blue: #2f6ce5;
+  --dark-red: #c30000;
   --red: #cb1537;
   --red-hov: #cb1536d0;
   --orange: #e68406;
@@ -67,6 +72,7 @@
   --search-bg: #eeeded;
   --faded-white: #ffffffea;
   --shadow: #00000033;
+  --light-shadow: #00000012;
   --faded-black: #000000b3;
   --transparent: #00000000;
   --black: black;
