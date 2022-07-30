@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styles from './KnowledgeCard.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import KnowledgeSubCard from '../KnowledgeSubCard/KnowledgeSubCard';
+//import KnowledgeSubCard from '../KnowledgeSubCard/KnowledgeSubCard';
 
-const KnowledgeCard = ({ title, categories, id }) => {
+const KnowledgeCard = ({ title, id }) => {
   const [clicked, setClicked] = useState(true);
 
   const dropDown = (e) => {
@@ -40,11 +40,11 @@ const KnowledgeCard = ({ title, categories, id }) => {
 
         <div id={'drop' + `${id}`} className='dropdown-content'>
           <div className={styles.card}>
-            {categories.map(({ id, heading, subcategories }) => {
+            {/* {categories.map(({ id, heading, subcategories }) => {
               return (
                 <KnowledgeSubCard key={id} heading={heading} subcategories={subcategories} />
               )
-            })}
+            })} */}
           </div>
         </div>
       </div>

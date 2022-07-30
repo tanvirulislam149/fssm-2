@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './KnowledgeSectionNav.module.css';
 import { useRouter } from 'next/router';
-import { knowledgeContentText } from '../../TextArrays';
 
 const KnowledgeSectionNav = () => {
   const [title, setTitle] = useState('');
@@ -15,22 +14,22 @@ const KnowledgeSectionNav = () => {
       case '2':
         setTitle('Govt-National/state');
         break;
-      case '3':
+      case '4':
         setTitle('Technical consultants/Agencies');
         break;
-      case '4':
+      case '5':
         setTitle('Private Sector');
         break;
-      case '5':
+      case '6':
         setTitle('Academia/ Training');
         break;
-      case '6':
+      case '8':
         setTitle('NGO’s/Development Partners');
         break;
-      case '7':
+      case '9':
         setTitle('Donor/Philanthropist/CSR');
         break;
-      case '8':
+      case '10':
         setTitle('General Citizen /CBO');
         break;
       default:

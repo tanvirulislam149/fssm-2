@@ -1,28 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './KnowledgeCategories.module.css';
-import { knowledgeContentText } from '../../TextArrays';
 import Link from 'next/link';
-import { getAllKnowledgeRepo } from '../../../services/knowledgeRepoService';
 
-const KnowledgeCategories = () => {
-  const [knowledgeData, setKnowledgeData] = useState([]);
-  const [error, setError] = useState(null);
-
-  const handleError = (err) => {
-    console.log(err);  // 404 not found
-    setError(err.response.statusText);
-  }
-
-  useEffect(() => {
-    getAllKnowledgeRepo((err, res) => {
-      if (err) return handleError(err)
-      if (res !== null) {
-        console.log(res)
-        // setKnowledgeData(res.data);
-      }
-    });
-  }, [])
-
+const KnowledgeCategories = ({ category }) => {
   return (
     <>
       <div className={styles.container}>
@@ -30,16 +10,16 @@ const KnowledgeCategories = () => {
 
         <div className={styles.whole}>
           <div className={styles.cont}>
-            {knowledgeContentText.categories.map(({ title, role }) => {
+            {category.map(({ user_profile, id }) => {
               return (
-                <span className={styles.span} key={role}>
+                <span className={styles.span} key={id}>
                   {
-                    title === 'All' ?
+                    user_profile === 'All' ?
                       <div className={styles.card}>
-                        <Link href='/knowledgecontent'><p className={styles.link}>{title}</p></Link>
+                        <Link href='/knowledgecontent'><p className={styles.link}>{user_profile}</p></Link>
                       </div> :
                       <div className={styles.card}>
-                        <Link href={'/knowledgecontent?category=' + `${role}`}><p className={styles.link}>{title}</p></Link>
+                        <Link href={'/knowledgecontent?category=' + `${id}`}><p className={styles.link}>{user_profile}</p></Link>
                       </div>
                   }
                 </span>

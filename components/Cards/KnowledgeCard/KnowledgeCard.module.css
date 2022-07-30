@@ -8,7 +8,7 @@
 
 .cont {
   border-radius: var(--primary-border-radius);
-  margin-bottom: var(--fs-14);
+  margin-bottom: var(--fs-10);
   background: var(--white-color);
 }
 

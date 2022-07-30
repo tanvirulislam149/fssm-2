@@ -21,28 +21,27 @@ const FaqNavigation = () => {
     id === 2 ? router.push('/glossary') : router.push('/faq');
   }
 
-  const handleError = (err) => {
-    console.log(err);  // error 404
-    setError(err.response.statusText);
+  const handleError = () => {
+    setError(true);
   }
 
   const handleDownload = () => {
     var id = router.pathname.slice(1);
 
     if (id === 'faq') {
-      downloadPDF('quespdf/', (err, res) => {
-        if (err) return handleError(err);
+      downloadPDF('faqpdf/', (err, res) => {
+        if (err) return handleError();
         if (res !== null) {
-          console.log(res);
-          FileDownload(response.data, 'faqs.pdf');
+          setError(false);
+          FileDownload(res.data, 'FAQ.pdf');
         }
       })
     } else {
-      downloadPDF('glospdf/', (err, res) => {
+      downloadPDF('glossarypdf/', (err, res) => {
         if (err) return handleError(err);
         if (res !== null) {
-          console.log(res);
-          FileDownload(response.data, 'glossary.pdf')
+          setError(false);
+          FileDownload(res.data, 'Glossary.pdf')
         }
       })
     }
@@ -74,6 +73,7 @@ const FaqNavigation = () => {
             handleDownload();
           }}
         />
+        <span className="error">{error ? 'An error occured' : null}</span>
       </div>
     </>
   )

@@ -1,15 +1,14 @@
 import React from 'react';
-import { knowledgeContentText } from '../../TextArrays';
 import KnowledgeCard from '../../Cards/KnowledgeCard/KnowledgeCard';
 
-const KnowledgeList = () => {
+const KnowledgeList = ({ questions }) => {
   return (
     <>
       <div>
         {
-          knowledgeContentText.sections.map(({ title, id, categories }) => {
+          questions.map(({ question, id }) => {
             return (
-              <KnowledgeCard id={id} key={id} title={title} categories={categories} />
+              <KnowledgeCard id={id} key={id} title={question} />
             )
           })
         }
