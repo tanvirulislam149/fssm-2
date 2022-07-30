@@ -1,6 +1,7 @@
 .cont {
   background: var(--white-color);
   border-radius: var(--primary-border-radius);
+  margin-top: var(--s-20);
 }
 
 .head {

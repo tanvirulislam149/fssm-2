@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './KnowledgeCont.module.css';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import Vendors from '../Vendors/Vendors';
-import SetupAlerts from '../SetupAlerts/SetupAlerts';
+//import SetupAlerts from '../SetupAlerts/SetupAlerts';
 import KnowledgeList from '../KnowledgeList/KnowledgeList';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
 import HeaderComponent from '../../Headers/HeaderComponent';
@@ -43,7 +43,7 @@ const KnowledgeCont = () => {
             <div>
               <KnowledgeCategories category={category} />
 
-              <SetupAlerts />
+              {/* <SetupAlerts /> */}
 
               <Vendors />
             </div>
