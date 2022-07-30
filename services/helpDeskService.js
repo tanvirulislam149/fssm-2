@@ -15,3 +15,9 @@ export const searchQuestion = (data, cb) => {
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
+
+export const displayQuestions = (cb) => {
+  axios.get('helpdesk/viewques/')
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}

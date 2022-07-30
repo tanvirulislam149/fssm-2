@@ -3,9 +3,138 @@ import styles from './HelpDesk.module.css';
 import QuestionForm from '../../Forms/Help Desk/QuestionForm';
 import PreviousQuestions from '../PreviousQuestions/PreviousQuestions';
 import { helpDeskText } from '../../TextArrays';
+import { displayQuestions, searchQuestion } from '../../../services/helpDeskService';
 
 const HelpDesk = () => {
   const [routeId, setRouteId] = useState(null);
+  const [prevQuestions, setPrevQuestions] = useState([]);
+  const [dateArray, setDateArray] = useState([]);
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    console.log(err);
+    setError(err.response.statusText);
+  }
+
+  const handleSubmit = (values) => {
+    console.log(values);
+    searchQuestion(values, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log(res);
+        setPrevQuestions(res.data.questions);
+        const quests = res.data.questions;
+        let date = [];
+        quests.forEach(({ createdOn }, i) => {
+          let month;
+          const day = createdOn.slice(8, 10);
+          const year = createdOn.slice(0, 4)
+          switch (createdOn.slice(5, 7)) {
+            case '01':
+              month = 'January';
+              break;
+            case '02':
+              month = 'February';
+              break;
+            case '03':
+              month = 'March';
+              break;
+            case '04':
+              month = 'April';
+              break;
+            case '05':
+              month = 'May';
+              break;
+            case '06':
+              month = 'June';
+              break;
+            case '07':
+              month = 'July';
+              break;
+            case '08':
+              month = 'August';
+              break;
+            case '09':
+              month = 'September';
+              break;
+            case '10':
+              month = 'October';
+              break;
+            case '11':
+              month = 'November';
+              break;
+            case '12':
+              month = 'December';
+              break;
+            default: ''
+              break;
+          }
+          date[i] = `${month} ${day}, ${year}`;
+        });
+        setDateArray(date);
+      }
+    });
+  }
+
+  useEffect(() => {
+    displayQuestions((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log(res.data.questions);
+        setPrevQuestions(res.data.questions);
+        const quests = res.data.questions;
+        let date = [];
+        quests.forEach(({ createdOn }, i) => {
+          let month;
+          const day = createdOn.slice(8, 10);
+          const year = createdOn.slice(0, 4)
+          switch (createdOn.slice(5, 7)) {
+            case '01':
+              month = 'January';
+              break;
+            case '02':
+              month = 'February';
+              break;
+            case '03':
+              month = 'March';
+              break;
+            case '04':
+              month = 'April';
+              break;
+            case '05':
+              month = 'May';
+              break;
+            case '06':
+              month = 'June';
+              break;
+            case '07':
+              month = 'July';
+              break;
+            case '08':
+              month = 'August';
+              break;
+            case '09':
+              month = 'September';
+              break;
+            case '10':
+              month = 'October';
+              break;
+            case '11':
+              month = 'November';
+              break;
+            case '12':
+              month = 'December';
+              break;
+            default: ''
+              break;
+          }
+          date[i] = `${month} ${day}, ${year}`;
+        });
+        setDateArray(date);
+      }
+    });
+  }, []);
+
 
   useEffect(() => {
     const prev = document.getElementById('previous-questions');
@@ -52,7 +181,7 @@ const HelpDesk = () => {
             <QuestionForm />
           </div>
           <div className='none' id='previous-questions'>
-            <PreviousQuestions />
+            <PreviousQuestions error={error} handleSubmit={handleSubmit} dateArray={dateArray} prevQuestions={prevQuestions} />
           </div>
         </main>
       </section>

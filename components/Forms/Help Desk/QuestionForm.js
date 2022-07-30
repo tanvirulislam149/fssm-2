@@ -81,7 +81,6 @@ const QuestionForm = () => {
                   <option hidden value=''>Select Theme</option>
                   <option value={1}>CAPACITY BUILDING</option>
                   <option value={2}>COMMUNICATIONS</option>
-                  <option value={3}>COMMUNITY ENGAGEMENT</option>
                 </Field>
                 <span className='form-error'><ErrorMessage name="theme" /></span>
               </div>
@@ -92,7 +91,6 @@ const QuestionForm = () => {
                   <option hidden value=''>Select User Profile</option>
                   <option value={1}>Academia/Training</option>
                   <option value={2}>Donor/Philanthropist/CSR</option>
-                  <option value={3}>General citizen/ CBO</option>
                 </Field>
                 <span className='form-error'><ErrorMessage name="userprofile" /></span>
               </div>

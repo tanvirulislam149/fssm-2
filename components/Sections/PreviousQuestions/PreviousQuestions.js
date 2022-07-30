@@ -1,30 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './PreviousQuestions.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
-import { questionsList } from '../../TextArrays';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { searchQuestion } from '../../../services/helpDeskService';
+import { Formik, Field, Form } from 'formik';
 
-const PreviousQuestions = () => {
-  const [questionsData, setQuestionsData] = useState([]);
-  const [error, setError] = useState(null);
-
-  const handleError = (err) => {
-    console.log(err);
-    setError(err.response.statusText);
-  }
-
-  const handleSubmit = (values) => {
-    console.log(values);
-    searchQuestion(values, (err, res) => {
-      if (err) return handleError(err);
-      if (res !== null) {
-        console.log(res);
-        setQuestionsData(res.data.questions);
-      }
-    });
-  }
+const PreviousQuestions = ({ prevQuestions, dateArray, handleSubmit, error }) => {
 
   return (
     <>
@@ -48,7 +28,6 @@ const PreviousQuestions = () => {
                     <option hidden value=''>Select Theme</option>
                     <option value={1}>CAPACITY BUILDING</option>
                     <option value={2}>COMMUNICATIONS</option>
-                    <option value={3}>COMMUNITY ENGAGEMENT</option>
                   </Field>
                 </div>
 
@@ -58,14 +37,17 @@ const PreviousQuestions = () => {
           </div>
         </div>
 
-        {/* I dummied this data because there is no endpoint to display all questions yet */}
-        {questionsList.map(({ id, details, theme, name, date, organization }) => {
-          return (
-            <QuestionCard key={id} organization={organization} name={name} date={date} details={details} theme={theme} />
-          )
-        })}
+        {
+          prevQuestions.length ?
+            prevQuestions.map(({ id, question, name, organization }, i) => {
+              return (
+                <QuestionCard key={id} organization={organization} name={name} date={dateArray[i]} question={question} />
+              )
+            }) :
+            <span className="error">{error ? error : 'No Questions'}</span>
+        }
 
-        <p className={styles.footer_text}>Showing 0-20 of 2 Results</p>
+        <p className={styles.footer_text}>Showing 0-20 of {prevQuestions.length} Results</p>
       </div>
     </>
   )
