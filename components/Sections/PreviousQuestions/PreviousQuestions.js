@@ -4,7 +4,7 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
 import { questionsList } from '../../TextArrays';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { searchQuestion } from '../../../services/authService';
+import { searchQuestion } from '../../../services/helpDeskService';
 
 const PreviousQuestions = () => {
   const [questionsData, setQuestionsData] = useState([]);

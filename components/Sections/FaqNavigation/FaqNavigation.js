@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Button from '../../Buttons/Submit/SubmitButton';
 import styles from './FaqNavigation.module.css';
-import { downloadPDF } from '../../../services/authService';
+import { downloadPDF } from '../../../services/faqAndGlossaryService';
+import FileDownload from 'js-file-download';
 
 const FaqNavigation = () => {
   const [error, setError] = useState(null);
@@ -21,6 +22,7 @@ const FaqNavigation = () => {
   }
 
   const handleError = (err) => {
+    console.log(err);  // error 404
     setError(err.response.statusText);
   }
 
@@ -31,14 +33,16 @@ const FaqNavigation = () => {
       downloadPDF('quespdf/', (err, res) => {
         if (err) return handleError(err);
         if (res !== null) {
-          console.log(res); // error 404
+          console.log(res);
+          FileDownload(response.data, 'faqs.pdf');
         }
       })
     } else {
       downloadPDF('glospdf/', (err, res) => {
         if (err) return handleError(err);
         if (res !== null) {
-          console.log(res); // error 404
+          console.log(res);
+          FileDownload(response.data, 'glossary.pdf')
         }
       })
     }

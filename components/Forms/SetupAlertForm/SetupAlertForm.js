@@ -3,7 +3,7 @@ import styles from './SetupAlertForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
-import { setAlert } from '../../../services/authService';
+import { setAlert } from '../../../services/knowledgeRepoService';
 
 const SetupAlertForm = () => {
   const [error, setError] = useState(null);

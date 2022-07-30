@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './QuestionForm.module.css';
 import Input from '../../Inputs/Input';
 import Button from '../../Buttons/Submit/SubmitButton';
-import { submitQuestion } from '../../../services/authService';
+import { submitQuestion } from '../../../services/helpDeskService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -62,6 +62,8 @@ const QuestionForm = () => {
           theme: Yup.string()
             .required('Required'),
           userprofile: Yup.string()
+            .required('Required'),
+          mobile: Yup.string()
             .required('Required'),
         })}
         onSubmit={(values) => {
@@ -141,7 +143,7 @@ const QuestionForm = () => {
 
             <div className={`${styles.row} ${styles.mt5}`}>
               <div className={styles.input_cont}>
-                <label className={styles.label} htmlFor="mobile">Mobile</label>
+                <label className={styles.label} htmlFor="mobile">Mobile <span>*</span></label>
                 <Field name="mobile" id='mobile' className={styles.input} placeholder='Mobile' type="number" />
               </div>
 

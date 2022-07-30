@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Faqs.module.css';
 import FaqNavigation from '../FaqNavigation/FaqNavigation';
 import FaqList from '../FaqList/FaqList';
-import { getFaqs } from '../../../services/authService';
+import { getFaqs } from '../../../services/faqAndGlossaryService';
 
 const Faqs = () => {
   const [faqData, setFaqData] = useState([]);

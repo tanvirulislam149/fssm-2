@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import GlossaryCard from '../../Cards/GlossaryCard/GlossaryCard';
 import { useRouter } from 'next/router';
 import styles from './GlossaryList.module.css';
-import { getGlossary } from '../../../services/authService';
+import { getGlossary } from '../../../services/faqAndGlossaryService';
 
 const GlossaryList = () => {
   const [glossaryData, setGlossaryData] = useState([]);

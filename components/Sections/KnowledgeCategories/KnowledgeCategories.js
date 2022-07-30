@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './KnowledgeCategories.module.css';
 import { knowledgeContentText } from '../../TextArrays';
 import Link from 'next/link';
-import { getAllKnowledgeRepo } from '../../../services/authService';
+import { getAllKnowledgeRepo } from '../../../services/knowledgeRepoService';
 
 const KnowledgeCategories = () => {
   const [knowledgeData, setKnowledgeData] = useState([]);
