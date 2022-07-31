@@ -9,15 +9,25 @@ const SetupAlertForm = () => {
   const [error, setError] = useState(null);
 
   const handleError = (err) => {
-    console.log(err); // testing
+    console.log(err); // 404 not found
     setError(err.response.statusText);
   }
 
   const handleSubmit = (data) => {
-    setAlert(data, (err, res) => {
+    let categories = [];
+    data.all ? categories.push({ userCat: 1 }) : null;
+    data.technicalConsultants ? categories.push({ userCat: 2 }) : null;
+    data.ngoPartners ? categories.push({ userCat: 3 }) : null;
+    data.generalCitizen ? categories.push({ userCat: 4 }) : null;
+    data.govtNational ? categories.push({ userCat: 5 }) : null;
+    data.privateSector ? categories.push({ userCat: 6 }) : null;
+    data.academiaTraining ? categories.push({ userCat: 7 }) : null;
+    data.donorPhilanthropist ? categories.push({ userCat: 8 }) : null;
+
+    setAlert({ name: data.name, email: data.email, categories }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res); // testing
+        console.log(res); //testing
       }
     });
   }

@@ -4,7 +4,7 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
 import { Formik, Field, Form } from 'formik';
 
-const PreviousQuestions = ({ prevQuestions, dateArray, handleSubmit, error }) => {
+const PreviousQuestions = ({ prevQuestions, themeArray, dateArray, handleSubmit, error }) => {
 
   return (
     <>
@@ -41,7 +41,7 @@ const PreviousQuestions = ({ prevQuestions, dateArray, handleSubmit, error }) =>
           prevQuestions.length ?
             prevQuestions.map(({ id, question, name, organization }, i) => {
               return (
-                <QuestionCard key={id} organization={organization} name={name} date={dateArray[i]} question={question} />
+                <QuestionCard key={id} organization={organization} name={name} date={dateArray[i]} theme={themeArray[i]} question={question} />
               )
             }) :
             <span className="error">{error ? error : 'No Questions'}</span>

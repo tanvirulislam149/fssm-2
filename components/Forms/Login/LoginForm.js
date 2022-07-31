@@ -7,21 +7,26 @@ import { loginFormText } from '../../TextArrays';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { loginUser } from '../../../services/authService';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
 
+  const navigate = useRouter();
+
   const handleError = (err) => {
-    console.log(err); // testing
-    setError(err.response.statusText);
+    setError('Email or Password Incorrect');
   }
 
-  const handleSubmit = (loginData) => {
+  const handleSubmit = async (loginData) => {
     loginUser(loginData, (err, res) => {
-      console.log(loginData)
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res); // I don't have any valid user credentials to test this
+        setError(null);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
+        sessionStorage.setItem('refresh', res.data.refresh_token);
+        navigate.push('/');
       }
     })
   }
@@ -48,8 +53,8 @@ const LoginForm = () => {
               .required('Required'),
             email: Yup.string().email('Invalid email address').required('Required'),
           })}
-          onSubmit={(loginData) => {
-            handleSubmit({ email: loginData.email, password: loginData.password });
+          onSubmit={loginData => {
+            handleSubmit(loginData);
           }}
         >
           <Form>
@@ -78,6 +83,7 @@ const LoginForm = () => {
               <p className={styles.forgot_password}>{loginFormText.forgot_passwword}</p>
             </div>
 
+            <div className={`${styles.tc} form-error`}>{error}</div>
             <SubmitButton type='submit' style={styles.btn} title='Login' />
           </Form>
         </Formik>

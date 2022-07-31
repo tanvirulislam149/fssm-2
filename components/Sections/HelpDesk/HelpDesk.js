@@ -9,6 +9,7 @@ const HelpDesk = () => {
   const [routeId, setRouteId] = useState(null);
   const [prevQuestions, setPrevQuestions] = useState([]);
   const [dateArray, setDateArray] = useState([]);
+  const [themeArray, setThemeArray] = useState([]);
   const [error, setError] = useState(null);
 
   const handleError = (err) => {
@@ -17,15 +18,27 @@ const HelpDesk = () => {
   }
 
   const handleSubmit = (values) => {
-    console.log(values);
     searchQuestion(values, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res);
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
-        quests.forEach(({ createdOn }, i) => {
+        let themeData = [];
+        quests.forEach(({ createdOn, theme }, i) => {
+          let themeId;
+          switch (theme.id) {
+            case 1:
+              themeId = 'Capacity building'
+              break;
+            case 2:
+              themeId = 'communications'
+              break;
+            default:
+              themeId = 'none'
+              break;
+          }
+          themeData[i] = themeId;
           let month;
           const day = createdOn.slice(8, 10);
           const year = createdOn.slice(0, 4)
@@ -72,6 +85,7 @@ const HelpDesk = () => {
           date[i] = `${month} ${day}, ${year}`;
         });
         setDateArray(date);
+        setThemeArray(themeData);
       }
     });
   }
@@ -80,11 +94,24 @@ const HelpDesk = () => {
     displayQuestions((err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res.data.questions);
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
-        quests.forEach(({ createdOn }, i) => {
+        let themeData = [];
+        quests.forEach(({ createdOn, theme }, i) => {
+          let themeId;
+          switch (theme.id) {
+            case 1:
+              themeId = 'Capacity building'
+              break;
+            case 2:
+              themeId = 'communications'
+              break;
+            default:
+              themeId = 'none'
+              break;
+          }
+          themeData[i] = themeId;
           let month;
           const day = createdOn.slice(8, 10);
           const year = createdOn.slice(0, 4)
@@ -131,6 +158,7 @@ const HelpDesk = () => {
           date[i] = `${month} ${day}, ${year}`;
         });
         setDateArray(date);
+        setThemeArray(themeData);
       }
     });
   }, []);
@@ -181,7 +209,7 @@ const HelpDesk = () => {
             <QuestionForm />
           </div>
           <div className='none' id='previous-questions'>
-            <PreviousQuestions error={error} handleSubmit={handleSubmit} dateArray={dateArray} prevQuestions={prevQuestions} />
+            <PreviousQuestions error={error} handleSubmit={handleSubmit} dateArray={dateArray} themeArray={themeArray} prevQuestions={prevQuestions} />
           </div>
         </main>
       </section>

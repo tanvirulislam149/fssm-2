@@ -11,6 +11,11 @@
   text-align: center;
 }
 
+.tc {
+  text-align: center;
+  margin-top: var(--s-10);
+}
+
 .header_blue {
   color: var(--primary-blue);
   font-size: var(--login-title-font-size);

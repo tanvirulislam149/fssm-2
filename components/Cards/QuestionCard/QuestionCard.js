@@ -3,7 +3,7 @@ import styles from './QuestionCard.module.css';
 import profile from '../../../assets/profile.png';
 import Image from 'next/image';
 
-const QuestionCard = ({ question, organization, name, date }) => {
+const QuestionCard = ({ question, organization, name, date, theme }) => {
   return (
     <>
       <div className={styles.container}>
@@ -21,7 +21,7 @@ const QuestionCard = ({ question, organization, name, date }) => {
             </div>
           </div>
 
-          {/* <div className={styles.theme}>{theme}</div> */}
+          <div className={styles.theme}>{theme}</div>
         </div>
       </div>
     </>
