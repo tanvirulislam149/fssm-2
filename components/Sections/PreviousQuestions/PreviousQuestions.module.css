@@ -65,6 +65,10 @@
   background: var(--blue-hov);
 }
 
+.tc {
+  text-align: center;
+}
+
 .footer_text {
   padding: var(--s-10);
   font-size: var(--fs-14);

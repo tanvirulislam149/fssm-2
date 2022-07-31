@@ -44,7 +44,7 @@ const PreviousQuestions = ({ prevQuestions, themeArray, dateArray, handleSubmit,
                 <QuestionCard key={id} organization={organization} name={name} date={dateArray[i]} theme={themeArray[i]} question={question} />
               )
             }) :
-            <span className="error">{error ? error : 'No Questions'}</span>
+            <div className={`${styles.tc} error`}>{error ? error : 'No Questions'}</div>
         }
 
         <p className={styles.footer_text}>Showing 0-20 of {prevQuestions.length} Results</p>

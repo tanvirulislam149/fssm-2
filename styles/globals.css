@@ -65,7 +65,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .error {
   font-size: var(--fs-24);
-  font-weight: var(--fw-500);
+  font-weight: var(--fw-400);
   text-align: center;
   margin: var(--s-20) 0;
 }
