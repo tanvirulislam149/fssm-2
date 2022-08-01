@@ -3,8 +3,9 @@ import styles from './PreviousQuestions.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
 import { Formik, Field, Form } from 'formik';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const PreviousQuestions = ({ prevQuestions, themeArray, dateArray, handleSubmit, error }) => {
+const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray, dateArray, handleSubmit, error }) => {
 
   return (
     <>
@@ -15,6 +16,7 @@ const PreviousQuestions = ({ prevQuestions, themeArray, dateArray, handleSubmit,
             <Formik
               initialValues={{ search: '', theme: '' }}
               onSubmit={values => {
+                setttingLoading(true);
                 handleSubmit(values);
               }}
             >
@@ -37,7 +39,8 @@ const PreviousQuestions = ({ prevQuestions, themeArray, dateArray, handleSubmit,
           </div>
         </div>
 
-        {
+        {loading ?
+          <div className={styles.justify_center}><CircularProgress /></div> :
           prevQuestions.length ?
             prevQuestions.map(({ id, question, name, organization }, i) => {
               return (

@@ -12,3 +12,9 @@
   font-weight: var(--fw-400);
   margin-bottom: var(--s-20);
 }
+
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}

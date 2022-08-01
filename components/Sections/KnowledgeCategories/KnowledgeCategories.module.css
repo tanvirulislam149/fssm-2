@@ -20,6 +20,12 @@
   border-bottom: none;
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}
+
 .cont {
   border-radius: var(--s-10);
   padding: var(--size-5);

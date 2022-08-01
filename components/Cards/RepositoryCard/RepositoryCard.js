@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './RepositoryCard.module.css';
+import Link from 'next/link';
 
-const RepositoryCard = ({ text }) => {
+const RepositoryCard = ({ text, id }) => {
   return (
     <>
-      <div className={styles.container}>
-        {text}
-      </div>
+      <Link href={'/knowledgecontent?category=' + `${id}`}><a>
+        <div className={styles.container}>
+          {text}
+        </div>
+      </a></Link>
     </>
   )
 }

@@ -13,12 +13,14 @@ const KnowledgeCont = () => {
   const [category, setCategory] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
   const id = router.query.category;
 
   const handleError = (err) => {
     console.log(err);  // testing
+    setLoading(false);
     setError(err.response.statusText);
   }
 
@@ -26,6 +28,7 @@ const KnowledgeCont = () => {
     getAllKnowledgeRepo(id, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
+        setLoading(false);
         setCategory(res.data['User Categories'])
         setQuestions(res.data.Questions);
       }
@@ -41,7 +44,7 @@ const KnowledgeCont = () => {
           <div className={styles.cont}>
 
             <div>
-              <KnowledgeCategories category={category} />
+              <KnowledgeCategories loading={loading} category={category} />
 
               <SetupAlerts />
 

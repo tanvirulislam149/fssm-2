@@ -9,13 +9,16 @@ import * as Yup from 'yup';
 import { loginUser } from '../../../services/authService';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useRouter();
 
   const handleError = (err) => {
+    setLoading(false);
     err === 'Email or Password Incorrect' ?
       setError('Email or Password Incorrect') :
       err === 'Refresh token expired' ?
@@ -30,6 +33,7 @@ const LoginForm = () => {
         axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
         sessionStorage.setItem('access', res.data.access_token);
         sessionStorage.setItem('refresh', res.data.refresh_token);
+        setLoading(false);
         navigate.push('/');
       }
     })
@@ -58,6 +62,7 @@ const LoginForm = () => {
             email: Yup.string().email('Invalid email address').required('Required'),
           })}
           onSubmit={loginData => {
+            setLoading(true);
             handleSubmit(loginData);
           }}
         >
@@ -75,7 +80,7 @@ const LoginForm = () => {
               onClick={togglePassword}
             />
 
-            <span className='form-error'><ErrorMessage name="password" /></span>
+            {/* <span className='form-error'><ErrorMessage name="password" /></span> */}
 
             <div className={styles.checkbox_forgot_password}>
               <div className={styles.checkbox_cont}>
@@ -88,7 +93,7 @@ const LoginForm = () => {
             </div>
 
             <div className={`${styles.tc} form-error`}>{error}</div>
-            <SubmitButton type='submit' style={styles.btn} title='Login' />
+            {loading ? <div className={styles.justify_center}><CircularProgress /></div> : <SubmitButton type='submit' style={styles.btn} title='Login' />}
           </Form>
         </Formik>
       </div>

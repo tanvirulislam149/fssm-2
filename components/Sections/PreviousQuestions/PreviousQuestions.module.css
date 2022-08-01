@@ -65,6 +65,12 @@
   background: var(--blue-hov);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}
+
 .tc {
   text-align: center;
 }

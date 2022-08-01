@@ -11,16 +11,23 @@ const HelpDesk = () => {
   const [dateArray, setDateArray] = useState([]);
   const [themeArray, setThemeArray] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleError = (err) => {
+    setLoading(false);
     console.log(err);
     setError(err.response.statusText);
+  }
+
+  const setttingLoading = (bool) => {
+    setLoading(bool);
   }
 
   const handleSubmit = (values) => {
     searchQuestion(values, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
+        setLoading(false);
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
@@ -94,6 +101,7 @@ const HelpDesk = () => {
     displayQuestions((err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
+        setLoading(false);
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
@@ -209,7 +217,7 @@ const HelpDesk = () => {
             <QuestionForm />
           </div>
           <div className='none' id='previous-questions'>
-            <PreviousQuestions error={error} handleSubmit={handleSubmit} dateArray={dateArray} themeArray={themeArray} prevQuestions={prevQuestions} />
+            <PreviousQuestions loading={loading} setttingLoading={setttingLoading} error={error} handleSubmit={handleSubmit} dateArray={dateArray} themeArray={themeArray} prevQuestions={prevQuestions} />
           </div>
         </main>
       </section>

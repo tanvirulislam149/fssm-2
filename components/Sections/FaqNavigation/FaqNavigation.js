@@ -4,9 +4,11 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import styles from './FaqNavigation.module.css';
 import { downloadPDF } from '../../../services/faqAndGlossaryService';
 import FileDownload from 'js-file-download';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const FaqNavigation = () => {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -22,6 +24,7 @@ const FaqNavigation = () => {
   }
 
   const handleError = () => {
+    setLoading(false);
     setError(true);
   }
 
@@ -32,6 +35,7 @@ const FaqNavigation = () => {
       downloadPDF('faqpdf/', (err, res) => {
         if (err) return handleError();
         if (res !== null) {
+          setLoading(false);
           setError(false);
           FileDownload(res.data, 'FAQ.pdf');
         }
@@ -40,6 +44,7 @@ const FaqNavigation = () => {
       downloadPDF('glossarypdf/', (err, res) => {
         if (err) return handleError(err);
         if (res !== null) {
+          setLoading(false);
           setError(false);
           FileDownload(res.data, 'Glossary.pdf')
         }
@@ -66,13 +71,16 @@ const FaqNavigation = () => {
           >Glossary
           </p>
         </div>
-        <Button
-          title='PDF Download'
-          style={styles.btn}
-          onClick={() => {
-            handleDownload();
-          }}
-        />
+        {loading ?
+          <div className={styles.justify_center}><CircularProgress /></div> :
+          <Button
+            title='PDF Download'
+            style={styles.btn}
+            onClick={() => {
+              setLoading(true);
+              handleDownload();
+            }}
+          />}
         <span className="error">{error ? 'An error occured' : null}</span>
       </div>
     </>

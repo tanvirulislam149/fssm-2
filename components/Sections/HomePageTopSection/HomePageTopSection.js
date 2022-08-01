@@ -6,6 +6,7 @@ import Image from 'next/image';
 import down from '../../../assets/down-g.png';
 import Card from '../../Cards/RepositoryCard/RepositoryCard';
 import { homePageText } from '../../TextArrays';
+import Link from 'next/link';
 
 const HomePageTopSection = () => {
   return (
@@ -44,9 +45,9 @@ const HomePageTopSection = () => {
               <p>{homePageText.sub_title3}</p>
             </div>
             <div className={styles.card_2}>
-              {homePageText.repository.map((text, i) => {
+              {homePageText.repository.map(({ title, id }) => {
                 return (
-                  <Card key={i} text={text} />
+                  <Card key={id} id={id} text={title} />
                 )
               })}
             </div>
@@ -57,10 +58,12 @@ const HomePageTopSection = () => {
               <h2>{homePageText.sub_title4}</h2>
             </div>
             <div className={styles.card_3}>
-              <Button
-                style={styles.btn}
-                title='Ask Question'
-              />
+              <Link href='/qanda'><a>
+                <Button
+                  style={styles.btn}
+                  title='Ask Question'
+                />
+              </a></Link>
             </div>
           </div>
         </div>

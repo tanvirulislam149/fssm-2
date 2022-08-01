@@ -13,13 +13,13 @@ export const homePageText = {
   sub_title4: 'Help Desk',
   h1: 'One Platform for practitioners to advance FSSM in India',
   repository: [
-    'Govt-National/states',
-    'Technical consultants/Agencies',
-    'Govt-National/states',
-    'Govt-National/states',
-    'Govt-National/states',
-    'Govt-National/states',
-    'Govt-National/states'
+    { id: 2, title: 'Govt-National/states' },
+    { id: 4, title: 'Technical consultants/Agencies' },
+    { id: 5, title: 'Private Sector' },
+    { id: 6, title: 'Academia/ Training' },
+    { id: 8, title: 'NGO’s/Development Partners' },
+    { id: 9, title: 'Donor/Philanthropist/CSR' },
+    { id: 10, title: 'General Citizen /CBO' }
   ]
 }
 

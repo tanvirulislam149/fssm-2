@@ -7,8 +7,10 @@ import { getFaqs } from '../../../services/faqAndGlossaryService';
 const Faqs = () => {
   const [faqData, setFaqData] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleError = (err) => {
+    setLoading(false);
     setError(err.response.statusText);
   }
 
@@ -16,6 +18,7 @@ const Faqs = () => {
     getFaqs((err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
+        setLoading(false);
         setFaqData(res.data.questions);
       }
     });
@@ -28,7 +31,7 @@ const Faqs = () => {
         <section>
           <FaqNavigation />
 
-          <FaqList faqData={faqData} error={error} />
+          <FaqList faqData={faqData} loading={loading} error={error} />
 
           <p className={styles.footer_text}>Showing 0-20 of {faqData.length} Results</p>
         </section>

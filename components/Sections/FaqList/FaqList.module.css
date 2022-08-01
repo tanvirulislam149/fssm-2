@@ -1,0 +1,5 @@
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}
