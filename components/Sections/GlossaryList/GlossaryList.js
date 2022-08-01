@@ -49,7 +49,7 @@ const GlossaryList = () => {
               <GlossaryCard title={word} body={answer} id={id} key={id} />
             )
           }) :
-          <p className='error'>'{error}'</p>
+          <p className='error'>{error}</p>
       }
 
       {loading ? null : glossaryData.length ? <p className={styles.footer_text}>Showing 0-20 of {glossaryData.length} Results</p> : <p className={styles.footer_text2}>No records found</p>}
