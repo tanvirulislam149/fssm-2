@@ -16,7 +16,10 @@ const LoginForm = () => {
   const navigate = useRouter();
 
   const handleError = (err) => {
-    setError('Email or Password Incorrect');
+    err === 'Email or Password Incorrect' ?
+      setError('Email or Password Incorrect') :
+      err === 'Refresh token expired' ?
+        navigate.push('/signin') : setError('An Error Occured');
   }
 
   const handleSubmit = async (loginData) => {
@@ -25,6 +28,7 @@ const LoginForm = () => {
       if (res !== null) {
         setError(null);
         axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
+        sessionStorage.setItem('access', res.data.access_token);
         sessionStorage.setItem('refresh', res.data.refresh_token);
         navigate.push('/');
       }

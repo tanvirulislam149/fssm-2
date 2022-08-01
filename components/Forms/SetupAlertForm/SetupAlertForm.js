@@ -9,17 +9,17 @@ const SetupAlertForm = () => {
   const [error, setError] = useState(null);
 
   const handleError = (err) => {
-    console.log(err); // 404 not found
+    console.log(err);
     setError(err.response.statusText);
   }
 
   const handleSubmit = (data) => {
     let categories = [];
     data.all ? categories.push({ userCat: 1 }) : null;
-    data.technicalConsultants ? categories.push({ userCat: 2 }) : null;
+    data.govtNational ? categories.push({ userCat: 2 }) : null;
     data.ngoPartners ? categories.push({ userCat: 3 }) : null;
     data.generalCitizen ? categories.push({ userCat: 4 }) : null;
-    data.govtNational ? categories.push({ userCat: 5 }) : null;
+    data.technicalConsultants ? categories.push({ userCat: 5 }) : null;
     data.privateSector ? categories.push({ userCat: 6 }) : null;
     data.academiaTraining ? categories.push({ userCat: 7 }) : null;
     data.donorPhilanthropist ? categories.push({ userCat: 8 }) : null;
@@ -27,7 +27,7 @@ const SetupAlertForm = () => {
     setAlert({ name: data.name, email: data.email, categories }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res); //testing
+        alert(res.data.Output);
       }
     });
   }
@@ -40,10 +40,10 @@ const SetupAlertForm = () => {
             name: '',
             email: '',
             all: false,
+            govtNational: false,
             technicalConsultants: false,
             ngoPartners: false,
             generalCitizen: false,
-            govtNational: false,
             privateSector: false,
             academiaTraining: false,
             donorPhilanthropist: false
