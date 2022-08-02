@@ -220,7 +220,7 @@
   .one,
   .two,
   .three {
-    width: var(--size-94);
+    width: var(--ninety);
     background-size: cover;
   }
 
