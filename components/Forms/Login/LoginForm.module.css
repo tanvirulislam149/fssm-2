@@ -27,7 +27,7 @@
 
 .form_control {
   width: var(--hundred);
-  margin-top: var(--s-10);
+  margin-top: var(--fs-14);
 }
 
 .tc {
@@ -58,38 +58,13 @@
   color: var(--light-gray-color);
 }
 
-.input {
-  width: var(--hundred);
-  border: 1px solid var(--input-border-color);
-  border-radius: var(--primary-border-radius);
-  padding: var(--input-padding);
-  margin-top: var(--primary-margin-top);
-  font-size: var(--login-input-font);
-}
-
-.passwordInput + span {
-  position: absolute !important;
-  margin-top: var(--eye-icon-margin-top) !important;
-  margin-left: var(--eye-icon-margin-left) !important;
-}
-
-.input::-webkit-input-placeholder {
-  font-size: var(--placeholder-font);
-  color: var(--light-gray-color);
-  font-family: var(--font-family-primary);
-}
-
-.img,
-.btn {
-  cursor: pointer;
-}
-
 .checkbox_cont {
   display: flex;
   margin-top: var(--checkbox-cont-margin);
 }
 
 .btn {
+  cursor: pointer;
   color: var(--white-color);
   background: var(--primary-blue);
   border-radius: var(--primary-border-radius);
