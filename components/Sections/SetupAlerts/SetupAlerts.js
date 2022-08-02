@@ -18,12 +18,14 @@ const SetupAlerts = () => {
         <div className={styles.bg}
           onClick={() => {
             document.querySelector('.modal').style.display = "none";
+            document.getElementById('user-cat').style.display = 'none';
           }}></div>
         <div className={styles.modal_content}>
           <div
             className={styles.close}
             onClick={() => {
               document.querySelector('.modal').style.display = "none";
+              document.getElementById('user-cat').style.display = 'none';
             }}
           ><span>x</span></div>
           <div className={styles.modal_header}>

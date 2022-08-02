@@ -12,17 +12,7 @@ const SetupAlertForm = () => {
   }
 
   const handleSubmit = (data) => {
-    let categories = [];
-    data.all ? categories.push({ userCat: 1 }) : null;
-    data.govtNational ? categories.push({ userCat: 2 }) : null;
-    data.ngoPartners ? categories.push({ userCat: 3 }) : null;
-    data.generalCitizen ? categories.push({ userCat: 4 }) : null;
-    data.technicalConsultants ? categories.push({ userCat: 5 }) : null;
-    data.privateSector ? categories.push({ userCat: 6 }) : null;
-    data.academiaTraining ? categories.push({ userCat: 7 }) : null;
-    data.donorPhilanthropist ? categories.push({ userCat: 8 }) : null;
-
-    setAlert({ name: data.name, email: data.email, categories }, (err, res) => {
+    setAlert(data, (err, res) => {
       if (err) return handleError();
       if (res !== null) {
         alert(res.data.Output);
@@ -52,12 +42,32 @@ const SetupAlertForm = () => {
               .required('Required'),
             name: Yup.string()
               .min(3, '3 or more characters')
+              .test('is name a letter?', 'Name must consist of letters only', (val) => {
+                return /^[a-zA-Z]+$/.test(val);
+              })
               .required('Required'),
           })}
           onSubmit={(data, actions) => {
-            handleSubmit(data);
-            actions.resetForm();
+            let categories = [];
+            data.all ? categories.push({ userCat: 1 }) : null;
+            data.govtNational ? categories.push({ userCat: 2 }) : null;
+            data.ngoPartners ? categories.push({ userCat: 3 }) : null;
+            data.generalCitizen ? categories.push({ userCat: 4 }) : null;
+            data.technicalConsultants ? categories.push({ userCat: 5 }) : null;
+            data.privateSector ? categories.push({ userCat: 6 }) : null;
+            data.academiaTraining ? categories.push({ userCat: 7 }) : null;
+            data.donorPhilanthropist ? categories.push({ userCat: 8 }) : null;
+
+            if (categories.length) {
+              document.getElementById('user-cat').style.display = 'none';
+            } else {
+              document.getElementById('user-cat').style.display = 'block';
+              return;
+            }
+
             document.querySelector('.modal').style.display = "none";
+            handleSubmit({ name: data.name, email: data.email, categories });
+            actions.resetForm();
           }}
         >
           <Form>
@@ -120,6 +130,7 @@ const SetupAlertForm = () => {
                 </div>
               </div>
             </div>
+            <span id='user-cat' className="form-error none">You must select at least 1 categpry</span>
 
             <div className={styles.btn_cont}>
               <SubmitButton type='submit' style={styles.btn} title='Submit' />

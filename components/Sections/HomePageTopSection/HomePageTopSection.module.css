@@ -1,6 +1,6 @@
 .container {
-  margin-left: var(--five);
-  margin-right: var(--five);
+  margin-left: var(--ma-homepage);
+  margin-right: var(--ma-homepage);
   margin-bottom: var(--ma-btm-home-top);
 }
 
@@ -104,6 +104,11 @@
 @media (max-width: 1050px) {
   .card_cont {
     flex-direction: column;
+  }
+
+  .container {
+    margin-left: var(--five);
+    margin-right: var(--five);
   }
 
   .card {

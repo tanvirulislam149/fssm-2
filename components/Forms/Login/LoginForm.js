@@ -25,7 +25,7 @@ const LoginForm = () => {
   const navigate = useRouter();
 
   const handleError = (err) => {
-    console.log({ e: err })
+    //console.log({ e: err })
     setLoading(false);
     err === 'Email or Password Incorrect' ?
       setError('Email or Password Incorrect') :
@@ -34,7 +34,7 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (loginData) => {
-    console.log(loginData)
+    //console.log(loginData)
     loginUser(loginData, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
@@ -43,8 +43,8 @@ const LoginForm = () => {
         axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
         sessionStorage.setItem('access', res.data.access_token);
         sessionStorage.setItem('refresh', res.data.refresh_token);
+        navigate.push('/');
         setLoading(false);
-        //navigate.push('/');
       }
     })
   }

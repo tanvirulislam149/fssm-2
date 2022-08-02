@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: 47% 47%;
-  margin: var(--five);
+  margin: var(--ma-homepage);
   gap: 6%;
 }
 
@@ -30,5 +30,6 @@
 @media (max-width: 950px) {
   .container {
     grid-template-columns: 1fr;
+    margin: var(--five);
   }
 }

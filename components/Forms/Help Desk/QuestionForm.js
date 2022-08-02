@@ -15,8 +15,7 @@ const QuestionForm = () => {
   }, [])
 
   const handleError = (err) => {
-    console.log(err)
-    alert('An error occured, please try again');
+    //console.log(err);
   }
 
   const handleSubmit = (values) => {
@@ -45,24 +44,30 @@ const QuestionForm = () => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .max(20, 'Must be 20 characters or less')
-            .min(3, 'Must be 4-20 characters')
+            .max(20, 'Must be 3-20 characters')
+            .min(3, 'Must be 3-20 characters')
+            .test('is name a letter?', 'Name must consist of letters only', (val) => {
+              return /^[a-zA-Z]+$/.test(val);
+            })
             .required('Required'),
           organization: Yup.string()
-            .max(20, 'Must be 20 characters or less')
-            .min(3, 'Must be 4-20 characters')
+            .max(20, 'Must be 3-20 characters')
+            .min(3, 'Must be 3-20 characters')
             .required('Required'),
           email: Yup.string()
             .email('Invalid email address')
             .required('Required'),
           question: Yup.string()
-            .required('Required'),
+            .required('Required')
+            .min(10, 'Must be 10 characters minimum'),
           theme: Yup.string()
             .required('Required'),
           userprofile: Yup.string()
             .required('Required'),
           mobile: Yup.string()
-            .required('Required'),
+            .required('Required')
+            .max(14, 'Enter valid number')
+            .min(10, 'Enter valid number'),
         })}
         onSubmit={(values) => {
           handleSubmit(values);
