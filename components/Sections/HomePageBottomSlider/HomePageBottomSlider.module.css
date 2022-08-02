@@ -1,7 +1,7 @@
 .container {
   height: var(--s-300);
   width: var(--hundred);
-  margin-top: var(--card-btn-w);
+  margin-top: var(--ma-btm-home-top);
 }
 
 .title {
