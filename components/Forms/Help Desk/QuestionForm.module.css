@@ -28,24 +28,24 @@
 .btn_browse {
   border: 1px solid var(--input-border-color);
   text-align: center;
-  width: var(--thirty);
+  width: max-content;
+  margin-top: var(--size-5);
   border-left: 0;
-  border-radius: 0 var(--s-2) var(--s-2) 0;
   background-color: var(--white-color);
   color: var(--primary-blue);
-  font-weight: var(--primary-border-radius);
+  font-weight: var(--fw-500);
   height: var(--s-40);
-  padding: var(--s-10) 0;
+  padding: var(--s-10);
   font-size: var(--fs-14);
-  border-radius: 0 var(--primary-border-radius) var(--primary-border-radius) 0;
+  border-radius: var(--s-20);
 }
 
 .f_input {
   height: var(--s-40);
   background-color: var(--white-color);
   border: 1px solid var(--input-border-color);
-  border-radius: var(--primary-border-radius) 0 0 var(--primary-border-radius);
-  width: var(--seventy);
+  border-radius: var(--primary-border-radius);
+  width: var(--hundred);
   max-width: var(--s-400);
   float: left;
   padding: 0 var(--fs-14);
@@ -55,6 +55,7 @@
 .file_cont {
   width: var(--hundred);
   display: flex;
+  flex-direction: column;
 }
 
 .label span {
@@ -183,6 +184,6 @@
   }
 
   .f_input {
-    width: var(--thirty);
+    width: var(--size-45);
   }
 }

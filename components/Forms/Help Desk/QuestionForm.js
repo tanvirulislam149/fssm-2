@@ -100,7 +100,7 @@ const QuestionForm = () => {
                 <div className={styles.file_cont}>
                   <Input id="uploadFile" style={styles.f_input} />
                   <div className={`${styles.btn_browse} ${styles.fileUpload}`}>
-                    <span>Browse</span>
+                    <span>Choose File</span>
                     <Input
                       id="attachment"
                       type='file'

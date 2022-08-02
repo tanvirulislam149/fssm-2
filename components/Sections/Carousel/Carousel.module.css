@@ -123,7 +123,7 @@
 .carousel__navigation {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: var(--ma-carousel);
   left: 0;
   text-align: center;
 }
@@ -218,5 +218,9 @@
     width: var(--hundred);
     height: var(--s-500);
     background-size: cover;
+  }
+
+  .carousel__navigation {
+    bottom: 0;
   }
 }
