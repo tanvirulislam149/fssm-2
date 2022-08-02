@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const axiosInstance = axios.create();
 
-//axiosInstance.defaults.withCredentials = true
+axiosInstance.defaults.withCredentials = true
 
 axiosInstance.interceptors.response.use(response => response,
   async (error) => {

@@ -27,7 +27,10 @@
 
 .form_control {
   width: var(--hundred);
-  margin-top: var(--fs-14);
+}
+
+.div {
+  height: var(--fs-14);
 }
 
 .tc {

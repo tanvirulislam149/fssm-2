@@ -25,7 +25,7 @@ const LoginForm = () => {
   const navigate = useRouter();
 
   const handleError = (err) => {
-    //console.log({ e: err })
+    console.log({ e: err })
     setLoading(false);
     err === 'Email or Password Incorrect' ?
       setError('Email or Password Incorrect') :
@@ -43,7 +43,7 @@ const LoginForm = () => {
         axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
         sessionStorage.setItem('access', res.data.access_token);
         sessionStorage.setItem('refresh', res.data.refresh_token);
-        navigate.push('/');
+        //navigate.push('/');
         setLoading(false);
       }
     })
@@ -91,6 +91,8 @@ const LoginForm = () => {
                   setFieldValue('email', e.target.value)
                 }} />
               <span className='form-error'><ErrorMessage name="email" /></span>
+
+              <div className={styles.div}></div>
 
               <FormControl className={`${styles.form_control} ${styles.field}`} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
