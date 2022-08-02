@@ -2,41 +2,45 @@ import axios from "axios";
 
 export const axiosInstance = axios.create();
 
-// axiosInstance.interceptors.response.use(response => response,
-//   async (error) => {
-//     const originalRequest = error.config;
-//     if (
-//       error.response.status === 401 &&
-//       error.response.data.detail === 'User Not Found!'
-//     ) {
-//       return Promise.reject('Email or Password Incorrect');
-//     }
+//axiosInstance.defaults.withCredentials = true
 
-//     if (
-//       error.response.status === 401 &&
-//       originalRequest.url === 'api/token/refresh/'
-//     ) {
-//       return Promise.reject('Refresh token expired');
-//     }
+axiosInstance.interceptors.response.use(response => response,
+  async (error) => {
+    const originalRequest = error.config;
+    if (
+      (error.response.status === 404 &&
+        error.response.data.Error === 'User Not Found') ||
+      (error.response.status === 401 &&
+        error.response.data.Error === 'Password Incorrect')
+    ) {
+      return Promise.reject('Email or Password Incorrect');
+    }
 
-//     if (error.response.status === 401) {
-//       const refreshToken = sessionStorage.getItem('refresh');
+    if (
+      error.response.status === 401 &&
+      originalRequest.url === 'api/token/refresh/'
+    ) {
+      return Promise.reject('Refresh token expired');
+    }
 
-//       axiosInstance.post('api/token/refresh/', { refresh: refreshToken })
-//         .then(res => {
-//           sessionStorage.setItem('access', res.data.access);
-//           axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`;
-//           return axiosInstance(originalRequest);
-//         })
-//         .catch((err) => {
-//           console.log({ JWTerr: err });
-//         });
-//     }
+    if (error.response.status === 401) {
+      const refreshToken = sessionStorage.getItem('refresh');
 
-//     return Promise.reject(error);
-//   }
+      axiosInstance.post('api/token/refresh/', { refresh: refreshToken })
+        .then(res => {
+          sessionStorage.setItem('access', res.data.access);
+          axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`;
+          return axiosInstance(originalRequest);
+        })
+        .catch((err) => {
+          console.log({ JWTerr: err });
+        });
+    }
 
-// );
+    return Promise.reject(error);
+  }
+
+);
 
 
 export const loginUser = (data, cb) => {
