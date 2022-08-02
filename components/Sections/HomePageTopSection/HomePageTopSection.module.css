@@ -1,6 +1,6 @@
 .container {
-  margin-left: var(--ma-homepage);
-  margin-right: var(--ma-homepage);
+  margin-left: var(--five);
+  margin-right: var(--five);
   margin-bottom: var(--ma-btm-home-top);
 }
 

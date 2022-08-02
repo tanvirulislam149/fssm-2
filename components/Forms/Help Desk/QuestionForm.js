@@ -7,7 +7,6 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const QuestionForm = () => {
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     document.getElementById("attachment").onchange = function () {
@@ -15,18 +14,17 @@ const QuestionForm = () => {
     };
   }, [])
 
-
   const handleError = (err) => {
-    console.log(err); // testing
-    setError(err.response.statusText);
+    console.log(err)
+    alert('An error occured, please try again');
   }
 
   const handleSubmit = (values) => {
-    console.log(values);
     submitQuestion(values, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res); // testing
+        console.log(res)
+        alert('Question received! We will get back to you soon!');
       }
     });
   }
@@ -143,6 +141,7 @@ const QuestionForm = () => {
               <div className={styles.input_cont}>
                 <label className={styles.label} htmlFor="mobile">Mobile <span>*</span></label>
                 <Field name="mobile" id='mobile' className={styles.input} placeholder='Mobile' type="number" />
+                <span className='form-error'><ErrorMessage name="mobile" /></span>
               </div>
 
               <div className={styles.input_cont}>
@@ -153,7 +152,10 @@ const QuestionForm = () => {
             </div>
 
             <div className={styles.btn_cont}>
-              <Button type='submit' title='Submit' style={styles.submit_btn} />
+              <Button type='submit' title='Submit' onClick={() => {
+                console.log('ran');
+                handleSubmit()
+              }} style={styles.submit_btn} />
               <button disabled className={styles.cancel_btn}>Cancel</button>
             </div>
           </Form>
