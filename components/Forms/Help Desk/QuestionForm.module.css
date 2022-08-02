@@ -184,6 +184,6 @@
   }
 
   .f_input {
-    width: var(--size-45);
+    width: var(--hundred);
   }
 }
