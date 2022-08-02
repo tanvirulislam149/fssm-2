@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SetupAlertForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -6,11 +6,9 @@ import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import { setAlert } from '../../../services/knowledgeRepoService';
 
 const SetupAlertForm = () => {
-  const [error, setError] = useState(null);
 
-  const handleError = (err) => {
-    console.log(err);
-    setError(err.response.statusText);
+  const handleError = () => {
+    alert('An Error Occured, Try Again');
   }
 
   const handleSubmit = (data) => {
@@ -25,7 +23,7 @@ const SetupAlertForm = () => {
     data.donorPhilanthropist ? categories.push({ userCat: 8 }) : null;
 
     setAlert({ name: data.name, email: data.email, categories }, (err, res) => {
-      if (err) return handleError(err);
+      if (err) return handleError();
       if (res !== null) {
         alert(res.data.Output);
       }

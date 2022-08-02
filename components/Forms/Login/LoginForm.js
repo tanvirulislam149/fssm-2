@@ -6,8 +6,7 @@ import eye from '../../../assets/eye.png';
 import { loginFormText } from '../../TextArrays';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { loginUser } from '../../../services/authService';
-import axios from 'axios';
+import { loginUser, axiosInstance } from '../../../services/authService';
 import { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -18,6 +17,7 @@ const LoginForm = () => {
   const navigate = useRouter();
 
   const handleError = (err) => {
+    console.log({ e: err })
     setLoading(false);
     err === 'Email or Password Incorrect' ?
       setError('Email or Password Incorrect') :
@@ -29,8 +29,9 @@ const LoginForm = () => {
     loginUser(loginData, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
+        console.log({ r: res })
         setError(null);
-        axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
+        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
         sessionStorage.setItem('access', res.data.access_token);
         sessionStorage.setItem('refresh', res.data.refresh_token);
         setLoading(false);
