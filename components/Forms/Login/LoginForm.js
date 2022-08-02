@@ -43,7 +43,7 @@ const LoginForm = () => {
         axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
         sessionStorage.setItem('access', res.data.access_token);
         sessionStorage.setItem('refresh', res.data.refresh_token);
-        //navigate.push('/');
+        navigate.push('/');
         setLoading(false);
       }
     })
