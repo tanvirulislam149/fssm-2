@@ -130,7 +130,7 @@ const SetupAlertForm = () => {
                 </div>
               </div>
             </div>
-            <span id='user-cat' className="form-error none">You must select at least 1 categpry</span>
+            <span id='user-cat' className="form-error none">You must select at least 1 category</span>
 
             <div className={styles.btn_cont}>
               <SubmitButton type='submit' style={styles.btn} title='Submit' />

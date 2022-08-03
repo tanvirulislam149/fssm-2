@@ -22,7 +22,7 @@ const QuestionForm = () => {
     submitQuestion(values, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res)
+        console.log(res);
         alert('Question received! We will get back to you soon!');
       }
     });
@@ -66,8 +66,8 @@ const QuestionForm = () => {
             .required('Required'),
           mobile: Yup.string()
             .required('Required')
-            .max(14, 'Enter valid number')
-            .min(10, 'Enter valid number'),
+            .max(14, 'Enter valid phone number')
+            .min(10, 'Enter valid phone number'),
         })}
         onSubmit={(values) => {
           handleSubmit(values);

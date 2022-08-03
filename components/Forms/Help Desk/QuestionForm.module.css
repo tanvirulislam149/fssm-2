@@ -148,6 +148,7 @@
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
+  font-size: var(--s-18);
   margin-right: var(--fs-14);
 }
 
@@ -158,6 +159,7 @@
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
+  font-size: var(--s-18);
 }
 
 .cancel_btn:hover {

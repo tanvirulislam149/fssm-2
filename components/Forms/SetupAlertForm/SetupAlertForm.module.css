@@ -7,7 +7,7 @@
   background: var(--red);
   border-radius: var(--s-10);
   width: max-content;
-  padding: var(--s-10) var(--s-30);
+  padding: var(--fs-12) var(--s-30);
   border-width: 0;
   margin-top: var(--s-20);
   font-size: var(--fs-14);

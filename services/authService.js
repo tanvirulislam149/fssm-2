@@ -1,6 +1,8 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 export const axiosInstance = axios.create();
+axiosInstance.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 //axiosInstance.defaults.withCredentials = true
 
@@ -18,22 +20,22 @@ axiosInstance.interceptors.response.use(response => response,
 
     if (
       error.response.status === 401 &&
-      originalRequest.url === 'api/token/refresh/'
+      originalRequest.url.includes('api/token/refresh')
     ) {
       return Promise.reject('Refresh token expired');
     }
 
     if (error.response.status === 401) {
-      const refreshToken = sessionStorage.getItem('refresh');
+      const refreshToken = Cookies.get('refresh');
 
       axiosInstance.post('api/token/refresh/', { refresh: refreshToken })
         .then(res => {
-          sessionStorage.setItem('access', res.data.access);
+          Cookies.set('access', res.data.access, { expires: 14 })
           axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`;
           return axiosInstance(originalRequest);
         })
         .catch((err) => {
-          console.log({ JWTerr: err });
+          return Promise.reject(err);
         });
     }
 

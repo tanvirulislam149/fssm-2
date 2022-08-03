@@ -78,10 +78,10 @@
   color: var(--white-color);
   border-radius: var(--s-10);
   border-width: 0;
-  padding-top: var(--pa-btn-card);
-  padding-bottom: var(--pa-btn-card);
+  padding-top: var(--fs-1rem);
+  padding-bottom: var(--fs-1rem);
   width: var(--card-btn-w);
-  font-size: var(--fs-12);
+  font-size: var(--s-13-5);
 }
 
 .input {

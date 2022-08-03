@@ -7,11 +7,14 @@ import Image from 'next/image';
 import SubmitButton from '../Buttons/Submit/SubmitButton';
 import { useRouter } from 'next/router';
 import { footerText } from '../TextArrays';
+import Cookies from 'js-cookie';
 
 const Footer = () => {
   const navigate = useRouter();
 
   const clickHandler = () => {
+    Cookies.remove('access');
+    Cookies.remove('refresh');
     navigate.push('/signin');
   }
 

@@ -15,7 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
-;
+import Cookies from 'js-cookie'
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
@@ -34,16 +34,25 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (loginData) => {
-    //console.log(loginData)
+    console.log(loginData)
     loginUser(loginData, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
+        if (loginData.check === true) {
+          Cookies.set('check', true, { expires: 14 });
+          Cookies.set('email', loginData.email, { expires: 14 });
+        } else {
+          if (Cookies.get('check')) {
+            Cookies.remove('check');
+            Cookies.remove('email');
+          }
+        }
         console.log({ r: res })
         setError(null);
-        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
-        sessionStorage.setItem('access', res.data.access_token);
-        sessionStorage.setItem('refresh', res.data.refresh_token);
-        navigate.push('/');
+        axiosInstance.defaults.headers.common["Authorization"] = 'Bearer ' + Cookies.get('access');
+        Cookies.set('access', res.data.access_token, { expires: 14 })
+        Cookies.set('refresh', res.data.refresh_token, { expires: 14 })
+        //navigate.push('/');
         setLoading(false);
       }
     })
@@ -65,7 +74,7 @@ const LoginForm = () => {
         </div>
 
         <Formik
-          initialValues={{ email: '', password: '', check: false }}
+          initialValues={{ email: Cookies.get('email') ? Cookies.get('email') : '', password: '', check: Cookies.get('check') ? true : false }}
           validationSchema={Yup.object({
             password: Yup.string()
               .max(20, 'Must be 20 characters or less')
@@ -83,8 +92,9 @@ const LoginForm = () => {
               <TextField
                 sx={{ width: '100%' }}
                 id="email"
-                label="Email"
+                placeholder='Email'
                 className={styles.field}
+                defaultValue={Cookies.get('email') ? Cookies.get('email') : ''}
                 type="email"
                 name='email'
                 onChange={(e) => {
@@ -95,7 +105,6 @@ const LoginForm = () => {
               <div className={styles.div}></div>
 
               <FormControl className={`${styles.form_control} ${styles.field}`} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
                   type={showPassword ? 'text' : 'password'}
@@ -115,7 +124,7 @@ const LoginForm = () => {
                       </IconButton>
                     </InputAdornment>
                   }
-                  label="Password"
+                  placeholder='Password'
                 />
               </FormControl>
               <span className='form-error'><ErrorMessage name="password" /></span>
