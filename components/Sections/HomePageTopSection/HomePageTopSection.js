@@ -60,7 +60,7 @@ const HomePageTopSection = () => {
             <div className={styles.card_3}>
               <Link href='/qanda'><a>
                 <Button
-                  style={styles.btn}
+                  style={styles.btn2}
                   title='Ask Question'
                 />
               </a></Link>

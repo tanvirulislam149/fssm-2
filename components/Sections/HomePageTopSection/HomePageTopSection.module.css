@@ -42,6 +42,10 @@
   justify-content: center;
 }
 
+.card_3 a {
+  width: var(--fifty);
+}
+
 .card {
   height: var(--card-h);
   width: var(--thirty);
@@ -80,8 +84,21 @@
   border-width: 0;
   padding-top: var(--fs-1rem);
   padding-bottom: var(--fs-1rem);
-  width: var(--card-btn-w);
+  width: 47%;
   font-size: var(--s-13-5);
+  font-weight: var(--font-weight-bold);
+}
+
+.btn2 {
+  background: var(--primary-blue);
+  color: var(--white-color);
+  border-radius: var(--s-10);
+  border-width: 0;
+  padding-top: var(--fs-1rem);
+  padding-bottom: var(--fs-1rem);
+  width: var(--hundred);
+  font-size: var(--s-13-5);
+  font-weight: var(--font-weight-bold);
 }
 
 .input {
