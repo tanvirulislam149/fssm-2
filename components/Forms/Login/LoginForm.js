@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LoginForm.module.css';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import { loginFormText } from '../../TextArrays';
@@ -57,6 +57,13 @@ const LoginForm = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('swass-fssm')) {
+      sessionStorage.setItem("swass-fssm", "true");
+      window.location.reload();
+    }
+  }, [])
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
