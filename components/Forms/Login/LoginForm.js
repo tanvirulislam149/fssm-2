@@ -60,7 +60,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (!Cookies.get('swass-fssm')) {
-      Cookies.set("swass-fssm", "true", { expires: 0.00013889 });
+      Cookies.set("swass-fssm", "true", { expires: 0.00005787 });
       window.location.reload();
     }
   }, [])
