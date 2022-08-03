@@ -59,8 +59,8 @@ const LoginForm = () => {
   }
 
   useEffect(() => {
-    if (!sessionStorage.getItem('swass-fssm')) {
-      sessionStorage.setItem("swass-fssm", "true");
+    if (!Cookies.get('swass-fssm')) {
+      Cookies.set("swass-fssm", "true", { expires: 0.00013889 });
       window.location.reload();
     }
   }, [])
