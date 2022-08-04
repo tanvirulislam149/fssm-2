@@ -8,6 +8,7 @@ import SubmitButton from '../Buttons/Submit/SubmitButton';
 import { useRouter } from 'next/router';
 import { footerText } from '../TextArrays';
 import Cookies from 'js-cookie';
+import { axiosInstance } from '../../services/authService';
 
 const Footer = () => {
   const navigate = useRouter();
@@ -15,6 +16,7 @@ const Footer = () => {
   const clickHandler = () => {
     Cookies.remove('access');
     Cookies.remove('refresh');
+    axiosInstance.defaults.headers.common["Authorization"] = null;
     navigate.push('/signin');
   }
 
