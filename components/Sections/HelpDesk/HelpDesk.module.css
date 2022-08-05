@@ -8,6 +8,15 @@
   display: flex;
 }
 
+.title {
+  font-size: var(--fs-48);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-blue);
+  padding: var(--pa-title);
+  background: var(--white-color);
+  border-top: solid var(--s-10) var(--bg-login-gray);
+}
+
 .instruction {
   color: var(--header-txt);
   padding: var(--fs-1rem);
@@ -17,4 +26,11 @@
   background: var(--light-green);
   padding: 0 var(--fs-1rem);
   padding-bottom: var(--fs-1rem);
+}
+
+@media (max-width: 575px) {
+  .title {
+    font-size: var(--fs-36);
+    padding: var(--pa-title);
+  }
 }

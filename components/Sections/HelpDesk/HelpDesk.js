@@ -193,6 +193,7 @@ const HelpDesk = () => {
 
   return (
     <>
+      <h1 className={styles.title}>Help Desk</h1>
       <section className={styles.container}>
         <div className={styles.btn_cont}>
           <button
