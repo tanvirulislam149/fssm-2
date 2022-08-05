@@ -51,7 +51,7 @@ const KnowledgeCont = () => {
               <Vendors />
             </div>
 
-            <KnowledgeList questions={questions} />
+            <KnowledgeList loading={loading} questions={questions} />
           </div>
         </section>
       </div>

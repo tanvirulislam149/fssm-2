@@ -5,6 +5,7 @@
 
 .container section {
   padding: var(--ma-about-main);
+  padding-top: var(--s-10);
 }
 
 .footer_text {

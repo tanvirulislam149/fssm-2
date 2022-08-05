@@ -20,6 +20,7 @@
 .btn {
   background-color: var(--white-color);
   color: var(--black);
+  width: var(--fifty);
   padding: var(--pa-btn);
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
@@ -29,8 +30,8 @@
 }
 
 .btn:hover {
-  background: var(--white-color);
-  color: var(--faded-black);
+  background: var(--primary-blue);
+  color: var(--white-color);
 }
 
 .helpers {
@@ -176,6 +177,8 @@
   align-items: center;
   border-radius: var(--size-5);
   border: solid 1px var(--bg-login-gray);
+  position: relative;
+  z-index: 2;
 }
 
 .one {

@@ -28,6 +28,10 @@
   color: var(--bg-about);
 }
 
+.links {
+  border-bottom: 1px dotted var(--blue);
+}
+
 @media (max-width: 575px) {
   .sub_heading {
     font-size: var(--fs-24);

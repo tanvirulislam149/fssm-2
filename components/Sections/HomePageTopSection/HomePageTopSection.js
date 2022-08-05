@@ -45,11 +45,20 @@ const HomePageTopSection = () => {
               <p>{homePageText.sub_title3}</p>
             </div>
             <div className={styles.card_2}>
-              {homePageText.repository.map(({ title, id }) => {
-                return (
-                  <Card key={id} id={id} text={title} />
-                )
-              })}
+              <div className={styles.card_4}>
+                {homePageText.repository.map(({ title, id }) => {
+                  return (
+                    <>
+                      {id !== 10 && <Card key={id} id={id} text={title} />}
+                    </>
+                  )
+                })}
+              </div>
+              <div>
+                <div>
+                  <Card id={homePageText.repository[6].id} text={homePageText.repository[6].title} />
+                </div>
+              </div>
             </div>
           </div>
 

@@ -7,6 +7,9 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const QuestionForm = () => {
+  useEffect(() => {
+    document.getElementById("uploadFile").value = 'No files selected'
+  }, [])
 
   useEffect(() => {
     document.getElementById("attachment").onchange = function () {

@@ -11,7 +11,7 @@
 }
 
 .cont p {
-  padding: var(--s-20) 0;
+  padding: var(--fs-1rem) 0;
   width: var(--s-200);
   text-align: center;
   background: var(--white-color);
@@ -21,7 +21,7 @@
 
 .btn {
   background: var(--primary-blue);
-  padding: var(--fs-1rem) var(--s-30);
+  padding: var(--s-10) var(--s-30);
   border-radius: var(--s-10);
   color: var(--white-color);
   border-width: 0;

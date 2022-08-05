@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Carousel.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
+import Link from 'next/link';
 
 const Carousel = () => {
   return (
@@ -16,9 +17,11 @@ const Carousel = () => {
                 <div className={styles.one}>
                   <h3 className={styles.title}>{homePageMidSectionText.slide1}</h3>
                   <ul className={styles.list}>
-                    <li>{homePageMidSectionText.cardText}</li>
-                    <li>{homePageMidSectionText.cardText}</li>
-                    <li>{homePageMidSectionText.cardText}</li>
+                    {homePageMidSectionText.card1.map(({ id, link, text }) => {
+                      return (
+                        <Link href={link} key={id}><a><li>{text}</li></a></Link>
+                      )
+                    })}
                   </ul>
                   <Button title='Show more' style={styles.btn} />
                 </div>
@@ -35,9 +38,11 @@ const Carousel = () => {
               <div className={styles.two}>
                 <h3 className={styles.title}>{homePageMidSectionText.slide2}</h3>
                 <ul className={styles.list}>
-                  <li>{homePageMidSectionText.cardText}</li>
-                  <li>{homePageMidSectionText.cardText}</li>
-                  <li>{homePageMidSectionText.cardText}</li>
+                  {homePageMidSectionText.card2.map(({ id, link, text }) => {
+                    return (
+                      <Link href={link} key={id}><a><li>{text}</li></a></Link>
+                    )
+                  })}
                 </ul>
                 <Button title='Show more' style={styles.btn} />
               </div>
@@ -53,9 +58,11 @@ const Carousel = () => {
               <div className={styles.three}>
                 <h3 className={styles.title}>{homePageMidSectionText.slide3}</h3>
                 <ul className={styles.list}>
-                  <li>{homePageMidSectionText.cardText}</li>
-                  <li>{homePageMidSectionText.cardText}</li>
-                  <li>{homePageMidSectionText.cardText}</li>
+                  {homePageMidSectionText.card3.map(({ id, link, text }) => {
+                    return (
+                      <Link href={link} key={id}><a><li>{text}</li></a></Link>
+                    )
+                  })}
                 </ul>
                 <Button title='Show more' style={styles.btn} />
               </div>
@@ -71,9 +78,11 @@ const Carousel = () => {
               <div className={styles.four}>
                 <h3 className={styles.title}>{homePageMidSectionText.slide4}</h3>
                 <ul className={styles.list}>
-                  <li>{homePageMidSectionText.cardText}</li>
-                  <li>{homePageMidSectionText.cardText}</li>
-                  <li>{homePageMidSectionText.cardText}</li>
+                  {homePageMidSectionText.card4.map(({ id, link, text }) => {
+                    return (
+                      <Link href={link} key={id}><a><li>{text}</li></a></Link>
+                    )
+                  })}
                 </ul>
                 <Button title='Show more' style={styles.btn} />
               </div>

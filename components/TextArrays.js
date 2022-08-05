@@ -28,7 +28,24 @@ export const footerText = {
 }
 
 export const homePageMidSectionText = {
-  cardText: 'Amet minim mollit non deserunt ullamco est sit aliqua',
+  card1: [
+    { id: 1, text: 'Faecal Sludge: Who will clean the shit?', link: 'https://www.cseindia.org/state-of-india-s-environment-2017-in-figures-ebook--8355' },
+    { id: 2, link: 'https://csestore.cse.org.in/books/state-of-india-s-environment/annual-issue-soe-2293.html', text: 'Serious Oversight: Total sanitation can not be achieved without ensuring effective FSSM' },
+    { id: 3, link: 'https://networks.h-net.org/node/5464513/pdf', text: 'The 5th Asian Symposium on Water, Sanitation and Hygiene (WASH 2020)' }
+  ],
+  card2: [
+    { id: 1, text: 'Detailed Tender Call Notice (DTCN) - Telangana', link: 'http://swachhfssm.in/files/RFP%20for%2068%20FSTPs%20-%20E-Tender%20-%20Telangana.pdf' },
+    { id: 2, text: 'Detailed Tender Call Notice (DTCN) - VOL 1 - Jhansi', link: 'http://swachhfssm.in/files/RFP%20for%20FSTPS%20-%20Jhansi%20(UP)%20-%20Vol%201.pdf' }
+  ],
+  card3: [
+    { id: 1, text: 'What is faecal sludge and septage management (FSSM)?', link: 'http://swachhfssm.in/faq#collapse_3' },
+    { id: 2, text: 'What is the sanitation value chain?', link: 'http://swachhfssm.in/faq#collapse_1' },
+    { id: 3, text: 'Who is the NFSSM Alliance?', link: 'http://swachhfssm.in/faq#collapse_14' }
+  ],
+  card4: [
+    { id: 1, text: 'Will NFSSM be the face of revolution in the sanitation sector?', link: 'http://swachhfssm.in/discussionthread/?thread=160923815499' },
+    { id: 2, text: 'How does Covid impact Sanitation?', link: 'http://swachhfssm.in/discussionthread/?thread=160154206397' }
+  ],
   slide1: 'Latest News',
   slide2: 'FSSM at a Glance',
   slide3: 'Discussion Board',

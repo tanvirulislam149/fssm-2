@@ -34,14 +34,16 @@
   background-color: var(--white-color);
   color: var(--primary-blue);
   font-weight: var(--fw-500);
-  height: var(--s-40);
+  height: var(--s-30);
   padding: var(--s-10);
   font-size: var(--fs-14);
+  display: flex;
+  align-items: center;
   border-radius: var(--s-20);
 }
 
 .f_input {
-  height: var(--s-40);
+  height: var(--s-50);
   background-color: var(--white-color);
   border: 1px solid var(--input-border-color);
   border-radius: var(--primary-border-radius);
@@ -70,7 +72,7 @@
 }
 
 .select {
-  height: var(--s-40);
+  height: var(--s-50);
   padding: var(--s-10) var(--fs-14);
   border-radius: var(--primary-border-radius);
   width: var(--hundred);
@@ -129,7 +131,7 @@
 }
 
 .input {
-  height: var(--s-40);
+  height: var(--s-50);
   padding: var(--s-10) var(--fs-14);
   border-radius: var(--primary-border-radius);
   border: 1px solid var(--input-border-color);
@@ -145,16 +147,18 @@
   background: var(--primary-blue);
   color: var(--white-color);
   padding: var(--pa-btn);
+  width: var(--s-150);
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
-  margin-right: var(--fs-14);
+  margin-right: var(--fs-1rem);
 }
 
 .cancel_btn {
   background: var(--red);
   color: var(--white-color);
   padding: var(--pa-btn);
+  width: var(--s-150);
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
@@ -185,5 +189,10 @@
 
   .f_input {
     width: var(--hundred);
+  }
+
+  .cancel_btn,
+  .submit_btn {
+    width: var(--s-120);
   }
 }

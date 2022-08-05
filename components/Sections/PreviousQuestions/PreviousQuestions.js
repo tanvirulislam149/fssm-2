@@ -4,6 +4,10 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
 import { Formik, Field, Form } from 'formik';
 import CircularProgress from '@mui/material/CircularProgress';
+import search from '../../../assets/search.png';
+import Image from 'next/image';
+import { IconButton, InputBase, Paper } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray, dateArray, handleSubmit, error }) => {
 
@@ -22,7 +26,21 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
             >
               <Form className={styles.inputs}>
                 <div className={styles.input_cont}>
-                  <Field name="search" id='search' className={styles.input} placeholder='Search Your Question' type="text" />
+                  <Paper
+                    className={styles.input}
+                    component="form"
+                    sx={{ p: '0px', display: 'flex', alignItems: 'center' }}
+                  >
+                    <InputBase
+                      sx={{ ml: 1, flex: 1 }}
+                      placeholder='Search Your Question'
+                      onChange={(e) => { handleChange(e.target.value) }}
+                      className={styles.input1}
+                    />
+                    <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                      <SearchIcon />
+                    </IconButton>
+                  </Paper>
                 </div>
 
                 <div className={styles.select_cont}>

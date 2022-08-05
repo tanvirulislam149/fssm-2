@@ -1,7 +1,7 @@
 .select {
-  height: var(--s-40);
+  height: var(--lh-35);
   padding: var(--s-10) var(--fs-14);
-  border-radius: var(--primary-border-radius);
+  border-radius: var(--size-5);
   width: var(--hundred);
   color: var(--light-gray-color);
   border: solid 1px var(--input-border-color);
@@ -22,9 +22,9 @@
 }
 
 .input {
-  height: var(--s-40);
-  padding: var(--s-10) var(--fs-14);
-  border-radius: var(--primary-border-radius);
+  height: var(--lh-35);
+  padding: var(--s-10) var(--fs-10);
+  border-radius: var(--size-5);
   border: 1px solid var(--input-border-color);
 }
 
@@ -52,6 +52,13 @@
   justify-content: space-between;
 }
 
+.input1 > input::-webkit-input-placeholder {
+  color: var(--black);
+  font-size: var(--fs-14);
+  letter-spacing: 0;
+  font-weight: bold;
+}
+
 .btn {
   background: var(--blue);
   color: var(--white-color);
@@ -59,6 +66,11 @@
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
+  height: var(--lh-35);
+  width: var(--s-120);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn:hover {

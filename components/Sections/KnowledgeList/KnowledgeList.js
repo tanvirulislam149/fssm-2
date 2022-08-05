@@ -1,7 +1,8 @@
 import React from 'react';
 import KnowledgeCard from '../../Cards/KnowledgeCard/KnowledgeCard';
+import styles from './KnowledgeList.module.css';
 
-const KnowledgeList = ({ questions }) => {
+const KnowledgeList = ({ loading, questions }) => {
   return (
     <>
       <div>
@@ -12,6 +13,7 @@ const KnowledgeList = ({ questions }) => {
             )
           })
         }
+        {loading ? null : questions.length ? <p className={styles.footer_text}>Showing 0-20 of {questions.length} Results</p> : <p className={styles.footer_text2}>No records found</p>}
       </div>
     </>
   )

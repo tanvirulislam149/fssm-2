@@ -21,6 +21,7 @@
   --min-height-100: 100vh;
   --br4: 4px;
   --fifty: 50%;
+  --fourty: 40%;
   --thirty: 30%;
   --five: 5%;
   --lh-35: 35px;
@@ -42,13 +43,16 @@
   --s-75: 75px;
   --s-8: 8px;
   --s-2: 2px;
+  --s-650: 650px;
   --s-600: 600px;
+  --s-550: 550px;
   --s-400: 400px;
   --s-300: 300px;
   --s-320: 320px;
   --s-200: 200px;
   --s-500: 500px;
   --s-150: 150px;
+  --s-120: 120px;
   --s-100: 100px;
   --s-13-5: 13.5px;
   --primary-border-radius: 12px;
@@ -149,7 +153,7 @@
   --logo3-width: 139px;
   --logo4-height: 73px;
   --logo4-width: 166px;
-  --ministry-logo-margin: 35%;
+  --ministry-logo-margin: 44%;
   --header-padding: 54px;
   --pa-header-bottom: 10px 20px;
   --pa-search: 5px 10px;
@@ -172,7 +176,7 @@
     --logo4-width: 57px;
     --logo4-height: 25px;
     --header-padding: 36px;
-    --ministry-logo-margin: 40%;
+    --ministry-logo-margin: 47%;
   }
 }
 
@@ -199,6 +203,6 @@
 
 @media (max-width: 410px) {
   :root {
-    --ministry-logo-margin: 30%;
+    --ministry-logo-margin: 38%;
   }
 }

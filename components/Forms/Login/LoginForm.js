@@ -98,7 +98,7 @@ const LoginForm = () => {
             <Form>
               <TextField
                 sx={{ width: '100%' }}
-                id="email"
+                id="text"
                 placeholder='Email'
                 className={styles.field}
                 defaultValue={Cookies.get('email') ? Cookies.get('email') : ''}
@@ -113,7 +113,7 @@ const LoginForm = () => {
 
               <FormControl className={`${styles.form_control} ${styles.field}`} variant="outlined">
                 <OutlinedInput
-                  id="outlined-adornment-password"
+                  id="text"
                   type={showPassword ? 'text' : 'password'}
                   name='password'
                   onChange={(e) => {

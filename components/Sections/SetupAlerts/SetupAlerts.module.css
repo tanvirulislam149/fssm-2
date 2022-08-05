@@ -4,7 +4,8 @@
   padding: var(--s-10);
   text-align: center;
   border-radius: var(--primary-border-radius);
-  margin: var(--s-30) 0;
+  margin: var(--fs-24) 0;
+  margin-top: var(--s-50);
   cursor: pointer;
 }
 
@@ -23,7 +24,7 @@
   z-index: 2;
   padding: 0;
   border-width: 0;
-  width: var(--sixty);
+  width: var(--s-650);
   height: max-content;
   border-radius: var(--primary-border-radius);
   box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;

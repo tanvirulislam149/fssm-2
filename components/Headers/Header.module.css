@@ -17,7 +17,7 @@
   width: var(--logo1-width) !important;
 }
 
-.logo_2 + span {
+.logo_2 + a {
   position: absolute;
   left: var(--ministry-logo-margin);
   height: var(--logo2-height) !important;
