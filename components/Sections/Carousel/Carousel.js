@@ -26,9 +26,9 @@ const Carousel = () => {
                   <Button title='Show more' style={styles.btn} />
                 </div>
                 <a href="#carousel__slide4"
-                  className={styles.carousel__prev}></a>
+                  className={styles.carousel__prev}>&lt;</a>
                 <a href="#carousel__slide2"
-                  className={styles.carousel__next}></a>
+                  className={styles.carousel__next}>&gt;</a>
               </div>
             </li>
             <li id="carousel__slide2"
@@ -47,9 +47,9 @@ const Carousel = () => {
                 <Button title='Show more' style={styles.btn} />
               </div>
               <a href="#carousel__slide1"
-                className={styles.carousel__prev}></a>
+                className={styles.carousel__prev}>&lt;</a>
               <a href="#carousel__slide3"
-                className={styles.carousel__next}></a>
+                className={styles.carousel__next}>&gt;</a>
             </li>
             <li id="carousel__slide3"
               tabIndex="0"
@@ -67,9 +67,9 @@ const Carousel = () => {
                 <Button title='Show more' style={styles.btn} />
               </div>
               <a href="#carousel__slide2"
-                className={styles.carousel__prev}></a>
+                className={styles.carousel__prev}>&lt;</a>
               <a href="#carousel__slide4"
-                className={styles.carousel__next}></a>
+                className={styles.carousel__next}>&gt;</a>
             </li>
             <li id="carousel__slide4"
               tabIndex="0"
@@ -87,9 +87,9 @@ const Carousel = () => {
                 <Button title='Show more' style={styles.btn} />
               </div>
               <a href="#carousel__slide3"
-                className={styles.carousel__prev}></a>
+                className={styles.carousel__prev}>&lt;</a>
               <a href="#carousel__slide1"
-                className={styles.carousel__next}></a>
+                className={styles.carousel__next}>&gt;</a>
             </li>
           </ol>
           <aside className={styles.carousel__navigation}>

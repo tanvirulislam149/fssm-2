@@ -18,8 +18,8 @@
 
 .plus,
 .minus {
-  height: var(--s-20);
-  width: var(--s-20);
+  height: var(--s-30);
+  width: var(--s-30);
   border-radius: var(--fifty);
   display: flex;
   justify-content: center;

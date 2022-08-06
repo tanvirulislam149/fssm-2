@@ -18,10 +18,10 @@ const HomePageBottomSlider = () => {
                 <div className={styles.one}>
                   <Link href='https://niti.gov.in/sites/default/files/2021-01/NITI-NFSSM-Alliance-Report-for-digital.pdf'><button className={styles.btn}>Click here</button></Link>
                 </div>
-                <a href="#carousel__slide_3"
-                  className={styles.carousel__prev}></a>
+                {/* <a href="#carousel__slide_3"
+                  className={styles.carousel__prev}>&lt;</a>
                 <a href="#carousel__slide_2"
-                  className={styles.carousel__next}></a>
+                  className={styles.carousel__next}>&gt;</a> */}
               </div>
             </li>
             <li id="carousel__slide_2"
@@ -31,10 +31,10 @@ const HomePageBottomSlider = () => {
               <div className={styles.two}>
                 <Link href='http://swachhfssm.in/files/Toilet%20Ke%20Baad%20Kya.pdf'><button className={styles.btn}>Click here</button></Link>
               </div>
-              <a href="#carousel__slide_1"
-                className={styles.carousel__prev}></a>
+              {/* <a href="#carousel__slide_1"
+                className={styles.carousel__prev}>&lt;</a>
               <a href="#carousel__slide_3"
-                className={styles.carousel__next}></a>
+                className={styles.carousel__next}>&gt;</a> */}
             </li>
             <li id="carousel__slide_3"
               tabIndex="0"
@@ -43,10 +43,10 @@ const HomePageBottomSlider = () => {
               <div className={styles.three}>
                 <Link href='https://www.niua.org/scbp/?q=training-modules'><button className={styles.btn}>Click here</button></Link>
               </div>
-              <a href="#carousel__slide_2"
-                className={styles.carousel__prev}></a>
+              {/* <a href="#carousel__slide_2"
+                className={styles.carousel__prev}>&lt;</a>
               <a href="#carousel__slide_1"
-                className={styles.carousel__next}></a>
+                className={styles.carousel__next}>&gt;</a> */}
             </li>
           </ol>
 

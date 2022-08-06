@@ -12,7 +12,7 @@
 
 .cont p {
   padding: var(--fs-1rem) 0;
-  width: var(--s-200);
+  width: var(--s-255);
   text-align: center;
   background: var(--white-color);
   color: var(--light-gray-color);
@@ -25,6 +25,7 @@
   border-radius: var(--s-10);
   color: var(--white-color);
   border-width: 0;
+  margin-left: auto;
 }
 
 @media (max-width: 950px) {
@@ -34,9 +35,14 @@
     margin-bottom: 0;
   }
 
+  .cont div {
+    display: flex;
+    width: var(--hundred);
+  }
+
   .cont p {
     margin-bottom: var(--s-10);
     padding: var(--fs-14) 0;
-    width: var(--s-150);
+    width: var(--fifty);
   }
 }

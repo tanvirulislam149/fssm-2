@@ -19,6 +19,7 @@
 
 .field > div {
   border-radius: var(--primary-border-radius);
+  padding-right: var(--s-30);
 }
 
 .pass {

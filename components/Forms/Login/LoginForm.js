@@ -7,14 +7,14 @@ import * as Yup from 'yup';
 import { loginUser, axiosInstance } from '../../../services/authService';
 import { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import eye from '../../../assets/eye.png';
+import Image from 'next/image';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
@@ -126,7 +126,7 @@ const LoginForm = () => {
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        <Image src={eye} alt='eye' height={16} width={22} />
                       </IconButton>
                     </InputAdornment>
                   }
