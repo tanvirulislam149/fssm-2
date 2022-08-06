@@ -27,8 +27,8 @@
 }
 
 .btn:hover {
-  background: var(--white-color);
-  color: var(--faded-black);
+  background: var(--primary-blue);
+  color: var(--white-color);
 }
 
 .carousel {
