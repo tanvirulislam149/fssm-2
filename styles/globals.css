@@ -74,7 +74,8 @@ input[type="number"]::-webkit-inner-spin-button {
   color: var(--dark-red);
 }
 
-#text::-webkit-input-placeholder {
+#text1::-webkit-input-placeholder,
+#text2::-webkit-input-placeholder {
   font-size: var(--s-20);
 }
 

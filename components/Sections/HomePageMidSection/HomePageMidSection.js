@@ -3,16 +3,23 @@ import Carousel from '../Carousel/Carousel';
 import styles from './HomePageMidSection.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const HomePageMidSection = () => {
+  const navigate = useRouter();
+  const handleRoute = () => {
+    navigate.push('/fssmalliance');
+  }
   return (
     <>
       <div className={styles.container}>
         <div className={styles.left}>
           <h2 className={styles.title}>{homePageMidSectionText.title}</h2>
           <p className={styles.text}>{homePageMidSectionText.body}</p>
-          <Link href='/fssmalliance'><Button title='Read More' style={styles.btn} /></Link>
+          <Button
+            title='Read More'
+            onClick={() => { handleRoute() }}
+            style={styles.btn} />
         </div>
         <Carousel />
       </div>

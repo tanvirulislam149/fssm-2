@@ -28,7 +28,7 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
                 <div className={styles.input_cont}>
                   <Paper
                     className={styles.input}
-                    component="form"
+                    component="div"
                     sx={{ p: '0px', display: 'flex', alignItems: 'center' }}
                   >
                     <InputBase

@@ -10,7 +10,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -98,7 +97,7 @@ const LoginForm = () => {
             <Form>
               <TextField
                 sx={{ width: '100%' }}
-                id="text"
+                id="text1"
                 placeholder='Email'
                 className={styles.field}
                 defaultValue={Cookies.get('email') ? Cookies.get('email') : ''}
@@ -113,7 +112,7 @@ const LoginForm = () => {
 
               <FormControl className={`${styles.form_control} ${styles.field}`} variant="outlined">
                 <OutlinedInput
-                  id="text"
+                  id="text2"
                   type={showPassword ? 'text' : 'password'}
                   name='password'
                   onChange={(e) => {

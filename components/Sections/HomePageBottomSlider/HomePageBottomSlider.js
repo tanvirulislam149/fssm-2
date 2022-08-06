@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './HomePageBottomSlider.module.css';
-import Button from '../../Buttons/Submit/SubmitButton';
 import Link from 'next/link';
 
 const HomePageBottomSlider = () => {
@@ -17,7 +16,7 @@ const HomePageBottomSlider = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}>
                 <div className={styles.one}>
-                  <Link href='https://niti.gov.in/sites/default/files/2021-01/NITI-NFSSM-Alliance-Report-for-digital.pdf'><Button title='Click here' style={styles.btn} /></Link>
+                  <Link href='https://niti.gov.in/sites/default/files/2021-01/NITI-NFSSM-Alliance-Report-for-digital.pdf'><button className={styles.btn}>Click here</button></Link>
                 </div>
                 <a href="#carousel__slide_3"
                   className={styles.carousel__prev}></a>
@@ -30,7 +29,7 @@ const HomePageBottomSlider = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.two}>
-                <Link href='http://swachhfssm.in/files/Toilet%20Ke%20Baad%20Kya.pdf'><Button title='Click here' style={styles.btn} /></Link>
+                <Link href='http://swachhfssm.in/files/Toilet%20Ke%20Baad%20Kya.pdf'><button className={styles.btn}>Click here</button></Link>
               </div>
               <a href="#carousel__slide_1"
                 className={styles.carousel__prev}></a>
@@ -42,7 +41,7 @@ const HomePageBottomSlider = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={styles.three}>
-                <Link href='https://www.niua.org/scbp/?q=training-modules'><Button title='Click here' style={styles.btn} /></Link>
+                <Link href='https://www.niua.org/scbp/?q=training-modules'><button className={styles.btn}>Click here</button></Link>
               </div>
               <a href="#carousel__slide_2"
                 className={styles.carousel__prev}></a>
