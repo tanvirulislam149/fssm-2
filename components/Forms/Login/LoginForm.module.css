@@ -1,6 +1,6 @@
 .container {
   height: max-content;
-  width: var(--s-550);
+  width: var(--login-form-cont-width);
   border-radius: var(--primary-border-radius);
   background: var(--white-color);
   padding: var(--login-form-padding);
@@ -40,13 +40,13 @@
 
 .header_blue {
   color: var(--primary-blue);
-  font-size: var(--s-50);
+  font-size: var(--login-title-font-size);
   margin-bottom: var(--login-title-margin);
 }
 
 .header_green {
   color: var(--login-page-title-color);
-  font-size: var(--s-50);
+  font-size: var(--login-title-font-size);
   margin-bottom: var(--login-title-margin);
 }
 
@@ -92,4 +92,5 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-top: var(--s-10);
 }

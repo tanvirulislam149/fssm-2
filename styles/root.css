@@ -107,12 +107,12 @@
   --ma-carousel: -20px;
 
   /* login page */
-  --login-title-font-size: 64px;
+  --login-title-font-size: 50px;
   --login-checkbox-dimensions: 20px;
   --login-title-margin: 40px;
   --login-form-padding: 54px;
   --primary-margin-top: 10px;
-  --login-form-cont-width: 630px;
+  --login-form-cont-width: 550px;
   --login-form-padding-top: 65px;
   --login-checkbox-margin: 0 1rem 0 0.5rem;
   --login-checkbox-font: 14px;
