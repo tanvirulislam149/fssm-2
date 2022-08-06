@@ -48,9 +48,9 @@ const HomePageTopSection = () => {
               <div className={styles.card_4}>
                 {homePageText.repository.map(({ title, id }) => {
                   return (
-                    <>
-                      {id !== 10 && <Card key={id} id={id} text={title} />}
-                    </>
+                    <span key={id}>
+                      {id !== 10 && <Card id={id} text={title} />}
+                    </span>
                   )
                 })}
               </div>
