@@ -15,7 +15,10 @@ const Footer = () => {
   const [action, setAction] = useState('Sign In');
 
   useEffect(() => {
-    Cookies.get('access') ? setAction('Sign Out') : setAction('Sign In')
+    Cookies.get('access') ?
+      Cookies.get('isAdmin') === true ?
+        setAction('Admin Dashboard') : setAction('Sign Out')
+      : setAction('Sign In')
   }, [])
 
   const navigate = useRouter();
@@ -23,6 +26,7 @@ const Footer = () => {
   const clickHandler = () => {
     Cookies.remove('access');
     Cookies.remove('refresh');
+    Cookies.remove('isAdmin');
     axiosInstance.defaults.headers.common["Authorization"] = null;
     navigate.push('/signin');
   }
