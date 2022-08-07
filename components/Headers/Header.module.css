@@ -63,6 +63,7 @@
 
 .search {
   padding: var(--pa-search);
+  border: 1px solid var(--bg-login-gray);
 }
 
 .text {

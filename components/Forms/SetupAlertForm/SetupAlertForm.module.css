@@ -18,8 +18,13 @@
   background: var(--red-hov);
 }
 
+.textInput > label {
+  font-weight: var(--fw-500);
+}
+
 .instruction {
   margin: var(--s-20) 0;
+  font-weight: var(--fw-500);
 }
 
 .input {

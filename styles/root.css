@@ -15,6 +15,7 @@
   --ninety: 90%;
   --size-25: 25%;
   --size-45: 45%;
+  --size-35: 35%;
   --size-95: 95%;
   --size-94: 94%;
   --eighty: 80%;
@@ -36,6 +37,7 @@
   --s-50: 50px;
   --s-42: 42.5px;
   --s-40: 40px;
+  --s-33: 33px;
   --s-30: 30px;
   --s-20: 20px;
   --s-18: 18px;
@@ -46,6 +48,7 @@
   --s-650: 650px;
   --s-600: 600px;
   --s-550: 550px;
+  --s-450: 450px;
   --s-400: 400px;
   --s-300: 300px;
   --s-320: 320px;
@@ -93,7 +96,7 @@
   --bg-img-h: 420px;
   --ma-homepage: 3%;
   --pa-btn-card: 10px;
-  --ma-down-icon2: 15px 0 0 -20px;
+  --ma-down-icon2: 15px 0 0 -30px;
   --card-btn-w: 135px;
   --card2-h: 65px;
   --ma-btm-home-top: 170px;

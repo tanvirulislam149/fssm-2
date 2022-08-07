@@ -20,7 +20,7 @@
 .btn {
   background-color: var(--white-color);
   color: var(--black);
-  width: var(--fifty);
+  width: var(--fourty);
   padding: var(--pa-btn);
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
@@ -162,12 +162,18 @@
   display: inline-block;
   width: var(--fs-1rem);
   height: var(--fs-1rem);
-  background-color: var(--dark-gray);
+  background-color: var(--bg-login-gray);
   background-clip: content-box;
-  border: var(--size-5) solid transparent;
+  border: var(--size-3) solid transparent;
   border-radius: var(--fifty);
   font-size: 0;
   transition: transform 0.1s;
+}
+
+.carousel__navigation_list
+  > .carousel__navigation_item:nth-of-type(1)
+  .carousel__navigation_button {
+  background-color: var(--primary-blue);
 }
 
 .one,

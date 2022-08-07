@@ -21,7 +21,7 @@
 }
 
 .footer p {
-  margin-right: var(--s-50);
+  margin-right: var(--sub-heading-h);
   font-size: var(--fs-12);
 }
 

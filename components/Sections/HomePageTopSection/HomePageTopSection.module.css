@@ -122,6 +122,7 @@
   width: var(--hundred);
   font-size: var(--s-13-5);
   font-weight: var(--fw-500);
+  margin-bottom: var(--s-100);
 }
 
 .input {

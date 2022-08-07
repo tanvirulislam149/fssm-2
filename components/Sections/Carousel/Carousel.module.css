@@ -1,6 +1,7 @@
 .container {
-  height: var(--slide-h);
+  height: var(--bg-img-h);
   width: var(--hundred);
+  margin-top: var(--s-50);
 }
 
 .title {
@@ -23,7 +24,7 @@
   border-radius: var(--s-10);
   font-weight: var(--font-weight-bold);
   border-width: 0;
-  width: var(--fourty);
+  width: var(--size-35);
 }
 
 .btn:hover {
@@ -33,7 +34,7 @@
 
 .carousel {
   position: relative;
-  height: var(--size-550);
+  height: var(--hundred);
 }
 
 .carousel__viewport {
@@ -87,9 +88,9 @@
 .carousel__next {
   position: absolute;
   top: 0;
-  margin-top: var(--s-255);
+  margin-top: var(--s-200);
   width: var(--fs-36);
-  height: var(--fs-36);
+  height: var(--s-33);
   transform: translateY(-50%);
   border-radius: var(--fifty);
   font-size: 0;
@@ -103,7 +104,7 @@
   font-size: var(--fs-24);
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 1px 0 1.5px;
   color: var(--white-color);
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -112,6 +113,7 @@
 .carousel::after,
 .carousel__next {
   right: var(--size-5);
+  padding: 0 0 1.5px;
   font-size: var(--fs-24);
   display: flex;
   justify-content: center;
@@ -153,9 +155,9 @@
   display: inline-block;
   width: var(--fs-1rem);
   height: var(--fs-1rem);
-  background-color: var(--dark-gray);
+  background-color: var(--bg-login-gray);
   background-clip: content-box;
-  border: var(--size-5) solid transparent;
+  border: var(--size-3) solid transparent;
   border-radius: var(--fifty);
   font-size: 0;
   transition: transform 0.1s;
@@ -167,7 +169,7 @@
 .four {
   width: var(--eighty);
   margin: 0 auto;
-  height: var(--slide-h);
+  height: var(--hundred);
   background-size: auto;
   display: flex;
   flex-direction: column;
