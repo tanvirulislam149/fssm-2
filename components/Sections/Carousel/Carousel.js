@@ -11,8 +11,9 @@ const Carousel = () => {
   const id = router.asPath.slice(router.asPath.length - 1);
 
   useEffect(() => {
-    document.getElementById(`carousel_${id}`).classList.add('carousel_select');
-  }, [])
+    console.log(document.getElementById(`carousel_${id}`))
+    typeof id === '1' || id === '2' || id === '3' || id === '4' ? document.getElementById(`carousel_${id}`).classList.add('carousel_select') : null;
+  }, [id])
 
   const handleChange = (el) => {
     document.getElementById('carousel_1').classList.remove('carousel_select');
@@ -21,7 +22,6 @@ const Carousel = () => {
     document.getElementById('carousel_4').classList.remove('carousel_select');
     el.classList.add('carousel_select');
   }
-
 
   return (
     <>

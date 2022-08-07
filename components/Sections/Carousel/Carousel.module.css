@@ -66,6 +66,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  border-width: 0;
   width: var(--hundred);
   height: var(--hundred);
   scroll-snap-align: center;
@@ -227,11 +228,10 @@
   .three,
   .four {
     width: var(--hundred);
-    height: var(--s-500);
     background-size: cover;
   }
 
-  .carousel__navigation {
+  /* .carousel__navigation {
     bottom: 0;
-  }
+  } */
 }
