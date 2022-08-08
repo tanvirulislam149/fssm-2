@@ -182,7 +182,7 @@
   width: var(--size-95);
   margin: 0 auto;
   height: var(--s-300);
-  background-size: auto;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
