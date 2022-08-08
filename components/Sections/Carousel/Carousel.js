@@ -77,12 +77,12 @@ const Carousel = () => {
                 onClick={() => {
                   handleChange(document.getElementById('carousel_1'));
                 }}
-                className={styles.carousel__prev}>&lt;</a>
+                className={styles.carousel__prev}><Image height={12} width={8} alt='arrow' src={left} /></a>
               <a href="#carousel__slide3"
                 onClick={() => {
                   handleChange(document.getElementById('carousel_3'));
                 }}
-                className={styles.carousel__next}>&gt;</a>
+                className={styles.carousel__next}><Image height={12} width={8} alt='arrow' src={right} /></a>
             </li>
             <li id="carousel__slide3"
               tabIndex="0"
@@ -103,12 +103,12 @@ const Carousel = () => {
                 onClick={() => {
                   handleChange(document.getElementById('carousel_2'));
                 }}
-                className={styles.carousel__prev}>&lt;</a>
+                className={styles.carousel__prev}><Image height={12} width={8} alt='arrow' src={left} /></a>
               <a href="#carousel__slide4"
                 onClick={() => {
                   handleChange(document.getElementById('carousel_4'));
                 }}
-                className={styles.carousel__next}>&gt;</a>
+                className={styles.carousel__next}><Image height={12} width={8} alt='arrow' src={right} /></a>
             </li>
             <li id="carousel__slide4"
               tabIndex="0"
@@ -129,12 +129,12 @@ const Carousel = () => {
                 onClick={() => {
                   handleChange(document.getElementById('carousel_3'));
                 }}
-                className={styles.carousel__prev}>&lt;</a>
+                className={styles.carousel__prev}><Image height={12} width={8} alt='arrow' src={left} /></a>
               <a href="#carousel__slide1"
                 onClick={() => {
                   handleChange(document.getElementById('carousel_1'));
                 }}
-                className={styles.carousel__next}>&gt;</a>
+                className={styles.carousel__next}><Image height={12} width={8} alt='arrow' src={right} /></a>
             </li>
           </ol>
           <aside className={styles.carousel__navigation}>
