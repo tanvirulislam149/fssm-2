@@ -43,7 +43,7 @@
   background: var(--primary-blue);
   color: var(--white-color);
   padding: var(--pa-btn);
-  border-radius: var(--s-10);
+  border-radius: var(--primary-border-radius);
   font-weight: var(--font-weight-bold);
   height: max-content;
   text-transform: uppercase;

@@ -1,7 +1,7 @@
 .container {
   height: var(--s-300);
   width: var(--hundred);
-  margin-top: var(--ma-btm-home-top);
+  margin-top: var(--s-80);
 }
 
 .title {
@@ -58,7 +58,7 @@
 
 .carousel__slide {
   position: relative;
-  flex: 0 0 var(--size-31);
+  flex: 0 0 32%;
   width: var(--hundred);
 }
 

@@ -4,6 +4,9 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import right from '../../../assets/rigtt.png';
+import left from '../../../assets/left.png';
 
 const Carousel = () => {
   const router = useRouter();
@@ -47,12 +50,12 @@ const Carousel = () => {
                   onClick={() => {
                     handleChange(document.getElementById('carousel_4'));
                   }}
-                  className={styles.carousel__prev}>&lt;</a>
+                  className={styles.carousel__prev}><Image height={12} width={8} alt='arrow' src={left} /></a>
                 <a href="#carousel__slide2"
                   onClick={() => {
                     handleChange(document.getElementById('carousel_2'));
                   }}
-                  className={styles.carousel__next}>&gt;</a>
+                  className={styles.carousel__next}><Image height={12} width={8} alt='arrow' src={right} /></a>
               </div>
             </li>
             <li id="carousel__slide2"

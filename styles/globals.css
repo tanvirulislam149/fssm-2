@@ -83,6 +83,10 @@ input[type="number"]::-webkit-inner-spin-button {
   background-color: var(--primary-blue) !important;
 }
 
+.white {
+  background: var(--white-color) !important;
+}
+
 @media (max-width: 950px) {
   .question-btn1,
   .question-btn2 {

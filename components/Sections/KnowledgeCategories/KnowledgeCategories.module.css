@@ -5,9 +5,10 @@
 
 .head {
   background: var(--primary-blue);
-  padding: var(--s-10);
+  padding: var(--fs-1rem) var(--s-10);
   border-radius: var(--primary-border-radius);
   text-align: center;
+  font-size: var(--fs-14);
   color: var(--white-color);
 }
 

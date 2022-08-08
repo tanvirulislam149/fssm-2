@@ -1,6 +1,6 @@
 .container {
   background: var(--primary-blue);
-  padding: var(--s-10);
+  padding: var(--fs-12);
   border-radius: var(--primary-border-radius);
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@
 
 .title {
   color: var(--white-color);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--fw-500);
   margin-left: var(--s-20);
   width: var(--eighty);
 }

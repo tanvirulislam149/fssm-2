@@ -4,7 +4,7 @@
 
 .cont {
   display: grid;
-  grid-template-columns: 24% 72%;
+  grid-template-columns: 21% 75%;
   gap: 4%;
   padding: var(--s-20) var(--s-50);
 }

@@ -91,7 +91,7 @@
   top: 0;
   margin-top: var(--s-200);
   width: var(--fs-36);
-  height: var(--s-33);
+  height: var(--fs-36);
   transform: translateY(-50%);
   border-radius: var(--fifty);
   font-size: 0;
@@ -102,26 +102,17 @@
 .carousel::before,
 .carousel__prev {
   left: var(--size-5);
-  font-size: var(--fs-24);
   display: flex;
   justify-content: center;
-  padding: 1px 0 1.5px;
-  color: var(--white-color);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  align-items: center;
 }
 
 .carousel::after,
 .carousel__next {
   right: var(--size-5);
-  padding: 0 0 3px;
-  font-size: var(--fs-24);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--white-color);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
 }
 
 .carousel::before,
