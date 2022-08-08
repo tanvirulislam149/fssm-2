@@ -43,7 +43,7 @@
 }
 
 .checkbox {
-  margin: var(--login-checkbox-margin);
+  margin-right: var(--fs-1rem);
   height: var(--login-checkbox-dimensions);
   width: var(--login-checkbox-dimensions);
 }

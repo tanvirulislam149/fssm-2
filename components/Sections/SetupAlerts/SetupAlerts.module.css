@@ -5,7 +5,7 @@
   text-align: center;
   border-radius: var(--primary-border-radius);
   margin: var(--fs-24) 0;
-  margin-top: var(--s-50);
+  margin-top: var(--s-75);
   cursor: pointer;
 }
 
@@ -114,5 +114,9 @@
 
   .modal_header {
     font-size: var(--fs-12);
+  }
+
+  .container {
+    margin-top: var(--s-40);
   }
 }

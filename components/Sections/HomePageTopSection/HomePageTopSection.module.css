@@ -104,6 +104,7 @@
   width: 47%;
   font-size: var(--s-13-5);
   font-weight: var(--fw-500);
+  box-shadow: 0 0 var(--size-5) var(--shadow);
 }
 
 .btn:hover,
@@ -123,6 +124,7 @@
   font-size: var(--s-13-5);
   font-weight: var(--fw-500);
   margin-bottom: var(--s-100);
+  box-shadow: 0 0 var(--size-5) var(--shadow);
 }
 
 .input {

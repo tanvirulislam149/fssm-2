@@ -1,7 +1,7 @@
 .footer_text {
   padding: var(--s-10);
-  width: 104%;
-  margin-left: -2%;
+  width: 102%;
+  margin-left: -1%;
   font-size: var(--fs-14);
   font-weight: var(--fw-400);
   color: var(--light-gray-color);
