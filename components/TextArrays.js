@@ -51,7 +51,8 @@ export const homePageMidSectionText = {
   slide3: 'Discussion Board',
   slide4: 'Tenders',
   btnText: 'Show more',
-  title: 'The need of the hour - FSSM for India',
+  title: 'The need of the hour -',
+  title2: 'FSSM for India',
   body: 'The Swachh Bharat Mission - Urban is poised at a crucial juncture. While cities and towns have become cleaner and free of open defecation, and SBM-U has captured the mind-space of citizens, there is still a lot that remains to be done to ensure that the gains made under the Phase I of SBM-U are sustained and carried forward. As outlined by the Hon’ble Finance Minister of India in the 2021 Budget, the focus on complete faecal sludge and septage management (FSSM) will be central to this effort. With 60% of toilets in urban India relying on on-site sanitation systems, FSSM promises a means to achieve the SDG target 6.2 of adequate, inclusive and safely managed sanitation for all in a time-bound manner. FSSM prioritizes human excreta management, a waste stream with the highest potential for spreading diseases. It is a low-cost and easily scalable sanitation solution that focuses on safe collection, transportation, treatment, and reuse of human waste, especially in small and medium cities and in areas within larger cities not covered by sewerage systems.'
 }
 

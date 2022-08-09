@@ -113,6 +113,7 @@
 .textarea::-webkit-input-placeholder,
 .input::-webkit-input-placeholder {
   font-family: var(--font-family-primary);
+  font-weight: var(--fw-500);
 }
 
 .text_cont {

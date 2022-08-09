@@ -14,7 +14,7 @@ const HomePageMidSection = () => {
     <>
       <div className={styles.container}>
         <div className={styles.left}>
-          <h2 className={styles.title}>{homePageMidSectionText.title}</h2>
+          <h2 className={styles.title}>{homePageMidSectionText.title} <br /> {homePageMidSectionText.title2}</h2>
           <p className={styles.text}>{homePageMidSectionText.body}</p>
           <Button
             title='Read More'
