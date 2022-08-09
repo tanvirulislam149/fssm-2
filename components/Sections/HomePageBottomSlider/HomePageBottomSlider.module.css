@@ -268,4 +268,8 @@
   .helpers {
     display: block;
   }
+
+  .container {
+    margin-top: var(--ma-btm-home-top);
+  }
 }
