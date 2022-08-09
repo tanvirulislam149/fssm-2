@@ -14,9 +14,16 @@
 
 .text {
   color: var(--light-gray-color);
-  line-height: var(--lh-35);
+  line-height: var(--s-40);
   font-size: var(--s-20);
+  text-align: justify;
 }
+
+/* .text:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+} */
 
 .btn {
   color: var(--white-color);
