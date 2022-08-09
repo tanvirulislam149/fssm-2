@@ -2,6 +2,7 @@
   padding: var(--s-10);
   width: 102%;
   margin-left: -1%;
+  margin-bottom: var(--s-60);
   font-size: var(--fs-14);
   font-weight: var(--fw-400);
   color: var(--light-gray-color);
