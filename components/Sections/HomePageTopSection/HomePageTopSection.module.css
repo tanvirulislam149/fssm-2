@@ -126,6 +126,7 @@
   border: 1px solid var(--input-border-color);
   border-radius: var(--s-10);
   width: var(--hundred);
+  height: var(--s-40);
   color: var(--light-gray-color);
   padding: var(--s-10);
 }
