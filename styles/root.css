@@ -80,9 +80,6 @@
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
   --header-txt: #555555;
-  --quest-green: #e9efd3b3;
-  --light-green: #dfe9ba;
-  --shadow-green: #ccd6a6;
   --dark-gray: #333;
   --search-bg: #eeeded;
   --faded-white: #ffffffea;
@@ -91,6 +88,9 @@
   --faded-black: #000000b3;
   --transparent: #00000000;
   --black: black;
+  --quest-green: #e9efd3b3;
+  --light-green: #dfe9ba;
+  --shadow-green: #ccd6a6;
 
   /* home page */
   --pa-home-h1: 20px;

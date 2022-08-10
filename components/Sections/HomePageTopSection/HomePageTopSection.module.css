@@ -96,12 +96,11 @@
   color: var(--header-txt);
   font-weight: var(--fw-600);
   border-radius: var(--s-10);
-  border-width: 0;
   padding-top: var(--fs-12);
   padding-bottom: var(--fs-12);
   width: 47%;
   font-size: var(--s-13-5);
-  box-shadow: 0 0 var(--size-5) var(--shadow);
+  border: solid 1px var(--shadow);
 }
 
 .btn:hover,
@@ -115,13 +114,12 @@
   color: var(--header-txt);
   font-weight: var(--fw-600);
   border-radius: var(--s-10);
-  border-width: 0;
+  border: solid 1px var(--shadow);
   padding-top: var(--fs-12);
   padding-bottom: var(--fs-12);
   width: var(--hundred);
   font-size: var(--s-13-5);
   margin-bottom: var(--s-100);
-  box-shadow: 0 0 var(--size-5) var(--shadow);
 }
 
 .input {
