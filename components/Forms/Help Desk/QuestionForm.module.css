@@ -80,6 +80,10 @@
   border: solid 1px var(--input-border-color);
 }
 
+.select:focus {
+  box-shadow: none;
+}
+
 .select_cont {
   display: flex;
   flex-direction: column;

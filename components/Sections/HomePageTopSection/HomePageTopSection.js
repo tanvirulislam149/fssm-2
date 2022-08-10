@@ -17,10 +17,11 @@ const HomePageTopSection = () => {
             </div>
             <div className={styles.card_1}>
               <div className={styles.input_cont}>
-                <select
-                  className={styles.input}
-                >
-                  <option>Search FSSM Docs</option>
+                <select defaultValue='' className={`${styles.input} form-select`} aria-label="Default select example">
+                  <option hidden value=''>Search FSSM Docs</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
                 </select>
               </div>
               <div className={styles.btn_cont}>

@@ -129,7 +129,10 @@
   height: var(--s-40);
   color: var(--light-gray-color);
   padding: var(--s-10);
-  background-color: var(--white-color);
+}
+
+.input:focus {
+  box-shadow: none;
 }
 
 .input_cont {

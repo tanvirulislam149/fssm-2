@@ -11,7 +11,7 @@ const HeaderComponent = () => {
   const router = useRouter();
 
   const handleRefresh = () => {
-    router.reload(window.location.pathname)
+    router.reload(window.location.pathname);
   }
 
   return (

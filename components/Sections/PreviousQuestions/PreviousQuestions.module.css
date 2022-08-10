@@ -1,6 +1,7 @@
 .select {
   height: var(--lh-35);
-  padding: var(--s-10) var(--fs-14);
+  padding: 0 var(--fs-14);
+  font-family: var(--font-family-secondary);
   border-radius: var(--size-5);
   width: var(--hundred);
   color: var(--light-gray-color);
@@ -23,9 +24,14 @@
 
 .input {
   height: var(--lh-35);
-  padding: var(--s-10) var(--fs-10);
+  padding: var(--s-10) var(--size-5);
   border-radius: var(--size-5);
   border: 1px solid var(--input-border-color);
+  font-family: var(--font-family-secondary);
+}
+
+.select:focus {
+  box-shadow: none;
 }
 
 .input_cont {
@@ -54,9 +60,9 @@
 
 .input1 > input::-webkit-input-placeholder {
   color: var(--black);
-  font-size: var(--fs-14);
+  font-size: var(--fs-1rem);
   letter-spacing: 0;
-  font-weight: bold;
+  font-weight: var(--fw-500);
 }
 
 .btn {

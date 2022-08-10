@@ -87,7 +87,7 @@ const QuestionForm = () => {
             <div className={styles.row}>
               <div className={styles.select_cont}>
                 <label className={styles.label} htmlFor="theme">Theme <span>*</span></label>
-                <Field name='theme' as='select' id='theme' className={styles.select}>
+                <Field name='theme' as='select' id='theme' className={`${styles.select} form-select`}>
                   <option hidden value=''>Select Theme</option>
                   <option value={1}>CAPACITY BUILDING</option>
                   <option value={2}>COMMUNICATIONS</option>
@@ -97,7 +97,7 @@ const QuestionForm = () => {
 
               <div className={styles.select_cont}>
                 <label className={styles.label} htmlFor="userprofile">User Profile <span>*</span></label>
-                <Field name='userprofile' as='select' id='userprofile' className={styles.select}>
+                <Field name='userprofile' as='select' id='userprofile' className={`${styles.select} form-select`}>
                   <option hidden value=''>Select User Profile</option>
                   <option value={1}>Academia/Training</option>
                   <option value={2}>Donor/Philanthropist/CSR</option>
