@@ -20,11 +20,13 @@ const HomePageTopSection = () => {
             </div>
             <div className={styles.card_1}>
               <div className={styles.input_cont}>
-                <Input
-                  placeholder='Search FSSM Docs..'
-                  style={styles.input}
-                />
-                <Image alt='icon' height={8} width={12} src={down} />
+                <select
+                  //placeholder='Search FSSM Docs..'
+                  className={styles.input}
+                >
+                  <option>Search FSSM Docs</option>
+                </select>
+                {/* <Image alt='icon' height={8} width={12} src={down} /> */}
               </div>
               <div className={styles.btn_cont}>
                 <Button

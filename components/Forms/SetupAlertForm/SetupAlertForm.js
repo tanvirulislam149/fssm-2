@@ -39,6 +39,9 @@ const SetupAlertForm = () => {
           validationSchema={Yup.object({
             email: Yup.string()
               .email('Invalid email address')
+              .test('is email valid?', 'Invalid email address', (val) => {
+                return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
+              })
               .required('Required'),
             name: Yup.string()
               .min(3, '3 or more characters')

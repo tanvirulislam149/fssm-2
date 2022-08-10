@@ -59,6 +59,9 @@ const QuestionForm = () => {
             .required('Required'),
           email: Yup.string()
             .email('Invalid email address')
+            .test('is email valid?', 'Invalid email address', (val) => {
+              return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
+            })
             .required('Required'),
           question: Yup.string()
             .required('Required')
@@ -72,8 +75,9 @@ const QuestionForm = () => {
             .max(14, 'Enter valid phone number')
             .min(10, 'Enter valid phone number'),
         })}
-        onSubmit={(values) => {
+        onSubmit={(values, actions) => {
           handleSubmit(values);
+          actions.resetForm();
         }}
       >
         {({ setFieldValue }) => (

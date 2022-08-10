@@ -84,10 +84,15 @@ const LoginForm = () => {
           initialValues={{ email: Cookies.get('email') ? Cookies.get('email') : '', password: '', check: Cookies.get('check') ? true : false }}
           validationSchema={Yup.object({
             password: Yup.string()
+              .required('Required')
               .max(20, 'Must be 20 characters or less')
-              .min(4, 'Must be 4-20 characters')
-              .required('Required'),
-            email: Yup.string().email('Invalid email address').required('Required'),
+              .min(4, 'Must be 4-20 characters'),
+            email: Yup.string()
+              .required('Required')
+              .email('Invalid email address')
+              .test('is email valid?', 'Invalid email address', (val) => {
+                return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
+              }),
           })}
           onSubmit={loginData => {
             setLoading(true);
