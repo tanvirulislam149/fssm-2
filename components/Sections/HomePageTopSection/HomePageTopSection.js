@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './HomePageTopSection.module.css';
-import Input from '../../Inputs/Input';
 import Button from '../../Buttons/Submit/SubmitButton';
-import Image from 'next/image';
-import down from '../../../assets/down-g.png';
 import Card from '../../Cards/RepositoryCard/RepositoryCard';
 import { homePageText } from '../../TextArrays';
 import Link from 'next/link';
@@ -21,12 +18,10 @@ const HomePageTopSection = () => {
             <div className={styles.card_1}>
               <div className={styles.input_cont}>
                 <select
-                  //placeholder='Search FSSM Docs..'
                   className={styles.input}
                 >
                   <option>Search FSSM Docs</option>
                 </select>
-                {/* <Image alt='icon' height={8} width={12} src={down} /> */}
               </div>
               <div className={styles.btn_cont}>
                 <Button
