@@ -50,7 +50,6 @@
   bottom: 0;
   left: 0;
   display: flex;
-  justify-content: center;
   overflow-x: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -220,13 +219,11 @@
   .carousel__next {
     display: block;
   }
-
   .carousel::before,
   .carousel__prev {
     display: flex !important;
     justify-content: center;
     align-items: center;
-    margin-top: var(--s-150);
   }
 
   .carousel::after,
@@ -234,6 +231,17 @@
     display: flex !important;
     justify-content: center;
     align-items: center;
+  }
+
+  .carousel::before,
+  .carousel__prev {
+    left: var(--s-40);
+    margin-top: var(--s-150);
+  }
+
+  .carousel::after,
+  .carousel__next {
+    right: var(--s-40);
     margin-top: var(--s-150);
   }
 
