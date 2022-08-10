@@ -22,6 +22,10 @@
   padding-right: var(--s-30);
 }
 
+.field legend {
+  display: none;
+}
+
 .pass {
   padding: var(--fs-12) 0 var(--fs-12) var(--fs-12);
 }
@@ -43,12 +47,14 @@
   color: var(--primary-blue);
   font-size: var(--login-title-font-size);
   margin-bottom: var(--login-title-margin);
+  font-weight: var(--font-weight-bold);
 }
 
 .header_green {
   color: var(--login-page-title-color);
   font-size: var(--login-title-font-size);
   margin-bottom: var(--login-title-margin);
+  font-weight: var(--font-weight-bold);
 }
 
 .checkbox {

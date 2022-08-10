@@ -39,8 +39,11 @@
   background-color: var(--primary-blue);
   color: var(--white-color);
   font-weight: var(--font-weight-bold);
-  font-size: var(--fs-14);
   text-align: center;
+}
+
+.modal_header h2 {
+  font-size: var(--s-20);
 }
 
 .close {
@@ -112,8 +115,8 @@
     width: var(--size-95);
   }
 
-  .modal_header {
-    font-size: var(--fs-12);
+  .modal_header h2 {
+    font-size: var(--fs-14);
   }
 
   .container {

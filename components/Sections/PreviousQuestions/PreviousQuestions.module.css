@@ -69,7 +69,7 @@
   background: var(--blue);
   color: var(--white-color);
   padding: var(--pa-btn);
-  border-radius: var(--s-10);
+  border-radius: var(--size-5);
   font-weight: var(--font-weight-bold);
   border-width: 0;
   height: var(--lh-35);

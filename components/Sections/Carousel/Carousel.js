@@ -3,20 +3,20 @@ import styles from './Carousel.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+//import { useRouter } from 'next/router';
 import Image from 'next/image';
 import right from '../../../assets/rigtt.png';
 import left from '../../../assets/left.png';
 
 const Carousel = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const id = router.asPath.slice(router.asPath.length - 1);
+  // const id = router.asPath.slice(router.asPath.length - 1);
 
-  useEffect(() => {
-    console.log(document.getElementById(`carousel_${id}`))
-    typeof id === '1' || id === '2' || id === '3' || id === '4' ? document.getElementById(`carousel_${id}`).classList.add('carousel_select') : null;
-  }, [id])
+  // useEffect(() => {
+  //   console.log(document.getElementById(`carousel_${id}`))
+  //   typeof id === '1' || id === '2' || id === '3' || id === '4' ? document.getElementById(`carousel_${id}`).classList.add('carousel_select') : null;
+  // }, [id])
 
   const handleChange = (el) => {
     document.getElementById('carousel_1').classList.remove('carousel_select');

@@ -30,8 +30,8 @@ const FaqCard = ({ title, id, body }) => {
           >
             {
               clicked ?
-                <FontAwesomeIcon color='white' icon={faPlus} size="1x" /> :
-                <FontAwesomeIcon color='white' icon={faMinus} size="1x" />
+                <FontAwesomeIcon color='white' icon={faPlus} size="xs" /> :
+                <FontAwesomeIcon color='white' icon={faMinus} size="xs" />
             }
           </div>
 

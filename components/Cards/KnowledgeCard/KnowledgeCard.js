@@ -30,8 +30,8 @@ const KnowledgeCard = ({ title, id }) => {
           >
             {
               clicked ?
-                <FontAwesomeIcon color='#024c73' icon={faPlus} size="1x" /> :
-                <FontAwesomeIcon color='#024c73' icon={faMinus} size="1x" />
+                <FontAwesomeIcon color='#024c73' icon={faPlus} size="xs" /> :
+                <FontAwesomeIcon color='#024c73' icon={faMinus} size="xs" />
             }
           </div>
 
