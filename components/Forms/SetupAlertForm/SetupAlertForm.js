@@ -38,17 +38,17 @@ const SetupAlertForm = () => {
           }}
           validationSchema={Yup.object({
             email: Yup.string()
+              .required('Required')
               .email('Invalid email address')
               .test('is email valid?', 'Invalid email address', (val) => {
                 return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
-              })
-              .required('Required'),
+              }),
             name: Yup.string()
+              .required('Required')
               .min(3, '3 or more characters')
               .test('is name a letter?', 'Name must consist of letters only', (val) => {
                 return /^[a-zA-Z]+$/.test(val);
-              })
-              .required('Required'),
+              }),
           })}
           onSubmit={(data, actions) => {
             let categories = [];
