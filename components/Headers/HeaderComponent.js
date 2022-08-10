@@ -5,13 +5,20 @@ import Image from 'next/image';
 import Input from '../../components/Inputs/Input';
 import search from '../../assets/search.png';
 import down from '../../assets/down.png';
+import { useRouter } from 'next/router';
 
 const HeaderComponent = () => {
+  const router = useRouter();
+
+  const handleRefresh = () => {
+    router.reload(window.location.pathname)
+  }
+
   return (
     <>
       <div id='cont'>
         <div className={styles.cont_2}>
-          <p className={styles.text}>Faecal Sludge and Septage <br />Management in India(FSSM)</p>
+          <p className={styles.text} onClick={() => { handleRefresh() }}>Faecal Sludge and Septage <br />Management in India(FSSM)</p>
           <ul className={styles.links}>
             <li id='home-desktop'><Link href='/'>Home</Link></li>
             <li id='fssmalliance-desktop'><Link href='/fssmalliance'>About</Link></li>
