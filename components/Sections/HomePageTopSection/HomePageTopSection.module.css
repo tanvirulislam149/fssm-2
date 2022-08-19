@@ -1,7 +1,7 @@
 .container {
   margin-left: var(--ma-homepage);
   margin-right: var(--ma-homepage);
-  margin-bottom: var(--ma-btm-home-top);
+  margin-bottom: var(--s-120);
 }
 
 .card_cont {

@@ -50,6 +50,7 @@
   bottom: 0;
   left: 0;
   display: flex;
+  justify-content: center;
   overflow-x: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;

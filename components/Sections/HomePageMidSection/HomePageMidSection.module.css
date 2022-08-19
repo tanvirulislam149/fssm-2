@@ -15,7 +15,7 @@
 
 .text {
   color: var(--light-gray-color);
-  line-height: var(--s-40);
+  line-height: var(--lh-35);
   font-size: var(--s-20);
   text-align: justify;
 }
