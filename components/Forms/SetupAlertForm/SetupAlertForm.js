@@ -47,7 +47,7 @@ const SetupAlertForm = () => {
               .required('Required')
               .min(3, '3 or more characters')
               .test('is name a letter?', 'Name must consist of letters only', (val) => {
-                return /^[a-zA-Z]+$/.test(val);
+                return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
               }),
           })}
           onSubmit={(data, actions) => {

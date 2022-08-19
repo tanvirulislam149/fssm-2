@@ -65,6 +65,10 @@
   font-weight: var(--fw-500);
 }
 
+.input1 > input {
+  padding-left: var(--size-5);
+}
+
 .btn {
   background: var(--blue);
   color: var(--white-color);

@@ -20,13 +20,15 @@ const FaqCard = ({ title, id, body }) => {
   return (
     <>
       <div className={styles.cont}>
-        <div className={styles.container}>
+        <div
+          className={styles.container}
+          onClick={() => {
+            dropDown(document.getElementById('drop' + `${id}`));
+            setClicked(!clicked);
+          }}
+        >
           <div
             className={clicked ? styles.plus : styles.minus}
-            onClick={() => {
-              dropDown(document.getElementById('drop' + `${id}`));
-              setClicked(!clicked);
-            }}
           >
             {
               clicked ?

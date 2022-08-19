@@ -47,22 +47,22 @@ const QuestionForm = () => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
+            .required('Required')
             .max(20, 'Must be 3-20 characters')
             .min(3, 'Must be 3-20 characters')
             .test('is name a letter?', 'Name must consist of letters only', (val) => {
-              return /^[a-zA-Z]+$/.test(val);
-            })
-            .required('Required'),
+              return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
+            }),
           organization: Yup.string()
+            .required('Required')
             .max(20, 'Must be 3-20 characters')
-            .min(3, 'Must be 3-20 characters')
-            .required('Required'),
+            .min(3, 'Must be 3-20 characters'),
           email: Yup.string()
+            .required('Required')
             .email('Invalid email address')
             .test('is email valid?', 'Invalid email address', (val) => {
               return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
-            })
-            .required('Required'),
+            }),
           question: Yup.string()
             .required('Required')
             .min(10, 'Must be 10 characters minimum'),
@@ -76,6 +76,7 @@ const QuestionForm = () => {
             .min(10, 'Enter valid phone number'),
         })}
         onSubmit={(values, actions) => {
+          console.log({ v: values })
           handleSubmit(values);
           actions.resetForm();
         }}

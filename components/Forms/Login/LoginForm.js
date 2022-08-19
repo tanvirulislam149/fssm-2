@@ -65,6 +65,10 @@ const LoginForm = () => {
     }
   }, [])
 
+  const goHome = () => {
+    navigate.push('/');
+  }
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -76,7 +80,10 @@ const LoginForm = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.header}>
+        <div
+          className={styles.header}
+          onClick={() => { goHome(); }}
+        >
           <h1 className={styles.header_green}> {loginFormText.header_text_1} <span className={styles.header_blue}> {loginFormText.header_text_2} </span></h1>
         </div>
 

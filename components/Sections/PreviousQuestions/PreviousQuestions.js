@@ -48,7 +48,7 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
 
                   <div className={styles.select_cont}>
                     <Field name='theme' as='select' id='theme' className={`${styles.select} form-select`}>
-                      <option hidden value=''>Select Theme</option>
+                      <option value=''>Select Theme</option>
                       <option value={1}>CAPACITY BUILDING</option>
                       <option value={2}>COMMUNICATIONS</option>
                     </Field>
