@@ -39,6 +39,7 @@
 
   .body {
     font-size: var(--fs-1rem);
+    line-height: var(--lh-35);
   }
 
   .title {
