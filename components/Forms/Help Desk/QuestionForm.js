@@ -88,8 +88,8 @@ const QuestionForm = () => {
           }
 
           handleSubmit(values);
-          //actions.resetForm();
-          //document.getElementById("uploadFile").value = 'No files selected';
+          actions.resetForm();
+          document.getElementById("uploadFile").value = 'No files selected';
         }}
       >
         {({ setFieldValue }) => (
