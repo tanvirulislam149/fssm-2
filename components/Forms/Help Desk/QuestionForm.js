@@ -76,9 +76,20 @@ const QuestionForm = () => {
             .min(10, 'Enter valid phone number'),
         })}
         onSubmit={(values, actions) => {
-          console.log({ v: values })
+          const file = document.getElementById('file');
+          if (values.attachment !== null) {
+            const type = values.attachment.type;
+            if (type === 'image/jpeg' || type === 'image/jpg' || type === 'image/png') {
+              file.style.display = 'none';
+            } else {
+              file.style.display = 'block';
+              return;
+            }
+          }
+
           handleSubmit(values);
-          actions.resetForm();
+          //actions.resetForm();
+          //document.getElementById("uploadFile").value = 'No files selected';
         }}
       >
         {({ setFieldValue }) => (
@@ -110,6 +121,7 @@ const QuestionForm = () => {
                 <label className={styles.label}>Attachment</label>
                 <div className={styles.file_cont}>
                   <Input id="uploadFile" style={styles.f_input} />
+                  <span id='file' className='form-error'>Accepts jpg,jpeg,png</span>
                   <div className={`${styles.btn_browse} ${styles.fileUpload}`}>
                     <span>Choose File</span>
                     <Input
@@ -166,7 +178,6 @@ const QuestionForm = () => {
 
             <div className={styles.btn_cont}>
               <Button type='submit' title='Submit' onClick={() => {
-                console.log('ran');
                 handleSubmit()
               }} style={styles.submit_btn} />
               <button disabled className={styles.cancel_btn}>Cancel</button>

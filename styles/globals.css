@@ -96,6 +96,10 @@ input[type="number"]::-webkit-inner-spin-button {
   background: var(--white-color) !important;
 }
 
+#file {
+  display: none;
+}
+
 .form-select {
   display: block;
   width: 100%;
