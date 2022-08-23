@@ -4,8 +4,15 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import Card from '../../Cards/RepositoryCard/RepositoryCard';
 import { homePageText } from '../../TextArrays';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const HomePageTopSection = () => {
+  const navigate = useRouter();
+
+  const route = () => {
+    navigate.push('/advancedsearch');
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -32,6 +39,7 @@ const HomePageTopSection = () => {
                 <Button
                   title='Advance search'
                   style={styles.btn}
+                  onClick={() => { route(); }}
                 />
               </div>
             </div>
