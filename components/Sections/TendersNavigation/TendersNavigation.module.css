@@ -1,0 +1,35 @@
+.cont {
+  display: flex;
+  width: var(--hundred);
+  margin-bottom: var(--s-30);
+}
+
+.cont div {
+  display: flex;
+}
+
+.cont p {
+  padding: var(--fs-1rem) 0;
+  width: var(--s-255);
+  text-align: center;
+  background: var(--white-color);
+  color: var(--light-gray-color);
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  .cont {
+    margin-bottom: 0;
+  }
+
+  .cont div {
+    display: flex;
+    width: var(--hundred);
+  }
+
+  .cont p {
+    margin-bottom: var(--s-10);
+    padding: var(--fs-14) 0;
+    width: var(--fifty);
+  }
+}

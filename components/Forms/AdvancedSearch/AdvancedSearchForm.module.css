@@ -35,3 +35,17 @@
   background: var(--blue);
   color: var(--white-color);
 }
+
+@media (max-width: 950px) {
+  .form {
+    padding: var(--s-20) var(--s-20);
+  }
+
+  .btn {
+    width: var(--size-98);
+  }
+
+  .select {
+    width: var(--size-98);
+  }
+}

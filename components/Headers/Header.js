@@ -13,15 +13,18 @@ const Header = () => {
 
   useEffect(() => {
     var id = router.pathname.slice(1);
-
     var option = document.getElementById(id);
+    console.log({ i: id, o: option })
 
     if (id === 'glossary') {
       document.querySelector('#faq').classList.add('onroute');
       document.querySelector('#faq-desktop').classList.add('onroute-desktop');
-    } else if (id === 'knowledgecontent') {
+    } else if (id === 'knowledgecontent' || id === 'advancedsearch') {
       document.querySelector('#knowledgebase').classList.add('onroute');
       document.querySelector('#knowledgebase-desktop').classList.add('onroute-desktop');
+    } else if (id === 'expiredtenders') {
+      document.querySelector('#tenders').classList.add('onroute');
+      document.querySelector('#tenders-desktop').classList.add('onroute-desktop');
     } else if (!option) {
       document.getElementById('header').classList.add('white');
       document.querySelector('#home').classList.add('onroute');

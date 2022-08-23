@@ -29,7 +29,7 @@ const HeaderComponent = () => {
               <li id='knowledgebase-desktop' className={`${styles.li} ${styles.li2}`}>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
                 <ul className={styles.ul}>
                   <li className={styles.li}><Link href="/knowledgecontent">Knowledge Repository</Link></li>
-                  <li className={styles.li}><Link href="/">Advanced Search</Link></li>
+                  <li className={styles.li}><Link href="/advancedsearch">Advanced Search</Link></li>
                 </ul>
               </li>
             </div>
@@ -43,7 +43,7 @@ const HeaderComponent = () => {
               </li>
             </div>
 
-            <li><Link href='/'>Tender</Link></li>
+            <li id='tenders-desktop'><Link href='/tenders'>Tender</Link></li>
           </ul>
 
           <div className='dropdown'>
@@ -93,7 +93,7 @@ const HeaderComponent = () => {
             <li id='knowledgebase' className={`${styles.item} ${styles.li}`}>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
               <ul className={styles.ul}>
                 <li className={styles.li}><Link href="/knowledgecontent">Knowledge Repository</Link></li>
-                <li className={styles.li}><Link href="/">Advanced Search</Link></li>
+                <li className={styles.li}><Link href="/advancedsearch">Advanced Search</Link></li>
               </ul>
             </li>
             <li id='states' className={`${styles.item} ${styles.li}`}>States <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
@@ -102,7 +102,7 @@ const HeaderComponent = () => {
                 <li className={styles.li}><Link href="/">Andhra Pradesh</Link></li>
               </ul>
             </li>
-            <Link href='/'><h2 className={styles.item}>Tenders</h2></Link>
+            <Link href='/tenders'><h2 className={styles.item} id='tenders'>Tenders</h2></Link>
           </div>
         </div>
       </div>

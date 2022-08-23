@@ -12,8 +12,7 @@
 }
 
 .container section {
-  margin: var(--ma-homepage);
-  padding-bottom: var(--s-80);
+  padding: var(--ma-about-main);
   padding-top: var(--s-10);
 }
 
