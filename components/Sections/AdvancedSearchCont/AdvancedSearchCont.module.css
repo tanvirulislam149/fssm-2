@@ -1,0 +1,18 @@
+.container {
+  background: var(--bg-login-gray);
+  padding-top: var(--s-10);
+}
+
+.title {
+  font-size: var(--fs-48);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-blue);
+  padding: var(--pa-title);
+  background: var(--white-color);
+}
+
+.container section {
+  margin: var(--ma-homepage);
+  padding-bottom: var(--s-80);
+  padding-top: var(--s-10);
+}
