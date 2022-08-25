@@ -22,7 +22,7 @@ const TelanganaMidSection = () => {
               <h4>{id === 'telangana' ? 'Telanga' : 'Andhra Pradesh'}</h4>
               <p>{id === 'telangana' ? `The Telangana State Government in India's FSSM journey is one of the forerunners, championing gender inclusive sanitation, worker safety and innovations in WSH.` : `Steadily heading towards its goal to ensure 100% safe treatment of faecal sludge, championing behavioural transformation among its citizens and nurturing entrepreneurs across the sector.`}
               </p>
-              <button className={styles.btn}>View State's FSSM Journey</button>
+              <button className={styles.btn}>View State&apos;s FSSM Journey</button>
             </div>
           </div>
         </div>

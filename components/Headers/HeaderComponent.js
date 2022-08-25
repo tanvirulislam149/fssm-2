@@ -7,7 +7,6 @@ import search from '../../assets/search.png';
 import down from '../../assets/down.png';
 import { useRouter } from 'next/router';
 
-
 const HeaderComponent = () => {
   const router = useRouter();
 

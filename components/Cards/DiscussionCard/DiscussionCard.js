@@ -49,7 +49,7 @@ const DiscussionCard = () => {
             onClick={() => {
               dropDown(document.getElementById('drop' + `1`));
               setClicked(!clicked);
-            }}>'yayayaya gsg gsgs jsjsjsj ksjssk'</p>
+            }}>ABC</p>
 
           <button
             className={styles.btn}
