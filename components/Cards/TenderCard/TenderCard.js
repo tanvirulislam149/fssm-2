@@ -20,7 +20,7 @@ const TenderCard = () => {
     <>
       <div className={styles.container}>
         <div className={styles.avatar}>
-          <Image width={77} height={82} src={pdf} alt='pdf icon' />
+          <Image width={75} height={80} src={pdf} alt='pdf icon' />
         </div>
         <div className={styles.main}>
           <div className={styles.top}>

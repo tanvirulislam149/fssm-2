@@ -22,8 +22,8 @@
 }
 
 .img > span {
-  width: 500px !important;
-  height: 360px !important;
+  width: var(--s-500) !important;
+  height: var(--s-360) !important;
 }
 
 .img + div {
@@ -75,8 +75,8 @@
   }
 
   .img > span {
-    width: 300px !important;
-    height: 216.85px !important;
+    width: var(--s-300) !important;
+    height: var(--s-216) !important;
   }
 
   .img {

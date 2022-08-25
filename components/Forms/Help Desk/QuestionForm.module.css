@@ -183,6 +183,15 @@
 @media (max-width: 950px) {
   .row {
     flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .radio + .row {
+    margin-top: var(--s-40);
+  }
+
+  .mt5 {
+    margin-top: 0;
   }
 
   .select_cont {

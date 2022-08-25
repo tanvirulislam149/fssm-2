@@ -42,6 +42,7 @@
   --size-3: 3px;
   --s-90: 90px;
   --s-80: 80px;
+  --s-64: 64px;
   --s-60: 60px;
   --s-55: 55px;
   --s-50: 50px;
@@ -68,12 +69,17 @@
   --s-500: 500px;
   --s-450: 450px;
   --s-400: 400px;
-  --s-300: 300px;
+  --s-360: 360px;
   --s-320: 320px;
+  --s-300: 300px;
   --s-266: 266px;
+  --s-240: 240px;
+  --s-216: 216.85px;
   --s-200: 200px;
   --s-180: 180px;
   --s-150: 150px;
+  --s-140: 140px;
+  --s-122: 122px;
   --s-120: 120px;
   --s-100: 100px;
   --s-13-5: 13.5px;
@@ -87,6 +93,7 @@
   --blue-hov: #5289f8;
   --tele-bg-blue: #eff8ff;
   --dark-red: #c30000;
+  --light-red: #ff3737;
   --red: #cb1537;
   --red-hov: #cb1536d0;
   --pink: #f900bf;
@@ -98,6 +105,7 @@
   --input-border-color: #e3e3e3;
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
+  --shade: #c6c6c6;
   --header-txt: #555555;
   --dark-gray: #333;
   --search-bg: #eeeded;

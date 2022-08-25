@@ -1,0 +1,135 @@
+.container {
+  background: var(--primary-blue);
+  padding: var(--fs-12);
+  border-radius: var(--primary-border-radius);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cont {
+  border-radius: var(--primary-border-radius);
+  margin-bottom: var(--fs-10);
+  background: var(--white-color);
+}
+
+.plus {
+  background: var(--white-color);
+}
+
+.plus,
+.minus {
+  height: var(--s-30);
+  width: var(--s-30);
+  border-radius: var(--fifty);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.plus:hover,
+.minus:hover {
+  background: var(--black);
+}
+
+.title {
+  color: var(--white-color);
+  font-weight: var(--fw-500);
+  margin-left: var(--s-20);
+  width: var(--fourty);
+}
+
+.minus {
+  background: var(--red);
+}
+
+.shade {
+  background: var(--shade);
+  padding: var(--s-30) var(--s-40);
+  border-radius: var(--primary-border-radius);
+  width: var(--hundred);
+  display: flex;
+}
+
+.img_cont {
+  height: var(--s-64);
+  width: var(--s-64);
+  padding: 0;
+  margin-right: var(--s-20);
+}
+
+.details {
+  font-weight: var(--fw-400);
+  flex-grow: 100;
+}
+
+.details,
+.footer,
+.details p,
+.footer span {
+  padding: 0;
+}
+
+.details > p {
+  font-weight: var(--font-weight-bold);
+}
+
+.footer {
+  display: flex;
+  border-bottom: 1px solid var(--light-gray-color);
+  margin: var(--s-10) 0;
+}
+
+.footer p {
+  font-size: var(--fs-12);
+  color: var(--dark-gray);
+}
+
+.footer > span {
+  margin-right: var(--s-40);
+  display: flex;
+  margin-bottom: var(--s-8);
+}
+
+.footer > span > span {
+  margin-right: var(--size-5) !important;
+}
+
+.cont2 {
+  background: var(--white-color);
+  padding: var(--fs-24);
+  width: var(--hundred);
+}
+
+.btn {
+  color: var(--white-color);
+  background: var(--light-red);
+  font-size: var(--fs-12);
+  padding: var(--s-10) var(--s-30);
+  border-width: 0;
+  margin-left: auto;
+}
+
+.btn:hover {
+  background: var(--dark-red);
+}
+
+@media (max-width: 950px) {
+  .shade {
+    flex-direction: column;
+  }
+
+  .details {
+    width: var(--hundred);
+  }
+
+  .footer p {
+    margin-right: var(--s-30);
+  }
+
+  .btn {
+    font-size: var(--fs-12);
+    padding: var(--s-8) var(--s-20);
+  }
+}

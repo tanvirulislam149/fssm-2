@@ -34,10 +34,10 @@
 }
 
 .float {
-  height: 122px;
+  height: var(--s-122);
   background: #00000000;
   position: fixed;
-  top: 140px;
+  top: var(--s-140);
   right: 0;
   z-index: 100;
   -webkit-transition: all 0.5s ease-in-out;
@@ -47,8 +47,8 @@
 }
 
 .float div {
-  width: 240px;
-  height: 75px;
+  width: var(--s-240);
+  height: var(--s-75);
   font-weight: var(--font-weight-bold);
   justify-content: center;
   display: flex;
