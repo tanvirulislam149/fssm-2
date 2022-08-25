@@ -151,6 +151,21 @@
   opacity: 0;
 }
 
+.dropdown-content2 {
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
+  background-color: var(--white-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dropdown-content2 * {
+  animation: fadeOut 0.5s ease-in-out;
+  opacity: 0;
+}
+
 .active-dropdown * {
   animation: fadeIn 0.5s ease-in-out;
   opacity: 1;

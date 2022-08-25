@@ -16,6 +16,29 @@
   padding-top: var(--s-10);
 }
 
+.cont {
+  background: var(--white-color);
+  padding: var(--s-30);
+  border-radius: var(--primary-border-radius);
+}
+
+.cont p {
+  font-weight: var(--fw-600);
+  font-size: var(--s-20);
+}
+
+.footer_text {
+  padding: var(--fs-14);
+  width: var(--hundred);
+  font-size: var(--s-10);
+  padding-left: var(--three);
+  font-weight: var(--fw-400);
+  color: var(--light-gray-color);
+  border-radius: var(--primary-border-radius);
+  background: var(--white-color);
+  margin-top: var(--s-20);
+}
+
 @media (max-width: 575px) {
   .title {
     font-size: var(--fs-36);

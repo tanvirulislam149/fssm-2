@@ -9,6 +9,12 @@ const TendersCont = () => {
         <h1 className={styles.title}>Tenders</h1>
         <section>
           <TendersNavigation />
+
+          <div className={styles.cont}>
+            <p>No records found.</p>
+          </div>
+
+          <p className={styles.footer_text}>Showing 0-20 of 0 Results</p>
         </section>
       </div>
     </>

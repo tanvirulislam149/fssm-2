@@ -14,11 +14,13 @@ const Header = () => {
   useEffect(() => {
     var id = router.pathname.slice(1);
     var option = document.getElementById(id);
-    console.log({ i: id, o: option })
 
     if (id === 'glossary') {
       document.querySelector('#faq').classList.add('onroute');
       document.querySelector('#faq-desktop').classList.add('onroute-desktop');
+    } else if (id === 'telangana') {
+      document.querySelector('#states').classList.add('onroute');
+      document.querySelector('#states-desktop').classList.add('onroute-desktop');
     } else if (id === 'knowledgecontent' || id === 'advancedsearch') {
       document.querySelector('#knowledgebase').classList.add('onroute');
       document.querySelector('#knowledgebase-desktop').classList.add('onroute-desktop');

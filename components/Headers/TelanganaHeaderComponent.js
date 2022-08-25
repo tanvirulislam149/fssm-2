@@ -7,7 +7,7 @@ import search from '../../assets/search.png';
 import down from '../../assets/down.png';
 import { useRouter } from 'next/router';
 
-const HeaderComponent = () => {
+const TelanganaHeaderComponent = () => {
   const router = useRouter();
 
   const handleRefresh = () => {
@@ -18,7 +18,7 @@ const HeaderComponent = () => {
     <>
       <div id='cont'>
         <div className={styles.cont_2}>
-          <p className={styles.text} onClick={() => { handleRefresh() }}>Faecal Sludge and Septage <br />Management in India(FSSM)</p>
+          <p className={styles.text} onClick={() => { handleRefresh() }}>Citiwide Inclusive Sanitation<br />(CWIS) - Telangana</p>
           <ul className={styles.links}>
             <li id='home-desktop'><Link href='/'>Home</Link></li>
             <li id='fssmalliance-desktop'><Link href='/fssmalliance'>About</Link></li>
@@ -110,4 +110,4 @@ const HeaderComponent = () => {
   )
 }
 
-export default HeaderComponent
+export default TelanganaHeaderComponent

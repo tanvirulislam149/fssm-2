@@ -1,0 +1,94 @@
+.container {
+  height: max-content;
+  margin-top: var(--s-120);
+}
+
+.cont {
+  background: linear-gradient(
+    to bottom,
+    var(--tele-bg-blue),
+    var(--white-color)
+  );
+  display: flex;
+  padding: var(--s-30) 0;
+  padding-top: var(--s-70);
+}
+
+.img {
+  width: var(--fifty);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img > span {
+  width: 500px !important;
+  height: 360px !important;
+}
+
+.img + div {
+  width: var(--fifty);
+  padding-right: var(--ten);
+  padding-left: var(--s-20);
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  background: var(--telanga-green);
+  color: var(--white-color);
+  font-weight: var(--font-weight-bold);
+  padding: 0 var(--s-40);
+  height: var(--s-44);
+  border-radius: var(--s-22);
+  border-width: 0;
+  font-family: var(--font-family-primary);
+}
+
+.btn:hover {
+  background: var(--dark-telanga-green);
+}
+
+.cont h4 {
+  color: var(--telange-brown);
+  font-weight: var(--fw-600);
+  font-size: var(--lh-35);
+}
+
+.cont p {
+  font-weight: var(--fw-400);
+  line-height: var(--s-28);
+  margin: var(--s-10) 0;
+}
+
+.footer {
+  background: url(../../../assets//tele-bg.png) no-repeat center center;
+  background-size: cover;
+  height: var(--s-150);
+  width: var(--hundred);
+}
+
+@media (max-width: 1000px) {
+  .cont {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img > span {
+    width: 300px !important;
+    height: 216.85px !important;
+  }
+
+  .img {
+    width: var(--hundred);
+    padding: var(--s-40) 0 var(--s-10);
+  }
+
+  .img + div {
+    width: var(--hundred);
+    padding-bottom: 0;
+    padding-left: var(--s-20);
+    padding-right: var(--s-20);
+    text-align: center;
+  }
+}

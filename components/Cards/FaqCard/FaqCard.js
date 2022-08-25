@@ -27,9 +27,7 @@ const FaqCard = ({ title, id, body }) => {
             setClicked(!clicked);
           }}
         >
-          <div
-            className={clicked ? styles.plus : styles.minus}
-          >
+          <div className={clicked ? styles.plus : styles.minus}>
             {
               clicked ?
                 <FontAwesomeIcon color='white' icon={faPlus} size="xs" /> :
