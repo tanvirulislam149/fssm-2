@@ -118,18 +118,29 @@
 @media (max-width: 950px) {
   .shade {
     flex-direction: column;
+    padding: var(--s-10) var(--fs-14);
   }
 
   .details {
     width: var(--hundred);
-  }
-
-  .footer p {
-    margin-right: var(--s-30);
+    padding-left: var(--size-5);
   }
 
   .btn {
     font-size: var(--fs-12);
     padding: var(--s-8) var(--s-20);
+  }
+
+  .cont2 {
+    padding: var(--fs-1rem);
+  }
+
+  .footer > span {
+    margin-right: 0;
+    margin-bottom: var(--s-8);
+  }
+
+  .footer {
+    flex-direction: column;
   }
 }
