@@ -57,25 +57,6 @@ export const homePageMidSectionText = {
   body2: 'With 60% of toilets in urban India relying on on-site sanitation systems, FSSM promises a means to achieve the SDG target 6.2 of adequate, inclusive and safely managed sanitation for all in a time-bound manner. FSSM prioritizes human excreta management, a waste stream with the highest potential for spreading diseases. It is a low-cost and easily scalable sanitation solution that focuses on safe collection, transportation, treatment, and reuse of human waste, especially in small and medium cities and in areas within larger cities not covered by sewerage systems.'
 }
 
-export const questionsList = [
-  {
-    details: 'I am a professor in Bangalore University and I teach a course on Urban development for my masters class. Unfortunately, students are barely aware of the current FSSM situation in India. I believe that FSSM should also be brought into academic curriculum to create better awareness. I have over 8 years of experience in researching FSSM in India. Is there anyway I can contribute academia engagement in FSSM in India.',
-    theme: 'Technical',
-    id: '1',
-    name: 'AMAN',
-    date: 'February 06, 2020',
-    organization: 'Bangalore University'
-  },
-  {
-    details: 'I am a professor in Bangalore University and I teach a course on Urban development for my masters class. Unfortunately, students are barely aware of the current FSSM situation in India. I believe that FSSM should also be brought into academic curriculum to create better awareness. I have over 8 years of experience in researching FSSM in India. Is there anyway I can contribute academia engagement in FSSM in India.',
-    theme: 'Technical',
-    id: '2',
-    name: 'AMAN',
-    date: 'February 06, 2020',
-    organization: 'Bangalore University'
-  },
-]
-
 export const alphabets = [
   'All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ]
@@ -158,3 +139,38 @@ export const knowledgeContentText = {
   ]
 }
 
+
+import d1 from '../assets/Frame (1).png';
+import d2 from '../assets/Frame (2).png';
+import d3 from '../assets/Frame (3).png';
+import d4 from '../assets/Frame (4).png';
+import d5 from '../assets/Frame (5).png';
+import d6 from '../assets/Frame (6).png';
+import d7 from '../assets/Frame (7).png';
+import d8 from '../assets/Frame (8).png';
+import d9 from '../assets/Frame (9).png';
+import d10 from '../assets/Frame (10).png';
+import d11 from '../assets/Frame (11).png';
+import d12 from '../assets/Frame (12).png';
+import d13 from '../assets/Frame (13).png';
+import d14 from '../assets/Frame (14).png';
+
+export const sideBarText = [
+  { id: 1, text: 'Dashboard', link: 'dashboard', image: d1 },
+  { id: 2, text: 'Bulk Upload', link: 'dashboard', image: d2 },
+  { id: 3, text: 'Documents Mapping', link: 'dashboard', image: d3 },
+  { id: 4, text: 'My Documents', link: 'dashboard', image: d4 },
+  { id: 5, text: 'All Documents', link: 'dashboard', image: d5 },
+  { id: 6, text: 'List Documents', link: 'dashboard', image: d6 },
+  { id: 7, text: 'User Categories', link: 'dashboard', image: d7 },
+  { id: 8, text: 'Organization', link: 'dashboard', image: d8 },
+  { id: 9, text: 'Documents Approval', link: 'dashboard', image: d9 },
+  { id: 10, text: 'Help desk', link: 'dashboard', image: d10 },
+  { id: 11, text: 'Discussion Forum', link: 'dashboard', image: d11 },
+  { id: 12, text: `FAQ's`, link: 'dashboard', image: d12 },
+  { id: 13, text: 'Get Involved', link: 'dashboard', image: d13 },
+  { id: 14, text: 'Analytics', link: 'dashboard', image: d14 },
+  { id: 15, text: 'Landing page Missions', link: 'dashboard', image: d14 },
+  { id: 16, text: 'Taxonomy/ Tags', link: 'dashboard', image: d14 },
+
+]

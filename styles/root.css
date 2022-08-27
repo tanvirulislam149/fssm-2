@@ -10,16 +10,20 @@
   --fw-500: 500;
   --fw-600: 600;
   --hundred: 100%;
+  --size-78: 78%;
   --size-75: 75%;
   --three: 3%;
   --sixty: 60%;
+  --size-73: 73%;
   --seventy: 70%;
   --ninety: 90%;
   --ten: 10%;
   --size-25: 25%;
+  --size-22: 22%;
   --size-45: 45%;
   --size-35: 35%;
   --size-98: 98%;
+  --size-27: 27%;
   --size-23: 23%;
   --size-1: 1%;
   --size-95: 95%;
@@ -40,6 +44,7 @@
   --fs-12: 12px;
   --size-5: 5px;
   --size-3: 3px;
+  --s-95: 95px;
   --s-90: 90px;
   --s-80: 80px;
   --s-64: 64px;
@@ -59,6 +64,7 @@
   --s-75: 75px;
   --s-70: 70px;
   --s-8: 8px;
+  --s-4: 4px;
   --s-2: 2px;
   --s-764: 764px;
   --s-650: 650px;
@@ -91,6 +97,8 @@
   --bg-main-button-hov: #024b73d8;
   --blue: #2f6ce5;
   --blue-hov: #5289f8;
+  --l-blue: #22b8cf;
+  --lb-hov: #22b8cfb3;
   --tele-bg-blue: #eff8ff;
   --dark-red: #c30000;
   --light-red: #ff3737;
@@ -100,13 +108,17 @@
   --transparent-pink: #f900bfb2;
   --orange: #e68406;
   --white-color: #fff;
+  --green: #1abc9c;
   --login-page-title-color: #3ec70b;
+  --dark-green: #049d00;
   --light-gray-color: #8e8e8e;
   --input-border-color: #e3e3e3;
   --bg-login-gray: #cdcdcd;
   --bg-header-bottom: #f8f9fa;
   --shade: #c6c6c6;
+  --d-bg: #eaeaea;
   --header-txt: #555555;
+  --card-hov: #454545;
   --dark-gray: #333;
   --search-bg: #eeeded;
   --faded-white: #ffffffea;
@@ -121,6 +133,7 @@
   --telanga-green: #5a7610;
   --dark-telanga-green: #354508;
   --telange-brown: #423516;
+  --yellow: #fcc418;
 
   /* home page */
   --pa-home-h1: 20px;

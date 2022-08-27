@@ -1,0 +1,4 @@
+.container {
+  background: var(--d-bg);
+  padding: var(--s-30);
+}

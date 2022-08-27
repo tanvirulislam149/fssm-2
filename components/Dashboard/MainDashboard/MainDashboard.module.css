@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+}
+
+.container > div:first-child {
+  width: var(--twenty);
+}
+
+.container > div {
+  width: var(--eighty);
+}

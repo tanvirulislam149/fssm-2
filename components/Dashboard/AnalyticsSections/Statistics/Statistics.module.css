@@ -1,0 +1,50 @@
+.cont {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--s-20);
+}
+
+.cont > div {
+  width: var(--size-31);
+  height: var(--s-95);
+  display: flex;
+}
+
+.cont > div > div {
+  width: var(--size-22);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cont > div > div:nth-last-child(1) {
+  background: var(--white-color);
+  width: var(--size-78);
+  padding: var(--s-30) var(--s-10);
+  display: flex;
+  flex-direction: column;
+}
+
+.one > div {
+  background: var(--l-blue);
+}
+
+.two > div {
+  background: var(--yellow);
+}
+
+.three > div {
+  background: var(--login-page-title-color);
+}
+
+.cont p {
+  font-size: var(--s-20);
+  font-weight: var(--fw-400);
+  color: var(--primary-blue);
+}
+
+.cont h6 {
+  color: var(--dark-green);
+  font-size: var(--s-20);
+  font-weight: var(--font-weight-bold);
+}

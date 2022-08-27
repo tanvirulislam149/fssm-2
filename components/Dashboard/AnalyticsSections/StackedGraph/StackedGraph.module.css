@@ -1,0 +1,75 @@
+.container {
+  border-top: var(--size-3) solid var(--primary-blue);
+  background: var(--white-color);
+  padding: 0 var(--size-5) var(--s-20);
+  margin-top: var(--s-20);
+  font-family: var(--font-family-secondary);
+}
+
+.label {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+  padding: var(--fs-12) var(--size-5);
+}
+
+.filter {
+  background: var(--d-bg);
+  padding: var(--fs-24) var(--s-30);
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter > div {
+  width: var(--twenty);
+  margin-right: var(--s-50);
+}
+
+.btn {
+  color: var(--white-color);
+  font-size: var(--fs-12);
+  border-width: 0;
+  background: var(--l-blue);
+  padding: var(--s-10) var(--s-30);
+  height: max-content;
+}
+
+.select {
+  background: var(--white-color) !important;
+  width: var(--hundred) !important;
+}
+
+.select > div > div {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.select input {
+  padding-top: var(--size-5) !important;
+  padding-bottom: var(--size-5) !important;
+}
+
+.select input::-webkit-input-placeholder {
+  font-weight: var(--fw-500);
+  font-size: var(--fs-14);
+  color: var(--black);
+}
+
+.date {
+  background: var(--white-color) !important;
+  width: var(--hundred) !important;
+}
+
+.date input {
+  padding-top: var(--s-4) !important;
+  padding-bottom: var(--s-4) !important;
+}
+
+.date > div > fieldset {
+  border-color: var(--shade) !important;
+}
+
+.title {
+  font-weight: var(--fw-500);
+  margin-bottom: var(--s-10);
+}
