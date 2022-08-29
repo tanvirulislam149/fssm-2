@@ -6,13 +6,17 @@ import Image from 'next/image';
 const TenderCard = () => {
   const [clicked, setClicked] = useState(true);
 
-  const dropDown = (e) => {
+  const dropDown = (e, s, u) => {
     if (e.classList.contains("active-dropdown")) {
       e.style.maxHeight = 0;
       e.classList.remove("active-dropdown");
+      u.style.display = 'block';
+      s.style.justifyContent = 'space-between'
     } else {
       e.style.maxHeight = 'max-content';
       e.classList.add("active-dropdown");
+      u.style.display = 'none';
+      s.style.justifyContent = 'flex-end'
     }
   }
 
@@ -37,10 +41,17 @@ const TenderCard = () => {
             evidence.
           </p>
 
-          <p>Citation : <span>Athena Infonomics</span></p>
-
           <div id={'drop' + `1`} className='dropdown-content2'>
             <div className={styles.description}>
+              <div className={styles.row2}>
+                <div>
+                  <p className={styles.top_p}>Citation : <span>Athena Infonomics</span></p>
+                </div>
+                <div>
+                  <p className={styles.top_p}>Expiry Date : <span>15/11/2022</span></p>
+                </div>
+              </div>
+
               <div className={styles.row}>
                 <div>
                   <p>Uploaded By : <span>Athena</span></p>
@@ -73,15 +84,22 @@ const TenderCard = () => {
               </div>
 
               <div className={styles.row}>
-                <p>Keywords : <span>Evaluation,Learning,Monitoring,Sanitation service delivery,Indicators</span></p>
+                <p>Keywords : <span>Evaluation, Learning, Monitoring, Sanitation, Service delivery, Indicators</span></p>
               </div>
             </div>
           </div>
 
-          <div className={styles.show_btn}>
+          <div id='show-btn' className={styles.show_btn}>
+            <div id='use-case' className={styles.use_case}>
+              <p className={styles.head}>Use cases / Application</p>
+              <p>This document can be used by relevant stakeholders to
+                compare different technologies in India with respect to -
+                features, performance, application, O&M, challenges & costing</p>
+            </div>
             <p
+              className={styles.drop_btn}
               onClick={() => {
-                dropDown(document.getElementById('drop' + `1`));
+                dropDown(document.getElementById('drop' + `1`), document.getElementById('show-btn'), document.getElementById('use-case'));
                 setClicked(!clicked);
               }}
             >{clicked ? 'Show More...' : 'Show Less...'}</p>

@@ -9,9 +9,11 @@ import i1 from '../../../assets/i1.png';
 import i2 from '../../../assets/i2.png';
 import i3 from '../../../assets/i3.png';
 import Cookies from 'js-cookie';
+import Input from '../../Inputs/Input';
 
 const DiscussionCard = () => {
   const [clicked, setClicked] = useState(true);
+  const [question, setQuestion] = useState('');
 
   const dropDown = (e) => {
     if (e.classList.contains("active-dropdown")) {
@@ -24,7 +26,15 @@ const DiscussionCard = () => {
   }
 
   const handleAction = () => {
-    Cookies.get('access') ? null : alert('Please Login to the application to start a discussion.')
+    Cookies.get('access') ? document.querySelector('#file').style.display = 'block' : alert('Please Login to the application to start a discussion.');
+  }
+
+  const handleCancel = () => {
+    document.querySelector('#file').style.display = 'none';
+  }
+
+  const handleQuest = (val) => {
+    setQuestion(val);
   }
 
   return (
@@ -62,16 +72,31 @@ const DiscussionCard = () => {
         <div id={'drop' + `1`} className='dropdown-content'>
           <div className={styles.cont2}>
             <div className={styles.shade}>
-              <div className={styles.img_cont}>
-                <Image height={64} width={64} alt='talk' src={talk} />
+              <div id='file' className={styles.form}>
+                <Input
+                  style={styles.input}
+                  type='text'
+                  placeholder='Start your disscussion here'
+                  value={question}
+                  onChange={(e) => { handleQuest(e.target.value); }}
+                />
+
+                <button className={styles.submit}>Submit</button>
+                <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
               </div>
 
-              <div className={styles.details}>
-                <p>abc</p>
-                <div className={styles.footer}>
-                  <span><Image height={14} width={14} alt='icon' src={i1} /><p>July 14, 2022</p></span>
-                  <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>Admin</span></p></span>
-                  <span><Image height={14} width={14} alt='icon' src={i3} /><p>0 Replies</p></span>
+              <div>
+                <div className={styles.img_cont}>
+                  <Image height={64} width={64} alt='talk' src={talk} />
+                </div>
+
+                <div className={styles.details}>
+                  <p>abc</p>
+                  <div className={styles.footer}>
+                    <span><Image height={14} width={14} alt='icon' src={i1} /><p>July 14, 2022</p></span>
+                    <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>Admin</span></p></span>
+                    <span><Image height={14} width={14} alt='icon' src={i3} /><p>0 Replies</p></span>
+                  </div>
                 </div>
               </div>
             </div>
