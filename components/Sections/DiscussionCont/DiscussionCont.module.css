@@ -16,6 +16,12 @@
   background: var(--white-color);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}
+
 @media (max-width: 575px) {
   .title {
     font-size: var(--fs-36);

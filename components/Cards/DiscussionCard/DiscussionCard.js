@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './DiscussionCard.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -10,10 +10,65 @@ import i2 from '../../../assets/i2.png';
 import i3 from '../../../assets/i3.png';
 import Cookies from 'js-cookie';
 import Input from '../../Inputs/Input';
+import { startDiscussion } from '../../../services/discussionService';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const DiscussionCard = () => {
+const DiscussionCard = ({ category, id, topics }) => {
   const [clicked, setClicked] = useState(true);
-  const [question, setQuestion] = useState('');
+  const [disc_topic, setDisc_topic] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [dateArray, setDateArray] = useState([]);
+
+  useEffect(() => {
+    let date = [];
+    topics.forEach(({ createdOn }, i) => {
+      let month;
+      const day = createdOn.slice(8, 10);
+      const year = createdOn.slice(0, 4)
+      switch (createdOn.slice(5, 7)) {
+        case '01':
+          month = 'January';
+          break;
+        case '02':
+          month = 'February';
+          break;
+        case '03':
+          month = 'March';
+          break;
+        case '04':
+          month = 'April';
+          break;
+        case '05':
+          month = 'May';
+          break;
+        case '06':
+          month = 'June';
+          break;
+        case '07':
+          month = 'July';
+          break;
+        case '08':
+          month = 'August';
+          break;
+        case '09':
+          month = 'September';
+          break;
+        case '10':
+          month = 'October';
+          break;
+        case '11':
+          month = 'November';
+          break;
+        case '12':
+          month = 'December';
+          break;
+        default: ''
+          break;
+      }
+      date[i] = `${month} ${day}, ${year}`;
+    });
+    setDateArray(date);
+  }, [])
 
   const dropDown = (e) => {
     if (e.classList.contains("active-dropdown")) {
@@ -26,7 +81,7 @@ const DiscussionCard = () => {
   }
 
   const handleAction = () => {
-    Cookies.get('access') ? document.querySelector('#file').style.display = 'block' : alert('Please Login to the application to start a discussion.');
+    Cookies.get('access') ? document.querySelector('#file').style.display = 'flex' : alert('Please Login to the application to start a discussion.');
   }
 
   const handleCancel = () => {
@@ -34,7 +89,25 @@ const DiscussionCard = () => {
   }
 
   const handleQuest = (val) => {
-    setQuestion(val);
+    setDisc_topic(val);
+  }
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err });
+  }
+
+  const handleSubmit = (values) => {
+    setLoading(true);
+    startDiscussion(values, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        setLoading(false);
+        setDisc_topic('');
+        handleCancel();
+        console.log({ r: res });
+      }
+    })
   }
 
   return (
@@ -44,7 +117,7 @@ const DiscussionCard = () => {
           <div
             className={clicked ? styles.plus : styles.minus}
             onClick={() => {
-              dropDown(document.getElementById('drop' + `1`));
+              dropDown(document.getElementById('drop' + `${id}`));
               setClicked(!clicked);
             }}>
             {
@@ -57,9 +130,9 @@ const DiscussionCard = () => {
           <p
             className={styles.title}
             onClick={() => {
-              dropDown(document.getElementById('drop' + `1`));
+              dropDown(document.getElementById('drop' + `${id}`));
               setClicked(!clicked);
-            }}>ABC</p>
+            }}>{category}</p>
 
           <button
             className={styles.btn}
@@ -69,36 +142,45 @@ const DiscussionCard = () => {
           >Start a Discussion</button>
         </div>
 
-        <div id={'drop' + `1`} className='dropdown-content'>
+        <div id={'drop' + `${id}`} className='dropdown-content'>
           <div className={styles.cont2}>
+            <div id='file' className={styles.form}>
+              <Input
+                style={styles.input}
+                type='text'
+                placeholder='Start your disscussion here'
+                value={disc_topic}
+                onChange={(e) => { handleQuest(e.target.value); }}
+              />
+
+              {loading ?
+                <CircularProgress /> :
+                <>
+                  <button className={styles.submit} onClick={() => { handleSubmit({ category_id: 'abc', disc_topic }); }}>Submit</button>
+                  <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
+                </>}
+            </div>
             <div className={styles.shade}>
-              <div id='file' className={styles.form}>
-                <Input
-                  style={styles.input}
-                  type='text'
-                  placeholder='Start your disscussion here'
-                  value={question}
-                  onChange={(e) => { handleQuest(e.target.value); }}
-                />
+              {
+                topics.map(({ topic_name, creatorName, id, replies }, i) => {
+                  return (
+                    <div key={id}>
+                      <div className={styles.img_cont}>
+                        <Image height={64} width={64} alt='talk' src={talk} />
+                      </div>
 
-                <button className={styles.submit}>Submit</button>
-                <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
-              </div>
-
-              <div>
-                <div className={styles.img_cont}>
-                  <Image height={64} width={64} alt='talk' src={talk} />
-                </div>
-
-                <div className={styles.details}>
-                  <p>abc</p>
-                  <div className={styles.footer}>
-                    <span><Image height={14} width={14} alt='icon' src={i1} /><p>July 14, 2022</p></span>
-                    <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>Admin</span></p></span>
-                    <span><Image height={14} width={14} alt='icon' src={i3} /><p>0 Replies</p></span>
-                  </div>
-                </div>
-              </div>
+                      <div className={styles.details}>
+                        <p>{topic_name}</p>
+                        <div className={styles.footer}>
+                          <span><Image height={14} width={14} alt='icon' src={i1} /><p>{dateArray[i]}</p></span>
+                          <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{creatorName}</span></p></span>
+                          <span><Image height={14} width={14} alt='icon' src={i3} /><p>{replies.length} Replies</p></span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
             </div>
           </div>
         </div>

@@ -46,7 +46,7 @@
 
 .shade {
   background: var(--shade);
-  padding: var(--s-30) var(--s-40);
+  padding: var(--s-20) var(--s-30);
   border-radius: var(--primary-border-radius);
   width: var(--hundred);
   display: flex;
@@ -56,11 +56,26 @@
 .form {
   display: flex;
   align-items: center;
-  margin-top: -20px;
+  background: var(--d-bg);
+  padding: var(--s-20);
 }
 
-.form + div {
+.shade > div {
   display: flex;
+  margin-bottom: var(--s-20);
+}
+
+.shade > div:nth-last-child(1) {
+  margin-bottom: 0;
+}
+
+.form > span * {
+  padding: 0;
+}
+
+.form > span {
+  padding: 0;
+  margin-left: var(--s-30);
 }
 
 .img_cont {
@@ -173,7 +188,7 @@
   }
 
   .form,
-  .form + div {
+  .shade > div {
     flex-direction: column;
   }
 

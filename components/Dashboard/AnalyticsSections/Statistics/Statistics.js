@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Statistics.module.css';
 import Image from 'next/image';
 import ic1 from '../../../../assets/ic1.png';
 import ic2 from '../../../../assets/ic2.png';
 import ic3 from '../../../../assets/ic3.png';
+import { getStats } from '../../../../services/dashboardService';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Statistics = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState([]);
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+    //setError(err.response.statusText);
+  }
+
+  useEffect(() => {
+    getStats((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        console.log({ r: res })
+        setStats(res.data);
+      }
+    });
+  }, []);
+
   return (
     <>
       <div className={styles.cont}>
@@ -15,7 +38,7 @@ const Statistics = () => {
           </div>
           <div>
             <p>No of Docs Uploa.....</p>
-            <h6>342</h6>
+            <h6>{stats['No Of Docs Uploaded']}</h6>
           </div>
         </div>
         <div className={styles.two}>
@@ -24,7 +47,7 @@ const Statistics = () => {
           </div>
           <div>
             <p>No of Docs Mapp.....</p>
-            <h6>546</h6>
+            <h6>{stats['No Of Docs Mapped']}</h6>
           </div>
         </div>
         <div className={styles.three}>
@@ -33,7 +56,7 @@ const Statistics = () => {
           </div>
           <div>
             <p>No of Docs Appr.....</p>
-            <h6>129</h6>
+            <h6>{stats['No Of Docs Approved']}</h6>
           </div>
         </div>
       </div>
