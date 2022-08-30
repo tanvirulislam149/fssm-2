@@ -50,9 +50,9 @@
 }
 
 .select input::-webkit-input-placeholder {
-  font-weight: var(--fw-500);
-  font-size: var(--fs-14);
-  color: var(--black);
+  font-weight: var(--fw-500) !important;
+  font-size: var(--fs-14) !important;
+  color: var(--black) !important;
 }
 
 .date {

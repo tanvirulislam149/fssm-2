@@ -16,6 +16,23 @@
   padding-top: var(--s-10);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}
+
+.cont {
+  background: var(--white-color);
+  padding: var(--s-30);
+  border-radius: var(--primary-border-radius);
+}
+
+.cont p {
+  font-weight: var(--fw-600);
+  font-size: var(--s-20);
+}
+
 @media (max-width: 575px) {
   .title {
     font-size: var(--fs-36);

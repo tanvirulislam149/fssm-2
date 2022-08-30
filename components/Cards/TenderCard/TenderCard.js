@@ -3,7 +3,7 @@ import styles from './TenderCard.module.css';
 import pdf from '../../../assets/pdf.png';
 import Image from 'next/image';
 
-const TenderCard = () => {
+const TenderCard = ({ theme, id, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
   const [clicked, setClicked] = useState(true);
 
   const dropDown = (e, s, u) => {
@@ -28,63 +28,67 @@ const TenderCard = () => {
         </div>
         <div className={styles.main}>
           <div className={styles.top}>
-            <p className={styles.title}>BMGF MLE Wireframe for FSSM</p>
+            <p className={styles.title}>{title}</p>
             <button className={styles.btn}>View Document</button>
           </div>
-          <p className={styles.body}>Effectiveness of investments in sanitary improvements can be further
-            enhanced through coordination and exchange between stakeholders. This can
-            be facilitated through implementation of a homogenized Monitoring, Learning
-            and Evaluation (MLE) platform for the sector, which can integrate learnings
-            from multiple sources (Government and non-Government), to enhance value for
-            money of interventions. This report showcases a wireframe for Monitoring
-            Learning and Evaluation (MLE) platform, which could define standards for
-            evidence.
-          </p>
+          <p className={styles.body}>{description}</p>
 
-          <div id={'drop' + `1`} className='dropdown-content2'>
+          <div id={'drop' + `${id}`} className='dropdown-content2'>
             <div className={styles.description}>
               <div className={styles.row2}>
                 <div>
-                  <p className={styles.top_p}>Citation : <span>Athena Infonomics</span></p>
+                  <p className={styles.top_p}>Citation : <span>{citation}</span></p>
                 </div>
                 <div>
-                  <p className={styles.top_p}>Expiry Date : <span>15/11/2022</span></p>
+                  <p className={styles.top_p}>Expiry Date : <span>{expiry_date.replaceAll('-', '/')}</span></p>
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div>
-                  <p>Uploaded By : <span>Athena</span></p>
+                  <p>Uploaded By : <span>{''}</span></p>
                 </div>
                 <div>
-                  <p>Theme : <span>Monitoring and Evaluation</span></p>
+                  <p>Theme : <span>{theme}</span></p>
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div>
-                  <p>Stakeholder : <span>Donor Agencies</span></p>
+                  <p>Stakeholder : <span>
+                    {
+                      stake_holder.map(({ stake_holderName }) => {
+                        return stake_holderName + ', ';
+                      })
+                    }
+                  </span></p>
                 </div>
                 <div>
-                  <p>Value Chain : <span>All</span></p>
+                  <p>Value Chain : <span>{''}</span></p>
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div>
-                  <p>Geography : <span>National</span></p>
+                  <p>Geography : <span>{geography}</span></p>
                 </div>
                 <div>
-                  <p>Urban / Rural : <span>Urban</span></p>
+                  <p>Urban / Rural : <span>{''}</span></p>
                 </div>
               </div>
 
               <div className={styles.row}>
-                <p>Language : <span>English</span></p>
+                <p>Language : <span>
+                  {
+                    language.map(({ lang }) => {
+                      return lang + ', ';
+                    })
+                  }
+                </span></p>
               </div>
 
               <div className={styles.row}>
-                <p>Keywords : <span>Evaluation, Learning, Monitoring, Sanitation, Service delivery, Indicators</span></p>
+                <p>Keywords : <span>{''}</span></p>
               </div>
             </div>
           </div>
@@ -99,7 +103,7 @@ const TenderCard = () => {
             <p
               className={styles.drop_btn}
               onClick={() => {
-                dropDown(document.getElementById('drop' + `1`), document.getElementById('show-btn'), document.getElementById('use-case'));
+                dropDown(document.getElementById('drop' + `${id}`), document.getElementById('show-btn'), document.getElementById('use-case'));
                 setClicked(!clicked);
               }}
             >{clicked ? 'Show More...' : 'Show Less...'}</p>
