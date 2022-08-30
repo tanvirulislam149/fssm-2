@@ -36,7 +36,7 @@ const ExpiredTendersCont = () => {
 
           {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
             tenders.length ?
-              tenders.map(({ theme, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+              tenders.map(({ theme, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
                 return (
                   <TenderCard
                     key={1}
@@ -45,6 +45,8 @@ const ExpiredTendersCont = () => {
                     document_type={document_type}
                     stake_holder={stake_holder}
                     geography={geography}
+                    org={organization.org_name}
+                    urban_rural={status}
                     citation={citation}
                     expiry_date={expiry_date}
                     language={language}

@@ -3,7 +3,7 @@ import styles from './TenderCard.module.css';
 import pdf from '../../../assets/pdf.png';
 import Image from 'next/image';
 
-const TenderCard = ({ theme, id, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
   const [clicked, setClicked] = useState(true);
 
   const dropDown = (e, s, u) => {
@@ -46,7 +46,7 @@ const TenderCard = ({ theme, id, document_type, expiry_date, citation, descripti
 
               <div className={styles.row}>
                 <div>
-                  <p>Uploaded By : <span>{''}</span></p>
+                  <p>Uploaded By : <span>{org}</span></p>
                 </div>
                 <div>
                   <p>Theme : <span>{theme}</span></p>
@@ -73,7 +73,7 @@ const TenderCard = ({ theme, id, document_type, expiry_date, citation, descripti
                   <p>Geography : <span>{geography}</span></p>
                 </div>
                 <div>
-                  <p>Urban / Rural : <span>{''}</span></p>
+                  <p>Urban / Rural : <span>{urban_rural}</span></p>
                 </div>
               </div>
 
