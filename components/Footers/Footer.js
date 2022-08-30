@@ -16,7 +16,7 @@ const Footer = () => {
 
   useEffect(() => {
     Cookies.get('access') ?
-      Cookies.get('isAdmin') === true ?
+      Cookies.get('isAdmin') === 'true' ?
         setAction('Admin Dashboard') : setAction('Sign Out')
       : setAction('Sign In')
   }, [])
@@ -24,11 +24,15 @@ const Footer = () => {
   const navigate = useRouter();
 
   const clickHandler = () => {
-    Cookies.remove('access');
-    Cookies.remove('refresh');
-    Cookies.remove('isAdmin');
-    axiosInstance.defaults.headers.common["Authorization"] = null;
-    navigate.push('/signin');
+    if (Cookies.get('isAdmin') === 'true') {
+      navigate.push('/dashboard');
+    } else {
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
+      axiosInstance.defaults.headers.common["Authorization"] = null;
+      navigate.push('/signin');
+    }
   }
 
   return (

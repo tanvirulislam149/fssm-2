@@ -30,7 +30,7 @@ const AboutDescription = () => {
 
           • <span className={styles.links}><Link href='/faq'>FAQs and Glossary for quick referencing;</Link></span><br /><br />
 
-          • <span className={styles.links}><Link href='/'>Tenders to keep informed and updated;</Link></span><br /><br />
+          • <span className={styles.links}><Link href='/tenders'>Tenders to keep informed and updated;</Link></span><br /><br />
 
           For more information, please contact <a href='mailto:info@swachhfssm.in'>info@swachhfssm.in.</a></p>
       </div>
