@@ -26,6 +26,12 @@
   color: var(--black);
 }
 
+.select + span {
+  margin: var(--fs-12) !important;
+  margin-left: var(--s-30) !important;
+  color: var(--white-color) !important;
+}
+
 .btn {
   width: var(--size-23);
   margin: var(--size-1) !important;
