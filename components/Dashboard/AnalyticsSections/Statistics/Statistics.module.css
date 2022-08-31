@@ -48,3 +48,15 @@
   font-size: var(--s-20);
   font-weight: var(--font-weight-bold);
 }
+
+@media (max-width: 950px) {
+  .cont {
+    flex-direction: column;
+    margin-bottom: var(--s-20);
+  }
+
+  .cont > div {
+    width: var(--hundred);
+    margin-bottom: var(--s-10);
+  }
+}

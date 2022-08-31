@@ -71,7 +71,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: var(--s-20);
+  padding-bottom: var(--s-10);
+  margin-bottom: var(--s-10);
+  border-bottom: 1px solid var(--input-border-color);
 }
 
 .body {

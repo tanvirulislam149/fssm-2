@@ -9,3 +9,14 @@
 .container > div {
   width: var(--eighty);
 }
+
+@media (max-width: 950px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .container > div:first-child,
+  .container > div {
+    width: var(--hundred);
+  }
+}

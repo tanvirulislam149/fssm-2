@@ -214,4 +214,15 @@
   .footer {
     flex-direction: column;
   }
+
+  .input {
+    width: var(--hundred);
+  }
+
+  .submit,
+  .cancel {
+    width: var(--hundred);
+    margin-left: 0;
+    margin-top: var(--s-8);
+  }
 }

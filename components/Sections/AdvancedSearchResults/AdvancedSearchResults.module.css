@@ -1,0 +1,16 @@
+.justify_center {
+  display: flex;
+  justify-content: center;
+  background: var(--white-color);
+  padding: var(--s-20);
+  border-radius: var(--primary-border-radius);
+  height: max-content;
+}
+
+.empty {
+  background: var(--white-color);
+  padding: var(--s-30);
+  border-radius: var(--primary-border-radius);
+  text-align: center;
+  height: max-content;
+}

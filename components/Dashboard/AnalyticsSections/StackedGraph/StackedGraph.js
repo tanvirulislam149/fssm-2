@@ -106,7 +106,6 @@ const StackedGraph = () => {
     }
   })
 
-
   const handleStart = (newValue) => {
     setStartDate(newValue);
   };
@@ -137,7 +136,6 @@ const StackedGraph = () => {
               getOptionDisabled={(option) =>
                 option === ''
               }
-              //sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
             />
           </div>

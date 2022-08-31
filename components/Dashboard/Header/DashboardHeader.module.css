@@ -58,3 +58,28 @@
   color: var(--l-blue);
   margin-left: var(--size-5);
 }
+
+@media (max-width: 950px) {
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: var(--hundred);
+    padding: 0 var(--s-10);
+    align-items: center;
+  }
+
+  .btn {
+    padding: var(--s-8) var(--fs-14);
+    font-size: var(--s-10);
+  }
+
+  .btn + h4 {
+    font-size: var(--fs-24);
+  }
+
+  .admin p {
+    font-size: var(--fs-12);
+  }
+}

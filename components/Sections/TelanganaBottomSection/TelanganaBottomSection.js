@@ -33,7 +33,7 @@ const TelanganaBottomSection = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}>
                 <div className={id === 'telangana' ? styles.one : styles.five}>
-                  <Link href='https://niti.gov.in/sites/default/files/2021-01/NITI-NFSSM-Alliance-Report-for-digital.pdf'><button className={styles.btn}>Click here</button></Link>
+                  <Link href={id === 'telangana' ? 'https://swachhfssm.in/website/images/ta-1.jpg' : 'https://swachhfssm.in/website/images/ap-1.jpg'}><button className={styles.btn}>Click here</button></Link>
                 </div>
                 <a href="#carousel__slide_3"
                   onClick={() => {
@@ -52,7 +52,7 @@ const TelanganaBottomSection = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={id === 'telangana' ? styles.two : styles.six}>
-                <Link href='http://swachhfssm.in/files/Toilet%20Ke%20Baad%20Kya.pdf'><button className={styles.btn}>Click here</button></Link>
+                <Link href={id === 'telangana' ? 'https://swachhfssm.in/website/images/ta-2.jpg' : 'https://swachhfssm.in/website/images/ap-2.jpg'}><button className={styles.btn}>Click here</button></Link>
               </div>
               <a href="#carousel__slide_1"
                 onClick={() => {
@@ -70,7 +70,7 @@ const TelanganaBottomSection = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={id === 'telangana' ? styles.three : styles.seven}>
-                <Link href='https://www.niua.org/scbp/?q=training-modules'><button className={styles.btn}>Click here</button></Link>
+                <Link href={id === 'telangana' ? 'https://swachhfssm.in/website/images/ta-3.jpg' : 'https://swachhfssm.in/website/images/ap-3.jpg'}><button className={styles.btn}>Click here</button></Link>
               </div>
               <a href="#carousel__slide_2"
                 onClick={() => {
@@ -88,7 +88,7 @@ const TelanganaBottomSection = () => {
               className={styles.carousel__slide}>
               <div className={styles.carousel__snapper}></div>
               <div className={id === 'telangana' ? styles.four : styles.eight}>
-                <Link href='https://www.niua.org/scbp/?q=training-modules'><button className={styles.btn}>Click here</button></Link>
+                <Link href={id === 'telangana' ? 'https://swachhfssm.in/website/images/ta-4.jpg' : 'https://swachhfssm.in/website/images/ap-4.jpg'}><button className={styles.btn}>Click here</button></Link>
               </div>
               <a href="#carousel__slide_3"
                 onClick={() => {

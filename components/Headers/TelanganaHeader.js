@@ -23,11 +23,11 @@ const TelanganaHeader = () => {
       <header>
         <div>
           <div id='header' className={styles.container}>
-            <Link href='https://aatmanirbharbharat.mygov.in/'><a><div className={styles.logo1}></div>
+            <Link href=''><a><div className={styles.logo1}></div>
               <Image className={styles.logo} src={bharat} alt='logo1' height={82} width={79} /></a></Link>
 
             <div className={styles.logo2}></div>
-            {route === 'telangana' && <Link className='link' href='https://www.mohua.gov.in/'><a><Image src={moshua} alt='logo2' height={82} width={79} /></a></Link>}
+            {route === 'telangana' && <Link className='link' href=''><a><Image src={moshua} alt='logo2' height={82} width={79} /></a></Link>}
 
             <div className={styles.div}>
               <Link href='http://amrut.gov.in/content/'><a><div className={styles.logo_3}></div>

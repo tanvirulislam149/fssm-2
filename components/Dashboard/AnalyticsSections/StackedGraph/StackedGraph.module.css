@@ -73,3 +73,25 @@
   font-weight: var(--fw-500);
   margin-bottom: var(--s-10);
 }
+
+@media (max-width: 950px) {
+  .filter {
+    padding: var(--fs-24) var(--s-30);
+    align-items: initial;
+    flex-direction: column;
+  }
+
+  .filter > div {
+    width: var(--hundred);
+    margin-right: 0;
+  }
+
+  .title {
+    margin-bottom: var(--size-5);
+    margin-top: var(--s-10);
+  }
+
+  .btn {
+    margin-top: var(--s-10);
+  }
+}
