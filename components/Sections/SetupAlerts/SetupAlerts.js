@@ -14,12 +14,13 @@ const SetupAlerts = () => {
       >Setup Alerts</div>
 
       <div id="myModal1" className='modal'>
-
-        <div className={styles.bg}
+        <div
+          className={styles.bg}
           onClick={() => {
             document.querySelector('.modal').style.display = "none";
             document.getElementById('user-cat').style.display = 'none';
-          }}></div>
+          }}>
+        </div>
         <div className={styles.modal_content}>
           <div
             className={styles.close}
@@ -36,7 +37,6 @@ const SetupAlerts = () => {
             <SetupAlertForm />
           </div>
         </div>
-
       </div>
     </>
   )

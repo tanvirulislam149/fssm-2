@@ -18,6 +18,7 @@ const DiscussionCard = ({ category, id, topics }) => {
   const [disc_topic, setDisc_topic] = useState('');
   const [loading, setLoading] = useState(false);
   const [dateArray, setDateArray] = useState([]);
+  const [modalText, setModalText] = useState('');
 
   useEffect(() => {
     let date = [];
@@ -81,7 +82,12 @@ const DiscussionCard = ({ category, id, topics }) => {
   }
 
   const handleAction = () => {
-    Cookies.get('access') ? document.querySelector('#file').style.display = 'flex' : alert('Please Login to the application to start a discussion.');
+    if (Cookies.get('access')) {
+      document.querySelector('#file').style.display = 'flex';
+    } else {
+      setModalText('Please Login to the application to start a discussion.');
+      document.querySelector('.modal2').style.display = "flex";
+    }
   }
 
   const handleCancel = () => {
@@ -104,6 +110,8 @@ const DiscussionCard = ({ category, id, topics }) => {
       if (res !== null) {
         setLoading(false);
         setDisc_topic('');
+        setModalText('Thank you. Your Question has been posted successfully.');
+        document.querySelector('.modal2').style.display = "flex";
         handleCancel();
         console.log({ r: res });
       }
@@ -113,6 +121,30 @@ const DiscussionCard = ({ category, id, topics }) => {
   return (
     <>
       <div className={styles.cont}>
+        <div id="myModal2" className='modal2'>
+          <div
+            className={styles.bg}
+            onClick={() => {
+              document.querySelector('.modal2').style.display = "none";
+            }}>
+          </div>
+          <div className={styles.modal_content}>
+            <div
+              className={styles.close}
+              onClick={() => {
+                document.querySelector('.modal2').style.display = "none";
+              }}
+            >
+              <p>Attention !!</p>
+              <span>x</span>
+            </div>
+            <div className={styles.modal_header}>
+              <h2>{modalText}</h2>
+            </div>
+
+          </div>
+        </div>
+
         <div className={styles.container}>
           <div
             className={clicked ? styles.plus : styles.minus}
@@ -156,10 +188,15 @@ const DiscussionCard = ({ category, id, topics }) => {
               {loading ?
                 <CircularProgress /> :
                 <>
-                  <button className={styles.submit} onClick={() => { handleSubmit({ category_id: 'abc', disc_topic }); }}>Submit</button>
+                  <button
+                    className={styles.submit}
+                    data-modal="myModal2"
+                    onClick={() => { handleSubmit({ category_id: 'abc', disc_topic }); }}
+                  >Submit</button>
                   <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
                 </>}
             </div>
+
             <div className={styles.shade}>
               {
                 topics.map(({ topic_name, creatorName, id, replies }, i) => {

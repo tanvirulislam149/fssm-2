@@ -191,6 +191,21 @@
   background-color: var(--faded-black);
 }
 
+.modal2 {
+  display: none;
+  align-items: flex-start;
+  position: fixed;
+  z-index: 6;
+  padding: auto 0;
+  left: 0;
+  top: 0;
+  width: var(--hundred);
+  height: var(--hundred);
+  overflow: auto;
+  background-color: var(--black);
+  background-color: var(--faded-black);
+}
+
 .modal::-webkit-scrollbar {
   width: 0;
 }
