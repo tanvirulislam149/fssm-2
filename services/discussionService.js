@@ -12,3 +12,9 @@ export const getDiscussion = cb => {
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
+
+export const postComment = (data, cb) => {
+  axiosInstance.post('discussion/reply/', data)
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}

@@ -34,7 +34,7 @@ const DiscussionCont = () => {
           {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
             discussionData.map(({ category, id, topics }) => {
               return (
-                <DiscussionCard key={id} id={id} category={category} topics={topics} />
+                <DiscussionCard key={id} cat_id={id} category={category} topics={topics} />
               )
             })
           }

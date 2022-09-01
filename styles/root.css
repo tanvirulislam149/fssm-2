@@ -15,6 +15,7 @@
   --three: 3%;
   --sixty: 60%;
   --size-73: 73%;
+  --size-72: 72%;
   --seventy: 70%;
   --ninety: 90%;
   --ten: 10%;
@@ -97,12 +98,14 @@
   --bg-main-button-hov: #024b73d8;
   --blue: #2f6ce5;
   --blue-hov: #5289f8;
+  --bg-blue: #e4ecf7;
   --l-blue: #22b8cf;
   --lb-hov: #22b8cfb3;
   --tele-bg-blue: #eff8ff;
   --dark-red: #c30000;
   --light-red: #ff3737;
   --red: #cb1537;
+  --pale-red: #e95454;
   --red-hov: #cb1536d0;
   --pink: #f900bf;
   --transparent-pink: #f900bfb2;

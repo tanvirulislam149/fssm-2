@@ -1,0 +1,77 @@
+.container {
+  background: var(--bg-login-gray);
+  padding: var(--ma-about-main);
+  padding-top: var(--s-40);
+}
+
+.container section {
+  background: var(--white-color);
+  border-radius: var(--size-5);
+  padding: var(--s-50) var(--s-20);
+}
+
+.btn {
+  height: var(--s-50);
+  border-radius: var(--s-8);
+  background: var(--blue);
+  width: var(--s-55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn + a {
+  margin-left: auto;
+}
+
+.input {
+  width: var(--size-72);
+}
+
+.input,
+.input > div,
+.input input {
+  border-radius: var(--s-10);
+  height: var(--s-50);
+}
+
+.input input {
+  padding: var(--s-8);
+}
+
+.form {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn2 {
+  color: var(--white-color);
+  background: var(--primary-blue);
+  border-radius: var(--s-10);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-secondary);
+  border-width: 0;
+  padding: var(--s-10) var(--s-40);
+  height: max-content;
+  text-align: center;
+}
+
+.close {
+  padding-right: var(--s-10) !important;
+}
+
+.title {
+  font-size: var(--fs-48);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-blue);
+  padding: var(--pa-title);
+  background: var(--white-color);
+}
+
+@media (max-width: 575px) {
+  .title {
+    font-size: var(--fs-36);
+    padding: var(--pa-title);
+  }
+}

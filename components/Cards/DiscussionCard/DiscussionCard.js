@@ -12,8 +12,9 @@ import Cookies from 'js-cookie';
 import Input from '../../Inputs/Input';
 import { startDiscussion } from '../../../services/discussionService';
 import CircularProgress from '@mui/material/CircularProgress';
+import Link from 'next/link';
 
-const DiscussionCard = ({ category, id, topics }) => {
+const DiscussionCard = ({ category, cat_id, topics }) => {
   const [clicked, setClicked] = useState(true);
   const [disc_topic, setDisc_topic] = useState('');
   const [loading, setLoading] = useState(false);
@@ -149,7 +150,7 @@ const DiscussionCard = ({ category, id, topics }) => {
           <div
             className={clicked ? styles.plus : styles.minus}
             onClick={() => {
-              dropDown(document.getElementById('drop' + `${id}`));
+              dropDown(document.getElementById('drop' + `${cat_id}`));
               setClicked(!clicked);
             }}>
             {
@@ -162,7 +163,7 @@ const DiscussionCard = ({ category, id, topics }) => {
           <p
             className={styles.title}
             onClick={() => {
-              dropDown(document.getElementById('drop' + `${id}`));
+              dropDown(document.getElementById('drop' + `${cat_id}`));
               setClicked(!clicked);
             }}>{category}</p>
 
@@ -174,7 +175,7 @@ const DiscussionCard = ({ category, id, topics }) => {
           >Start a Discussion</button>
         </div>
 
-        <div id={'drop' + `${id}`} className='dropdown-content'>
+        <div id={'drop' + `${cat_id}`} className='dropdown-content'>
           <div className={styles.cont2}>
             <div id='file' className={styles.form}>
               <Input
@@ -191,7 +192,7 @@ const DiscussionCard = ({ category, id, topics }) => {
                   <button
                     className={styles.submit}
                     data-modal="myModal2"
-                    onClick={() => { handleSubmit({ category_id: 'abc', disc_topic }); }}
+                    onClick={() => { handleSubmit({ category_id: category, disc_topic }); }}
                   >Submit</button>
                   <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
                 </>}
@@ -211,7 +212,7 @@ const DiscussionCard = ({ category, id, topics }) => {
                         <div className={styles.footer}>
                           <span><Image height={14} width={14} alt='icon' src={i1} /><p>{dateArray[i]}</p></span>
                           <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{creatorName}</span></p></span>
-                          <span><Image height={14} width={14} alt='icon' src={i3} /><p>{replies.length} Replies</p></span>
+                          <span><Image height={14} width={14} alt='icon' src={i3} /><Link href={`/discussionthread?category=${cat_id - 1}&topicId=${id - 1}&date=${dateArray[i]}`}><a><p className={styles.replies}>{replies.length} Replies</p></a></Link></span>
                         </div>
                       </div>
                     </div>

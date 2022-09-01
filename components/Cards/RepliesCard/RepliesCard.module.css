@@ -1,0 +1,22 @@
+.cont {
+  display: grid;
+  grid-template-columns: var(--ten) var(--ninety);
+  padding-top: var(--s-10);
+  padding-bottom: var(--s-30);
+  border-bottom: 1px solid var(--shadow);
+}
+
+.name {
+  font-size: var(--s-24);
+  font-weight: var(--fw-600);
+}
+
+.date {
+  font-size: var(--fs-14);
+  font-style: italic;
+}
+
+.body {
+  font-weight: var(--fw-400);
+  margin-top: var(--s-20);
+}
