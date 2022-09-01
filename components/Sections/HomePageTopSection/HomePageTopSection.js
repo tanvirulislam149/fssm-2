@@ -9,8 +9,8 @@ import { useRouter } from 'next/router';
 const HomePageTopSection = () => {
   const navigate = useRouter();
 
-  const route = () => {
-    navigate.push('/advancedsearch');
+  const route = (path) => {
+    navigate.push(`/${path}`);
   }
 
   return (
@@ -35,11 +35,12 @@ const HomePageTopSection = () => {
                 <Button
                   title='Search'
                   style={styles.btn}
+                  onClick={() => { route('googlesearch') }}
                 />
                 <Button
                   title='Advance search'
                   style={styles.btn}
-                  onClick={() => { route(); }}
+                  onClick={() => { route('advancedsearch'); }}
                 />
               </div>
             </div>
