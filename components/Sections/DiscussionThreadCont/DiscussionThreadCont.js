@@ -9,7 +9,6 @@ import i1 from '../../../assets/i1.png';
 import i2 from '../../../assets/i2.png';
 import i3 from '../../../assets/i3.png';
 import RepliesCard from '../../Cards/RepliesCard/RepliesCard';
-import TextInput from '../../Inputs/Input';
 import { postComment } from '../../../services/discussionService';
 
 const DiscussionThreadCont = () => {
@@ -96,11 +95,11 @@ const DiscussionThreadCont = () => {
                 </div>
 
                 <div className={styles.details}>
-                  <p>{topic[Number(category)].topics[Number(topicId)].topic_name}</p>
+                  <p>{topic[Number(category)]?.topics[Number(topicId)]?.topic_name}</p>
                   <div className={styles.footer}>
                     <span><Image height={14} width={14} alt='icon' src={i1} /><p>{date}</p></span>
-                    <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{topic[Number(category)].topics[Number(topicId)].creatorName}</span></p></span>
-                    <span><Image height={14} width={14} alt='icon' src={i3} /><p>{topic[Number(category)].topics[Number(topicId)].replies.length} Replies</p></span>
+                    <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{topic[Number(category)]?.topics[Number(topicId)]?.creatorName}</span></p></span>
+                    <span><Image height={14} width={14} alt='icon' src={i3} /><p>{topic[Number(category)]?.topics[Number(topicId)]?.replies?.length} Replies</p></span>
                   </div>
                 </div>
               </div>
@@ -110,7 +109,7 @@ const DiscussionThreadCont = () => {
               <p className={styles.head}>Replies</p>
               <div className={styles.content}>
                 {
-                  topic[Number(category)].topics[Number(topicId)].replies.map(({ comment, createdOn, creatorName, id }, i) => {
+                  topic[Number(category)]?.topics[Number(topicId)]?.replies?.map(({ comment, createdOn, creatorName, id }) => {
                     return (
                       <RepliesCard
                         key={id}
