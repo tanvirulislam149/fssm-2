@@ -20,3 +20,13 @@
   font-weight: var(--fw-400);
   margin-top: var(--s-20);
 }
+
+@media (max-width: 950px) {
+  .cont {
+    grid-template-columns: 1fr;
+  }
+
+  .cont > div {
+    margin-top: var(--fs-14);
+  }
+}

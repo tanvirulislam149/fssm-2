@@ -240,6 +240,10 @@
   .title {
     padding: var(--pa-title);
   }
+
+  .input {
+    width: var(--hundred);
+  }
 }
 
 @media (max-width: 575px) {
