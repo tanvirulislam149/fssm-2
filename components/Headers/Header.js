@@ -21,7 +21,7 @@ const Header = () => {
     } else if (id === 'telangana') {
       document.querySelector('#states').classList.add('onroute');
       document.querySelector('#states-desktop').classList.add('onroute-desktop');
-    } else if (id === 'knowledgecontent' || id === 'advancedsearch') {
+    } else if (id === 'knowledgecontent' || id === 'advancedsearch' || id === 'knowledgedata') {
       document.querySelector('#knowledgebase').classList.add('onroute');
       document.querySelector('#knowledgebase-desktop').classList.add('onroute-desktop');
     } else if (id === 'expiredtenders') {

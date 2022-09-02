@@ -22,6 +22,8 @@
   padding: var(--s-10);
   border-radius: var(--primary-border-radius);
   color: var(--black);
+  font-weight: var(--fw-600);
+  padding-left: var(--fs-24);
 }
 
 .card {
@@ -32,6 +34,7 @@
 .card a {
   display: flex;
   padding: 0;
+  align-items: center;
 }
 
 .card:nth-last-child(1) {

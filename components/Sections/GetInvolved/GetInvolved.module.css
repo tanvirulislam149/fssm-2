@@ -1,0 +1,32 @@
+.container {
+  background: var(--bg-login-gray);
+  padding-top: var(--s-10);
+}
+
+.container section {
+  padding: var(--ma-about-main);
+  padding-top: var(--s-10);
+}
+
+.title {
+  font-size: var(--s-40);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-blue);
+  padding: var(--pa-title);
+  padding-left: var(--s-150);
+  background: var(--white-color);
+  margin-top: -10px;
+}
+
+@media (max-width: 950px) {
+  .title {
+    padding: var(--pa-title);
+  }
+}
+
+@media (max-width: 575px) {
+  .title {
+    font-size: var(--fs-36);
+    padding: var(--pa-title);
+  }
+}

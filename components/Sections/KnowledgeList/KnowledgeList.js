@@ -7,9 +7,9 @@ const KnowledgeList = ({ loading, questions }) => {
     <>
       <div>
         {
-          questions.map(({ question, id }) => {
+          questions.map(({ question, id, items }) => {
             return (
-              <KnowledgeCard id={id} key={id} title={question} />
+              <KnowledgeCard id={id} items={items} key={id} title={question} />
             )
           })
         }

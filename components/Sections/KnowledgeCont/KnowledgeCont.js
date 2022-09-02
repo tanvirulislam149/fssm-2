@@ -28,6 +28,7 @@ const KnowledgeCont = () => {
     getAllKnowledgeRepo(id, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
+        console.log({ r: res })
         setLoading(false);
         setCategory(res.data['User Categories'])
         setQuestions(res.data.Questions);

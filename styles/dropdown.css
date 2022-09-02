@@ -209,3 +209,7 @@
 .modal::-webkit-scrollbar {
   width: 0;
 }
+
+.fa-2xs {
+  font-size: 0.3rem;
+}

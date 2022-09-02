@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './KnowledgeSubCard.module.css';
 import Link from 'next/link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 const KnowledgeSubCard = ({ heading, subcategories }) => {
   return (
@@ -11,11 +11,11 @@ const KnowledgeSubCard = ({ heading, subcategories }) => {
         <p className={styles.head}>{heading}</p>
 
         <div className={styles.whole}>
-          {subcategories.map(({ id, topic }) => {
+          {subcategories.map(({ id, subitem_title }) => {
             return (
               <div key={id} className={styles.card}>
-                <Link href='/'><a><FontAwesomeIcon className={styles.icon} color='#8e8e8e' icon={faAngleDoubleRight} size="1x" />
-                  <p className={styles.link}>{topic}</p></a></Link>
+                <Link href='/'><a><FontAwesomeIcon className={styles.icon} color='#8e8e8e' icon={faCircle} size="2xs" />
+                  <p className={styles.link}>{subitem_title}</p></a></Link>
               </div>
             )
           })}

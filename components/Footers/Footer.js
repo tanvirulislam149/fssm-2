@@ -14,6 +14,8 @@ import { axiosInstance } from '../../services/authService';
 const Footer = () => {
   const [action, setAction] = useState('Sign In');
 
+  const navigate = useRouter();
+
   useEffect(() => {
     Cookies.get('access') ?
       Cookies.get('isAdmin') === 'true' ?
@@ -21,7 +23,9 @@ const Footer = () => {
       : setAction('Sign In')
   }, [])
 
-  const navigate = useRouter();
+  const handleRoute = () => {
+    navigate.push('/interested');
+  }
 
   const clickHandler = () => {
     if (Cookies.get('isAdmin') === 'true') {
@@ -56,7 +60,7 @@ const Footer = () => {
         <div className={styles.right}>
           <div className={styles.btn_cont}>
             <SubmitButton title={action} style={styles.btn} onClick={clickHandler} />
-            <SubmitButton title='Get Involved' style={styles.btn} />
+            <SubmitButton onClick={() => { handleRoute(); }} title='Get Involved' style={styles.btn} />
           </div>
           <p className={styles.bottom_text}>{footerText.visitors}</p>
         </div>
