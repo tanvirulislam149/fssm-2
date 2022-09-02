@@ -102,6 +102,7 @@ const HelpDesk = () => {
       if (err) return handleError(err);
       if (res !== null) {
         setLoading(false);
+        console.log({ r: res })
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
@@ -218,7 +219,15 @@ const HelpDesk = () => {
             <QuestionForm />
           </div>
           <div className='none' id='previous-questions'>
-            <PreviousQuestions loading={loading} setttingLoading={setttingLoading} error={error} handleSubmit={handleSubmit} dateArray={dateArray} themeArray={themeArray} prevQuestions={prevQuestions} />
+            <PreviousQuestions
+              loading={loading}
+              setttingLoading={setttingLoading}
+              error={error}
+              handleSubmit={handleSubmit}
+              dateArray={dateArray}
+              themeArray={themeArray}
+              prevQuestions={prevQuestions}
+            />
           </div>
         </main>
       </section>

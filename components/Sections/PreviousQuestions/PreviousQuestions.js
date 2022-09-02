@@ -64,9 +64,19 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
         {loading ?
           <div className={styles.justify_center}><CircularProgress /></div> :
           prevQuestions.length ?
-            prevQuestions.map(({ id, question, name, organization }, i) => {
+            prevQuestions.map(({ id, upvotes, views, spam, question, name, organization }, i) => {
               return (
-                <QuestionCard key={id} organization={organization} name={name} date={dateArray[i]} theme={themeArray[i]} question={question} />
+                <QuestionCard
+                  key={id}
+                  organization={organization}
+                  name={name}
+                  date={dateArray[i]}
+                  theme={themeArray[i]}
+                  question={question}
+                  views={views}
+                  spam={spam}
+                  upvotes={upvotes}
+                />
               )
             }) :
             <div className={`${styles.tc} error`}>{error ? error : 'No Questions'}</div>

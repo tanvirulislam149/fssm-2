@@ -14,8 +14,8 @@ const HomePageMidSection = () => {
     <>
       <div className={styles.container}>
         <div className={styles.left}>
-          <h2 className={styles.title}>{homePageMidSectionText.title} <br /> {homePageMidSectionText.title2}</h2>
-          <p className={styles.text}>{homePageMidSectionText.body} <br /><br />{homePageMidSectionText.body2}</p>
+          <h2 className={styles.title}>{homePageMidSectionText.title}  {homePageMidSectionText.title2}</h2>
+          <p className={styles.text}>{homePageMidSectionText.body} <br />{homePageMidSectionText.body2}</p>
           <Button
             title='Read More'
             onClick={() => { handleRoute() }}

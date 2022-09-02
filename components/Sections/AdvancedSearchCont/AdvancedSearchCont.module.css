@@ -4,11 +4,13 @@
 }
 
 .title {
-  font-size: var(--fs-48);
+  font-size: var(--s-40);
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
   padding: var(--pa-title);
+  padding-left: var(--s-150);
   background: var(--white-color);
+  margin-top: -10px;
 }
 
 .container section {
@@ -94,6 +96,10 @@
 
   .cont {
     grid-template-columns: 1fr;
+  }
+
+  .title {
+    padding: var(--pa-title);
   }
 }
 

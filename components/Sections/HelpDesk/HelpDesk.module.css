@@ -9,12 +9,12 @@
 }
 
 .title {
-  font-size: var(--fs-48);
+  font-size: var(--s-40);
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
   padding: var(--pa-title);
+  padding-left: var(--s-150);
   background: var(--white-color);
-  border-top: solid var(--s-10) var(--bg-login-gray);
 }
 
 .instruction {
@@ -23,9 +23,15 @@
 }
 
 .main {
-  background: var(--light-green);
+  background: var(--help-desk-bg);
   padding: 0 var(--fs-1rem);
   padding-bottom: var(--fs-1rem);
+}
+
+@media (max-width: 950px) {
+  .title {
+    padding: var(--pa-title);
+  }
 }
 
 @media (max-width: 575px) {

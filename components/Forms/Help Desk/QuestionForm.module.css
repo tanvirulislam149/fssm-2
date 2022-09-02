@@ -1,58 +1,21 @@
 .container {
   padding: var(--s-40) var(--ma-homepage);
-  background: var(--quest-green);
-}
-
-.fileUpload {
-  position: relative;
-  overflow: hidden;
-}
-
-.fileUpload input.upload {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-size: var(--s-20);
-  cursor: pointer;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
-
-.btn_browse:hover {
-  background: var(--bg-main-button-hov);
-  color: var(--white-color);
+  background: var(--quest-card-bg);
 }
 
 .btn_browse {
   border: 1px solid var(--input-border-color);
   text-align: center;
-  width: max-content;
-  margin-top: var(--size-5);
-  border-left: 0;
+  width: var(--hundred);
   background-color: var(--white-color);
-  color: var(--blue);
+  color: var(--light-gray-color);
   font-weight: var(--fw-500);
-  height: var(--s-30);
-  padding: var(--s-10);
+  height: var(--s-60);
+  padding: var(--s-20);
   font-size: var(--fs-12);
   display: flex;
   align-items: center;
   border-radius: var(--s-20);
-}
-
-.f_input {
-  height: var(--s-60);
-  background-color: var(--white-color);
-  border: 1px solid var(--input-border-color);
-  border-radius: var(--primary-border-radius);
-  width: var(--hundred);
-  max-width: var(--s-400);
-  float: left;
-  padding: 0 var(--fs-14);
-  color: var(--light-gray-color);
-  font-family: var(--font-family-primary);
 }
 
 .file_cont {

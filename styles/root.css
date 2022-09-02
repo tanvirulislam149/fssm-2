@@ -116,6 +116,8 @@
   --m-green: #37c172;
   --login-page-title-color: #3ec70b;
   --dark-green: #049d00;
+  --help-desk-bg: #ebebec;
+  --quest-card-bg: #e2e3e4;
   --light-gray-color: #8e8e8e;
   --input-border-color: #e3e3e3;
   --bg-login-gray: #cdcdcd;
@@ -190,7 +192,7 @@
 
   /* footer */
   --brands-size: 45px;
-  --pa-footer: 100px 50px;
+  --pa-footer: 20px 50px;
   --pb-footer: 165px;
   --pa-btn-footer: 12px 47px;
   --footer-logo-h: 85px;

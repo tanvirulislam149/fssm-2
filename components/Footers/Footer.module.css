@@ -1,9 +1,7 @@
 .container {
   background: var(--white-color);
   padding: var(--pa-footer);
-  padding-bottom: var(--s-80);
-  padding-top: var(--s-60);
-  margin-top: var(--login-btn-margin);
+  padding-bottom: var(--s-50);
   display: flex;
   align-items: center;
   justify-content: space-between;

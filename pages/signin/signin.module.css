@@ -4,6 +4,14 @@
   background: var(--bg-login-gray);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: var(--s-10) 0;
+  padding-top: var(--s-50);
+}
+
+@media (max-width: 950px) {
+  .container {
+    align-items: center;
+    padding-top: var(--s-10);
+  }
 }

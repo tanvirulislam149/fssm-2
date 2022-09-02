@@ -1,5 +1,5 @@
 .container {
-  background: var(--shadow-green);
+  background: var(--quest-card-bg);
   width: var(--hundred);
   padding: var(--s-20) var(--s-30);
   border-radius: var(--primary-border-radius);
@@ -18,15 +18,44 @@
   display: flex;
   border-bottom: 1px solid var(--light-gray-color);
   margin: var(--s-10) 0;
+  margin-left: var(--s-70);
+  padding-bottom: var(--s-10);
 }
 
 .footer p {
   margin-right: var(--sub-heading-h);
   font-size: var(--fs-12);
+  display: flex;
+  justify-content: center;
+  color: var(--light-gray-color);
 }
 
-.footer p:nth-last-child(2) span {
-  text-transform: capitalize;
+.footer p > span,
+.footer2 p > span {
+  height: max-content !important;
+  margin-right: var(--size-3) !important;
+}
+
+.footer p > span + span {
+  text-transform: uppercase;
+  margin-left: var(--size-3);
+}
+
+.footer2 {
+  margin-left: var(--s-70);
+  display: flex;
+}
+
+.footer2 p {
+  font-size: var(--fs-12);
+  display: flex;
+  justify-content: center;
+  margin-right: var(--s-30);
+  color: var(--light-gray-color);
+}
+
+.body {
+  line-height: var(--s-30);
 }
 
 .img_cont {
@@ -52,7 +81,25 @@
 .details {
   font-weight: var(--fw-400);
   width: var(--sixty);
-  line-height: var(--lh-35);
+  margin-right: auto;
+  margin-left: var(--fs-1rem);
+}
+
+.footer2 + div > div {
+  background: var(--primary-blue);
+  cursor: pointer;
+  height: var(--s-50);
+  width: var(--s-50);
+  border-radius: var(--s-8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15px;
+}
+
+.footer2 + div {
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media (max-width: 950px) {
@@ -66,10 +113,22 @@
 
   .details {
     width: var(--hundred);
+    margin-left: 0;
+    margin-top: var(--s-10);
+    margin-bottom: var(--s-10);
   }
 
-  .footer p {
-    margin-right: var(--s-30);
+  .footer,
+  .footer2 {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer p,
+  .footer2 p {
+    margin-right: 0;
+    margin-bottom: var(--size-5);
   }
 
   .theme {

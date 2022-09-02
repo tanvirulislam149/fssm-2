@@ -7,7 +7,7 @@
 }
 
 .title {
-  font-size: var(--s-40);
+  font-size: var(--s-30);
   padding-bottom: var(--s-20);
   color: var(--primary-blue);
   font-weight: var(--font-weight-bold);
@@ -16,7 +16,6 @@
 .text {
   color: var(--light-gray-color);
   line-height: var(--lh-35);
-  font-size: var(--s-20);
   text-align: justify;
 }
 

@@ -3,5 +3,5 @@
 }
 
 .btn:hover {
-  background: var(--bg-main-button-hov);
+  background: var(--l-blue);
 }

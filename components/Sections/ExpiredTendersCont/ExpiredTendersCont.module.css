@@ -4,11 +4,13 @@
 }
 
 .title {
-  font-size: var(--fs-48);
+  font-size: var(--s-40);
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
   padding: var(--pa-title);
+  padding-left: var(--s-150);
   background: var(--white-color);
+  margin-top: -10px;
 }
 
 .container section {
@@ -31,6 +33,12 @@
 .cont p {
   font-weight: var(--fw-600);
   font-size: var(--s-20);
+}
+
+@media (max-width: 950px) {
+  .title {
+    padding: var(--pa-title);
+  }
 }
 
 @media (max-width: 575px) {

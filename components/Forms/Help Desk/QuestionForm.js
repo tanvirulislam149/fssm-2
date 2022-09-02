@@ -7,15 +7,6 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const QuestionForm = () => {
-  useEffect(() => {
-    document.getElementById("uploadFile").value = 'No files selected'
-  }, [])
-
-  useEffect(() => {
-    document.getElementById("attachment").onchange = function () {
-      document.getElementById("uploadFile").value = this.value.replace("C:\\fakepath\\", "");
-    };
-  }, [])
 
   const handleError = (err) => {
     //console.log(err);
@@ -120,19 +111,16 @@ const QuestionForm = () => {
               <div className={styles.select_cont}>
                 <label className={styles.label}>Attachment</label>
                 <div className={styles.file_cont}>
-                  <Input id="uploadFile" style={styles.f_input} />
-                  <span id='file' className='form-error'>Accepts jpg,jpeg,png</span>
                   <div className={`${styles.btn_browse} ${styles.fileUpload}`}>
-                    <span>Choose File</span>
                     <Input
                       id="attachment"
                       type='file'
                       name='attachment'
-                      style={styles.upload}
                       onChange={(e) => {
                         setFieldValue('attachment', e.currentTarget.files[0])
                       }} />
                   </div>
+                  <span id='file' className='form-error'>Accepts jpg,jpeg,png</span>
                 </div>
               </div>
             </div>
