@@ -16,6 +16,7 @@ const GetInvolvedForm = () => {
           initialValues={{
             name: '',
             email: '',
+            note: '',
             join: false,
             know_more: false,
           }}
@@ -49,7 +50,7 @@ const GetInvolvedForm = () => {
             }
 
             document.querySelector('.modal2').style.display = "none";
-            //handleSubmit({ name: data.name, email: data.email, categories });
+            //handleSubmit({ name: data.name, email: data.email, note:data.note, categories });
             actions.resetForm();
           }}
         >
