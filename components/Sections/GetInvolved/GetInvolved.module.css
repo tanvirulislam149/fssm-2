@@ -5,7 +5,11 @@
 
 .container section {
   padding: var(--ma-about-main);
-  padding-top: var(--s-10);
+  padding-top: var(--s-50);
+  padding-bottom: var(--s-150);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--five);
 }
 
 .title {
@@ -16,6 +20,14 @@
   padding-left: var(--s-150);
   background: var(--white-color);
   margin-top: -10px;
+}
+
+@media (max-width: 1000px) {
+  .container section {
+    padding: var(--ma-about-main);
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 
 @media (max-width: 950px) {

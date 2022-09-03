@@ -206,7 +206,8 @@
   background-color: var(--faded-black);
 }
 
-.modal::-webkit-scrollbar {
+.modal::-webkit-scrollbar,
+.modal2::-webkit-scrollbar {
   width: 0;
 }
 

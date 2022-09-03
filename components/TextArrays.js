@@ -362,3 +362,20 @@ export const advancedSearchText = {
     'All',
   ]
 }
+
+export const getInvolvedText = {
+  text: [
+    'Get Connected and follow our Twitter page to spread the word',
+    'Interested in becoming an alliance member and contribute to the FSM sector?',
+    'Need more information about FSM ? Write to us !'
+  ],
+  title: [
+    'Spread the word',
+    'Connect with FSSMAlliance',
+    'Know more about FSM'
+  ],
+  btn: [
+    'Click Here',
+    'Get in touch'
+  ]
+}
