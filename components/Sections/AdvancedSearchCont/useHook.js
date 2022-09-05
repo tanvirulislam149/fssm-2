@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 import styles from './AdvancedSearchCont.module.css';
+import { advancedSearchText } from '../../TextArrays';
 
 const Root = styled('div')(
   ({ theme }) => `
@@ -33,7 +34,6 @@ const InputWrapper = styled('div')(
   flex-wrap: wrap;
   margin:1%;
   margin-bottom: 0;
-  height: 54px;
 
   &:hover {
     border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
@@ -60,7 +60,6 @@ const InputWrapper = styled('div')(
   }
 `,
 );
-
 
 function Tag(props) {
   const { label, onDelete, ...other } = props;
@@ -155,10 +154,9 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function CustomizedHook() {
+export default function CustomizedHook({ settingChips }) {
   const {
     getRootProps,
-    getInputLabelProps,
     getInputProps,
     getTagProps,
     getListboxProps,
@@ -171,9 +169,20 @@ export default function CustomizedHook() {
     id: 'customized-hook-demo',
     // defaultValue: [top100Films[1]],
     multiple: true,
-    options: top100Films,
+    options: advancedSearchText.chips,
     getOptionLabel: (option) => option.title,
   });
+
+  let results = [];
+  value.forEach(({ title }) => {
+    results.push(title);
+  })
+
+  React.useEffect(() => {
+    settingChips(results);
+    console.log('ran')
+  }, [value])
+
 
   return (
     <Root>
