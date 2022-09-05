@@ -2,6 +2,7 @@ import React from 'react';
 import GetInvolvedForm from '../../Forms/GetInvolvedForm/GetInvolvedForm';
 import styles from './GetInvolvedCard.module.css';
 import Link from 'next/link';
+import { getInvolvedText } from '../../TextArrays';
 
 const GetInvolvedCard = ({ id, text, title, btn }) => {
 
@@ -12,7 +13,7 @@ const GetInvolvedCard = ({ id, text, title, btn }) => {
           {id}
         </div>
         <p className={styles.head}>{title}</p>
-        <p className={styles.body}>{text}</p>
+        <p className={styles.body}>{text}{id === 3 ? <br /> : null}{id === 3 ? getInvolvedText.text[3] : null}</p>
         <Link href={id === 1 ? 'https://twitter.com/nfssmalliance?lang=en' : ''}><a><div
           className={styles.btn}
           data-modal="myModal1"
@@ -39,7 +40,7 @@ const GetInvolvedCard = ({ id, text, title, btn }) => {
             }}
           ><span>x</span></div>
           <div className={styles.modal_header}>
-            <h2>How do you wish to get involved?</h2>
+            <h2>Tell us more about yourself</h2>
           </div>
 
           <div className={styles.form}>

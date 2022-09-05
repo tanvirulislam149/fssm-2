@@ -15,6 +15,8 @@ import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import { advancedSearch } from '../../../services/advancedSearchServices';
 import { advancedSearchText } from '../../TextArrays';
+import Script from "next/script";
+import Head from "next/head";
 
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
@@ -84,6 +86,13 @@ const AdvancedSearchCont = () => {
 
   return (
     <>
+      {/* <Head>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://phpcoder.tech/multiselect/css/jquery.multiselect.css"/>
+      </Head>
+      <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"/>
+<Script src="https://phpcoder.tech/multiselect/js/jquery.multiselect.js"/> */}
+
       <div className={styles.container}>
         <h1 className={styles.title}>Advanced Search</h1>
         <section>

@@ -10,6 +10,11 @@
   padding: var(--s-50) var(--s-20);
 }
 
+.left {
+  display: flex;
+  flex-grow: 100;
+}
+
 .btn {
   height: var(--s-50);
   border-radius: var(--s-8);
@@ -21,12 +26,12 @@
   cursor: pointer;
 }
 
-.btn + a {
-  margin-left: auto;
+.left + a {
+  margin-left: var(--s-20);
 }
 
 .input {
-  width: var(--size-72);
+  flex-grow: 100;
 }
 
 .input,
@@ -73,6 +78,20 @@
 @media (max-width: 950px) {
   .title {
     padding: var(--pa-title);
+  }
+
+  .form {
+    flex-direction: column;
+  }
+
+  .left {
+    width: var(--hundred);
+  }
+
+  .left + a {
+    width: var(--hundred);
+    margin-left: 0;
+    margin-top: var(--s-10);
   }
 }
 

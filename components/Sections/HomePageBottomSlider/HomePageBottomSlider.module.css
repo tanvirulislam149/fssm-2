@@ -1,5 +1,5 @@
 .container {
-  height: var(--s-300);
+  height: max-content;
   width: var(--hundred);
   margin-top: var(--s-80);
 }

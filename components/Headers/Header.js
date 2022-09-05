@@ -14,8 +14,11 @@ const Header = () => {
   useEffect(() => {
     var id = router.pathname.slice(1);
     var option = document.getElementById(id);
+    console.log(router.pathname, option)
 
-    if (id === 'glossary') {
+    if (router.pathname === '/discussionboard' || router.pathname === '/interested' || router.pathname === '/googlesearch') {
+      return;
+    } else if (id === 'glossary') {
       document.querySelector('#faq').classList.add('onroute');
       document.querySelector('#faq-desktop').classList.add('onroute-desktop');
     } else if (id === 'telangana') {

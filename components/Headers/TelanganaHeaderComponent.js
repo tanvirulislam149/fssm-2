@@ -18,7 +18,7 @@ const TelanganaHeaderComponent = () => {
     <>
       <div id='cont'>
         <div className={styles.cont_2}>
-          <p className={styles.text} onClick={() => { handleRefresh() }}>Citiwide Inclusive Sanitation<br />(CWIS) - Telangana</p>
+          <p className={styles.text} onClick={() => { handleRefresh() }}>Citiwide Inclusive Sanitation (CWIS) -<br /> Telangana</p>
           <ul className={styles.links}>
             <li id='home-desktop'><Link href='/'>Home</Link></li>
             <li id='fssmalliance-desktop'><Link href='/fssmalliance'>About</Link></li>

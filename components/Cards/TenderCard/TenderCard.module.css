@@ -2,6 +2,7 @@
   padding: var(--s-20);
   background: var(--white-color);
   border-radius: var(--fs-12);
+  width: var(--size-95);
   display: flex;
 }
 
@@ -114,7 +115,7 @@
 .btn {
   background: var(--primary-blue);
   border-width: 0;
-  padding: var(--s-10) var(--s-30);
+  padding: var(--fs-12) var(--s-40);
   border-radius: var(--s-10);
   color: var(--white-color);
 }
@@ -142,6 +143,7 @@
 @media (max-width: 950px) {
   .container {
     flex-direction: column;
+    width: var(--hundred);
   }
 
   .avatar {

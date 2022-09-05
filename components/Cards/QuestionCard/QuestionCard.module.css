@@ -88,7 +88,7 @@
 .footer2 + div > div {
   background: var(--primary-blue);
   cursor: pointer;
-  height: var(--s-50);
+  height: var(--brands-size);
   width: var(--s-50);
   border-radius: var(--s-8);
   display: flex;

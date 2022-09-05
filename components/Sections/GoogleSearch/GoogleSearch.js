@@ -25,34 +25,36 @@ const GoogleSearch = () => {
       <div className={styles.container}>
         <section>
           <div className={styles.form}>
-            <FormControl variant="outlined" className={styles.input}>
-              <OutlinedInput
-                value={text}
-                onChange={handleChange}
-                endAdornment={
-                  text.length ?
-                    <InputAdornment className={styles.close} position="end">
-                      <IconButton
-                        onClick={() => {
-                          setText('');
-                        }}
-                        edge="end"
-                      >
-                        <CloseIcon />
-                      </IconButton>
-                    </InputAdornment> :
-                    null
-                }
-              />
-            </FormControl>
+            <div className={styles.left}>
+              <FormControl variant="outlined" className={styles.input}>
+                <OutlinedInput
+                  value={text}
+                  onChange={handleChange}
+                  endAdornment={
+                    text.length ?
+                      <InputAdornment className={styles.close} position="end">
+                        <IconButton
+                          onClick={() => {
+                            setText('');
+                          }}
+                          edge="end"
+                        >
+                          <CloseIcon sx={{ color: 'black' }} />
+                        </IconButton>
+                      </InputAdornment> :
+                      null
+                  }
+                />
+              </FormControl>
 
-            <div
-              className={styles.btn}
-              onClick={() => {
-                handleSubmit();
-              }}
-            >
-              <SearchIcon style={{ color: 'white' }} />
+              <div
+                className={styles.btn}
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                <SearchIcon style={{ fontSize: '33px', color: 'white' }} />
+              </div>
             </div>
 
             <Link href='/advancedsearch'><a><div className={styles.btn2}>Advanced Search</div></a></Link>

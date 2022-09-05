@@ -26,6 +26,7 @@
   font-weight: var(--font-weight-bold);
   border-width: 0;
   box-shadow: 0 0 var(--size-5) var(--shadow);
+  margin-top: var(--s-60);
 }
 
 .btn:hover {
@@ -163,7 +164,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-radius: var(--size-5);
   border: solid 1px var(--bg-login-gray);
   position: relative;
 }

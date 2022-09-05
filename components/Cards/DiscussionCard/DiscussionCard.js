@@ -142,7 +142,13 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
             <div className={styles.modal_header}>
               <h2>{modalText}</h2>
             </div>
-
+            <div className={styles.ok}>
+              <div
+                onClick={() => {
+                  document.querySelector('.modal2').style.display = "none";
+                }}
+              >Ok</div>
+            </div>
           </div>
         </div>
 

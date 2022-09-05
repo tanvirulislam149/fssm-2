@@ -22,6 +22,7 @@
   background: var(--white-color);
   padding: var(--s-30);
   border-radius: var(--primary-border-radius);
+  width: var(--size-95);
 }
 
 .cont p {
@@ -31,7 +32,7 @@
 
 .footer_text {
   padding: var(--fs-14);
-  width: var(--hundred);
+  width: var(--size-95);
   font-size: var(--s-10);
   padding-left: var(--three);
   font-weight: var(--fw-400);
@@ -50,6 +51,11 @@
 @media (max-width: 950px) {
   .title {
     padding: var(--pa-title);
+  }
+
+  .footer_text,
+  .cont {
+    width: var(--hundred);
   }
 }
 

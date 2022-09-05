@@ -67,7 +67,7 @@ const GetInvolvedForm = () => {
               <span className='form-error'><ErrorMessage name="email" /></span>
             </div>
 
-            <p className={styles.instruction}>Tell us more about yourself</p>
+            <p className={styles.instruction}>How do you wish to get involved?</p>
 
             <div>
               <div className={styles.row}>

@@ -19,13 +19,14 @@
 
 .plus,
 .minus {
-  height: var(--s-30);
-  width: var(--s-30);
+  height: var(--s-20);
+  width: var(--s-20);
   border-radius: var(--fifty);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-left: var(--s-10);
 }
 
 .plus:hover,
@@ -136,6 +137,7 @@
   padding: var(--s-10) var(--s-30);
   border-width: 0;
   margin-left: auto;
+  margin-right: var(--s-10);
 }
 
 .btn:hover {
@@ -158,7 +160,7 @@
 .cancel {
   font-size: var(--fs-12);
   font-weight: var(--fw-400);
-  padding: var(--s-10) var(--s-18);
+  padding: var(--s-10) var(--s-20);
   height: max-content;
   border-radius: var(--s-8);
   border-width: 0;
@@ -181,6 +183,29 @@
 
 .submit:hover {
   background: var(--dark-green);
+}
+
+.ok {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var(--s-20) var(--s-20) 0;
+}
+
+.ok div {
+  background: var(--primary-blue);
+  color: var(--white-color);
+  font-weight: var(--fw-600);
+  height: var(--lh-35);
+  width: var(--s-60);
+  border-radius: var(--size-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ok div:hover {
+  background: var(--l-blue);
 }
 
 .modal_content {
@@ -207,7 +232,6 @@
   color: var(--black);
   border-radius: 0 0 var(--size-5) var(--size-5);
   text-align: center;
-  padding-bottom: var(--s-75);
   padding-top: var(--fs-24);
   line-height: var(--s-28);
 }

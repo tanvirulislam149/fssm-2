@@ -46,6 +46,10 @@
   font-family: var(--font-family-primary);
 }
 
+.content {
+  height: var(--fs-14);
+}
+
 .btn:hover {
   background: var(--dark-telanga-green);
 }
