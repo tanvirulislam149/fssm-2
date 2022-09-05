@@ -169,7 +169,7 @@ export default function CustomizedHook() {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: [top100Films[1]],
+    // defaultValue: [top100Films[1]],
     multiple: true,
     options: top100Films,
     getOptionLabel: (option) => option.title,
@@ -180,7 +180,7 @@ export default function CustomizedHook() {
       <div {...getRootProps()}>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => (
-            <StyledTag label={option.title} {...getTagProps({ index })} />
+            <StyledTag key={index} label={option.title} {...getTagProps({ index })} />
           ))}
           <input className={styles.input} placeholder={value.length ? '' : 'Search for Keywords, Themes, Subcategories, Stakeholders, Value chain, State...'} {...getInputProps()} />
         </InputWrapper>
@@ -188,7 +188,7 @@ export default function CustomizedHook() {
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
           {(groupedOptions).map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
+            <li key={index} {...getOptionProps({ option, index })}>
               <span>{option.title}</span>
               <CheckIcon fontSize="small" />
             </li>
