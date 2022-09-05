@@ -25,7 +25,7 @@
   background: var(--green);
   border-width: 0;
   color: var(--white-color);
-  padding: var(--s-8) var(--fs-14);
+  padding: var(--s-8) var(--s-20);
   height: max-content;
 }
 

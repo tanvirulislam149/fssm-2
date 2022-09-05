@@ -65,23 +65,23 @@ const TableCont = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>S.No</StyledTableCell>
-                <StyledTableCell align="right">Organization Name</StyledTableCell>
-                <StyledTableCell align="right">No of Docs Uploaded</StyledTableCell>
-                <StyledTableCell align="right">No of Docs Mapped</StyledTableCell>
-                <StyledTableCell align="right">No of Docs Approved</StyledTableCell>
+                <StyledTableCell align="center">S.NO</StyledTableCell>
+                <StyledTableCell align="center">Organization Name</StyledTableCell>
+                <StyledTableCell align="center">No of Docs Uploaded</StyledTableCell>
+                <StyledTableCell align="center">No of Docs Mapped</StyledTableCell>
+                <StyledTableCell align="center">No of Docs Approved</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
+                  <StyledTableCell align="center" component="th" scope="row">
                     {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                  <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                  <StyledTableCell align="center">{row.calories}</StyledTableCell>
+                  <StyledTableCell align="center">{row.fat}</StyledTableCell>
+                  <StyledTableCell align="center">{row.carbs}</StyledTableCell>
+                  <StyledTableCell align="center">{row.protein}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

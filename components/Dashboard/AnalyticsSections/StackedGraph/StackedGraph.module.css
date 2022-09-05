@@ -74,6 +74,11 @@
   margin-bottom: var(--s-10);
 }
 
+.chart > div {
+  width: var(--size-95);
+  margin-left: var(--five);
+}
+
 @media (max-width: 950px) {
   .filter {
     padding: var(--fs-24) var(--s-30);

@@ -38,14 +38,14 @@
 }
 
 .cont p {
-  font-size: var(--s-20);
+  font-size: var(--s-22);
   font-weight: var(--fw-400);
   color: var(--primary-blue);
 }
 
 .cont h6 {
   color: var(--dark-green);
-  font-size: var(--s-20);
+  font-size: var(--fs-24);
   font-weight: var(--font-weight-bold);
 }
 

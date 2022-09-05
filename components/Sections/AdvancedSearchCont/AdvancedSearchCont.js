@@ -17,6 +17,7 @@ import { advancedSearch } from '../../../services/advancedSearchServices';
 import { advancedSearchText } from '../../TextArrays';
 import Script from "next/script";
 import Head from "next/head";
+import CustomizedHook from './useHook';
 
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
@@ -86,6 +87,7 @@ const AdvancedSearchCont = () => {
 
   return (
     <>
+
       {/* <Head>
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://phpcoder.tech/multiselect/css/jquery.multiselect.css"/>
@@ -97,30 +99,7 @@ const AdvancedSearchCont = () => {
         <h1 className={styles.title}>Advanced Search</h1>
         <section>
           <form className={styles.form} onSubmit={(e) => { handleSubmit(e); }}>
-            <FormControl className={styles.chip}>
-              <InputLabel id="demo-multiple-chip-label" shrink={false}>{data.words.length ? '' : 'Search for Keywords,Themes,Subcategories,Stakeholders,Value chain,State...'}</InputLabel>
-              <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={data.words}
-                onChange={(e) => { handleChange(e, 'words') }}
-                input={<OutlinedInput id="select-multiple-chip" />}
-                renderValue={(selected) => (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-              >
-                {advancedSearchText.chips.map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <CustomizedHook className={styles.chip} />
 
             <FormControl className={styles.select}>
               <InputLabel id="demo-multiple-checkbox-label" shrink={false}>{data.stakeholder.length ? '' : 'Stakeholder'}</InputLabel>

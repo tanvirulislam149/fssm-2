@@ -53,6 +53,19 @@
   color: var(--light-gray-color);
 }
 
+.input {
+  height: var(--s-50) !important;
+  background: var(--white-color) !important;
+  padding-left: 3% !important;
+}
+
+.input::-webkit-input-placeholder {
+  font-size: var(--s-18);
+  font-weight: var(--fw-500);
+  font-family: var(--font-family-secondary);
+  color: var(--light-gray-color);
+}
+
 .select {
   width: var(--size-23);
   margin: var(--size-1) !important;
@@ -63,6 +76,11 @@
 .select > div > svg,
 .chip > div > svg {
   color: var(--black);
+}
+
+.select > label {
+  margin-left: var(--thirty);
+  font-weight: var(--fw-500);
 }
 
 .select + span {
@@ -76,6 +94,8 @@
   margin: var(--size-1) !important;
   height: var(--s-55);
   border-radius: var(--s-10);
+  font-weight: var(--fw-500);
+  font-size: var(--s-18);
   border-width: 0;
   background: var(--blue);
   color: var(--white-color);

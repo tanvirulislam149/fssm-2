@@ -57,6 +57,11 @@ const StackedGraph = () => {
       title: {
         text: undefined
       },
+      labels: {
+        style: {
+          fontSize: '14px',
+        },
+      }
     },
     grid: {
       show: true,
@@ -90,6 +95,7 @@ const StackedGraph = () => {
       fontWeight: 600,
       //horizontalAlign: 'left',
       offsetX: -10,
+      offsetY: 15,
       markers: {
         width: 17,
         height: 17,
@@ -169,8 +175,10 @@ const StackedGraph = () => {
           <button className={styles.btn}>Search</button>
         </div>
 
-        <div id="chart">
-          <ReactApexChart options={option} height={900} series={series} type="bar" />
+        <div className={styles.chart}>
+          <div id="chart">
+            <ReactApexChart options={option} height={900} series={series} type="bar" />
+          </div>
         </div>
       </section>
     </>
