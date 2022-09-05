@@ -16,6 +16,7 @@
   margin-bottom: var(--s-30);
   font-weight: var(--fw-400);
   color: var(--light-gray-color);
+  width: var(--size-95);
 }
 
 .justify_center {
