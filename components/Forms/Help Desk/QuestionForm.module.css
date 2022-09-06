@@ -141,6 +141,7 @@
 
 .btn_cont {
   margin-top: var(--s-40);
+  display: flex;
 }
 
 @media (max-width: 950px) {

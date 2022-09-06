@@ -3,13 +3,13 @@ import styles from './Carousel.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
 import Link from 'next/link';
-//import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import right from '../../../assets/rigtt.png';
 import left from '../../../assets/left.png';
 
 const Carousel = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   // const id = router.asPath.slice(router.asPath.length - 1);
 
@@ -24,6 +24,10 @@ const Carousel = () => {
     document.getElementById('carousel_3').classList.remove('carousel_select');
     document.getElementById('carousel_4').classList.remove('carousel_select');
     el.classList.add('carousel_select');
+  }
+
+  const handleNav = (path) => {
+    router.push(`/${path}`);
   }
 
   return (
@@ -44,7 +48,7 @@ const Carousel = () => {
                       )
                     })}
                   </ul>
-                  <Button title='Show more' style={styles.btn} />
+                  <Button title='Show more' style={styles.btn} onClick={() => { }} />
                 </div>
                 <a href="#carousel__slide4"
                   onClick={() => {
@@ -71,7 +75,7 @@ const Carousel = () => {
                     )
                   })}
                 </ul>
-                <Button title='Show more' style={styles.btn} />
+                <Button title='Show more' style={styles.btn} onClick={() => { handleNav('faq'); }} />
               </div>
               <a href="#carousel__slide1"
                 onClick={() => {
@@ -97,7 +101,7 @@ const Carousel = () => {
                     )
                   })}
                 </ul>
-                <Button title='Show more' style={styles.btn} />
+                <Button title='Show more' style={styles.btn} onClick={() => { handleNav('discussionboard'); }} />
               </div>
               <a href="#carousel__slide2"
                 onClick={() => {
@@ -123,7 +127,7 @@ const Carousel = () => {
                     )
                   })}
                 </ul>
-                <Button title='Show more' style={styles.btn} />
+                <Button title='Show more' style={styles.btn} onClick={() => { handleNav('tenders'); }} />
               </div>
               <a href="#carousel__slide3"
                 onClick={() => {

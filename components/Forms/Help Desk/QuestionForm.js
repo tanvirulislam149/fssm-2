@@ -5,8 +5,11 @@ import Button from '../../Buttons/Submit/SubmitButton';
 import { submitQuestion } from '../../../services/helpDeskService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const QuestionForm = () => {
+  const [theInputKey, setKey] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleError = (err) => {
     //console.log(err);
@@ -20,6 +23,12 @@ const QuestionForm = () => {
         alert('Question received! We will get back to you soon!');
       }
     });
+  }
+
+  const functionThatResetsTheFileInput = () => {
+    let randomString = Math.random().toString(36);
+    setKey(randomString);
+    setLoading(false);
   }
 
   return (
@@ -80,10 +89,9 @@ const QuestionForm = () => {
 
           handleSubmit(values);
           actions.resetForm();
-          document.getElementById("uploadFile").value = 'No files selected';
         }}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, resetForm }) => (
           <Form
             className={styles.container}
           >
@@ -115,6 +123,7 @@ const QuestionForm = () => {
                     <Input
                       id="attachment"
                       type='file'
+                      key={theInputKey || ''}
                       name='attachment'
                       onChange={(e) => {
                         setFieldValue('attachment', e.currentTarget.files[0])
@@ -168,7 +177,18 @@ const QuestionForm = () => {
               <Button type='submit' title='Submit' onClick={() => {
                 handleSubmit()
               }} style={styles.submit_btn} />
-              <button disabled className={styles.cancel_btn}>Cancel</button>
+              {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
+                <button
+                  onClick={() => {
+                    setLoading(true);
+                    setTimeout(() => {
+                      resetForm();
+                      setFieldValue('attachment', null);
+                      functionThatResetsTheFileInput();
+                    }, 1000);
+                  }}
+                  type='reset'
+                  className={styles.cancel_btn}>Cancel</button>}
             </div>
           </Form>
         )}

@@ -141,6 +141,7 @@
   border-radius: var(--fs-12);
   padding: var(--s-8) var(--s-30);
   border-width: 0;
+  height: max-content;
 }
 
 .btn:hover {
@@ -164,6 +165,7 @@
 .box1 {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: var(--input-border-color);
   padding: var(--s-8) var(--fs-1rem);
 }
@@ -176,7 +178,7 @@
 }
 
 .view + div {
-  margin-left: -45px;
+  margin-left: -40px;
   padding-bottom: var(--s-20);
 }
 
@@ -185,7 +187,7 @@
   font-size: var(--fs-12);
   font-weight: var(--fw-400);
   text-align: center;
-  padding: var(--s-8);
+  padding: var(--size-3);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -198,7 +200,7 @@
 }
 
 .main {
-  margin-left: var(--s-30);
+  margin-left: var(--s-20);
 }
 
 .body2 {
@@ -246,7 +248,7 @@
 
 .cont2 {
   margin-top: var(--s-10);
-  margin-left: var(--s-45);
+  margin-left: var(--s-40);
 }
 
 .grid {

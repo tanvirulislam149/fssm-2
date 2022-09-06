@@ -198,7 +198,7 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
                   <button
                     className={styles.submit}
                     data-modal="myModal2"
-                    onClick={() => { handleSubmit({ category_id: category, disc_topic }); }}
+                    onClick={() => { disc_topic.length > 0 ? handleSubmit({ category_id: category, disc_topic }) : null; }}
                   >Submit</button>
                   <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
                 </>}
