@@ -70,7 +70,7 @@ const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, 
                 Yes absolutely. In fact, general citizens like you wanting to be a
                 part of FSSM can steer the FSSM drive in India.
                 Answering your question, the most basic thing you could do is search
-                for the basics of FSSM on this website and be aware of the do's and dont's.
+                for the basics of FSSM on this website and be aware of the do&apos;s and dont&apos;s.
                 Secondly, you can do a quick basic assessment of the sanitary system in your
                 apartment/locality and check if it up to the right standard. Based on your
                 assessment you can connect with your local municipality to take things forward.

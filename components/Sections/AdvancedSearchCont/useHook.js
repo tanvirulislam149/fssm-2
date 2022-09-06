@@ -181,7 +181,7 @@ export default function CustomizedHook({ data, setData }) {
         words: results
       });
     })
-  }, [value])
+  }, [value, data, setData])
 
 
   return (

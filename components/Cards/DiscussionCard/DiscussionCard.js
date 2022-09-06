@@ -70,7 +70,7 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
       date[i] = `${month} ${day}, ${year}`;
     });
     setDateArray(date);
-  }, [])
+  }, [topics])
 
   const dropDown = (e) => {
     if (e.classList.contains("active-dropdown")) {

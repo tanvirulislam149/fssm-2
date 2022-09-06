@@ -46,7 +46,7 @@ const KnowledgeDataCont = () => {
         setTenders(res.data.data);
       }
     });
-  }, [id])
+  }, [id, path, subitem])
 
   useEffect(() => {
     switch (id) {

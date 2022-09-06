@@ -55,7 +55,7 @@ const RepliesCard = ({ comment, createdOn, creatorName }) => {
     date[0] = `${month} ${day}, ${year}`;
     date[1] = `${hour}:${min}`;
     setDateArray(date);
-  }, [])
+  }, [createdOn])
 
   return (
     <>
