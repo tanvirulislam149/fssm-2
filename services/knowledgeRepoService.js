@@ -13,8 +13,8 @@ export const getAllKnowledgeRepo = (params, cb) => {
 export const getSubItem = (params, cb) => {
   axios.get('repo/docs', {
     params: {
-      category: 3,
-      subitem: 1
+      category: params.id,
+      subitem: params.subitem
     }
   })
     .then(res => cb(null, res))

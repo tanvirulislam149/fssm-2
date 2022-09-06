@@ -39,9 +39,9 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
                 <div>
                   <p className={styles.top_p}>Citation : <span>{citation}</span></p>
                 </div>
-                <div>
+                {expiry_date ? <div>
                   <p className={styles.top_p}>Expiry Date : <span>{expiry_date.replaceAll('-', '/')}</span></p>
-                </div>
+                </div> : null}
               </div>
 
               <div className={styles.row}>

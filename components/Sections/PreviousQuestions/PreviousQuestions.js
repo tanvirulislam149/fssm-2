@@ -68,6 +68,7 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
               return (
                 <QuestionCard
                   key={id}
+                  id={id}
                   organization={organization}
                   name={name}
                   date={dateArray[i]}

@@ -4,7 +4,7 @@ import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
 import HeaderComponent from '../../Headers/HeaderComponent';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import { getExpiredTenders } from '../../../services/tenderServices';
-import { getAllKnowledgeRepo } from '../../../services/knowledgeRepoService';
+import { getAllKnowledgeRepo, getSubItem } from '../../../services/knowledgeRepoService';
 import TenderCard from '../../Cards/TenderCard/TenderCard';
 import { CircularProgress } from '@mui/material';
 import { useRouter } from 'next/router';
@@ -14,10 +14,12 @@ const KnowledgeDataCont = () => {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState([]);
   const [route, setRoute] = useState('');
-  //const [questions, setQuestions] = useState([]);
 
   const router = useRouter();
+  const { title, subitem } = router.query;
   const id = router.query.category;
+  const path = id === 'undefined' ? '1' : id;
+  console.log(path)
 
   const handleError = (err) => {
     setLoading(false);
@@ -25,24 +27,23 @@ const KnowledgeDataCont = () => {
   }
 
   useEffect(() => {
-    getExpiredTenders((err, res) => {
+    getAllKnowledgeRepo(path, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
         setLoading(false);
-        console.log({ r: res })
-        setTenders(res.data['Expired Tenders']);
+        setCategory(res.data['User Categories']);
       }
     });
-  }, [])
 
-  useEffect(() => {
-    getAllKnowledgeRepo(id, (err, res) => {
+    getSubItem({
+      id: path,
+      subitem
+    }, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
-        console.log({ r: res })
         setLoading(false);
-        setCategory(res.data['User Categories'])
-        //setQuestions(res.data.Questions);
+        console.log({ z: res })
+        setTenders(res.data.data);
       }
     });
   }, [id])
@@ -87,8 +88,8 @@ const KnowledgeDataCont = () => {
             <div>
               <KnowledgeCategories loading={loading} category={category} />
             </div>
-            <div>
-              <div className={styles.description}>Home / {route} /</div>
+            <div style={{ minHeight: '500px' }}>
+              <div className={styles.description}>Home / {route.replace('/', '-')} / {title}</div>
               {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
                 tenders.length ?
                   tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
@@ -103,7 +104,6 @@ const KnowledgeDataCont = () => {
                         org={organization.org_name}
                         urban_rural={status}
                         citation={citation}
-                        expiry_date={expiry_date}
                         language={language}
                         value_chain={value_chain}
                         description={description}

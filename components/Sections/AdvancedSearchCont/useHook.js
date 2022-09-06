@@ -154,7 +154,7 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function CustomizedHook({ settingChips }) {
+export default function CustomizedHook({ data, setData }) {
   const {
     getRootProps,
     getInputProps,
@@ -167,20 +167,20 @@ export default function CustomizedHook({ settingChips }) {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    // defaultValue: [top100Films[1]],
     multiple: true,
     options: advancedSearchText.chips,
     getOptionLabel: (option) => option.title,
   });
 
-  let results = [];
-  value.forEach(({ title }) => {
-    results.push(title);
-  })
-
   React.useEffect(() => {
-    settingChips(results);
-    console.log('ran')
+    let results = [];
+    value.forEach(({ title }) => {
+      results.push(title);
+      setData({
+        ...data,
+        words: results
+      });
+    })
   }, [value])
 
 

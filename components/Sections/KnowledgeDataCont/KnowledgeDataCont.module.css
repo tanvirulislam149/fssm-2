@@ -30,4 +30,8 @@
     padding: var(--s-20) var(--fs-1rem);
     grid-template-columns: 1fr;
   }
+
+  .description {
+    width: var(--hundred);
+  }
 }

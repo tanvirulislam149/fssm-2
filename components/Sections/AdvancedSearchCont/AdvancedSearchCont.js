@@ -22,7 +22,6 @@ import CustomizedHook from './useHook';
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
-  const [chips, setChips] = useState([]);
   const [data, setData] = useState({
     stakeholder: [],
     value_chain: [],
@@ -33,11 +32,6 @@ const AdvancedSearchCont = () => {
     theme: [],
     status: []
   })
-
-  const settingChips = (data) => {
-    setChips(data);
-    console.log(chips)
-  }
 
   const handleError = (err) => {
     setLoading(false);
@@ -105,7 +99,7 @@ const AdvancedSearchCont = () => {
         <h1 className={styles.title}>Advanced Search</h1>
         <section>
           <form className={styles.form} onSubmit={(e) => { handleSubmit(e); }}>
-            <CustomizedHook settingChips={settingChips} className={styles.chip} />
+            <CustomizedHook setData={setData} data={data} className={styles.chip} />
 
             <FormControl className={styles.select}>
               <InputLabel id="demo-multiple-checkbox-label" shrink={false}>{data.stakeholder.length ? '' : 'Stakeholder'}</InputLabel>

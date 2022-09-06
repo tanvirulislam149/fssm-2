@@ -66,7 +66,24 @@ export const disclaimerText = {
 }
 
 export const helpDeskText = {
-  text: 'Have all your questions answered directly by FSSM subject matter experts within 3-5 business days! Simply select a theme, insert your question and click submit below.'
+  text: 'Have all your questions answered directly by FSSM subject matter experts within 3-5 business days! Simply select a theme, insert your question and click submit below.',
+  questions: [
+    {
+      id: 1, name: '1', body: 'one', date: 'Jan 15 2021', replies: [
+        {
+          id: 1, name: '4', body: 'two', date: 'Jan 15 2021', replies: [
+            { id: 1, name: '5', body: 'three', date: 'Jan 15 2021', replies: [] }
+          ]
+        }
+      ]
+    },
+    {
+      id: 2, name: '2', body: 'four', date: 'Jan 15 2021', replies: [
+        { id: 1, name: '6', body: 'six', date: 'Jan 15 2021', replies: [] }
+      ]
+    },
+    { id: 3, name: '3', body: 'five', date: 'Jan 15 2021', replies: [] },
+  ]
 }
 
 export const knowledgeContentText = {
