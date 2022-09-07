@@ -21,12 +21,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: '#EAEAEA',
   },
   // hide last border
   '&:last-child td, &:last-child th': {
-    border: 0,
-    fontWeight: 700
+    fontWeight: 700,
   },
 }));
 
@@ -65,22 +64,22 @@ const TableCont = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="center">S.NO</StyledTableCell>
-                <StyledTableCell align="center">Organization Name</StyledTableCell>
-                <StyledTableCell align="center">No of Docs Uploaded</StyledTableCell>
-                <StyledTableCell align="center">No of Docs Mapped</StyledTableCell>
+                <StyledTableCell className={styles.cell} align="center">S.NO</StyledTableCell>
+                <StyledTableCell className={styles.cell} align="center">Organization Name</StyledTableCell>
+                <StyledTableCell className={styles.cell} align="center">No of Docs Uploaded</StyledTableCell>
+                <StyledTableCell className={styles.cell} align="center">No of Docs Mapped</StyledTableCell>
                 <StyledTableCell align="center">No of Docs Approved</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <StyledTableRow key={row.name}>
-                  <StyledTableCell align="center" component="th" scope="row">
+                  <StyledTableCell className={styles.cell} align="center" component="th" scope="row">
                     {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="center">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="center">{row.carbs}</StyledTableCell>
+                  <StyledTableCell className={styles.cell} align="center">{row.calories}</StyledTableCell>
+                  <StyledTableCell className={styles.cell} align="center">{row.fat}</StyledTableCell>
+                  <StyledTableCell className={styles.cell} align="center">{row.carbs}</StyledTableCell>
                   <StyledTableCell align="center">{row.protein}</StyledTableCell>
                 </StyledTableRow>
               ))}

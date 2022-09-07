@@ -3,10 +3,23 @@ import styles from './GetInvolvedForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
+import { postFormData } from '../../../services/getInvolvedService';
 
 const GetInvolvedForm = () => {
-  // const handleSubmit=(data)=>{
+  // const handleError = (err) => {
+  //   setLoading(false);
+  //   console.log({ e: err })
 
+  // }
+
+  // const handleSubmit = (data) => {
+  //   postFormData(data, (err, res) => {
+  //     if (err) return handleError(err);
+  //     if (res !== null) {
+  //       setLoading(false);
+  //       console.log({ r: res.data })
+  //     }
+  //   })
   // }
 
   return (
@@ -17,7 +30,7 @@ const GetInvolvedForm = () => {
             name: '',
             email: '',
             note: '',
-            join: false,
+            join_NFSSM: false,
             know_more: false,
           }}
           validationSchema={Yup.object({
@@ -39,8 +52,8 @@ const GetInvolvedForm = () => {
           })}
           onSubmit={(data, actions) => {
             let categories = [];
-            // data.join ? categories.push({ userCat: 1 }) : null;
-            // data.know_more ? categories.push({ userCat: 2 }) : null;
+            data.join_NFSSM ? categories.push({ userCat: 1 }) : null;
+            data.know_more ? categories.push({ userCat: 2 }) : null;
 
             if (categories.length) {
               document.getElementById('user-cat').style.display = 'none';
@@ -50,7 +63,7 @@ const GetInvolvedForm = () => {
             }
 
             document.querySelector('.modal2').style.display = "none";
-            //handleSubmit({ name: data.name, email: data.email, note:data.note, categories });
+            //handleSubmit(data);
             actions.resetForm();
           }}
         >

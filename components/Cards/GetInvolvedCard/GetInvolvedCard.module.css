@@ -7,6 +7,8 @@
   flex-direction: column;
   align-items: center;
   padding-top: var(--s-60);
+  height: var(--s-470);
+  max-width: var(--s-350);
 }
 
 .num {

@@ -11,8 +11,8 @@ const DiscussionCont = () => {
 
   const handleError = (err) => {
     setLoading(false);
-    console.log({ e: err })
-    //setError(err.response.statusText);
+    console.log({ e: err });
+    setError(err.message);
   }
 
   useEffect(() => {
@@ -32,11 +32,13 @@ const DiscussionCont = () => {
         <h1 className={styles.title}>Discussion Forum</h1>
         <section>
           {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-            discussionData.map(({ category, id, topics }) => {
-              return (
-                <DiscussionCard key={id} cat_id={id} category={category} topics={topics} />
-              )
-            })
+            error ?
+              <p className='error'>{error}</p> :
+              discussionData.map(({ category, id, topics }) => {
+                return (
+                  <DiscussionCard key={id} cat_id={id} category={category} topics={topics} />
+                )
+              })
           }
         </section>
       </div>

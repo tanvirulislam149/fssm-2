@@ -2,6 +2,7 @@
   border-top: var(--size-3) solid var(--primary-blue);
   background: var(--white-color);
   padding: 0 var(--size-5);
+  padding-bottom: var(--s-40);
 }
 
 .label {
@@ -12,5 +13,11 @@
 }
 
 .paper {
+  border: 1px solid var(--light-shadow);
+  border-bottom-width: 0;
   box-shadow: none;
+}
+
+.cell {
+  border-right: 1px solid #eaeaea;
 }
