@@ -121,7 +121,7 @@
 
 .date {
   display: flex;
-  margin-top: var(--s-20);
+  margin-top: var(--fs-1rem);
   margin-bottom: var(--s-10);
 }
 
@@ -151,7 +151,8 @@
 .input {
   padding: var(--s-10);
   border-width: 0;
-  width: var(--seventy);
+  width: var(--size-75);
+  margin-left: var(--s-10);
 }
 
 .input::-webkit-input-placeholder,
@@ -184,6 +185,8 @@
 
 .view {
   background: var(--input-border-color);
+  border-color: var(--card-hov);
+  border-radius: var(--size-5);
   font-size: var(--fs-12);
   font-weight: var(--fw-400);
   text-align: center;

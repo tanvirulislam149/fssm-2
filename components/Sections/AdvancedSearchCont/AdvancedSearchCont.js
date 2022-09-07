@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 //import AdvancedSearchForm from '../../Forms/AdvancedSearch/AdvancedSearchForm';
 import AdvancedSearchCategories from '../AdvancedSearchCategories/AdvancedSearchCategories';
 import AdvancedSearchResults from '../AdvancedSearchResults/AdvancedSearchResults';
@@ -10,14 +10,13 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import { advancedSearch } from '../../../services/advancedSearchServices';
 import { advancedSearchText } from '../../TextArrays';
 import Script from "next/script";
 import Head from "next/head";
 import CustomizedHook from './useHook';
+import { useRouter } from 'next/router';
 
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
@@ -32,6 +31,9 @@ const AdvancedSearchCont = () => {
     theme: [],
     status: []
   })
+
+  const router = useRouter();
+  const theme = router.query.theme;
 
   const handleError = (err) => {
     setLoading(false);
@@ -60,6 +62,25 @@ const AdvancedSearchCont = () => {
       [el]: typeof value === 'string' ? value.split(',') : value,
     });
   };
+
+  useEffect(() => {
+    if (theme === 'latest') {
+      setData({
+        ...data,
+        theme: ['Latest FSSM News'],
+      });
+
+      setLoading(true);
+      advancedSearch(data, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          setLoading(false);
+          console.log({ r: res });
+          setResults(res.data['Search Results']);
+        }
+      });
+    }
+  }, [])
 
   const handleSelect = (category, val) => {
     setData({

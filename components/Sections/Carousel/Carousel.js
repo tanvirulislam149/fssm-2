@@ -27,7 +27,7 @@ const Carousel = () => {
   }
 
   const handleNav = (path) => {
-    router.push(`/${path}`);
+    path === 1 ? router.push('/advancedsearch?theme=latest') : router.push(`/${path}`);
   }
 
   return (
@@ -48,7 +48,7 @@ const Carousel = () => {
                       )
                     })}
                   </ul>
-                  <Button title='Show more' style={styles.btn} onClick={() => { }} />
+                  <Button title='Show more' style={styles.btn} onClick={() => { handleNav(1); }} />
                 </div>
                 <a href="#carousel__slide4"
                   onClick={() => {

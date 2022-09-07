@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './LoginForm.module.css';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import { loginFormText } from '../../TextArrays';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { loginUser, axiosInstance } from '../../../services/authService';
 import { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import TextField from '@mui/material/TextField';
-import Cookies from 'js-cookie';
 import eye from '../../../assets/eye.png';
 import Image from 'next/image';
-import Link from 'next/link';
 import { resetPass } from '../../../services/authService';
 
 const ResetPasswordForm = () => {

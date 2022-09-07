@@ -78,8 +78,9 @@
   color: var(--black);
 }
 
-.select > label {
-  margin-left: var(--thirty);
+.select > label,
+.select > div > div {
+  /* margin-left: var(--thirty); */
   font-weight: var(--fw-500);
 }
 

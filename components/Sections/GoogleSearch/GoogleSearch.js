@@ -7,6 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
+import Image from 'next/image';
+import search from '../../../assets/searc.png';
 
 const GoogleSearch = () => {
   const [text, setText] = useState('');
@@ -53,7 +55,7 @@ const GoogleSearch = () => {
                   handleSubmit();
                 }}
               >
-                <SearchIcon style={{ fontSize: '33px', color: 'white' }} />
+                <Image src={search} height={24} width={24} alr='icon' />
               </div>
             </div>
 
