@@ -15,7 +15,7 @@
 .paper {
   border: 1px solid var(--light-shadow);
   border-bottom-width: 0;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .cell {
