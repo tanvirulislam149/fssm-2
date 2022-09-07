@@ -139,7 +139,7 @@
   background: var(--primary-blue);
   font-weight: bold;
   border-radius: var(--fs-12);
-  padding: var(--s-10) var(--s-30);
+  padding: var(--s-10) var(--lh-35);
   border-width: 0;
   height: max-content;
 }
@@ -151,7 +151,7 @@
 .input {
   padding: var(--s-10);
   border-width: 0;
-  width: var(--size-75);
+  width: var(--seventy);
 }
 
 .input::-webkit-input-placeholder,
@@ -167,14 +167,16 @@
   justify-content: space-between;
   align-items: center;
   background: var(--input-border-color);
-  padding: var(--s-8) var(--fs-1rem);
+  padding: var(--s-8) var(--fs-24);
+  border-radius: var(--size-5) var(--size-5) 0 0;
 }
 
 .box2 {
   background: var(--white-color);
-  padding: var(--fs-14);
+  padding: var(--fs-12) var(--s-22);
   border: solid 2px var(--input-border-color);
   margin-bottom: var(--s-20);
+  border-radius: 0 0 var(--size-5) var(--size-5);
 }
 
 .view + div {

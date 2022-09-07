@@ -46,49 +46,51 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
 
               <div className={styles.row}>
                 <div>
-                  <p>Uploaded By : <span>{org}</span></p>
+                  <p>Uploaded By </p><span>: {org}</span>
                 </div>
                 <div>
-                  <p>Theme : <span>{theme}</span></p>
+                  <p>Theme </p><span>: {theme}</span>
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div>
-                  <p>Stakeholder : <span>
-                    {
+                  <p>Stakeholder </p>
+                  <span>
+                    : {
                       stake_holder.map(({ stake_holderName }) => {
                         return stake_holderName + ', ';
                       })
                     }
-                  </span></p>
+                  </span>
                 </div>
                 <div>
-                  <p>Value Chain : <span>{''}</span></p>
+                  <p>Value Chain </p><span>: {''}</span>
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div>
-                  <p>Geography : <span>{geography}</span></p>
+                  <p>Geography </p><span>: {geography}</span>
                 </div>
                 <div>
-                  <p>Urban / Rural : <span>{urban_rural}</span></p>
+                  <p>Urban / Rural </p><span>: {urban_rural}</span>
                 </div>
               </div>
 
               <div className={styles.row}>
-                <p>Language : <span>
-                  {
+                <p>Language </p>
+                <span>
+                  : {
                     language.map(({ lang }) => {
                       return lang + ', ';
                     })
                   }
-                </span></p>
+                </span>
               </div>
 
               <div className={styles.row}>
-                <p>Keywords : <span>{''}</span></p>
+                <p>Keywords </p><span>: {''}</span>
               </div>
             </div>
           </div>

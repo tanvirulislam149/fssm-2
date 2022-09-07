@@ -51,6 +51,7 @@
 .row p {
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
+  width: var(--s-100);
 }
 
 .row span {
@@ -61,6 +62,7 @@
 
 .row > div {
   width: var(--fifty);
+  display: flex;
 }
 
 .main {

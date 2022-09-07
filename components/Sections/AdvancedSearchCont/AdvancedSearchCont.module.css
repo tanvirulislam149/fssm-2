@@ -40,7 +40,7 @@
 .form {
   background: var(--primary-blue);
   border-radius: var(--primary-border-radius);
-  padding: var(--s-30) var(--s-40);
+  padding: var(--s-30) var(--s-60);
 }
 
 .chip {

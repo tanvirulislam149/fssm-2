@@ -39,6 +39,7 @@
   font-weight: var(--fw-500);
   margin-left: var(--s-20);
   width: var(--fourty);
+  text-transform: uppercase;
 }
 
 .minus {
