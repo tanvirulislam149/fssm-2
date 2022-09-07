@@ -122,6 +122,10 @@
   color: var(--white-color);
 }
 
+.btn:hover {
+  background: var(--l-blue);
+}
+
 .use_case {
   background: var(--input-border-color);
   border-radius: var(--primary-border-radius);

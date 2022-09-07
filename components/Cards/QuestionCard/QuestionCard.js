@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './QuestionCard.module.css';
 import profile from '../../../assets/profile.png';
 import cha from '../../../assets/cha.png';
@@ -14,10 +14,13 @@ import Image from 'next/image';
 import calendar from '../../../assets/Calendar.png';
 import gallery from '../../../assets/Photo Gallery.png';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { helpDeskText } from '../../TextArrays';
 import RepliesRecursion from './RepliesRecursion';
 
 const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, views, spam }) => {
+  const [clicked, setClicked] = useState(false);
+
   const handleShow = (el) => {
     el.classList.toggle('none');
   }
@@ -76,7 +79,14 @@ const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, 
                 <button className={styles.btn}>Submit</button>
               </form>
               <div className={styles.box2}>
-                <div onClick={() => { handleShow(document.getElementById(`replies-recursion${id}`)); }} className={styles.view}>View comments<KeyboardArrowDownIcon /></div>
+                <div
+                  onClick={() => {
+                    handleShow(document.getElementById(`replies-recursion${id}`));
+                    setClicked(!clicked);
+                  }}
+                  className={styles.view}
+                >View comments{clicked ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </div>
 
                 <div id={`replies-recursion${id}`} className='none' >
                   <RepliesRecursion replies={helpDeskText.questions} />

@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import styles from './TenderCard.module.css';
 import pdf from '../../../assets/pdf.png';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
   const [clicked, setClicked] = useState(true);
+
+  const router = useRouter();
 
   const dropDown = (e, s, u) => {
     if (e.classList.contains("active-dropdown")) {
@@ -20,6 +23,10 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
     }
   }
 
+  const handleNav = () => {
+    router.push(`/download?id=${id}`);
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -29,7 +36,7 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
         <div className={styles.main}>
           <div className={styles.top}>
             <p className={styles.title}>{title}</p>
-            <button className={styles.btn}>View Document</button>
+            <button className={styles.btn} onClick={() => { handleNav(); }}>View Document</button>
           </div>
           <p className={styles.body}>{description}</p>
 
