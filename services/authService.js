@@ -51,3 +51,14 @@ export const loginUser = (data, cb) => {
     .catch(err => cb(err, null))
 }
 
+export const verifyEmail = (data, cb) => {
+  axios.post('users/forgotpass/', data)
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}
+
+export const resetPass = (data, cb) => {
+  axios.post('users/resetpass/', data)
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}

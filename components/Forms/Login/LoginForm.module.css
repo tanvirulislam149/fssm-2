@@ -102,3 +102,16 @@
   align-items: flex-end;
   margin-top: var(--s-10);
 }
+
+.head {
+  font-weight: bold;
+  font-size: var(--s-22);
+  text-align: center;
+}
+
+.head + p {
+  text-align: center;
+  font-weight: var(--fw-400);
+  margin-bottom: var(--s-30);
+  margin-top: var(--s-10);
+}
