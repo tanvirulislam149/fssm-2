@@ -139,7 +139,7 @@
   background: var(--primary-blue);
   font-weight: bold;
   border-radius: var(--fs-12);
-  padding: var(--s-8) var(--s-30);
+  padding: var(--s-10) var(--s-30);
   border-width: 0;
   height: max-content;
 }
@@ -152,7 +152,6 @@
   padding: var(--s-10);
   border-width: 0;
   width: var(--size-75);
-  margin-left: var(--s-10);
 }
 
 .input::-webkit-input-placeholder,
@@ -173,7 +172,7 @@
 
 .box2 {
   background: var(--white-color);
-  padding: var(--s-10);
+  padding: var(--fs-14);
   border: solid 2px var(--input-border-color);
   margin-bottom: var(--s-20);
 }
