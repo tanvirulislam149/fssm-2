@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
-import Cookies from 'js-cookie';
 import { verifyEmail } from '../../../services/authService';
 
 const ForgotPasswordForm = () => {
@@ -30,12 +29,6 @@ const ForgotPasswordForm = () => {
         setLoading(false);
         console.log({ r: res.data.msg });
         setError(res.data.msg);
-        // if (res.data.msg === 'User doesnt exist') {
-
-        // } else if (res.data.msg==='Password Reset Link has been sent. Please check your mail') {
-
-        // }
-        //navigate.push('/signin/resetpassword');
       }
     });
   }
@@ -81,7 +74,7 @@ const ForgotPasswordForm = () => {
                 id="text1"
                 placeholder='Enter Email Address'
                 className={styles.field}
-                defaultValue={Cookies.get('email') ? Cookies.get('email') : ''}
+                defaultValue={''}
                 type="email"
                 name='email'
                 onChange={(e) => {
