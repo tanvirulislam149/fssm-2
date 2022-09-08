@@ -1,7 +1,7 @@
 .container {
   width: var(--width-100);
   min-height: var(--min-height-100);
-  background: var(--bg-login-gray);
+  background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: flex-start;
