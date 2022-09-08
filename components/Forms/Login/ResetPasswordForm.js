@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LoginForm.module.css';
 import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import { loginFormText } from '../../TextArrays';
@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import eye from '../../../assets/eye.png';
 import Image from 'next/image';
-import { resetPass } from '../../../services/authService';
+import { resetPass, uuu } from '../../../services/authService';
 
 const ResetPasswordForm = () => {
   const [error, setError] = useState(null);
@@ -58,10 +58,28 @@ const ResetPasswordForm = () => {
     setShowPassword2(!showPassword2);
   };
 
+  // useEffect(() => {
+  //   uuu({
+  //     email: 'davidjoshua603@gmail.com',
+  //     first_name: 'joshua',
+  //     last_name: 'oni',
+  //     is_admin: false,
+  //     is_restrictedUser: true,
+  //     password: 12345
+  //   }, (err, res) => {
+  //     if (err) return handleError(err);
+  //     if (res !== null) {
+  //       setLoading(false);
+  //       console.log({ r: res });
+  //       //navigate.push('/signin');
+  //     }
+  //   });
+  // }, [])
+
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container2}>
         <div
           className={styles.header}
           onClick={() => { goHome(); }}
@@ -69,7 +87,7 @@ const ResetPasswordForm = () => {
           <h1 className={styles.header_green}> {loginFormText.header_text_1} <span className={styles.header_blue}> {loginFormText.header_text_2} </span></h1>
         </div>
 
-        <h2 className={styles.head}>New Password</h2>
+        <h2 className={styles.head2}>New Password</h2>
         <p>Please create a new password</p>
 
         <Formik

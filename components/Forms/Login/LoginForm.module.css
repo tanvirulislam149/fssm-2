@@ -1,4 +1,13 @@
 .container {
+  height: 500px;
+  width: var(--login-form-cont-width);
+  border-radius: var(--primary-border-radius);
+  background: var(--white-color);
+  padding: var(--login-form-padding);
+  padding-top: var(--login-form-padding-top);
+}
+
+.container2 {
   height: max-content;
   width: var(--login-form-cont-width);
   border-radius: var(--primary-border-radius);
@@ -103,7 +112,8 @@
   margin-top: var(--s-10);
 }
 
-.head {
+.head,
+.head2 {
   font-weight: bold;
   font-size: var(--s-22);
   text-align: center;
@@ -112,6 +122,21 @@
 .head + p {
   text-align: center;
   font-weight: var(--fw-400);
+  font-size: 17px;
+  margin-bottom: var(--s-70);
+  margin-top: var(--s-10);
+}
+
+.head2 + p {
+  text-align: center;
+  font-weight: var(--fw-400);
+  font-size: 17px;
   margin-bottom: var(--s-30);
   margin-top: var(--s-10);
+}
+
+@media (max-width: 950px) {
+  .container {
+    height: max-content;
+  }
 }
