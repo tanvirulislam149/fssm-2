@@ -172,16 +172,13 @@ export default function CustomizedHook({ data, setData }) {
     getOptionLabel: (option) => option.title,
   });
 
+  let results = [];
   React.useEffect(() => {
-    let results = [];
     value.forEach(({ title }) => {
       results.push(title);
-      setData({
-        ...data,
-        words: results
-      });
+      setData(results);
     })
-  }, [value, data, setData])
+  }, [value])
 
 
   return (

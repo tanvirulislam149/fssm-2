@@ -43,14 +43,16 @@
   padding: var(--s-30) var(--s-60);
 }
 
-.chip {
-  width: var(--size-98);
-  margin: var(--size-1) !important;
-  background: var(--white-color);
+.chip + div > ul > li {
+  padding: var(--s-10) var(--fs-12);
 }
 
-.chip > label {
-  color: var(--light-gray-color);
+.chip + div > ul > li.Mui-focused {
+  background: red;
+}
+
+.top {
+  margin-top: var(--s-10);
 }
 
 .input {
@@ -69,31 +71,16 @@
 .select {
   width: var(--size-23);
   margin: var(--size-1) !important;
-  background: var(--white-color);
 }
 
-.select > label,
-.select > div > svg,
-.chip > div > svg {
-  color: var(--black);
-}
-
-.select > label,
-.select > div > div {
-  /* margin-left: var(--thirty); */
-  font-weight: var(--fw-500);
-}
-
-.select + span {
-  margin: var(--fs-12) !important;
-  margin-left: var(--s-30) !important;
-  color: var(--white-color) !important;
+.grid {
+  display: flex;
 }
 
 .btn {
   width: var(--size-23);
   margin: var(--size-1) !important;
-  height: var(--s-55);
+  height: var(--s-50);
   border-radius: var(--s-10);
   font-weight: var(--fw-500);
   font-size: var(--s-18);
@@ -121,6 +108,10 @@
 
   .title {
     padding: var(--pa-title);
+  }
+
+  .grid {
+    flex-direction: column;
   }
 }
 

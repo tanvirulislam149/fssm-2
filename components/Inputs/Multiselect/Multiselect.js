@@ -1,56 +1,99 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Multiselect.module.css';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import OptionComp from './OptionComp';
 
-const arr = [
-  'abc',
-  'cde',
-  'efg',
-  'ghi',
-  'ijk',
-  'klm',
-  'mno',
-  'opq',
-  'qrs',
-  'rst'
-]
-
-const Multiselect = ({ id }) => {
-  const [res, setRes] = useState([]);
+const Multiselect = ({ val, content, id, setData, data, placeholder }) => {
+  const [string, setString] = useState('');
+  const [array, setArray] = useState(content);
+  const [updated, setUpdated] = useState(false);
+  const [dropped, setDropped] = useState(false);
 
   const handleDropDown = (el) => {
     el.classList.toggle('none');
   }
 
+  const handleCleanUp = (el) => {
+    el.classList.add('none');
+  }
+
+  useEffect(() => {
+    const newState = content.filter(text => {
+      return text.toLowerCase().includes(string.trim().toLowerCase());
+    })
+    setArray(newState);
+  }, [updated])
+
+  useEffect(() => {
+    const el = document.getElementById(`option-${id}`);
+    const st = document.getElementById(`option-stakeholder`);
+    const va = document.getElementById(`option-value_chain`);
+    const pa = document.getElementById(`option-partner`);
+    const la = document.getElementById(`option-language`);
+    const sta = document.getElementById(`option-status`);
+    const stat = document.getElementById(`option-state`);
+    const th = document.getElementById(`option-theme`);
+    el !== st && handleCleanUp(st);
+    el !== va && handleCleanUp(va);
+    el !== la && handleCleanUp(la);
+    el !== pa && handleCleanUp(pa);
+    el !== sta && handleCleanUp(sta);
+    el !== stat && handleCleanUp(stat);
+    el !== th && handleCleanUp(th);
+    handleDropDown(document.getElementById(`option-${id}`))
+  }, [dropped])
+
+  useEffect(() => {
+    handleCleanUp(document.getElementById(`option-stakeholder`));
+    handleCleanUp(document.getElementById(`option-value_chain`));
+    handleCleanUp(document.getElementById(`option-partner`));
+    handleCleanUp(document.getElementById(`option-language`));
+    handleCleanUp(document.getElementById(`option-status`));
+    handleCleanUp(document.getElementById(`option-state`));
+    handleCleanUp(document.getElementById(`option-theme`));
+  }, [])
+
   return (
     <>
       <div
         className={styles.display}
-        onClick={() => { handleDropDown(document.getElementById(`option-${id}`)); }}
+        onClick={() => { setDropped(!dropped) }}
       >
         <div></div>
         <span>
-          {res.length ?
-            res.length > 2 ?
-              res.length + ' selected' :
-              res.map(text => <span key={text}>{text + ', '}</span>) :
-            'Theme'}
+          {val.length ?
+            val.length === content.length ?
+              'All selected (' + content.length + ')' :
+              val.length > 2 ?
+                val.length + ' selected' :
+                val.map((text, i) => <span key={text}>{i === val.length - 1 ? text : text + ', '}</span>) :
+            placeholder}
         </span>
         <ArrowDropDownIcon />
       </div>
 
       <div id={`option-${id}`} className={`none ${styles.options}`}>
-        <input className={styles.input} type="text" placeholder='Search' />
-        {
-          arr.map(item => {
-            return (
-              <OptionComp res={res} setRes={setRes} key={item} optionName={item} />
-            )
-          })
-        }
+        <input
+          className={styles.input}
+          type="text"
+          placeholder='Search'
+          value={string}
+          onChange={(e) => {
+            setString(e.target.value);
+            setUpdated(!updated);
+          }}
+        />
+        <div className={styles.cont}>
+          {
+            array.length ?
+              array.map(item => {
+                return (
+                  <OptionComp val={val} id={id} data={data} setData={setData} key={item} optionName={item} />
+                )
+              }) :
+              <div className={styles.option}>No results</div>
+          }
+        </div>
       </div>
     </>
   )

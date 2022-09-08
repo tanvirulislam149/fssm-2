@@ -3,23 +3,26 @@ import styles from './Multiselect.module.css';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-const OptionComp = ({ optionName, res, setRes }) => {
+const OptionComp = ({ val, optionName, setData, data, id }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
-    if (res.includes(optionName)) {
-      const newState = res.filter(text => {
+    if (val.includes(optionName)) {
+      const newState = val.filter(text => {
         return text !== optionName;
       })
-      setRes(newState);
+      setData(newState);
+      setData({
+        ...data,
+        [id]: newState
+      });
     } else {
-      setRes([
-        ...res,
-        optionName
-      ])
+      setData({
+        ...data,
+        [id]: [...val, optionName]
+      })
     }
-    console.log(res);
   }
 
   return (
