@@ -21,6 +21,8 @@ const ResetPasswordForm = () => {
   const [showPassword2, setShowPassword2] = useState(false);
 
   const navigate = useRouter();
+  const { uid, token } = navigate.query;
+  console.log(uid, token);
 
   const handleError = (err) => {
     setLoading(false);
@@ -32,7 +34,7 @@ const ResetPasswordForm = () => {
     console.log(data);
     resetPass({
       password: data.password
-    }, (err, res) => {
+    }, uid, token, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
         setLoading(false);
@@ -112,7 +114,7 @@ const ResetPasswordForm = () => {
             <Form>
               <FormControl className={`${styles.form_control} ${styles.field}`} variant="outlined">
                 <OutlinedInput
-                  id="text2"
+                  id="text3"
                   type={showPassword ? 'text' : 'password'}
                   name='password'
                   onChange={(e) => {

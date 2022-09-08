@@ -84,7 +84,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 #text1::-webkit-input-placeholder,
-#text2::-webkit-input-placeholder {
+#text2::-webkit-input-placeholder,
+#text3:-webkit-input-placeholder {
   font-size: var(--s-20);
 }
 

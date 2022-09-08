@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-//import AdvancedSearchForm from '../../Forms/AdvancedSearch/AdvancedSearchForm';
 import AdvancedSearchCategories from '../AdvancedSearchCategories/AdvancedSearchCategories';
 import AdvancedSearchResults from '../AdvancedSearchResults/AdvancedSearchResults';
 import styles from './AdvancedSearchCont.module.css';
@@ -17,6 +16,7 @@ import Script from "next/script";
 import Head from "next/head";
 import CustomizedHook from './useHook';
 import { useRouter } from 'next/router';
+import Multiselect from '../../Inputs/Multiselect/Multiselect';
 
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
@@ -116,10 +116,12 @@ const AdvancedSearchCont = () => {
       <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"/>
 <Script src="https://phpcoder.tech/multiselect/js/jquery.multiselect.js"/> */}
 
+
       <div className={styles.container}>
         <h1 className={styles.title}>Advanced Search</h1>
         <section>
           <form className={styles.form} onSubmit={(e) => { handleSubmit(e); }}>
+            <Multiselect id='theme' />
             <CustomizedHook setData={setData} data={data} className={styles.chip} />
 
             <FormControl className={styles.select}>

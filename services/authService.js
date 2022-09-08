@@ -57,8 +57,8 @@ export const verifyEmail = (data, cb) => {
     .catch(err => cb(err, null))
 }
 
-export const resetPass = (data, cb) => {
-  axios.post('users/resetpass/Mw/bbeait-27e86448d66231e06369494e1fe810b5/', data)
+export const resetPass = (data, uid, token, cb) => {
+  axios.post(`users/resetpass/${uid}/${token}/`, data)
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
