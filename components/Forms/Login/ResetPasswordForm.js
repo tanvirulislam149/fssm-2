@@ -39,7 +39,7 @@ const ResetPasswordForm = () => {
       if (res !== null) {
         setLoading(false);
         console.log({ r: res });
-        navigate.push('/signin');
+        //navigate.push('/signin');
       }
     });
   }
