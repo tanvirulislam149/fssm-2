@@ -19,10 +19,10 @@ const ResetPasswordForm = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const navigate = useRouter();
   const { uid, token } = navigate.query;
-  console.log(uid, token);
 
   const handleError = (err) => {
     setLoading(false);
@@ -38,8 +38,9 @@ const ResetPasswordForm = () => {
       if (err) return handleError(err);
       if (res !== null) {
         setLoading(false);
+        setError(res.data.msg);
+        setSuccess(true);
         console.log({ r: res });
-        //navigate.push('/signin');
       }
     });
   }
@@ -59,6 +60,10 @@ const ResetPasswordForm = () => {
   const handleClickShowPassword2 = () => {
     setShowPassword2(!showPassword2);
   };
+
+  const handleNav = () => {
+    navigate.push('/signin');
+  }
 
   // useEffect(() => {
   //   uuu({
@@ -81,7 +86,7 @@ const ResetPasswordForm = () => {
 
   return (
     <>
-      <div className={styles.container2}>
+      <div className={styles.container}>
         <div
           className={styles.header}
           onClick={() => { goHome(); }}
@@ -166,7 +171,16 @@ const ResetPasswordForm = () => {
               <span className='form-error'><ErrorMessage name="confirm_password" /></span>
 
               <div className={`${styles.tc} form-error`}>{error}</div>
-              {loading ? <div className={styles.justify_center}><CircularProgress /></div> : <SubmitButton type='submit' style={styles.btn} title='Reset Password' />}
+              {loading ?
+                <div className={styles.justify_center}><CircularProgress /></div> :
+                <SubmitButton
+                  type={success ? 'reset' : 'submit'}
+                  style={styles.btn}
+                  title={success ? 'Go to Login' : 'Reset Password'}
+                  onClick={() => {
+                    success ? handleNav() : null;
+                  }}
+                />}
             </Form>
           )}
         </Formik>

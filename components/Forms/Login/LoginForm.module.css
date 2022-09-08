@@ -1,13 +1,4 @@
 .container {
-  height: 500px;
-  width: var(--login-form-cont-width);
-  border-radius: var(--primary-border-radius);
-  background: var(--white-color);
-  padding: var(--login-form-padding);
-  padding-top: var(--login-form-padding-top);
-}
-
-.container2 {
   height: max-content;
   width: var(--login-form-cont-width);
   border-radius: var(--primary-border-radius);
@@ -24,7 +15,7 @@
 .justify_center {
   display: flex;
   justify-content: center;
-  margin-top: var(--s-10);
+  margin-top: var(--s-52);
 }
 
 .field > div {
