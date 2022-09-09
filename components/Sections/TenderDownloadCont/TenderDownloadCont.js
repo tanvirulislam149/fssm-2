@@ -72,7 +72,7 @@ const TenderDownloadCont = () => {
                 <div className={styles.main}>
                   <div className={styles.top}>
                     <p className={styles.heading}>{tenders?.title}</p>
-                    <button className={styles.btn}>Dowload</button>
+                    <button className={styles.btn}>Download</button>
                   </div>
                   <p className={styles.body}>{tenders?.description}</p>
 
@@ -85,12 +85,12 @@ const TenderDownloadCont = () => {
                           features, performance, application, O&M, challenges & costing</p>
                       </div>
 
-                      <div id='cite' style={{ display: 'none' }} className={`none ${styles.row2}`}>
+                      <div id='cite' style={{ display: 'none' }} className={`none ${styles.row}`}>
                         <div>
-                          <p className={styles.top_p}>Citation : <span>{tenders?.citation}</span></p>
+                          <p className={styles.top_p}>Citation </p><span>: {tenders?.citation}</span>
                         </div>
                         {tenders?.expiry_date ? <div>
-                          <p className={styles.top_p}>Expiry Date : <span>{tenders?.expiry_date.replaceAll('-', '/')}</span></p>
+                          <p className={styles.top_p}>Expiry Date </p><span>: {tenders?.expiry_date.replaceAll('-', '/')}</span>
                         </div> : null}
                       </div>
 

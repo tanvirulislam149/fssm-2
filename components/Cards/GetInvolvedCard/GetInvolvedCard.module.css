@@ -35,9 +35,11 @@
 
 .body {
   line-height: var(--s-28);
-  font-size: var(--s-20);
+  font-size: var(--s-18);
   color: var(--light-gray-color);
   margin: 0;
+  margin-left: var(--s-10);
+  margin-right: var(--s-10);
   text-align: center;
   height: var(--s-150);
 }
@@ -58,7 +60,7 @@
   align-items: center;
   justify-content: center;
   background: var(--blue);
-  padding: var(--fs-14);
+  padding: var(--fs-1rem) var(--fs-14);
   font-family: var(--font-family-secondary);
   width: var(--hundred);
   cursor: pointer;
@@ -69,7 +71,7 @@
 }
 
 .form {
-  padding: var(--s-20) var(--s-50);
+  padding: var(--s-20) var(--s-60);
 }
 
 .modal_content {

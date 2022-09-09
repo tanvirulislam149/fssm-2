@@ -42,12 +42,12 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
 
           <div id={'drop' + `${id}`} className='dropdown-content2'>
             <div className={styles.description}>
-              <div className={styles.row2}>
+              <div className={styles.row}>
                 <div>
-                  <p className={styles.top_p}>Citation : <span>{citation}</span></p>
+                  <p className={styles.top_p}>Citation </p><span>: {citation}</span>
                 </div>
                 {expiry_date ? <div>
-                  <p className={styles.top_p}>Expiry Date : <span>{expiry_date.replaceAll('-', '/')}</span></p>
+                  <p className={styles.top_p}>Expiry Date </p><span>: {expiry_date.replaceAll('-', '/')}</span>
                 </div> : null}
               </div>
 

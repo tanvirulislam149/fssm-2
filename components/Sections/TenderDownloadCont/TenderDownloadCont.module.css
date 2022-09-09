@@ -83,7 +83,7 @@
 .row p {
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
-  width: var(--s-100);
+  width: var(--s-150);
 }
 
 .row span {
@@ -120,7 +120,8 @@
 
 .top_p {
   color: var(--primary-blue);
-  font-weight: var(--fw-400);
+  font-weight: var(--fw-400) !important;
+  margin-bottom: var(--s-30);
 }
 
 .top_p span {
@@ -284,11 +285,13 @@
     width: var(--hundred);
     margin-bottom: var(--s-18);
   }
-}
 
-@media (max-width: 950px) {
   .title {
     padding: var(--pa-title);
+  }
+
+  .top_p {
+    margin-bottom: 0;
   }
 }
 

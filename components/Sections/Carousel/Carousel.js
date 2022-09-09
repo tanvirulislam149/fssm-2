@@ -11,13 +11,6 @@ import left from '../../../assets/left.png';
 const Carousel = () => {
   const router = useRouter();
 
-  // const id = router.asPath.slice(router.asPath.length - 1);
-
-  // useEffect(() => {
-  //   console.log(document.getElementById(`carousel_${id}`))
-  //   typeof id === '1' || id === '2' || id === '3' || id === '4' ? document.getElementById(`carousel_${id}`).classList.add('carousel_select') : null;
-  // }, [id])
-
   const handleChange = (el) => {
     document.getElementById('carousel_1').classList.remove('carousel_select');
     document.getElementById('carousel_2').classList.remove('carousel_select');
