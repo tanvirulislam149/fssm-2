@@ -11,7 +11,7 @@
 }
 
 .cont > div > div {
-  width: var(--size-22);
+  width: var(--size-25);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@
 
 .cont > div > div:nth-last-child(1) {
   background: var(--white-color);
-  width: var(--size-78);
+  width: var(--size-75);
   padding: var(--s-30) var(--s-10);
   display: flex;
   flex-direction: column;

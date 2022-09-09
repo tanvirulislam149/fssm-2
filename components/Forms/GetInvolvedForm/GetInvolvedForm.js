@@ -29,7 +29,7 @@ const GetInvolvedForm = () => {
           initialValues={{
             name: '',
             email: '',
-            note: '',
+            shortNote: '',
             join_NFSSM: false,
             know_more: false,
           }}
@@ -46,7 +46,7 @@ const GetInvolvedForm = () => {
               .test('is name a letter?', 'Name must consist of letters only', (val) => {
                 return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
               }),
-            note: Yup.string()
+            shortNote: Yup.string()
               .required('Required')
               .min(10, 'Must be 10 characters minimum'),
           })}
@@ -63,7 +63,7 @@ const GetInvolvedForm = () => {
             }
 
             document.querySelector('.modal2').style.display = "none";
-            //handleSubmit(data);
+            handleSubmit(data);
             actions.resetForm();
           }}
         >
@@ -95,8 +95,8 @@ const GetInvolvedForm = () => {
               </div>
 
               <div className={styles.text_cont}>
-                <Field name="note" id='note' className={styles.textarea} cols="30" rows="7" placeholder='Short note on how you wish to get involved (Less than 150 words)' as='textarea' />
-                <span className='form-error'><ErrorMessage name="note" /></span>
+                <Field name="shortNote" id='shortNote' className={styles.textarea} cols="30" rows="7" placeholder='Short note on how you wish to get involved (Less than 150 words)' as='textarea' />
+                <span className='form-error'><ErrorMessage name="shortNote" /></span>
               </div>
             </div>
             <span id='user-cat' className="form-error none">You must select at least 1 category</span>

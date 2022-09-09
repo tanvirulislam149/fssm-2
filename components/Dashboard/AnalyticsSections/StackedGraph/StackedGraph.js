@@ -36,22 +36,31 @@ const StackedGraph = () => {
     plotOptions: {
       bar: {
         horizontal: true,
-        barHeight: 70,
+        barHeight: 65,
       },
     },
     stroke: {
-      width: 8,
+      width: 2,
       colors: ["transparent"],
     },
     xaxis: {
       categories: ['NFSSM', 'BMGF', 'CSE', 'CEPT', 'E&Y', 'IIHS', 'NIUA', 'UMC', 'WASH', 'CDD'],
       labels: {
+        offsetY: 15,
         formatter: function (val) {
           // return val + "K"
           return val;
         }
       },
       tickAmount: 10,
+      // axisTicks: {
+      //   show: true,
+      //   borderType: 'solid',
+      //   color: '#D5D5D5',
+      //   height: 30,
+      //   offsetX: 0,
+      //   offsetY: 0
+      // },
     },
     yaxis: {
       title: {
@@ -78,6 +87,9 @@ const StackedGraph = () => {
           show: true
         }
       },
+      padding: {
+        bottom: 20
+      }
     },
     tooltip: {
       y: {

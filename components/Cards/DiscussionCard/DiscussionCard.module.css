@@ -40,6 +40,7 @@
   margin-left: var(--s-20);
   width: var(--fourty);
   text-transform: uppercase;
+  font-size: var(--s-20);
 }
 
 .minus {
@@ -127,7 +128,7 @@
 
 .cont2 {
   background: var(--white-color);
-  padding: var(--fs-24);
+  padding: var(--s-18) var(--fs-24) var(--s-30);
   width: var(--hundred);
 }
 
