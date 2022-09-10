@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import styles from './KnowledgeDataCont.module.css';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
 import HeaderComponent from '../../Headers/HeaderComponent';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import { getAllKnowledgeRepo, getSubItem } from '../../../services/knowledgeRepoService';
-import TenderCard from '../../Cards/TenderCard/TenderCard';
 import { CircularProgress } from '@mui/material';
 import { useRouter } from 'next/router';
+import styles from './KnowledgeDownload.module.css';
+import pdf from '../../../assets/pdf.png';
+import Image from 'next/image';
+import DownloadCard from '../../Cards/DownloadCard/DownloadCard';
 
-const KnowledgeDataCont = () => {
+const KnowledgeDownload = () => {
   const [tenders, setTenders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState([]);
   const [route, setRoute] = useState('');
 
   const router = useRouter();
-  const { title, subitem } = router.query;
-  const id = router.query.category;
-  const path = id === 'undefined' ? '1' : id;
+  const { title, subitem, id } = router.query;
+  const path = router.query.category === 'undefined' ? '1' : router.query.category;
 
   const handleError = (err) => {
     setLoading(false);
@@ -41,13 +42,20 @@ const KnowledgeDataCont = () => {
       if (res !== null) {
         setLoading(false);
         console.log({ z: res })
-        setTenders(res.data.data);
+        res.data.data.forEach(item => {
+          console.log(item.id, Number(id), item)
+          if (item.id === Number(id)) {
+            setTenders(item);
+            return;
+          }
+        });
+        console.log(tenders)
       }
     });
-  }, [id, path, subitem])
+  }, [router.query.category, path, subitem])
 
   useEffect(() => {
-    switch (id) {
+    switch (router.query.category) {
       case '2':
         setRoute('Govt-National/state');
         break;
@@ -73,7 +81,7 @@ const KnowledgeDataCont = () => {
         setRoute('All')
         break;
     }
-  }, [id])
+  }, [router.query.category])
 
   return (
     <>
@@ -88,35 +96,9 @@ const KnowledgeDataCont = () => {
             </div>
             <div style={{ minHeight: '500px' }}>
               <div className={styles.description}>Home / {route.replace('/', '-')} / {title}</div>
-              {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-                tenders.length ?
-                  <>
-                    {tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
-                      return (
-                        <TenderCard
-                          key={id}
-                          id={id}
-                          title={title}
-                          document_type={document_type}
-                          stake_holder={stake_holder}
-                          geography={geography}
-                          org={organization.org_name}
-                          urban_rural={status}
-                          citation={citation}
-                          language={language}
-                          value_chain={value_chain}
-                          description={description}
-                          theme={theme.theme_title}
-                          keywords={keywords}
-                        />
-                      )
-                    })}
-                    <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
-                  </>
-                  :
-                  <div className={styles.cont}>
-                    <p>No records found.</p>
-                  </div>
+              {
+                loading ? <div className={styles.justify_center}><CircularProgress /></div> :
+                  <DownloadCard tenders={tenders} />
               }
             </div>
           </div>
@@ -126,4 +108,4 @@ const KnowledgeDataCont = () => {
   )
 }
 
-export default KnowledgeDataCont
+export default KnowledgeDownload

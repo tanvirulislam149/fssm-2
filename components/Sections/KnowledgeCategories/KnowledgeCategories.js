@@ -7,7 +7,7 @@ const KnowledgeCategories = ({ loading, category }) => {
   return (
     <>
       <div className={styles.container}>
-        <p className={styles.head}>Select your category for customized FSSM Knowledge</p>
+        <p className={styles.head}>Select your category for <br />customized FSSM Knowledge</p>
 
         <div className={styles.whole}>
           <div className={styles.cont}>

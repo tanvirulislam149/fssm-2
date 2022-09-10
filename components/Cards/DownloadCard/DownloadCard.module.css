@@ -1,4 +1,4 @@
-.container {
+.cont {
   padding: var(--s-20);
   background: var(--white-color);
   border-radius: var(--fs-12);
@@ -15,13 +15,18 @@
   width: var(--s-75) !important;
 }
 
+.main2 {
+  margin: var(--s-20) 0 var(--s-40) 0;
+}
+
 .description,
 .description .row,
 .description .row2,
 .description .row div,
 .description .row2 div,
 .description p,
-.description span {
+.description span,
+.main2 {
   padding: 0;
 }
 
@@ -34,6 +39,7 @@
   width: var(--hundred);
   display: flex;
   margin-bottom: var(--lh-35);
+  padding: var(--s-8);
 }
 
 .row2 > div {
@@ -96,8 +102,6 @@
 }
 
 .show_btn {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-end;
   margin-top: var(--fs-1rem);
 }
@@ -108,7 +112,14 @@
   font-weight: var(--fw-500);
 }
 
-.title {
+.btn_cont {
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+  padding-top: var(--s-10);
+}
+
+.heading {
   color: var(--primary-blue);
   font-weight: var(--font-weight-bold);
   font-size: var(--s-20);
@@ -131,6 +142,16 @@
   border-radius: var(--primary-border-radius);
   padding: var(--s-8);
   width: var(--eighty);
+  margin-top: var(--s-20);
+}
+
+.use_case2 {
+  background: var(--input-border-color);
+  border-radius: var(--primary-border-radius);
+  padding: var(--s-8);
+  width: var(--eighty);
+  margin-top: -20px;
+  margin-bottom: var(--s-10);
 }
 
 .head {
@@ -146,8 +167,57 @@
   line-height: var(--s-20);
 }
 
+.h5 {
+  font-weight: var(--fw-600) !important;
+  color: var(--primary-blue) !important;
+  margin-bottom: var(--size-5) !important;
+}
+
+.box .h5 + p {
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+  color: var(--header-txt);
+  line-height: var(--s-20);
+  margin: 0;
+}
+
+.box {
+  margin-bottom: var(--s-20);
+}
+
+.extra {
+  width: var(--eighty);
+  margin-right: var(--twenty);
+}
+
+.key_highlights {
+  background: var(--input-border-color);
+  border-radius: var(--primary-border-radius);
+  padding: var(--s-10);
+  padding-bottom: var(--s-20);
+  padding-top: var(--s-20);
+  color: var(--primary-blue);
+}
+
+.key_highlights ol {
+  margin: 0;
+  padding-left: var(--s-20);
+  line-height: var(--fs-24);
+  font-weight: var(--fw-400);
+}
+
+.ul {
+  text-decoration: underline;
+  margin-bottom: var(--size-5);
+}
+
+.h5 + p {
+  color: var(--primary-blue);
+  margin-top: var(--s-10);
+}
+
 @media (max-width: 950px) {
-  .container {
+  .cont {
     flex-direction: column;
     width: var(--hundred);
   }

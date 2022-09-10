@@ -36,27 +36,32 @@ const ExpiredTendersCont = () => {
 
           {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
             tenders.length ?
-              tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
-                return (
-                  <TenderCard
-                    key={id}
-                    id={id}
-                    title={title}
-                    document_type={document_type}
-                    stake_holder={stake_holder}
-                    geography={geography}
-                    org={organization.org_name}
-                    urban_rural={status}
-                    citation={citation}
-                    expiry_date={expiry_date}
-                    language={language}
-                    value_chain={value_chain}
-                    description={description}
-                    theme={theme.theme_title}
-                    keywords={keywords}
-                  />
-                )
-              }) :
+              <>
+                {tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+                  return (
+                    <TenderCard
+                      key={id}
+                      id={id}
+                      title={title}
+                      document_type={document_type}
+                      stake_holder={stake_holder}
+                      geography={geography}
+                      org={organization.org_name}
+                      urban_rural={status}
+                      citation={citation}
+                      expiry_date={expiry_date}
+                      language={language}
+                      value_chain={value_chain}
+                      description={description}
+                      theme={theme.theme_title}
+                      keywords={keywords}
+                    />
+                  )
+                })}
+
+                <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
+              </>
+              :
               <div className={styles.cont}>
                 <p>No records found.</p>
               </div>

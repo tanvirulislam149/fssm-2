@@ -62,7 +62,7 @@ const TendersCont = () => {
               </div>
           }
 
-          <p className={styles.footer_text}>Showing 0-20 of 0 Results</p>
+          <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
         </section>
       </div>
     </>

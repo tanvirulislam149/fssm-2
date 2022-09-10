@@ -15,6 +15,7 @@
 .card {
   border-bottom: 1px solid var(--bg-login-gray);
   padding: var(--s-10);
+  word-break: break-word;
 }
 
 .span:nth-last-child(1) .card {

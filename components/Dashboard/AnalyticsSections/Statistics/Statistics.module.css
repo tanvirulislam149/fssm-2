@@ -45,9 +45,10 @@
 }
 
 .cont p {
-  font-size: var(--s-22);
+  font-size: var(--fs-24);
   font-weight: var(--fw-400);
   color: var(--primary-blue);
+  text-align: center;
 }
 
 .cont h6 {

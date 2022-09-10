@@ -8,6 +8,8 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
   const [clicked, setClicked] = useState(true);
 
   const router = useRouter();
+  const { subitem } = router.query;
+
 
   const dropDown = (e, s, u) => {
     if (e.classList.contains("active-dropdown")) {
@@ -24,7 +26,7 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
   }
 
   const handleNav = () => {
-    router.push(`/download?id=${id}`);
+    router.pathname === '/knowledgedata' ? router.push(`/knowledgedatadownload?id=${id}&category=${router.query.category}&subitem=${subitem}&title=${router.query.title}`) : router.push(`/tenderdownload?id=${id}`);
   }
 
   return (

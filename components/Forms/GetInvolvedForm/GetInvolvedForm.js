@@ -6,21 +6,20 @@ import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import { postFormData } from '../../../services/getInvolvedService';
 
 const GetInvolvedForm = () => {
-  // const handleError = (err) => {
-  //   setLoading(false);
-  //   console.log({ e: err })
+  const handleError = (err) => {
+    console.log({ e: err })
 
-  // }
+  }
 
-  // const handleSubmit = (data) => {
-  //   postFormData(data, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       setLoading(false);
-  //       console.log({ r: res.data })
-  //     }
-  //   })
-  // }
+  const handleSubmit = (data) => {
+    postFormData(data, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ r: res.data })
+        alert('Successfully Received!')
+      }
+    })
+  }
 
   return (
     <>
@@ -85,8 +84,8 @@ const GetInvolvedForm = () => {
             <div>
               <div className={styles.row}>
                 <div>
-                  <Field name='join' id='join' type='checkbox' className={styles.checkbox} />
-                  <label htmlFor="join">Join the NFSSM Alliance</label>
+                  <Field name='join_NFSSM' id='join_NFSSM' type='checkbox' className={styles.checkbox} />
+                  <label htmlFor="join_NFSSM">Join the NFSSM Alliance</label>
                 </div>
                 <div>
                   <Field name='know_more' id='know_more' type='checkbox' className={styles.checkbox} />

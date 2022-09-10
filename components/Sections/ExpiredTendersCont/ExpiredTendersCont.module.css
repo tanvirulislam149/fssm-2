@@ -35,6 +35,18 @@
   font-size: var(--s-20);
 }
 
+.footer_text {
+  padding: var(--fs-14);
+  width: var(--size-95);
+  font-size: var(--s-10);
+  padding-left: var(--three);
+  font-weight: var(--fw-400);
+  color: var(--light-gray-color);
+  border-radius: var(--primary-border-radius);
+  background: var(--white-color);
+  margin-top: var(--s-20);
+}
+
 @media (max-width: 950px) {
   .title {
     padding: var(--pa-title);
