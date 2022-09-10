@@ -3,11 +3,11 @@
 }
 
 .container > div:first-child {
-  width: var(--twenty);
+  width: var(--size-22);
 }
 
 .container > div {
-  width: var(--eighty);
+  width: var(--size-78);
 }
 
 @media (max-width: 950px) {

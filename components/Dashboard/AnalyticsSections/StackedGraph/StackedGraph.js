@@ -47,6 +47,7 @@ const StackedGraph = () => {
       categories: ['NFSSM', 'BMGF', 'CSE', 'CEPT', 'E&Y', 'IIHS', 'NIUA', 'UMC', 'WASH', 'CDD'],
       labels: {
         offsetY: 15,
+        offsetX: -2,
         formatter: function (val) {
           // return val + "K"
           return val;

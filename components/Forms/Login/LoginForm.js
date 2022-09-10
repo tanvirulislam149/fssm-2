@@ -53,8 +53,8 @@ const LoginForm = () => {
         Cookies.set('access', res.data.access_token, { expires: 14 })
         Cookies.set('refresh', res.data.refresh_token, { expires: 14 })
         Cookies.set('isAdmin', res.data.isAdmin, { expires: 14 })
-        //navigate.push('/');
-        //setLoading(false);
+        navigate.push('/');
+        setLoading(false);
       }
     })
   }
