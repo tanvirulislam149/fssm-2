@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
-import HeaderComponent from '../../Headers/HeaderComponent';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import { getAllKnowledgeRepo, getSubItem } from '../../../services/knowledgeRepoService';
 import { CircularProgress } from '@mui/material';
@@ -87,7 +86,6 @@ const KnowledgeDownload = () => {
     <>
       <div className={styles.container}>
         <section>
-          <HeaderComponent />
           <KnowledgeSectionNav />
           <div className={styles.cont}>
 
