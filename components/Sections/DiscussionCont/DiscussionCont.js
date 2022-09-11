@@ -34,11 +34,15 @@ const DiscussionCont = () => {
           {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
             error ?
               <p className='error'>{error}</p> :
-              discussionData.map(({ category, id, topics }) => {
-                return (
-                  <DiscussionCard key={id} cat_id={id} category={category} topics={topics} />
-                )
-              })
+              discussionData.length ?
+                discussionData.map(({ category, id, topics }) => {
+                  return (
+                    <DiscussionCard key={id} cat_id={id} category={category} topics={topics} />
+                  )
+                }) :
+                <div className={styles.empty}>
+                  <p>No records found.</p>
+                </div>
           }
         </section>
       </div>

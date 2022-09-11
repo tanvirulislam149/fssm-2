@@ -16,6 +16,7 @@
   line-height: var(--lh-35);
   font-weight: var(--fw-400);
   color: var(--white-color);
+  list-style-type: disc;
 }
 
 .btn {
