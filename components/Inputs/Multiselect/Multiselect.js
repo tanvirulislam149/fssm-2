@@ -60,7 +60,7 @@ const Multiselect = ({ val, content, id, setData, data, placeholder }) => {
         onClick={() => { setDropped(!dropped) }}
       >
         <div></div>
-        <span>
+        <span className={styles.span}>
           {val.length ?
             val.length === content.length ?
               'All selected (' + content.length + ')' :

@@ -18,6 +18,9 @@
   font-family: var(--font-family-secondary);
   position: absolute;
   width: var(--eighteen);
+  padding-bottom: var(--size-5);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 5px 15px var(--shadow);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -webkit-animation: fadeIn 0.5s;
@@ -62,6 +65,10 @@
   height: max-content;
   max-height: var(--s-240);
   overflow: auto;
+}
+
+.span {
+  text-align: center;
 }
 
 @-webkit-keyframes fadeIn {

@@ -22,7 +22,6 @@
   background: var(--white-color);
   padding: var(--s-30);
   border-radius: var(--primary-border-radius);
-  width: var(--size-95);
 }
 
 .cont p {

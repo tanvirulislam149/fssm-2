@@ -11,8 +11,8 @@ const OptionComp = ({ val, optionName, setData, data, id }) => {
     if (val.includes(optionName)) {
       const newState = val.filter(text => {
         return text !== optionName;
-      })
-      setData(newState);
+      }).sort();
+      //setData(newState);
       setData({
         ...data,
         [id]: newState
@@ -20,7 +20,7 @@ const OptionComp = ({ val, optionName, setData, data, id }) => {
     } else {
       setData({
         ...data,
-        [id]: [...val, optionName]
+        [id]: [...val, optionName].sort()
       })
     }
   }
