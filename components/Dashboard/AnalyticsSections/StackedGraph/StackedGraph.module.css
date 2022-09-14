@@ -74,9 +74,38 @@
   margin-bottom: var(--s-10);
 }
 
-.chart > div {
-  width: var(--size-95);
-  margin-left: var(--five);
+.justify_center {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-20) 0;
+}
+
+.tc {
+  background: var(--white-color);
+  padding: var(--s-30) var(--s-40);
+  border: solid 1px var(--red);
+  border-radius: var(--size-5);
+  width: max-content;
+  height: max-content;
+  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  font-weight: var(--fw-500);
+  box-shadow: 0 0 var(--s-30) var(--shadow);
+}
+
+.error_cont {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  background: var(--faded-black);
+  z-index: 1301;
+  width: var(--hundred);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 950px) {

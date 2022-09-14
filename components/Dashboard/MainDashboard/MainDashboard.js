@@ -6,7 +6,7 @@ import Analytics from '../Analytics/Analytics';
 const MainDashboard = () => {
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.dash_cont}>
         <div>
           <SideBar />
         </div>

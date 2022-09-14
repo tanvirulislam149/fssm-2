@@ -1,0 +1,200 @@
+.container {
+  font-family: var(--font-family-secondary);
+}
+
+.label,
+.label2 {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+  padding: var(--fs-14) var(--s-10);
+  border-top: var(--size-3) solid var(--primary-blue);
+  background: var(--white-color);
+  margin-bottom: var(--s-10);
+}
+
+.label2 {
+  margin-bottom: 0;
+}
+
+.container section {
+  padding: var(--size-5);
+  background: var(--white-color);
+}
+
+.cont {
+  border: solid 1px var(--d-bg);
+}
+
+.heading {
+  display: flex;
+}
+
+.heading > div {
+  padding-top: var(--fs-14);
+  padding-bottom: var(--fs-14);
+  display: flex;
+  justify-content: center;
+}
+
+.one {
+  width: 10%;
+}
+
+.two {
+  width: 10%;
+}
+
+.three {
+  width: 48%;
+}
+
+.four {
+  width: 17%;
+}
+
+.five {
+  width: 15%;
+}
+
+.row,
+.row2 {
+  display: flex;
+}
+
+.row2 {
+  background: var(--d-bg);
+}
+
+.row > div,
+.row2 > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-400);
+  padding-top: var(--fs-14);
+  padding-bottom: var(--fs-14);
+}
+
+.pdf {
+  background: var(--white-color);
+  padding: var(--s-10);
+}
+
+.btn {
+  color: var(--white-color);
+  border-width: 0;
+  font-size: var(--s-10);
+  font-weight: var(--fw-400);
+  font-family: var(--font-family-secondary);
+  height: var(--s-18);
+  width: var(--s-40);
+}
+
+.mapbtn {
+  background: var(--l-blue);
+}
+
+.viewbtn {
+  background: var(--yellow);
+  margin-left: var(--size-5);
+}
+
+.delbtn {
+  background: var(--red);
+  margin-left: var(--size-5);
+}
+
+/* modal */
+.modal_content {
+  position: relative;
+  background-color: var(--white-color);
+  margin: auto;
+  font-family: var(--font-family-secondary);
+  margin-top: var(--s-20);
+  z-index: 2;
+  padding: 0;
+  border-width: 0;
+  width: var(--s-900);
+  height: max-content;
+  box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+.close {
+  color: var(--black);
+  font-size: var(--s-20);
+  font-weight: bold;
+  color: var(--white-color);
+  background: var(--l-blue);
+  padding: var(--fs-1rem);
+  padding-right: var(--s-30);
+  text-align: center;
+}
+
+.close > span {
+  height: var(--lh-35);
+  width: var(--lh-35);
+  background: var(--pale-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: var(--fifty);
+  top: -20px;
+  right: -20px;
+}
+
+.close > span:hover {
+  background: var(--red);
+  transition: ease-in-out 0.2s;
+}
+
+.bg {
+  background: var(--transparent);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  height: var(--min-height-100);
+  width: var(--hundred);
+}
+
+.form {
+  padding: var(--fs-12);
+  padding-bottom: var(--s-50);
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 950px) {
+  .form {
+    padding: var(--fs-12);
+  }
+}
+
+@media (max-width: 690px) {
+  .modal_content {
+    width: var(--size-95);
+  }
+}

@@ -18,7 +18,6 @@ const ForgotPasswordForm = () => {
   const handleError = (err) => {
     setLoading(false);
     console.log({ e: err })
-
   }
 
   const handleSubmit = (data) => {

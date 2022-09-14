@@ -71,6 +71,7 @@
   --s-8: 8px;
   --s-4: 4px;
   --s-2: 2px;
+  --s-900: 900px;
   --s-764: 764px;
   --s-650: 650px;
   --s-600: 600px;
@@ -94,6 +95,7 @@
   --s-180: 180px;
   --s-150: 150px;
   --s-140: 140px;
+  --s-135: 135px;
   --s-122: 122px;
   --s-120: 120px;
   --s-100: 100px;
@@ -122,6 +124,7 @@
   --white-color: #fff;
   --white-shadow: #ffffff18;
   --green: #1abc9c;
+  --green-2: #37c172;
   --m-green: #37c172;
   --login-page-title-color: #3ec70b;
   --dark-green: #049d00;

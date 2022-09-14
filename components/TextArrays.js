@@ -174,8 +174,8 @@ import d14 from '../assets/Frame (14).png';
 
 export const sideBarText = [
   { id: 1, text: 'Dashboard', link: 'dashboard', image: d1 },
-  { id: 2, text: 'Bulk Upload', link: 'dashboard', image: d2 },
-  { id: 3, text: 'Documents Mapping', link: 'dashboard', image: d3 },
+  { id: 2, text: 'Bulk Upload', link: 'bulkupload', image: d2 },
+  { id: 3, text: 'Documents Mapping', link: 'documentsmapping', image: d3 },
   { id: 4, text: 'My Documents', link: 'dashboard', image: d4 },
   { id: 5, text: 'All Documents', link: 'dashboard', image: d5 },
   { id: 6, text: 'List Documents', link: 'dashboard', image: d6 },
@@ -397,3 +397,10 @@ export const getInvolvedText = {
     'Get in touch'
   ]
 }
+
+export const imageTypes = [
+  'image/jpeg',
+  'image/jpg',
+  'image/webp',
+  'image/png'
+]

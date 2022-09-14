@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './StackedGraph.module.css';
 import dynamic from 'next/dynamic';
 import TextField from '@mui/material/TextField';
@@ -6,6 +6,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDatePicker } from '@mui/x-date-pickers';
+import { getStats } from '../../../../services/dashboardService';
+import CircularProgress from '@mui/material/CircularProgress';
+import { getOrgStackedGraph } from '../../../../services/dashboardService';
+import WarningIcon from '@mui/icons-material/Warning';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const options = ['', 'Option 1', 'Option 2'];
@@ -15,15 +19,20 @@ const StackedGraph = () => {
   const [inputValue, setInputValue] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [formError, setFormError] = useState(null);
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const [options, setOptions] = useState(['']);
   const [series, setSeries] = useState([{
     name: 'Uploaded',
-    data: [44, 55, 41, 4, 22, 43, 21, 0, 12, 10]
+    data: []
   }, {
     name: 'Mapped',
-    data: [53, 32, 33, 5, 13, 43, 32, 0, 23, 0]
+    data: []
   }, {
     name: 'Approved',
-    data: [12, 17, 11, 9, 15, 11, 20, 0, 9, 23]
+    data: []
   }])
   const [option, setOption] = useState({
     chart: {
@@ -44,7 +53,7 @@ const StackedGraph = () => {
       colors: ["transparent"],
     },
     xaxis: {
-      categories: ['NFSSM', 'BMGF', 'CSE', 'CEPT', 'E&Y', 'IIHS', 'NIUA', 'UMC', 'WASH', 'CDD'],
+      categories: [],
       labels: {
         offsetY: 15,
         offsetX: -2,
@@ -125,13 +134,126 @@ const StackedGraph = () => {
     }
   })
 
-  const handleStart = (newValue) => {
-    setStartDate(newValue);
+  const handleStats = (data) => {
+    //const graphData = Object.keys(data).map((key) => [key, data[key]]);
+    const cats = Object.keys(data).map((key) => key);
+
+    setOption(current => {
+      return {
+        ...current,
+        xaxis: {
+          ...current.xaxis,
+          categories: cats
+        }
+      }
+    })
+
+    setOptions([
+      ...options,
+      ...cats
+    ])
+
+    let uploaded = [], approved = [], unmapped = [];
+    cats.forEach(item => {
+      uploaded.push(data[item].uploaded)
+    })
+
+    cats.forEach(item => {
+      unmapped.push(data[item].unmapped)
+    })
+
+    cats.forEach(item => {
+      approved.push(data[item].approved)
+    })
+
+    setSeries([
+      {
+        name: 'Uploaded',
+        data: uploaded
+      },
+      {
+        name: 'Mapped',
+        data: unmapped
+      },
+      {
+        name: 'Approved',
+        data: approved
+      }
+    ])
+    setLoading(false);
+  }
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+  }
+
+  useEffect(() => {
+    getStats((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        handleStats(res.data['Stacked Graph'])
+      }
+    });
+  }, []);
+
+  const handleStart = (val) => {
+    const day = val ?
+      val['$D'].toString().length === 1 ? '0' + val['$D'].toString() : val['$D'] :
+      startDate['$D'];
+    const month = val ?
+      val['$M'].toString().length === 1 ? '0' + (val['$M'] + 1).toString() : val['$M'] + 1 :
+      startDate['$M'];
+    const year = val ? val['$y'] : startDate['$y'];
+    setFormError(null);
+    setStart(`${year}-${month}-${day}`)
+    setStartDate(val);
   };
 
   const handleEnd = (val) => {
+    const day = val ?
+      val['$D'].toString().length === 1 ? '0' + val['$D'].toString() : val['$D'] :
+      endDate['$D'];
+    const month = val ?
+      val['$M'].toString().length === 1 ? '0' + (val['$M'] + 1).toString() : val['$M'] + 1 :
+      endDate['$M'];
+    const year = val ? val['$y'] : endDate['$y'];
+    setFormError(null);
+    setEnd(`${year}-${month}-${day}`);
     setEndDate(val);
   }
+
+
+  const handleSubmit = () => {
+    if (startDate['$y'] > endDate['$y'] ||
+      (startDate['$y'] === endDate['$y'] && startDate['$M'] > endDate['$M']) ||
+      (startDate['$y'] === endDate['$y'] && startDate['$M'] === endDate['$M'] && startDate['$D'] >= endDate['$D'])) {
+      setFormError('Start date must be earlier than end date');
+    } else if (value === '') {
+      setFormError('Select organization name');
+    } else {
+      console.log(start, end)
+      getOrgStackedGraph({
+        org: value,
+        start,
+        end
+      }, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          setLoading(false);
+          console.log({ r: res });
+        }
+      });
+    }
+    setTimeout(() => {
+      setFormError(null);
+    }, 2000);
+  }
+
+  useEffect(() => {
+    const el = document.getElementById('stack-error');
+    formError === null ? el.classList.add('none') : el.classList.remove('none');
+  }, [formError])
 
   return (
     <>
@@ -185,15 +307,21 @@ const StackedGraph = () => {
             </LocalizationProvider>
           </div>
 
-          <button className={styles.btn}>Search</button>
+          <button onClick={() => { handleSubmit(); }} className={styles.btn}>Search</button>
         </div>
 
         <div className={styles.chart}>
-          <div id="chart">
-            <ReactApexChart options={option} height={900} series={series} type="bar" />
-          </div>
+          {loading ?
+            <div className={styles.justify_center}><CircularProgress /></div> :
+            <div id="chart">
+              <ReactApexChart options={option} height={option.xaxis.categories.length * 90} series={series} type="bar" />
+            </div>
+          }
         </div>
       </section>
+
+
+      <div id='stack-error' className={`none  ${styles.error_cont}`}><div className={`${styles.tc} form-error`}><WarningIcon />{formError}</div></div>
     </>
   )
 }

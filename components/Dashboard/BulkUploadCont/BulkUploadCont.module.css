@@ -1,0 +1,134 @@
+.container section {
+  display: flex;
+  margin-bottom: var(--s-20);
+}
+
+.label {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+  padding: var(--fs-14) var(--s-10);
+  border-top: var(--size-3) solid var(--primary-blue);
+  background: var(--white-color);
+  margin-bottom: var(--s-10);
+}
+
+.btn {
+  width: var(--s-135);
+  height: var(--lh-35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white-color);
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+  font-family: var(--font-family-secondary);
+  margin-right: var(--fs-14);
+  cursor: pointer;
+}
+
+.one {
+  background: var(--green-2);
+}
+
+.two {
+  background: var(--primary-blue);
+}
+
+.three {
+  background: var(--yellow);
+}
+
+.start,
+.cancel {
+  color: var(--white-color);
+  width: var(--s-80);
+  height: var(--lh-35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+  font-family: var(--font-family-secondary);
+  margin-left: var(--fs-14);
+}
+
+.start {
+  background: var(--primary-blue);
+}
+
+.cancel {
+  background: var(--yellow);
+}
+
+.name,
+.size {
+  font-weight: var(--fw-400);
+}
+
+.size {
+  width: var(--s-120);
+  margin-left: auto;
+}
+
+.img {
+  width: var(--s-80);
+  margin-right: var(--fs-14);
+  height: var(--s-80);
+  position: relative;
+}
+
+.display,
+.display2 {
+  display: flex;
+  align-items: center;
+  padding: var(--size-5) var(--s-10);
+}
+
+.display {
+  border-left: solid 1px var(--d-bg);
+  border-right: solid 1px var(--d-bg);
+}
+
+.display2 {
+  background: var(--d-bg);
+}
+
+.files {
+  padding: var(--fs-14) var(--s-10);
+  border-top: var(--size-3) solid var(--primary-blue);
+  background: var(--white-color);
+  padding-bottom: var(--s-40);
+}
+
+@media (max-width: 950px) {
+  .container section {
+    flex-direction: column;
+  }
+
+  .btn,
+  .start,
+  .cancel {
+    margin: 0 1% var(--s-10);
+    width: 98%;
+  }
+
+  .display,
+  .display2 {
+    flex-direction: column;
+  }
+
+  .name,
+  .size {
+    margin-bottom: var(--size-5);
+    width: var(--hundred);
+    text-align: center;
+  }
+
+  .size {
+    margin-left: 0;
+  }
+}

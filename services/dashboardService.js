@@ -5,3 +5,9 @@ export const getStats = cb => {
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
+
+export const getOrgStackedGraph = (data, cb) => {
+  axiosInstance.post('dashboard/search/', data)
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}

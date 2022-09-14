@@ -1,0 +1,19 @@
+.form {
+  background: var(--d-bg);
+  border: solid 1px var(--shade);
+  padding: var(--s-20);
+}
+
+.input {
+  width: var(--hundred);
+  border: solid 1px var(--shade);
+  padding: var(--s-10);
+}
+
+.textInput > label {
+  font-weight: var(--fw-400);
+}
+
+.textInput > label span {
+  color: var(--pale-red);
+}

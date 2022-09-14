@@ -1,22 +1,22 @@
-.container {
+.dash_cont {
   display: flex;
 }
 
-.container > div:first-child {
+.dash_cont > div:first-child {
   width: var(--size-22);
 }
 
-.container > div {
+.dash_cont > div {
   width: var(--size-78);
 }
 
 @media (max-width: 950px) {
-  .container {
+  .dash_cont {
     flex-direction: column;
   }
 
-  .container > div:first-child,
-  .container > div {
+  .dash_cont > div:first-child,
+  .dash_cont > div {
     width: var(--hundred);
   }
 }

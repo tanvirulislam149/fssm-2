@@ -58,6 +58,20 @@
   color: var(--white-color);
 }
 
+.dash_cont {
+  display: flex;
+}
+
+.dash_cont > div:first-child {
+  width: var(--size-22);
+}
+
+.dash_cont > div:nth-last-child(1) {
+  width: var(--size-78);
+  background: var(--d-bg);
+  padding: var(--s-30);
+}
+
 @media (max-width: 1300px) {
   .title2 {
     font-size: var(--s-18);
@@ -73,6 +87,20 @@
   .title2 span {
     position: static !important;
     right: var(--s-20);
+  }
+
+  .dash_cont > div:nth-last-child(1) {
+    padding: var(--s-10);
+    width: var(--hundred);
+  }
+
+  .dash_cont {
+    flex-direction: column;
+  }
+
+  .dash_cont > div:first-child,
+  .dash_cont > div {
+    width: var(--hundred);
   }
 
   .float {

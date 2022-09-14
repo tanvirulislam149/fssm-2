@@ -35,7 +35,7 @@ span {
 }
 
 .none {
-  display: none;
+  display: none !important;
 }
 
 button:hover {
