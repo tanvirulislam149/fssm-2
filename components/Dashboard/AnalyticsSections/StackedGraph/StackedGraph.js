@@ -12,10 +12,8 @@ import { getOrgStackedGraph } from '../../../../services/dashboardService';
 import WarningIcon from '@mui/icons-material/Warning';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-const options = ['', 'Option 1', 'Option 2'];
-
 const StackedGraph = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -23,7 +21,7 @@ const StackedGraph = () => {
   const [formError, setFormError] = useState(null);
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-  const [options, setOptions] = useState(['']);
+  const [options, setOptions] = useState([]);
   const [series, setSeries] = useState([{
     name: 'Uploaded',
     data: []
@@ -135,7 +133,6 @@ const StackedGraph = () => {
   })
 
   const handleStats = (data) => {
-    //const graphData = Object.keys(data).map((key) => [key, data[key]]);
     const cats = Object.keys(data).map((key) => key);
 
     setOption(current => {
@@ -149,7 +146,6 @@ const StackedGraph = () => {
     })
 
     setOptions([
-      ...options,
       ...cats
     ])
 
@@ -274,9 +270,6 @@ const StackedGraph = () => {
               }}
               id="controllable-states-demo"
               options={options}
-              getOptionDisabled={(option) =>
-                option === ''
-              }
               renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
             />
           </div>

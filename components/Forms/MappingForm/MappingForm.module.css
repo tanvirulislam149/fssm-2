@@ -10,10 +10,81 @@
   padding: var(--s-10);
 }
 
+.textarea {
+  height: auto;
+  resize: none;
+  border: solid 1px var(--shade);
+  padding: var(--s-10);
+  width: var(--hundred);
+}
+
+.select {
+  background: var(--white-color);
+  width: var(--hundred);
+}
+
+.select > div > div {
+  padding: 0 !important;
+}
+
+.chip {
+  height: 38px !important;
+}
+
+.chip::-webkit-input-placeholder {
+  font-size: var(--fs-1rem);
+  color: var(--gray);
+}
+
 .textInput > label {
   font-weight: var(--fw-400);
+  margin-bottom: var(--size-3);
 }
 
 .textInput > label span {
   color: var(--pale-red);
+}
+
+.textInput {
+  margin-bottom: var(--fs-14);
+}
+
+.btn {
+  height: var(--lh-35);
+  width: var(--s-100);
+  color: var(--white-color);
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+  border-width: 0;
+}
+
+.submit {
+  background: var(--l-blue);
+}
+
+.cancel {
+  background: var(--pale-red);
+  margin-left: var(--s-20);
+}
+
+.btn_cont {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-20);
+}
+
+.checkboxes {
+  margin-top: var(--s-10);
+  display: flex;
+}
+
+.checkboxes > div {
+  width: var(--s-140);
+}
+
+.checkboxes input[type="radio"] {
+  border: 0px;
+  height: var(--fs-1rem);
+  width: var(--fs-1rem);
+  margin-right: var(--size-5);
 }

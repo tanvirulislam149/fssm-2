@@ -102,7 +102,7 @@ const AdvancedSearchCont = () => {
           <form className={styles.form} onSubmit={(e) => { handleSubmit(e); }}>
 
             <span className={styles.chip}></span>
-            <CustomizedHook setData={settingData} data={data} />
+            <CustomizedHook setData={settingData} />
 
             <div className={`${styles.grid} ${styles.top}`}>
               <div className={styles.select}>

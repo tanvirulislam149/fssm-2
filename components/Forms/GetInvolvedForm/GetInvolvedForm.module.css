@@ -68,7 +68,7 @@
   padding: var(--s-20);
   border: solid 1px var(--input-border-color);
   width: var(--hundred);
-  font-family: var(--font-family-primmary);
+  font-family: var(--font-family-primary);
 }
 
 .textarea::-webkit-input-placeholder {
