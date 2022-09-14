@@ -18,13 +18,19 @@
   width: var(--hundred);
 }
 
-.select {
+.select,
+.select1 {
   background: var(--white-color);
   width: var(--hundred);
 }
 
 .select > div > div {
   padding: 0 !important;
+}
+
+.select1 > div {
+  padding-top: var(--s-8) !important;
+  padding-bottom: var(--s-8) !important;
 }
 
 .chip {

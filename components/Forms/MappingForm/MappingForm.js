@@ -51,7 +51,11 @@ const MappingForm = () => {
           citation: Yup.string()
             .min(10, 'Must be 10 characters minimum'),
           theme: Yup.string()
-            .required('Required'),
+            .required('Required')
+            .nullable()
+            .test('test', 'gsh', (val) => {
+              return val !== null;
+            }),
         })}
         onSubmit={(data, actions) => {
           document.querySelector('.modal2').style.display = "none";
@@ -61,7 +65,7 @@ const MappingForm = () => {
           setChipKey(!chipKey);
         }}
       >
-        {({ setFieldValue, resetForm }) => (
+        {({ setFieldValue }) => (
           <Form className={styles.form}>
             <div className={styles.textInput}>
               <label htmlFor="title">Title <span>*</span></label>
@@ -72,6 +76,7 @@ const MappingForm = () => {
             <div className={styles.textInput}>
               <label htmlFor="theme">Theme <span>*</span></label>
               <Autocomplete
+                key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
                   setFieldValue('theme', newValue);
@@ -90,6 +95,7 @@ const MappingForm = () => {
             <div className={styles.textInput}>
               <label htmlFor="category">Sub Category</label>
               <Autocomplete
+                key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
                   setFieldValue('category', newValue);
@@ -107,6 +113,7 @@ const MappingForm = () => {
             <div className={styles.textInput}>
               <label htmlFor="stakeholder">Stakeholder</label>
               <Autocomplete
+                key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
                   setFieldValue('stakeholder', newValue);
@@ -124,6 +131,7 @@ const MappingForm = () => {
             <div className={styles.textInput}>
               <label htmlFor="value_chain">Value Chain</label>
               <Autocomplete
+                key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
                   setFieldValue('value_chain', newValue);
@@ -183,6 +191,7 @@ const MappingForm = () => {
             <div className={styles.textInput}>
               <label htmlFor="language">Language</label>
               <Autocomplete
+                key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
                   setFieldValue('language', newValue);
@@ -215,7 +224,7 @@ const MappingForm = () => {
             </div>
 
             <div className={styles.btn_cont}>
-              <button type='submit' onClick={() => { null }} className={`${styles.btn} ${styles.submit}`}>Submit</button>
+              <button type='submit' className={`${styles.btn} ${styles.submit}`}>Submit</button>
               <button
                 type='reset'
                 className={`${styles.btn} ${styles.cancel}`}
