@@ -1,0 +1,131 @@
+.container {
+  background: var(--white-color);
+  padding-bottom: var(--s-30);
+}
+
+.select > div {
+  padding: 1px !important;
+  padding-left: var(--fs-14) !important;
+}
+
+.select {
+  font-size: var(--fs-14);
+}
+
+.select svg {
+  right: var(--size-3) !important;
+  font-size: var(--fs-1rem) !important;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  padding: var(--s-10);
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--d-bg);
+}
+
+.control > p {
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+}
+
+.cont {
+  border: solid 1px var(--d-bg);
+  margin: var(--size-5);
+}
+
+.heading {
+  display: flex;
+}
+
+.heading > div {
+  padding-top: var(--fs-14);
+  padding-bottom: var(--fs-14);
+  display: flex;
+  justify-content: center;
+}
+
+.one {
+  width: var(--ten);
+}
+
+.two {
+  width: var(--ten);
+}
+
+.three {
+  width: 48%;
+}
+
+.four {
+  width: 17%;
+}
+
+.five {
+  width: 15%;
+}
+
+.row,
+.row2 {
+  display: flex;
+}
+
+.row2 {
+  background: var(--d-bg);
+}
+
+.row > div,
+.row2 > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-400);
+  padding-top: var(--fs-14);
+  padding-bottom: var(--fs-14);
+}
+
+.pdf {
+  background: var(--white-color);
+  padding: var(--s-10);
+}
+
+.btn {
+  height: var(--fs-24);
+  width: var(--fs-24);
+  border-radius: var(--fifty);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.editbtn {
+  background: var(--primary-blue);
+  margin-left: var(--size-5);
+}
+
+.editbtn:hover {
+  background: var(--l-blue);
+}
+
+.viewbtn {
+  background: var(--pale-red);
+  margin-left: var(--size-5);
+}
+
+.viewbtn:hover {
+  background: var(--red-hov);
+}
+
+.delbtn {
+  border: solid 1px var(--pale-red);
+}
+
+.results {
+  color: var(--light-gray-color);
+  font-weight: var(--fw-400);
+  margin-top: var(--fs-14);
+}

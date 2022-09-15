@@ -18,8 +18,7 @@
   width: var(--hundred);
 }
 
-.select,
-.select1 {
+.select {
   background: var(--white-color);
   width: var(--hundred);
 }
@@ -28,10 +27,16 @@
   padding: 0 !important;
 }
 
+/* 
+.select1 {
+  background: var(--white-color);
+  width: var(--hundred);
+}
+
 .select1 > div {
   padding-top: var(--s-8) !important;
   padding-bottom: var(--s-8) !important;
-}
+} */
 
 .chip {
   height: 38px !important;
@@ -68,9 +73,17 @@
   background: var(--l-blue);
 }
 
+.submit:hover {
+  background: var(--lb-hov);
+}
+
 .cancel {
   background: var(--pale-red);
   margin-left: var(--s-20);
+}
+
+.cancel:hover {
+  background: var(--red-hov);
 }
 
 .btn_cont {

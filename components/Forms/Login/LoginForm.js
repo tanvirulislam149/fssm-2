@@ -30,7 +30,7 @@ const LoginForm = () => {
     err === 'Email or Password Incorrect' ?
       setError('Email or Password Incorrect') :
       err === 'Refresh token expired' ?
-        navigate.push('/signin') : setError('An Error Occured');
+        navigate.push('/signin') : setError('An Error Occured, Please Refresh And Try Again');
   }
 
   const handleSubmit = async (loginData) => {

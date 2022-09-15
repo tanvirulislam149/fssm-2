@@ -167,6 +167,7 @@ export default function CustomizedHook({ setData }) {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
+    defaultValue: [],
     multiple: true,
     options: advancedSearchText.chips,
     getOptionLabel: (option) => option.title,
@@ -174,6 +175,13 @@ export default function CustomizedHook({ setData }) {
 
   let results = [];
   React.useEffect(() => {
+    // let index;
+    // advancedSearchText.chips.forEach(({ title }, i) => {
+    //   if (title === 'academic') {
+    //     index = i;
+    //   }
+    // })
+    // !value.length && value.push(advancedSearchText.chips[index])
     value.forEach(({ title }) => {
       results.push(title);
       setData(results);

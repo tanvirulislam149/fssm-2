@@ -1,0 +1,63 @@
+.form {
+  padding: var(--s-20) var(--s-60);
+  background: var(--white-color);
+  margin-bottom: var(--s-30);
+}
+
+.form section {
+  display: grid;
+  grid-template-columns: 47% 47%;
+  gap: 6%;
+}
+
+.select {
+  background: var(--white-color);
+  width: var(--sixty);
+}
+
+.select > div > div {
+  padding: 0 !important;
+}
+
+.select > div > div > input {
+  padding-left: var(--fs-1rem) !important;
+}
+
+.input {
+  width: var(--sixty);
+  border: solid 1px var(--shade);
+  padding: var(--s-10);
+}
+
+.textInput > .label {
+  font-weight: var(--fw-500);
+  font-size: var(--fs-14);
+}
+
+.textInput {
+  margin-bottom: var(--fs-14);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  color: var(--white-color);
+  border-width: 0;
+  background: var(--l-blue);
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+  height: var(--s-50);
+  width: var(--s-100);
+}
+
+.btn:hover {
+  background: var(--lb-hov);
+}
+
+.cont {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-40);
+  margin-bottom: var(--s-20);
+}

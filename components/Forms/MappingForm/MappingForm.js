@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './MappingForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomizedHook from './useHook';
+import { advancedSearchText } from '../../TextArrays';
 
 const MappingForm = () => {
-  const [options, setOptions] = useState(['Capacity Building', 'Learning']);
   const [keywords, setKeywords] = useState([]);
+  const [language, setLanguage] = useState([]);
+  const [value_chain, setValue_chain] = useState([]);
+  const [stakeholder, setStakeholder] = useState([]);
+  const [category, setCategory] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [inputValue2, setInputValue2] = useState('');
-  const [inputValue3, setInputValue3] = useState('');
-  const [inputValue4, setInputValue4] = useState('');
-  const [inputValue5, setInputValue5] = useState('');
+  const [themeOptions, setThemeOptions] = useState([]);
   const [chipKey, setChipKey] = useState(false);
 
   const handleSubmit = (values) => {
     const data = {
       ...values,
-      keywords
+      keywords, stakeholder, value_chain, language, category
     }
-    console.log(data)
+    console.log(data);
   }
+
+  useEffect(() => {
+    const options = [];
+    advancedSearchText.themes.forEach(({ title }) => {
+      options.push(title);
+    })
+    setThemeOptions(options);
+  }, [])
 
   return (
     <>
@@ -30,12 +39,8 @@ const MappingForm = () => {
         initialValues={{
           title: '',
           theme: '',
-          value_chain: '',
-          stakeholder: '',
-          category: '',
           geography: '',
           status: '',
-          language: '',
           description: '',
           citation: '',
         }}
@@ -52,16 +57,17 @@ const MappingForm = () => {
             .min(10, 'Must be 10 characters minimum'),
           theme: Yup.string()
             .required('Required')
-            .nullable()
-            .test('test', 'gsh', (val) => {
-              return val !== null;
-            }),
+            .nullable(),
         })}
         onSubmit={(data, actions) => {
           document.querySelector('.modal2').style.display = "none";
           handleSubmit(data);
           actions.resetForm();
           setKeywords([]);
+          setCategory([]);
+          setValue_chain([]);
+          setLanguage([]);
+          setStakeholder([]);
           setChipKey(!chipKey);
         }}
       >
@@ -86,7 +92,7 @@ const MappingForm = () => {
                   setInputValue(newInputValue);
                 }}
                 id='theme'
-                options={options}
+                options={themeOptions}
                 renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
               />
               <span className='form-error'><ErrorMessage name="theme" /></span>
@@ -94,56 +100,17 @@ const MappingForm = () => {
 
             <div className={styles.textInput}>
               <label htmlFor="category">Sub Category</label>
-              <Autocomplete
-                key={chipKey}
-                className={styles.select}
-                onChange={(event, newValue) => {
-                  setFieldValue('category', newValue);
-                }}
-                inputValue={inputValue2}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue2(newInputValue);
-                }}
-                id='category'
-                options={options}
-                renderInput={(params) => <TextField {...params} placeholder="--Select Sub Category --" />}
-              />
+              <CustomizedHook key={chipKey} content={[]} placeholder='--Select Sub Category--' setData={setCategory} />
             </div>
 
             <div className={styles.textInput}>
               <label htmlFor="stakeholder">Stakeholder</label>
-              <Autocomplete
-                key={chipKey}
-                className={styles.select}
-                onChange={(event, newValue) => {
-                  setFieldValue('stakeholder', newValue);
-                }}
-                inputValue={inputValue3}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue3(newInputValue);
-                }}
-                id='stakeholder'
-                options={options}
-                renderInput={(params) => <TextField {...params} placeholder="--Select Stakeholder --" />}
-              />
+              <CustomizedHook key={chipKey} content={advancedSearchText.stake_holder} placeholder='--Select Stakeholder--' setData={setStakeholder} />
             </div>
 
             <div className={styles.textInput}>
               <label htmlFor="value_chain">Value Chain</label>
-              <Autocomplete
-                key={chipKey}
-                className={styles.select}
-                onChange={(event, newValue) => {
-                  setFieldValue('value_chain', newValue);
-                }}
-                inputValue={inputValue4}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue4(newInputValue);
-                }}
-                id='value_chain'
-                options={options}
-                renderInput={(params) => <TextField {...params} placeholder="--Select Value Chain--" />}
-              />
+              <CustomizedHook key={chipKey} content={advancedSearchText.valueChain} placeholder='--Select Value Chain--' setData={setValue_chain} />
             </div>
 
             <div className={styles.textInput}>
@@ -190,20 +157,7 @@ const MappingForm = () => {
 
             <div className={styles.textInput}>
               <label htmlFor="language">Language</label>
-              <Autocomplete
-                key={chipKey}
-                className={styles.select}
-                onChange={(event, newValue) => {
-                  setFieldValue('language', newValue);
-                }}
-                inputValue={inputValue5}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue5(newInputValue);
-                }}
-                id='language'
-                options={options}
-                renderInput={(params) => <TextField {...params} placeholder="--Select Language --" />}
-              />
+              <CustomizedHook key={chipKey} content={advancedSearchText.languages} placeholder='--Select Language--' setData={setLanguage} />
             </div>
 
             <div className={styles.textInput}>
@@ -214,7 +168,7 @@ const MappingForm = () => {
 
             <div className={styles.textInput}>
               <label htmlFor="description">Keywords</label>
-              <CustomizedHook key={chipKey} keywords={keywords} setKeywords={setKeywords} />
+              <CustomizedHook key={chipKey} content={advancedSearchText.chips} placeholder='--Select Keywords--' setData={setKeywords} />
             </div>
 
             <div className={styles.textInput}>
@@ -230,7 +184,6 @@ const MappingForm = () => {
                 className={`${styles.btn} ${styles.cancel}`}
                 onClick={() => {
                   document.querySelector('.modal2').style.display = "none";
-                  //document.getElementById('user-cat').style.display = 'none';
                 }}>Cancel</button>
             </div>
           </Form>

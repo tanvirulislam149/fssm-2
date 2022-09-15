@@ -10,6 +10,7 @@ import { getStats } from '../../../../services/dashboardService';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getOrgStackedGraph } from '../../../../services/dashboardService';
 import WarningIcon from '@mui/icons-material/Warning';
+import { useRouter } from 'next/router';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const StackedGraph = () => {
@@ -22,6 +23,7 @@ const StackedGraph = () => {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [options, setOptions] = useState([]);
+  const [multiplier, setMultiplier] = useState(90);
   const [series, setSeries] = useState([{
     name: 'Uploaded',
     data: []
@@ -56,8 +58,7 @@ const StackedGraph = () => {
         offsetY: 15,
         offsetX: -2,
         formatter: function (val) {
-          // return val + "K"
-          return val;
+          return val.toFixed(2);
         }
       },
       tickAmount: 10,
@@ -132,6 +133,8 @@ const StackedGraph = () => {
     }
   })
 
+  const router = useRouter();
+
   const handleStats = (data) => {
     const cats = Object.keys(data).map((key) => key);
 
@@ -181,6 +184,7 @@ const StackedGraph = () => {
 
   const handleError = (err) => {
     setLoading(false);
+    err.response.data.code === 'token_not_valid' && router.push('/signin');
     console.log({ e: err })
   }
 
@@ -221,14 +225,16 @@ const StackedGraph = () => {
 
 
   const handleSubmit = () => {
+    console.log(option.xaxis.categories.length)
     if (startDate['$y'] > endDate['$y'] ||
       (startDate['$y'] === endDate['$y'] && startDate['$M'] > endDate['$M']) ||
       (startDate['$y'] === endDate['$y'] && startDate['$M'] === endDate['$M'] && startDate['$D'] >= endDate['$D'])) {
       setFormError('Start date must be earlier than end date');
-    } else if (value === '') {
+    } else if (value === null) {
       setFormError('Select organization name');
     } else {
-      console.log(start, end)
+      setLoading(true);
+
       getOrgStackedGraph({
         org: value,
         start,
@@ -236,7 +242,33 @@ const StackedGraph = () => {
       }, (err, res) => {
         if (err) return handleError(err);
         if (res !== null) {
+          setMultiplier(180);
           setLoading(false);
+
+          setOption(current => {
+            return {
+              ...current,
+              xaxis: {
+                ...current.xaxis,
+                categories: [value]
+              }
+            }
+          })
+
+          setSeries([
+            {
+              name: 'Uploaded',
+              data: [res.data['No Of Docs Uploaded']]
+            },
+            {
+              name: 'Mapped',
+              data: [res.data['No Of Docs Mapped']]
+            },
+            {
+              name: 'Approved',
+              data: [res.data['No Of Docs Approved']]
+            }
+          ])
           console.log({ r: res });
         }
       });
@@ -307,7 +339,7 @@ const StackedGraph = () => {
           {loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
             <div id="chart">
-              <ReactApexChart options={option} height={option.xaxis.categories.length * 90} series={series} type="bar" />
+              <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
             </div>
           }
         </div>

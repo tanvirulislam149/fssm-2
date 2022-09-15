@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Link from 'next/link';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -52,7 +53,7 @@ const TableCont = () => {
   return (
     <>
       <div className={styles.container}>
-        <h4 className={styles.label}>Dashboard</h4>
+        <h4 className={styles.label}><p>Dashboard</p> <Link href='https://swachhfssm.in/pullknowledgemanagementdata'><a><span className={styles.gmail}>GMail API</span></a></Link></h4>
         <TableContainer
           component={Paper}
           className={styles.paper}

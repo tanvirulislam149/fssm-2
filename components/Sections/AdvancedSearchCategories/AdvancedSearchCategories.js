@@ -46,13 +46,13 @@ const AdvancedSearchCategories = ({ handleSelect }) => {
             <div id='cat-1' className={`${styles.cat_drop_down} none`}>
               <ul className={styles.ul}>
                 {
-                  advancedSearchText.themes.map(theme => {
+                  advancedSearchText.themes.map(({ title }) => {
                     return (
                       <li
-                        key={theme}
-                        onClick={() => { handleSelect('theme', theme) }}
+                        key={title}
+                        onClick={() => { handleSelect('theme', title) }}
                       >
-                        {theme}
+                        {title}
                       </li>
                     )
                   })
@@ -72,13 +72,13 @@ const AdvancedSearchCategories = ({ handleSelect }) => {
             <div id='cat-2' className={`${styles.cat_drop_down} none`}>
               <ul className={styles.ul}>
                 {
-                  advancedSearchText.stake_holder.map(item => {
+                  advancedSearchText.stake_holder.map(({ title }) => {
                     return (
                       <li
-                        key={item}
-                        onClick={() => { handleSelect('stakeholder', item) }}
+                        key={title}
+                        onClick={() => { handleSelect('stakeholder', title) }}
                       >
-                        {item}
+                        {title}
                       </li>
                     )
                   })
@@ -98,13 +98,13 @@ const AdvancedSearchCategories = ({ handleSelect }) => {
             <div id='cat-3' className={`${styles.cat_drop_down} none`}>
               <ul className={styles.ul}>
                 {
-                  advancedSearchText.valueChain.map(item => {
+                  advancedSearchText.valueChain.map(({ title }) => {
                     return (
                       <li
-                        key={item}
-                        onClick={() => { handleSelect('value_chain', item) }}
+                        key={title}
+                        onClick={() => { handleSelect('value_chain', title) }}
                       >
-                        {item}
+                        {title}
                       </li>
                     )
                   })

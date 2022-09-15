@@ -9,7 +9,28 @@
   margin: 0;
   color: var(--primary-blue);
   font-weight: var(--font-weight-bold);
-  padding: var(--fs-12) var(--size-5);
+  padding: var(--s-8) var(--size-5);
+  display: flex;
+  justify-content: space-between;
+}
+
+.gmail {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-400);
+  font-family: var(--font-family-secondary);
+  color: var(--white-color);
+  background: var(--l-blue);
+  height: var(--s-22);
+  width: var(--s-64);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.gmail:hover {
+  background: var(--lb-hov);
 }
 
 .paper {

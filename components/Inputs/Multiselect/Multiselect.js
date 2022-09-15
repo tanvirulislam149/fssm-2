@@ -18,8 +18,8 @@ const Multiselect = ({ val, content, id, setData, data, placeholder }) => {
   }
 
   useEffect(() => {
-    const newState = content.filter(text => {
-      return text.toLowerCase().includes(string.trim().toLowerCase());
+    const newState = content.filter(({ title }) => {
+      return title.toLowerCase().includes(string.trim().toLowerCase());
     })
     setArray(newState);
   }, [updated])
@@ -86,9 +86,9 @@ const Multiselect = ({ val, content, id, setData, data, placeholder }) => {
         <div className={styles.cont}>
           {
             array.length ?
-              array.map(item => {
+              array.map(({ title }) => {
                 return (
-                  <OptionComp val={val} id={id} data={data} setData={setData} key={item} optionName={item} />
+                  <OptionComp val={val} id={id} data={data} setData={setData} key={title} optionName={title} />
                 )
               }) :
               <div className={styles.option}>No results</div>

@@ -7,7 +7,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 import styles from './MappingForm.module.css';
-import { advancedSearchText } from '../../TextArrays';
 
 const Root = styled('div')(
   ({ theme }) => `
@@ -108,8 +107,9 @@ const Listbox = styled('ul')(
   z-index: 2;
 
   & li {
-    padding: 5px 12px;
+    padding: 6px 12px;
     display: flex;
+    font-size: 17px;
 
     & span {
       flex-grow: 1;
@@ -122,7 +122,7 @@ const Listbox = styled('ul')(
 
   & li[aria-selected='true'] {
     background-color: ${theme.palette.mode === 'dark' ? '#2b2b2b' : '#22b8cf'};
-    font-weight: 600;
+    font-weight: 500;
 
     & svg {
       color: #1890ff;
@@ -140,7 +140,7 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function CustomizedHook({ setKeywords }) {
+export default function CustomizedHook({ setData, placeholder, content }) {
   const {
     getRootProps,
     getInputProps,
@@ -154,15 +154,17 @@ export default function CustomizedHook({ setKeywords }) {
   } = useAutocomplete({
     id: 'customized-hook-demo',
     multiple: true,
-    options: advancedSearchText.chips,
+    options: content,
     getOptionLabel: (option) => option.title,
   });
+
+
 
   let results = [];
   React.useEffect(() => {
     value.forEach(({ title }) => {
       results.push(title);
-      setKeywords(results);
+      setData(results);
     })
   }, [value])
 
@@ -174,7 +176,7 @@ export default function CustomizedHook({ setKeywords }) {
           {value.map((option, index) => (
             <StyledTag key={index} label={option.title} {...getTagProps({ index })} />
           ))}
-          <input className={styles.chip} placeholder={value.length ? '' : '--Select Keywords--'} {...getInputProps()} />
+          <input className={styles.chip} placeholder={value.length ? '' : placeholder} {...getInputProps()} />
         </InputWrapper>
       </div>
       {groupedOptions.length > 0 ? (
