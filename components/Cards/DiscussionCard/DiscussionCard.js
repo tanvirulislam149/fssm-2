@@ -13,6 +13,7 @@ import Input from '../../Inputs/Input';
 import { startDiscussion } from '../../../services/discussionService';
 import CircularProgress from '@mui/material/CircularProgress';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const DiscussionCard = ({ category, cat_id, topics }) => {
   const [clicked, setClicked] = useState(true);
@@ -20,6 +21,8 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
   const [loading, setLoading] = useState(false);
   const [dateArray, setDateArray] = useState([]);
   const [modalText, setModalText] = useState('');
+
+  const router = useRouter();
 
   useEffect(() => {
     let date = [];
