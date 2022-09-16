@@ -2,18 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styles from './TenderDownloadCont.module.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getExpiredTenders } from '../../../services/tenderServices';
-import { useRouter } from 'next/router';
-import pdf from '../../../assets/pdf.png';
-import Image from 'next/image';
 import DownloadCard from '../../Cards/DownloadCard/DownloadCard';
 
 const TenderDownloadCont = () => {
   const [loading, setLoading] = useState(true);
   const [tenders, setTenders] = useState([]);
-  const [clicked, setClicked] = useState(true);
-
-  const router = useRouter();
-  const path = router.query.id;
 
   const dropDown = (e, s, u, u2, c, ex, m) => {
     if (e.classList.contains("active-dropdown")) {
@@ -48,6 +41,10 @@ const TenderDownloadCont = () => {
       if (res !== null) {
         setLoading(false);
         console.log({ r: res })
+
+        const { search } = window.location;
+        const path = new URLSearchParams(search).get('id');
+
         res.data['Expired Tenders'].forEach(item => {
           if (item.id === Number(path)) {
             setTenders(item);

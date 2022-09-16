@@ -16,7 +16,7 @@ const KnowledgeDownload = () => {
   const [route, setRoute] = useState('');
 
   const router = useRouter();
-  const { title, subitem, id } = router.query;
+  const { title, subitem } = router.query;
   const path = router.query.category === 'undefined' ? '1' : router.query.category;
 
   const handleError = (err) => {
@@ -41,14 +41,16 @@ const KnowledgeDownload = () => {
       if (res !== null) {
         setLoading(false);
         console.log({ z: res })
+
+        const { search } = window.location;
+        const id = new URLSearchParams(search).get('id');
+
         res.data.data.forEach(item => {
-          console.log(item.id, Number(id), item)
           if (item.id === Number(id)) {
             setTenders(item);
             return;
           }
         });
-        console.log(tenders)
       }
     });
   }, [router.query.category, path, subitem])
