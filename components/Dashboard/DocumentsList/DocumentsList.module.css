@@ -85,6 +85,7 @@
   font-weight: var(--fw-400);
   padding-top: var(--fs-14);
   padding-bottom: var(--fs-14);
+  padding: var(--fs-14) var(--size-3);
 }
 
 .pdf {
@@ -128,4 +129,14 @@
   color: var(--light-gray-color);
   font-weight: var(--fw-400);
   margin-top: var(--fs-14);
+}
+
+@media (max-width: 1050px) {
+  .cont {
+    overflow: auto;
+  }
+
+  .cont > div {
+    width: var(--s-745);
+  }
 }

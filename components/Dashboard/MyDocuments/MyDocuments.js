@@ -52,7 +52,7 @@ const MyDocuments = () => {
               document.querySelector('.modal2').style.display = "none";
             }}
           >
-            <p>Documents Mapping</p>
+            <p>Upload Document</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
           </div>
 

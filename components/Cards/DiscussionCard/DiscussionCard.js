@@ -198,8 +198,9 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
                   <button
                     className={styles.submit}
                     data-modal="myModal2"
-                    onClick={() => { disc_topic.length > 0 ? handleSubmit({ category_id: category, disc_topic }) : null; }}
-                  >Submit</button>
+                    onClick={() => { disc_topic.length > 0 ? handleSubmit({ category_id: category, disc_topic }) : null; }}>
+                    Submit
+                  </button>
                   <button className={styles.cancel} onClick={() => { handleCancel(); }}>Cancel</button>
                 </>}
             </div>
@@ -218,7 +219,7 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
                         <div className={styles.footer}>
                           <span><Image height={14} width={14} alt='icon' src={i1} /><p>{dateArray[i]}</p></span>
                           <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{creatorName}</span></p></span>
-                          <span><Image height={14} width={14} alt='icon' src={i3} /><Link href={`/discussionthread?category=${cat_id - 1}&topicId=${id - 1}&date=${dateArray[i]}`}><a><p className={styles.replies}>{replies.length} Replies</p></a></Link></span>
+                          <span><Image height={14} width={14} alt='icon' src={i3} /><Link href={`/discussionthread?category=${cat_id}&topicId=${id}&date=${dateArray[i]}`}><a><p className={styles.replies}>{replies.length} Replies</p></a></Link></span>
                         </div>
                       </div>
                     </div>

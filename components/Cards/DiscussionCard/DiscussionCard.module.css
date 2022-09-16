@@ -85,7 +85,7 @@
   height: var(--s-64);
   width: var(--s-64);
   padding: 0;
-  margin-right: var(--s-20);
+  margin-right: var(--s-30);
 }
 
 .details {
@@ -128,7 +128,7 @@
 
 .cont2 {
   background: var(--white-color);
-  padding: var(--s-18) var(--fs-24) var(--s-30);
+  padding: var(--s-30);
   width: var(--hundred);
 }
 
@@ -220,7 +220,6 @@
   border-width: 0;
   width: var(--s-360);
   height: max-content;
-  border-radius: var(--size-5);
   box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 1s;
@@ -229,11 +228,10 @@
 }
 
 .modal_header {
-  padding: var(--s-20) var(--s-30);
+  padding: var(--s-20) var(--s-40);
   background-color: var(--white-color);
   color: var(--black);
-  border-radius: 0 0 var(--size-5) var(--size-5);
-  text-align: center;
+  text-align: start;
   padding-top: var(--fs-24);
   line-height: var(--s-28);
 }
@@ -245,7 +243,7 @@
 
 .close {
   color: var(--black);
-  font-size: var(--s-20);
+  font-size: var(--fs-14);
   font-weight: var(--fw-500);
   height: var(--s-50);
   padding: var(--size-5) var(--size-5) 0 0;

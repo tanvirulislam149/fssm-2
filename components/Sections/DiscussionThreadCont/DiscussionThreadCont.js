@@ -13,11 +13,11 @@ import { postComment } from '../../../services/discussionService';
 
 const DiscussionThreadCont = () => {
   const [loading, setLoading] = useState(true);
-  const [topic, setTopic] = useState([]);
+  const [topic, setTopic] = useState(null);
   const [text, setText] = useState('');
 
   const router = useRouter();
-  const { topicId, category, date } = router.query;
+  const { date } = router.query;
 
   const handleRefresh = () => {
     router.reload(window.location.pathname);
@@ -28,13 +28,30 @@ const DiscussionThreadCont = () => {
     console.log({ e: err })
   }
 
+  const handleTopic = (item, id) => {
+    item.topics.forEach(obj => {
+      if (obj.id === Number(id)) {
+        setTopic(obj);
+      }
+    })
+  }
+
   useEffect(() => {
     getDiscussion((err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
         setLoading(false);
-        //console.log({ r: res })
-        setTopic(res.data.forum_categories);
+        console.log({ r: res })
+
+        const { search } = window.location;
+        const category = new URLSearchParams(search).get('category');
+        const topicId = new URLSearchParams(search).get('topicId');
+
+        res.data.forum_categories.forEach(item => {
+          if (item.id === Number(category)) {
+            handleTopic(item, topicId);
+          }
+        })
       }
     });
   }, []);
@@ -43,7 +60,7 @@ const DiscussionThreadCont = () => {
     postComment(
       {
         comment: text,
-        dis_ref: topic[Number(category)].topics[Number(topicId)].topic_name
+        dis_ref: topic.topic_name
       },
       (err, res) => {
         if (err) return handleError(err)
@@ -95,11 +112,11 @@ const DiscussionThreadCont = () => {
                 </div>
 
                 <div className={styles.details}>
-                  <p>{topic[Number(category)]?.topics[Number(topicId)]?.topic_name}</p>
+                  <p>{topic?.topic_name}</p>
                   <div className={styles.footer}>
                     <span><Image height={14} width={14} alt='icon' src={i1} /><p>{date}</p></span>
-                    <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{topic[Number(category)]?.topics[Number(topicId)]?.creatorName}</span></p></span>
-                    <span><Image height={14} width={14} alt='icon' src={i3} /><p>{topic[Number(category)]?.topics[Number(topicId)]?.replies?.length} Replies</p></span>
+                    <span><Image height={14} width={14} alt='icon' src={i2} /><p>By <span>{topic?.creatorName}</span></p></span>
+                    <span><Image height={14} width={14} alt='icon' src={i3} /><p>{topic?.replies?.length} Replies</p></span>
                   </div>
                 </div>
               </div>
@@ -109,7 +126,7 @@ const DiscussionThreadCont = () => {
               <p className={styles.head}>Replies</p>
               <div className={styles.content}>
                 {
-                  topic[Number(category)]?.topics[Number(topicId)]?.replies?.map(({ comment, createdOn, creatorName, id }) => {
+                  topic?.replies?.map(({ comment, createdOn, creatorName, id }) => {
                     return (
                       <RepliesCard
                         key={id}

@@ -61,3 +61,18 @@
   margin-top: var(--s-40);
   margin-bottom: var(--s-20);
 }
+
+@media (max-width: 950px) {
+  .form section {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form {
+    padding: var(--s-20);
+  }
+
+  .cont {
+    margin-top: var(--s-20);
+  }
+}

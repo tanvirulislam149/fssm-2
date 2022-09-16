@@ -74,8 +74,7 @@
   text-align: center;
   font-size: var(--fs-14);
   font-weight: var(--fw-400);
-  padding-top: var(--fs-14);
-  padding-bottom: var(--fs-14);
+  padding: var(--fs-14) var(--size-3);
 }
 
 .pdf {
@@ -198,6 +197,32 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 1050px) {
+  .row .five,
+  .row2 .five {
+    flex-direction: column;
+  }
+
+  .mapbtn,
+  .delbtn,
+  .viewbtn {
+    margin-left: 0;
+  }
+
+  .mapbtn,
+  .viewbtn {
+    margin-bottom: var(--size-3);
+  }
+
+  .cont {
+    width: var(--s-745);
+  }
+
+  .container section {
+    overflow: auto;
   }
 }
 

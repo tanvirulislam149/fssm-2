@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
-import styles from './DocumentsFilterForm.module.css';
+import styles from '../DocumentsFilterForm/DocumentsFilterForm.module.css';
 import { advancedSearchText } from '../../TextArrays';
 
-const DocumentsFilterForm = ({ handleSearch }) => {
+const AllDocumentsForm = ({ handleSearch }) => {
   const [theme, setTheme] = useState('');
   const [stakeholder, setStakeholder] = useState('')
-  const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
+  const [organization, setOrganization] = useState('');
+  const [type, setType] = useState('');
+  const [value_chain, setValue_chain] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [inputValue3, setInputValue3] = useState('');
+  const [inputValue4, setInputValue4] = useState('');
+  const [inputValue5, setInputValue5] = useState('');
+  const [inputValue6, setInputValue6] = useState('');
   const [themeOptions, setThemeOptions] = useState([]);
   const [stakeOptions, setStakeOptions] = useState([]);
+  const [valOptions, setValOptions] = useState([]);
+  const [orgOptions, setOrgOptions] = useState([]);
   const [catOptions, setCatOptions] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { theme, category, keyword, stakeholder };
+    const data = { theme, category, stakeholder, value_chain, organization, type };
     handleSearch(data);
   }
 
@@ -32,6 +39,21 @@ const DocumentsFilterForm = ({ handleSearch }) => {
       options.push(title);
     })
     setStakeOptions(options);
+    options = [];
+    advancedSearchText.valueChain.forEach(({ title }) => {
+      options.push(title);
+    })
+    setValOptions(options);
+    options = [];
+    advancedSearchText.partners.forEach(({ title }) => {
+      options.push(title);
+    })
+    setOrgOptions(options);
+    options = [];
+    advancedSearchText.categories.forEach(({ title }) => {
+      options.push(title);
+    })
+    setCatOptions(options);
   }, [])
 
   return (
@@ -90,14 +112,54 @@ const DocumentsFilterForm = ({ handleSearch }) => {
           </div>
 
           <div className={styles.textInput}>
-            <div className={styles.label}>Keyword</div>
-            <input
-              className={styles.input}
-              type='text'
-              value={keyword}
-              onChange={(e) => {
-                setKeyword(e.target.value);
-              }} />
+            <div className={styles.label}>Organization</div>
+            <Autocomplete
+              className={styles.select}
+              onChange={(event, newValue) => {
+                setOrganization(newValue);
+              }}
+              inputValue={inputValue4}
+              onInputChange={(event, newInputValue) => {
+                setInputValue4(newInputValue);
+              }}
+              id='organization'
+              options={orgOptions}
+              renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
+            />
+          </div>
+
+          <div className={styles.textInput}>
+            <div className={styles.label}>Document Type</div>
+            <Autocomplete
+              className={styles.select}
+              onChange={(event, newValue) => {
+                setType(newValue);
+              }}
+              inputValue={inputValue5}
+              onInputChange={(event, newInputValue) => {
+                setInputValue5(newInputValue);
+              }}
+              id='type'
+              options={[]}
+              renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
+            />
+          </div>
+
+          <div className={styles.textInput}>
+            <div className={styles.label}>Value Chain</div>
+            <Autocomplete
+              className={styles.select}
+              onChange={(event, newValue) => {
+                setValue_chain(newValue);
+              }}
+              inputValue={inputValue6}
+              onInputChange={(event, newInputValue) => {
+                setInputValue6(newInputValue);
+              }}
+              id='value-chain'
+              options={valOptions}
+              renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
+            />
           </div>
         </section>
 
@@ -109,4 +171,4 @@ const DocumentsFilterForm = ({ handleSearch }) => {
   )
 }
 
-export default DocumentsFilterForm
+export default AllDocumentsForm

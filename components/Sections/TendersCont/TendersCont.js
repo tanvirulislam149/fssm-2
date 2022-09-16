@@ -45,14 +45,14 @@ const TendersCont = () => {
                     document_type={document_type}
                     stake_holder={stake_holder}
                     geography={geography}
-                    org={organization.org_name}
+                    org={organization?.org_name}
                     urban_rural={status}
                     citation={citation}
                     expiry_date={expiry_date}
                     language={language}
                     value_chain={value_chain}
                     description={description}
-                    theme={theme.theme_title}
+                    theme={theme?.theme_title}
                     keywords={keywords}
                   />
                 )

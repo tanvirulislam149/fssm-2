@@ -100,7 +100,7 @@ const MappingForm = () => {
 
             <div className={styles.textInput}>
               <label htmlFor="category">Sub Category</label>
-              <CustomizedHook key={chipKey} content={[]} placeholder='--Select Sub Category--' setData={setCategory} />
+              <CustomizedHook key={chipKey} content={advancedSearchText.categories} placeholder='--Select Sub Category--' setData={setCategory} />
             </div>
 
             <div className={styles.textInput}>

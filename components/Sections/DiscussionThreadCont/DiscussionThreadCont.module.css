@@ -110,7 +110,7 @@
   width: max-content;
 }
 
-.btn:hover {
+.btn:focus {
   background: var(--red-hov);
 }
 
