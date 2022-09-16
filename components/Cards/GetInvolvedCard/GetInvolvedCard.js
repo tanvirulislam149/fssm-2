@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GetInvolvedForm from '../../Forms/GetInvolvedForm/GetInvolvedForm';
 import styles from './GetInvolvedCard.module.css';
 import Link from 'next/link';
 import { getInvolvedText } from '../../TextArrays';
 
 const GetInvolvedCard = ({ id, text, title, btn }) => {
+  const [reactKey, setReactKey] = useState(false);
 
   return (
     <>
@@ -29,6 +30,7 @@ const GetInvolvedCard = ({ id, text, title, btn }) => {
           onClick={() => {
             document.querySelector('.modal2').style.display = "none";
             document.getElementById('user-cat').style.display = 'none';
+            setReactKey(!reactKey);
           }}>
         </div>
         <div className={styles.modal_content}>
@@ -37,6 +39,7 @@ const GetInvolvedCard = ({ id, text, title, btn }) => {
             onClick={() => {
               document.querySelector('.modal2').style.display = "none";
               document.getElementById('user-cat').style.display = 'none';
+              setReactKey(!reactKey);
             }}
           ><span>x</span></div>
           <div className={styles.modal_header}>
@@ -44,7 +47,7 @@ const GetInvolvedCard = ({ id, text, title, btn }) => {
           </div>
 
           <div className={styles.form}>
-            <GetInvolvedForm />
+            <GetInvolvedForm key={reactKey} />
           </div>
         </div>
       </div>
