@@ -101,7 +101,8 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
 
   const handleError = (err) => {
     setLoading(false);
-    console.log({ e: err });
+    err.response.data.code === 'token_not_valid' && router.push('/signin');
+    console.log({ e: err })
   }
 
   const handleSubmit = (values) => {
