@@ -59,7 +59,7 @@ const DocumentMappingCont = () => {
                         className={`${styles.btn} ${styles.mapbtn}`}
                         data-modal="myModal1"
                         onClick={() => {
-                          document.querySelector('.modal2').style.display = "flex";
+                          document.querySelector('.m4').style.display = "flex";
                         }}
                       >Map</button>
                       <button className={`${styles.btn} ${styles.viewbtn}`}>View</button>
@@ -73,11 +73,11 @@ const DocumentMappingCont = () => {
         </section>
       </div>
 
-      <div id="myModal1" className='modal2'>
+      <div id="myModal1" className='modal2 m4'>
         <div
           className={styles.bg}
           onClick={() => {
-            document.querySelector('.modal2').style.display = "none";
+            document.querySelector('.m4').style.display = "none";
             //document.getElementById('user-cat').style.display = 'none';
           }}>
         </div>
@@ -85,7 +85,7 @@ const DocumentMappingCont = () => {
           <div
             className={styles.close}
             onClick={() => {
-              document.querySelector('.modal2').style.display = "none";
+              document.querySelector('.m4').style.display = "none";
               //document.getElementById('user-cat').style.display = 'none';
             }}
           >
@@ -94,7 +94,7 @@ const DocumentMappingCont = () => {
           </div>
 
           <div className={styles.form}>
-            <MappingForm />
+            <MappingForm modal='m4' />
           </div>
         </div>
       </div>

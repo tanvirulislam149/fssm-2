@@ -22,7 +22,7 @@ const MyDocuments = () => {
             className={styles.btn}
             data-modal="myModal1"
             onClick={() => {
-              document.querySelector('.modal2').style.display = "flex";
+              document.querySelector('.m3').style.display = "flex";
             }}>Upload Document
           </button>
         </h4>
@@ -38,18 +38,18 @@ const MyDocuments = () => {
         }
       </div>
 
-      <div id="myModal1" className='modal2'>
+      <div id="myModal1" className='modal2 m3'>
         <div
           className={styles.bg}
           onClick={() => {
-            document.querySelector('.modal2').style.display = "none";
+            document.querySelector('.m3').style.display = "none";
           }}>
         </div>
         <div className={styles.modal_content}>
           <div
             className={styles.close}
             onClick={() => {
-              document.querySelector('.modal2').style.display = "none";
+              document.querySelector('.m3').style.display = "none";
             }}
           >
             <p>Upload Document</p>
@@ -57,7 +57,7 @@ const MyDocuments = () => {
           </div>
 
           <div className={styles.form}>
-            <MappingForm />
+            <MappingForm modal='m3' />
           </div>
         </div>
       </div>

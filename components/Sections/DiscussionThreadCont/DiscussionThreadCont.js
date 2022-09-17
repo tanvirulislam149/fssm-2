@@ -96,7 +96,14 @@ const DiscussionThreadCont = () => {
           <div className={styles.modal_header}>
             <h2>Thank you. Your Comment has been posted successfully.</h2>
           </div>
-
+          <div className={styles.ok}>
+            <div
+              onClick={() => {
+                handleRefresh();
+                document.querySelector('.modal2').style.display = "none";
+              }}
+            >Ok</div>
+          </div>
         </div>
       </div>
 

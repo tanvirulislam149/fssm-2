@@ -17,7 +17,7 @@
   height: var(--s-64);
   width: var(--s-64);
   padding: 0;
-  margin-right: var(--s-20);
+  margin-right: var(--s-30);
 }
 
 .details {
@@ -35,7 +35,7 @@
 }
 
 .shade {
-  background: var(--shade);
+  background: var(--shade2);
   padding: var(--s-20) var(--s-30);
   border-radius: var(--primary-border-radius);
   width: var(--hundred);
@@ -88,7 +88,7 @@
 }
 
 .comment > div {
-  background: var(--shade);
+  background: var(--shade2);
   display: flex;
   flex-direction: column;
   padding: var(--fs-24) var(--fs-14);
@@ -130,6 +130,7 @@
 
 .input::-webkit-input-placeholder {
   font-family: var(--font-family-primary);
+  font-size: var(--fs-12);
 }
 
 .modal_content {
@@ -151,12 +152,10 @@
 }
 
 .modal_header {
-  padding: var(--s-20) var(--s-30);
+  padding: var(--s-20) var(--s-40);
   background-color: var(--white-color);
   color: var(--black);
-  border-radius: 0 0 var(--size-5) var(--size-5);
-  text-align: center;
-  padding-bottom: var(--s-75);
+  text-align: start;
   padding-top: var(--fs-24);
   line-height: var(--s-28);
 }
@@ -166,9 +165,32 @@
   font-weight: var(--fw-500);
 }
 
+.ok {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var(--s-20) var(--s-20) 0;
+}
+
+.ok div {
+  background: var(--primary-blue);
+  color: var(--white-color);
+  font-weight: var(--fw-600);
+  height: var(--lh-35);
+  width: var(--s-60);
+  border-radius: var(--size-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ok div:hover {
+  background: var(--l-blue);
+}
+
 .close {
   color: var(--black);
-  font-size: var(--s-20);
+  font-size: var(--fs-14);
   font-weight: var(--fw-500);
   height: var(--s-50);
   padding: var(--size-5) var(--size-5) 0 0;

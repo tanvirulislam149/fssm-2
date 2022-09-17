@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './MappingForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomizedHook from './useHook';
 import { advancedSearchText } from '../../TextArrays';
+import styles from '../MappingForm/MappingForm.module.css';
 
-const MappingForm = ({ modal }) => {
+const EditCategoryForm = () => {
   const [keywords, setKeywords] = useState([]);
   const [language, setLanguage] = useState([]);
   const [value_chain, setValue_chain] = useState([]);
@@ -16,6 +16,7 @@ const MappingForm = ({ modal }) => {
   const [state, setState] = useState([]);
   const [city, setCity] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const [inputValue2, setInputValue2] = useState('');
   const [themeOptions, setThemeOptions] = useState([]);
   const [chipKey, setChipKey] = useState(false);
 
@@ -43,16 +44,29 @@ const MappingForm = ({ modal }) => {
     setThemeOptions(options);
   }, [])
 
+  useEffect(() => {
+    if (inputValue2 === 'file') {
+      document.getElementById('file-cont').classList.remove('none');
+      document.getElementById('url').classList.add('none');
+    } else if (inputValue2 === 'URL') {
+      document.getElementById('file-cont').classList.add('none');
+      document.getElementById('url').classList.remove('none');
+    }
+  }, [inputValue2])
+
   return (
     <>
       <Formik
         initialValues={{
           title: '',
+          url: '',
           theme: '',
+          type: '',
           geography: '',
           status: '',
           description: '',
           citation: '',
+          attachment: '',
         }}
         validationSchema={Yup.object({
           title: Yup.string()
@@ -68,9 +82,12 @@ const MappingForm = ({ modal }) => {
           theme: Yup.string()
             .required('Required')
             .nullable(),
+          type: Yup.string()
+            .required('Required')
+            .nullable(),
         })}
         onSubmit={(data, actions) => {
-          document.querySelector(`.${modal}`).style.display = "none";
+          document.querySelector('.m2').style.display = "none";
           handleSubmit(data);
           actions.resetForm();
           setKeywords([]);
@@ -202,13 +219,48 @@ const MappingForm = ({ modal }) => {
               <span className='form-error'><ErrorMessage name="citation" /></span>
             </div>
 
+            <div className={styles.textInput}>
+              <label htmlFor="type">Document Type <span>*</span></label>
+              <Autocomplete
+                key={chipKey}
+                className={styles.select}
+                onChange={(event, newValue) => {
+                  setFieldValue('type', newValue);
+                }}
+                inputValue={inputValue2}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue2(newInputValue);
+                }}
+                id='type'
+                options={['file', 'URL']}
+                renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
+              />
+              <span className='form-error'><ErrorMessage name="type" /></span>
+            </div>
+
+            <div id='url' className={`${styles.textInput} none`}>
+              <label htmlFor="url">URL</label>
+              <Field name="url" id='url' className={styles.input} type="text" />
+            </div>
+
+            <div id='file-cont' className={`${styles.textInput} none`}>
+              <div className={styles.div}>Choose File ( Accepts Only gif, jpeg, png, pdf, doc, docx, xls, xlsx, mp4, mp3, avi, flv, mkv, mov, mpeg, mpg, webm, wmv)</div>
+              <input
+                type='file'
+                accept='.xlsx, .xls, image/*, .doc, .docx, video/*, audio/*, .pdf'
+                onChange={(e) => {
+                  setFieldValue('attachment', e.currentTarget.files[0])
+                }}
+              />
+            </div>
+
             <div className={styles.btn_cont}>
               <button type='submit' className={`${styles.btn} ${styles.submit}`}>Submit</button>
               <button
                 type='reset'
                 className={`${styles.btn} ${styles.cancel}`}
                 onClick={() => {
-                  document.querySelector(`.${modal}`).style.display = "none";
+                  document.querySelector('.m2').style.display = "none";
                 }}>Cancel</button>
             </div>
           </Form>
@@ -218,4 +270,4 @@ const MappingForm = ({ modal }) => {
   )
 }
 
-export default MappingForm
+export default EditCategoryForm

@@ -52,6 +52,12 @@
   margin-bottom: var(--size-3);
 }
 
+.div {
+  font-weight: var(--fw-400);
+  margin-bottom: var(--size-3);
+  width: var(--hundred);
+}
+
 .textInput > label span {
   color: var(--pale-red);
 }

@@ -14,7 +14,6 @@ const Header = () => {
   useEffect(() => {
     var id = router.pathname.slice(1);
     var option = document.getElementById(id);
-    console.log(router.pathname)
 
     if (router.pathname === '/discussionboard'
       || router.pathname === '/interested'
