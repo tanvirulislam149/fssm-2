@@ -175,6 +175,13 @@ export default function CustomizedHook({ setData }) {
 
   let results = [];
   React.useEffect(() => {
+    value.sort((a, b) => {
+      let fa = a.title.toLowerCase().trim();
+      let fb = b.title.toLowerCase().trim();
+      if (fa < fb) return -1;
+      if (fa > fb) return 1;
+      return 0;
+    });
     // let index;
     // advancedSearchText.chips.forEach(({ title }, i) => {
     //   if (title === 'academic') {

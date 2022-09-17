@@ -162,6 +162,14 @@ export default function CustomizedHook({ setData, placeholder, content }) {
 
   let results = [];
   React.useEffect(() => {
+    value.sort((a, b) => {
+      let fa = a.title.toLowerCase().trim();
+      let fb = b.title.toLowerCase().trim();
+      if (fa < fb) return -1;
+      if (fa > fb) return 1;
+      return 0;
+    });
+
     value.forEach(({ title }) => {
       results.push(title);
       setData(results);

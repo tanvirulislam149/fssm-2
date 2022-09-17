@@ -123,7 +123,7 @@ const DiscussionThreadCont = () => {
             </div>
 
             <div className={styles.replies}>
-              <p className={styles.head}>Replies</p>
+              <p className={styles.head}>Replies {`(${topic?.replies?.length})`}</p>
               <div className={styles.content}>
                 {
                   topic?.replies?.map(({ comment, createdOn, creatorName, id }) => {
