@@ -1,0 +1,26 @@
+.container {
+  font-family: var(--font-family-secondary);
+}
+
+.label,
+.label2 {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+  padding: var(--fs-14) var(--s-10);
+  border-top: var(--size-3) solid var(--primary-blue);
+  background: var(--white-color);
+  margin-bottom: var(--s-10);
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label2 {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--d-bg);
+  display: flex;
+  justify-content: space-between;
+}

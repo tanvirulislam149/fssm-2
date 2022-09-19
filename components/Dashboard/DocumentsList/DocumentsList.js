@@ -3,12 +3,12 @@ import styles from './DocumentsList.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import view from '../../../assets/view.png';
-import del from '../../../assets/delete.png';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import EditCategory from '../EditCategory/EditCategory';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 const data = [
   { name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
@@ -83,7 +83,7 @@ const DocumentsList = () => {
                   </div>
                   <div className={styles.five}>
                     <div title='delete' className={`${styles.btn} ${styles.delbtn}`}>
-                      <Image src={del} alt='icon' height={14} width={14} />
+                      <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                     </div>
                     <div
                       className={`${styles.btn} ${styles.viewbtn}`}
@@ -93,7 +93,7 @@ const DocumentsList = () => {
                         document.querySelector('.m').style.display = "flex";
                       }}
                     >
-                      <Image src={view} alt='icon' height={10} width={14} />
+                      <RemoveRedEyeOutlinedIcon sx={{ color: 'white', height: '15px', width: '15px' }} />
                     </div>
                     <div
                       title='edit'

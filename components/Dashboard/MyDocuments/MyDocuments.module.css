@@ -21,6 +21,8 @@
 .label2 {
   margin-bottom: 0;
   border-bottom: 1px solid var(--d-bg);
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn {
@@ -36,6 +38,20 @@
 
 .btn:hover {
   background: var(--y-hov);
+}
+
+.btn2 {
+  color: var(--white-color);
+  background: var(--pale-red);
+  border: solid 1px var(--header-txt);
+  height: var(--s-30);
+  width: var(--s-180);
+  text-align: center;
+  border-radius: var(--size-3);
+}
+
+.btn2:hover {
+  background: var(--red-hov);
 }
 
 /* modal */
