@@ -21,6 +21,10 @@ const UserCategories = () => {
     setProfileOptions(options);
   }, [])
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -58,7 +62,7 @@ const UserCategories = () => {
           </section>
 
           <div className={styles.cont}>
-            <button className={styles.btn}>Search</button>
+            <button onClick={(e) => { handleSubmit(e); }} className={styles.btn}>Search</button>
           </div>
         </form>
 

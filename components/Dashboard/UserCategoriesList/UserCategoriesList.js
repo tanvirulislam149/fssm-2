@@ -231,7 +231,7 @@ const UserCategoriesList = () => {
             </div>
             <div className={styles.overflow}>
               <div className={styles.content2}>
-                <AddItems count={0} children={addItemsText.sections} />
+                <AddItems count={0} subitems={addItemsText.sections} />
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import folder from '../../../assets/Folder.png';
 import file from '../../../assets/file.png';
 
-const AddItems = ({ children, count }) => {
+const AddItems = ({ subitems, count }) => {
   count++;
   const identifier = Math.random();
 
@@ -14,9 +14,9 @@ const AddItems = ({ children, count }) => {
 
   return (
     <>
-      <ul className={children[0].id === 0 ? `${styles.ul2} ${styles.ul}` : styles.ul}>
+      <ul className={subitems[0].id === 0 ? `${styles.ul2} ${styles.ul}` : styles.ul}>
         {
-          children.map(({ id, title, children }) => {
+          subitems.map(({ id, title, subitems }) => {
             return (
               <li key={id} style={{ zIndex: id, position: 'relative' }}>
                 <div className={styles.hr}>
@@ -30,9 +30,9 @@ const AddItems = ({ children, count }) => {
                   }}>{id}</p>
                 <p className={styles.title}><Image src={count === 4 ? file : folder} alt='icon' height={21} width={count === 4 ? 17 : 21} />{title}</p>
                 {
-                  children.length ?
+                  subitems.length ?
                     <div id={`${title.replace(/\s/g, '')}${identifier}`}>
-                      <AddItems count={count} children={children} />
+                      <AddItems count={count} subitems={subitems} />
                     </div> :
                     null
                 }

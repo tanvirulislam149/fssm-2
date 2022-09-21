@@ -55,7 +55,7 @@ const GoogleSearch = () => {
                   handleSubmit();
                 }}
               >
-                <Image src={search} height={24} width={24} alr='icon' />
+                <Image src={search} height={24} width={24} alt='icon' />
               </div>
             </div>
 

@@ -446,74 +446,74 @@ export const imageTypes = [
 export const addItemsText = {
   sections: [
     {
-      id: 0, title: 'All', children: [
+      id: 0, title: 'All', subitems: [
         {
-          id: 1, title: 'What is FSSM?', children: [
+          id: 1, title: 'What is FSSM?', subitems: [
             {
-              id: 1, title: 'Understanding FSSM', children: [
-                { id: 1, title: 'FSSM and urbanization', children: [] },
-                { id: 2, title: 'FSSM in the context of SDG 6', children: [] },
-                { id: 3, title: 'FSSM in the context of water', children: [] },
-                { id: 4, title: 'What is the FSSM value chain?', children: [] },
-                { id: 5, title: 'An introduction to Shit Flow Diagrams (SFD)', children: [] },
+              id: 1, title: 'Understanding FSSM', subitems: [
+                { id: 1, title: 'FSSM and urbanization', subitems: [] },
+                { id: 2, title: 'FSSM in the context of SDG 6', subitems: [] },
+                { id: 3, title: 'FSSM in the context of water', subitems: [] },
+                { id: 4, title: 'What is the FSSM value chain?', subitems: [] },
+                { id: 5, title: 'An introduction to Shit Flow Diagrams (SFD)', subitems: [] },
               ]
             },
             {
-              id: 2, title: 'Why FSSM matters?', children: [
-                { id: 1, title: 'Impact of FSSM on environment, public health, and equity', children: [] },
-                { id: 2, title: 'Inclusive FSSM - Urban Poor and Women', children: [] },
-                { id: 3, title: 'FSSM as a market opportunity', children: [] }
+              id: 2, title: 'Why FSSM matters?', subitems: [
+                { id: 1, title: 'Impact of FSSM on environment, public health, and equity', subitems: [] },
+                { id: 2, title: 'Inclusive FSSM - Urban Poor and Women', subitems: [] },
+                { id: 3, title: 'FSSM as a market opportunity', subitems: [] }
               ]
             },
             {
-              id: 3, title: 'Global perspective on FSSM', children: [
-                { id: 1, title: 'Global FSSM stories / Case studies', children: [] }
+              id: 3, title: 'Global perspective on FSSM', subitems: [
+                { id: 1, title: 'Global FSSM stories / Case studies', subitems: [] }
               ]
             },
           ]
         },
         {
-          id: 2, title: 'FSSM in India', children: [
+          id: 2, title: 'FSSM in India', subitems: [
             {
-              id: 1, title: 'Why is FSSM important for India?', children: [
-                { id: 1, title: 'The problem of untreated human waste in India', children: [] },
+              id: 1, title: 'Why is FSSM important for India?', subitems: [
+                { id: 1, title: 'The problem of untreated human waste in India', subitems: [] },
               ]
             },
             {
-              id: 2, title: `India's FSSM ecosystem`, children: [
-                { id: 1, title: `India's FSSM goals`, children: [] },
-                { id: 2, title: 'FSTP map of India', children: [] },
-                { id: 3, title: 'FSSM in the context of Swachh Bharat Mission', children: [] },
+              id: 2, title: `India's FSSM ecosystem`, subitems: [
+                { id: 1, title: `India's FSSM goals`, subitems: [] },
+                { id: 2, title: 'FSTP map of India', subitems: [] },
+                { id: 3, title: 'FSSM in the context of Swachh Bharat Mission', subitems: [] },
               ]
             },
             {
-              id: 3, title: 'Regulations & Policies', children: [
-                { id: 1, title: 'National policy on FSSM', children: [] },
-                { id: 2, title: 'State policies on FSSM', children: [] },
-                { id: 3, title: 'Regulations and guidelines on FSSM', children: [] },
-                { id: 4, title: 'Environmental regulations relating to FSSM', children: [] },
-                { id: 5, title: 'Water regulations relating to FSSM', children: [] },
+              id: 3, title: 'Regulations & Policies', subitems: [
+                { id: 1, title: 'National policy on FSSM', subitems: [] },
+                { id: 2, title: 'State policies on FSSM', subitems: [] },
+                { id: 3, title: 'Regulations and guidelines on FSSM', subitems: [] },
+                { id: 4, title: 'Environmental regulations relating to FSSM', subitems: [] },
+                { id: 5, title: 'Water regulations relating to FSSM', subitems: [] },
               ]
             },
             {
-              id: 4, title: 'Case studies around FSSM in India', children: [
-                { id: 1, title: 'National Case Studies', children: [] },
-                { id: 2, title: 'State Case Studies', children: [] },
-                { id: 3, title: 'City Case Studies', children: [] },
+              id: 4, title: 'Case studies around FSSM in India', subitems: [
+                { id: 1, title: 'National Case Studies', subitems: [] },
+                { id: 2, title: 'State Case Studies', subitems: [] },
+                { id: 3, title: 'City Case Studies', subitems: [] },
               ]
             },
           ]
         },
-        { id: 3, title: 'Planning and Implementation of FSSM', children: [] },
-        { id: 4, title: 'Private Sector Participation & Market Opportunity in FSSM', children: [] },
-        { id: 5, title: 'Capacity Building', children: [] },
+        { id: 3, title: 'Planning and Implementation of FSSM', subitems: [] },
+        { id: 4, title: 'Private Sector Participation & Market Opportunity in FSSM', subitems: [] },
+        { id: 5, title: 'Capacity Building', subitems: [] },
       ]
     },
     {
-      id: 1, title: '', children: [
-        { id: 1, title: '', children: [] }
+      id: 1, title: '', subitems: [
+        { id: 1, title: '', subitems: [] }
       ]
     },
-    { id: 2, title: '', children: [] },
+    { id: 2, title: '', subitems: [] },
   ]
 }
