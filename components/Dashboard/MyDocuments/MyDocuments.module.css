@@ -147,6 +147,10 @@
   .form {
     padding: var(--fs-12);
   }
+
+  .btn2 {
+    width: var(--s-120);
+  }
 }
 
 @media (max-width: 690px) {

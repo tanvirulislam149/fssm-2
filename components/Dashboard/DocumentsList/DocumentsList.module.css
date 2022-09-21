@@ -33,6 +33,7 @@
 .cont {
   border: solid 1px var(--d-bg);
   margin: var(--size-5);
+  overflow: auto;
 }
 
 .heading {
@@ -274,14 +275,8 @@
   background: var(--red-hov);
 }
 
-@media (max-width: 1050px) {
-  .cont {
-    overflow: auto;
-  }
-
-  .cont > div {
-    width: var(--s-745);
-  }
+.cont > div {
+  min-width: var(--s-900);
 }
 
 @media (max-width: 690px) {

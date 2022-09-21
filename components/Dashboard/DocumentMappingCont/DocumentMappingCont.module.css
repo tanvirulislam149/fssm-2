@@ -20,10 +20,12 @@
 .container section {
   padding: var(--size-5);
   background: var(--white-color);
+  overflow: auto;
 }
 
 .cont {
   border: solid 1px var(--d-bg);
+  min-width: var(--s-900);
 }
 
 .heading {
@@ -215,14 +217,6 @@
   .mapbtn,
   .viewbtn {
     margin-bottom: var(--size-3);
-  }
-
-  .cont {
-    width: var(--s-745);
-  }
-
-  .container section {
-    overflow: auto;
   }
 }
 

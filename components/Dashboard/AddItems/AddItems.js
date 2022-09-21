@@ -31,7 +31,7 @@ const AddItems = ({ subitems, count }) => {
                 <p className={styles.title}><Image src={count === 4 ? file : folder} alt='icon' height={21} width={count === 4 ? 17 : 21} />{title}</p>
                 {
                   subitems.length ?
-                    <div id={`${title.replace(/\s/g, '')}${identifier}`}>
+                    <div className={styles.div} id={`${title.replace(/\s/g, '')}${identifier}`}>
                       <AddItems count={count} subitems={subitems} />
                     </div> :
                     null

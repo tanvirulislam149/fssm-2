@@ -1,0 +1,9 @@
+.layout > div {
+  width: 100%;
+  max-width: 1440px;
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+}

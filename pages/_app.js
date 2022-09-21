@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { axiosInstance } from '../services/authService';
 import Cookies from 'js-cookie';
+import Layout from '../components/Sections/Layout/Layout';
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -13,7 +14,12 @@ function MyApp({ Component, pageProps }) {
     axiosInstance.defaults.headers.common["Authorization"] = Cookies.get('access') ? 'Bearer ' + Cookies.get('access') : null;
   }, [])
 
-  return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+  // return <Component {...pageProps} />
 }
 
 export default MyApp
