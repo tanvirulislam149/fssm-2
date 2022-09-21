@@ -72,6 +72,7 @@
   --s-4: 4px;
   --s-2: 2px;
   --s-900: 900px;
+  --s-800: 800px;
   --s-764: 764px;
   --s-745: 745px;
   --s-650: 650px;
@@ -98,6 +99,7 @@
   --s-150: 150px;
   --s-140: 140px;
   --s-135: 135px;
+  --s-130: 130px;
   --s-122: 122px;
   --s-120: 120px;
   --s-100: 100px;
@@ -128,6 +130,7 @@
   --green: #1abc9c;
   --green-2: #37c172;
   --m-green: #37c172;
+  --g-hov: #37c17394;
   --login-page-title-color: #3ec70b;
   --dark-green: #049d00;
   --help-desk-bg: #ebebec;

@@ -156,7 +156,6 @@ export const knowledgeContentText = {
   ]
 }
 
-
 import d1 from '../assets/Frame (1).png';
 import d2 from '../assets/Frame (2).png';
 import d3 from '../assets/Frame (3).png';
@@ -443,3 +442,78 @@ export const imageTypes = [
   'image/webp',
   'image/png'
 ]
+
+export const addItemsText = {
+  sections: [
+    {
+      id: 0, title: 'All', children: [
+        {
+          id: 1, title: 'What is FSSM?', children: [
+            {
+              id: 1, title: 'Understanding FSSM', children: [
+                { id: 1, title: 'FSSM and urbanization', children: [] },
+                { id: 2, title: 'FSSM in the context of SDG 6', children: [] },
+                { id: 3, title: 'FSSM in the context of water', children: [] },
+                { id: 4, title: 'What is the FSSM value chain?', children: [] },
+                { id: 5, title: 'An introduction to Shit Flow Diagrams (SFD)', children: [] },
+              ]
+            },
+            {
+              id: 2, title: 'Why FSSM matters?', children: [
+                { id: 1, title: 'Impact of FSSM on environment, public health, and equity', children: [] },
+                { id: 2, title: 'Inclusive FSSM - Urban Poor and Women', children: [] },
+                { id: 3, title: 'FSSM as a market opportunity', children: [] }
+              ]
+            },
+            {
+              id: 3, title: 'Global perspective on FSSM', children: [
+                { id: 1, title: 'Global FSSM stories / Case studies', children: [] }
+              ]
+            },
+          ]
+        },
+        {
+          id: 2, title: 'FSSM in India', children: [
+            {
+              id: 1, title: 'Why is FSSM important for India?', children: [
+                { id: 1, title: 'The problem of untreated human waste in India', children: [] },
+              ]
+            },
+            {
+              id: 2, title: `India's FSSM ecosystem`, children: [
+                { id: 1, title: `India's FSSM goals`, children: [] },
+                { id: 2, title: 'FSTP map of India', children: [] },
+                { id: 3, title: 'FSSM in the context of Swachh Bharat Mission', children: [] },
+              ]
+            },
+            {
+              id: 3, title: 'Regulations & Policies', children: [
+                { id: 1, title: 'National policy on FSSM', children: [] },
+                { id: 2, title: 'State policies on FSSM', children: [] },
+                { id: 3, title: 'Regulations and guidelines on FSSM', children: [] },
+                { id: 4, title: 'Environmental regulations relating to FSSM', children: [] },
+                { id: 5, title: 'Water regulations relating to FSSM', children: [] },
+              ]
+            },
+            {
+              id: 4, title: 'Case studies around FSSM in India', children: [
+                { id: 1, title: 'National Case Studies', children: [] },
+                { id: 2, title: 'State Case Studies', children: [] },
+                { id: 3, title: 'City Case Studies', children: [] },
+              ]
+            },
+          ]
+        },
+        { id: 3, title: 'Planning and Implementation of FSSM', children: [] },
+        { id: 4, title: 'Private Sector Participation & Market Opportunity in FSSM', children: [] },
+        { id: 5, title: 'Capacity Building', children: [] },
+      ]
+    },
+    {
+      id: 1, title: '', children: [
+        { id: 1, title: '', children: [] }
+      ]
+    },
+    { id: 2, title: '', children: [] },
+  ]
+}

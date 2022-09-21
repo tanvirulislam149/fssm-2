@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray, dateArray, handleSubmit, error }) => {
+const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, dateArray, handleSubmit, error }) => {
 
   return (
     <>
@@ -64,7 +64,7 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
         {loading ?
           <div className={styles.justify_center}><CircularProgress /></div> :
           prevQuestions.length ?
-            prevQuestions.map(({ id, upvotes, views, spam, question, name, organization }, i) => {
+            prevQuestions.map(({ id, upvotes, theme, views, spam, question, name, organization }, i) => {
               return (
                 <QuestionCard
                   key={id}
@@ -72,7 +72,7 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, themeArray
                   organization={organization}
                   name={name}
                   date={dateArray[i]}
-                  theme={themeArray[i]}
+                  theme={theme?.theme_title}
                   question={question}
                   views={views}
                   spam={spam}

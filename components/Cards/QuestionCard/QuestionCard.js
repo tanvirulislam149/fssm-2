@@ -88,7 +88,7 @@ const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, 
                 >View comments{clicked ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </div>
 
-                <div id={`replies-recursion${id}`} className='none' >
+                <div id={`replies-recursion${id}`} className={`none ${styles.reply_recurse}`} >
                   <RepliesRecursion replies={helpDeskText.questions} />
                 </div>
               </div>

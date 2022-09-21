@@ -87,8 +87,8 @@ const DocumentsList = () => {
                     </div>
                     <div
                       className={`${styles.btn} ${styles.viewbtn}`}
-                      data-modal="myModal"
                       title='view'
+                      data-modal="myModal"
                       onClick={() => {
                         document.querySelector('.m').style.display = "flex";
                       }}

@@ -9,7 +9,6 @@ const HelpDesk = () => {
   const [routeId, setRouteId] = useState(null);
   const [prevQuestions, setPrevQuestions] = useState([]);
   const [dateArray, setDateArray] = useState([]);
-  const [themeArray, setThemeArray] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -31,21 +30,7 @@ const HelpDesk = () => {
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
-        let themeData = [];
-        quests.forEach(({ createdOn, theme }, i) => {
-          let themeId;
-          switch (theme.id) {
-            case 1:
-              themeId = 'Capacity building'
-              break;
-            case 2:
-              themeId = 'communications'
-              break;
-            default:
-              themeId = 'none'
-              break;
-          }
-          themeData[i] = themeId;
+        quests.forEach(({ createdOn }, i) => {
           let month;
           const day = createdOn.slice(8, 10);
           const year = createdOn.slice(0, 4)
@@ -92,7 +77,6 @@ const HelpDesk = () => {
           date[i] = `${month} ${day}, ${year}`;
         });
         setDateArray(date);
-        setThemeArray(themeData);
       }
     });
   }
@@ -106,21 +90,7 @@ const HelpDesk = () => {
         setPrevQuestions(res.data.questions);
         const quests = res.data.questions;
         let date = [];
-        let themeData = [];
-        quests.forEach(({ createdOn, theme }, i) => {
-          let themeId;
-          switch (theme.id) {
-            case 1:
-              themeId = 'Capacity building'
-              break;
-            case 2:
-              themeId = 'communications'
-              break;
-            default:
-              themeId = 'none'
-              break;
-          }
-          themeData[i] = themeId;
+        quests.forEach(({ createdOn }, i) => {
           let month;
           const day = createdOn.slice(8, 10);
           const year = createdOn.slice(0, 4)
@@ -167,7 +137,6 @@ const HelpDesk = () => {
           date[i] = `${month} ${day}, ${year}`;
         });
         setDateArray(date);
-        setThemeArray(themeData);
       }
     });
   }, []);
@@ -225,7 +194,6 @@ const HelpDesk = () => {
               error={error}
               handleSubmit={handleSubmit}
               dateArray={dateArray}
-              themeArray={themeArray}
               prevQuestions={prevQuestions}
             />
           </div>

@@ -56,6 +56,7 @@
 
 .body {
   line-height: var(--s-30);
+  word-break: break-word;
 }
 
 .img_cont,
@@ -205,6 +206,7 @@
 
 .main {
   margin-left: var(--s-20);
+  overflow: auto;
 }
 
 .body2 {
@@ -212,6 +214,7 @@
   font-weight: var(--fw-400);
   line-height: var(--s-22);
   margin-bottom: var(--s-10);
+  word-break: break-word;
 }
 
 .name {
@@ -307,6 +310,14 @@
   animation: fadeIn 1s;
 }
 
+.reply_recurse {
+  overflow: auto;
+}
+
+.reply_recurse > div {
+  min-width: var(--s-800);
+}
+
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -356,5 +367,31 @@
 
   .theme {
     width: max-content;
+  }
+
+  .top {
+    grid-template-columns: 1fr;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .box1 {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--s-8) var(--s-10);
+  }
+
+  .box2 {
+    padding: var(--fs-12) var(--s-8);
+  }
+
+  .input {
+    width: var(--hundred);
+  }
+
+  .answers {
+    padding: var(--s-10);
   }
 }
