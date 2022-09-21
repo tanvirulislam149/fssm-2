@@ -86,7 +86,7 @@ const UserCategoriesList = () => {
                   <div className={styles.two}>
                     <div
                       className={`${styles.btn} ${styles.addbtn}`}
-                      title='Add Items'
+                      title="Add Items"
                       data-modal="myModal"
                       onClick={() => {
                         document.querySelector('.m8').style.display = "flex";
