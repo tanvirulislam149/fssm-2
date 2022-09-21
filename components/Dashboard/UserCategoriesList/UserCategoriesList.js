@@ -89,7 +89,7 @@ const UserCategoriesList = () => {
                       title='Add Items'
                       data-modal="myModal"
                       onClick={() => {
-                        //document.querySelector('.m8').style.display = "flex";
+                        document.querySelector('.m8').style.display = "flex";
                       }}>
                       <AddOutlinedIcon sx={{ color: '#024c73', height: '12px', width: '12px' }} />
                     </div>

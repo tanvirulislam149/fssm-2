@@ -13,7 +13,7 @@
 .card_1,
 .card_2,
 .card_3 {
-  background-size: auto;
+  background-size: cover !important;
   height: var(--bg-img-h);
   padding: var(--s-10);
 }
