@@ -50,6 +50,7 @@
 .shade {
   background: var(--shade2);
   padding: var(--s-20) var(--s-30);
+  padding-bottom: var(--s-30);
   border-radius: var(--primary-border-radius);
   width: var(--hundred);
   display: flex;

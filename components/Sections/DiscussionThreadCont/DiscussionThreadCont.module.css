@@ -37,6 +37,7 @@
 .shade {
   background: var(--shade2);
   padding: var(--s-20) var(--s-30);
+  padding-bottom: var(--s-40);
   border-radius: var(--primary-border-radius);
   width: var(--hundred);
   display: flex;
@@ -122,6 +123,7 @@
 
 .input {
   padding: var(--s-10);
+  padding-bottom: var(--fs-1rem);
   padding-left: var(--s-30);
   margin-bottom: var(--s-10);
   width: var(--size-75);
