@@ -34,19 +34,15 @@
   width: var(--logo-2-width) !important;
 }
 
-/* .logo_2 + a {
-  position: absolute;
-  left: var(--ministry-logo-margin);
+.logo_2 + a {
   height: var(--logo2-height) !important;
   width: var(--logo2-width) !important;
-} */
+}
 
-/* .logo2 + a {
-  position: absolute;
-  left: var(--ministry-logo-margin);
+.logo2 + a {
   height: var(--logo-2-height) !important;
   width: var(--logo-2-width) !important;
-} */
+}
 
 .logo_3 + span {
   height: var(--logo3-height) !important;
