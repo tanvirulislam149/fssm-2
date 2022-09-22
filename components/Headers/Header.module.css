@@ -34,12 +34,12 @@
   width: var(--logo-2-width) !important;
 }
 
-.logo_2 + a {
+.logo_2 + a > span {
   height: var(--logo2-height) !important;
   width: var(--logo2-width) !important;
 }
 
-.logo2 + a {
+.logo2 + a > span {
   height: var(--logo-2-height) !important;
   width: var(--logo-2-width) !important;
 }
