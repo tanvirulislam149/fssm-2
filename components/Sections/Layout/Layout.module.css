@@ -7,3 +7,7 @@
   display: flex;
   justify-content: center;
 }
+
+.header {
+  background: var(--bg-header-bottom) !important;
+}

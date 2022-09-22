@@ -3,6 +3,7 @@ import Header from '../../components/Headers/Header';
 import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
 import ExpiredTendersCont from '../../components/Sections/ExpiredTendersCont/ExpiredTendersCont';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const index = () => {
   return (
@@ -10,9 +11,11 @@ const index = () => {
       <Header />
       <HeaderComponent />
 
-      <ExpiredTendersCont />
+      <Layout>
+        <ExpiredTendersCont />
 
-      <Footer />
+        <Footer />
+      </Layout>
     </>
   )
 }

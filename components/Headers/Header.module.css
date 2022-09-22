@@ -1,16 +1,23 @@
 .container {
+  width: var(--hundred);
+  background: var(--bg);
+}
+
+.container > div > div {
   padding: var(--fs-12);
   padding-left: var(--header-padding);
   padding-right: var(--header-padding);
   display: flex;
   align-items: center;
-  width: var(--hundred);
-  background: var(--bg);
+  justify-content: space-between;
 }
 
 .div {
-  margin-left: auto;
   display: flex;
+}
+
+.middle {
+  margin-left: var(--fifteen);
 }
 
 .space {
@@ -27,19 +34,19 @@
   width: var(--logo-2-width) !important;
 }
 
-.logo_2 + a {
+/* .logo_2 + a {
   position: absolute;
   left: var(--ministry-logo-margin);
   height: var(--logo2-height) !important;
   width: var(--logo2-width) !important;
-}
+} */
 
-.logo2 + a {
+/* .logo2 + a {
   position: absolute;
   left: var(--ministry-logo-margin);
   height: var(--logo-2-height) !important;
   width: var(--logo-2-width) !important;
-}
+} */
 
 .logo_3 + span {
   height: var(--logo3-height) !important;
@@ -152,7 +159,6 @@
 }
 
 .ul {
-  background: darkorange;
   list-style: none;
   width: var(--hundred);
   box-shadow: 0 var(--size-3) var(--size-3) var(--shadow);
@@ -248,8 +254,8 @@
   }
 }
 
-@media (max-width: 410px) {
+/* @media (max-width: 410px) {
   .logo2 + a {
     left: var(--size-45);
   }
-}
+} */

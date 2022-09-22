@@ -4,6 +4,7 @@ import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
 import Disclaimer from '../../components/Sections/Disclaimer/Disclaimer';
 import GlossaryComponent from '../../components/Sections/GlossaryComponent/GlossaryComponent';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const Glossary = () => {
   return (
@@ -11,11 +12,13 @@ const Glossary = () => {
       <Header />
       <HeaderComponent />
 
-      <GlossaryComponent />
+      <Layout>
+        <GlossaryComponent />
 
-      <Disclaimer />
+        <Disclaimer />
 
-      <Footer />
+        <Footer />
+      </Layout>
     </>
   )
 }

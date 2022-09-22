@@ -3,20 +3,23 @@ import BulkUploadCont from '../../components/Dashboard/BulkUploadCont/BulkUpload
 import DashboardHeader from '../../components/Dashboard/Header/DashboardHeader';
 import SideBar from '../../components/Dashboard/SideBar/SideBar';
 import styles from '../../styles/Home.module.css';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const BulkUpload = () => {
   return (
     <>
-      <DashboardHeader />
+      <Layout>
+        <DashboardHeader />
 
-      <div className={styles.dash_cont}>
-        <div>
-          <SideBar />
+        <div className={styles.dash_cont}>
+          <div>
+            <SideBar />
+          </div>
+          <div>
+            <BulkUploadCont />
+          </div>
         </div>
-        <div>
-          <BulkUploadCont />
-        </div>
-      </div>
+      </Layout>
     </>
   )
 }

@@ -83,6 +83,7 @@
   height: var(--card-h);
   width: 31.8%;
   box-shadow: 0 0 2px var(--shadow);
+  border-radius: var(--size-5);
 }
 
 .btn_cont {

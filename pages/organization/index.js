@@ -5,20 +5,20 @@ import styles from "../../styles/Home.module.css";
 import Organization from "../../components/Dashboard/Organization/Organization";
 
 const OrganizationPage = () => {
-   return (
-      <>
-         <DashboardHeader />
+  return (
+    <>
+      <DashboardHeader />
 
-         <div className={styles.dash_cont}>
-            <div>
-               <SideBar />
-            </div>
-            <div>
-               <Organization></Organization>
-            </div>
-         </div>
-      </>
-   );
+      <div className={styles.dash_cont}>
+        <div>
+          <SideBar />
+        </div>
+        <div>
+          <Organization></Organization>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default OrganizationPage;

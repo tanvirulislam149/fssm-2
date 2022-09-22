@@ -8,6 +8,7 @@ import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
 import HeaderComponent from '../../Headers/HeaderComponent';
 import { useRouter } from 'next/router';
 import { getAllKnowledgeRepo } from '../../../services/knowledgeRepoService';
+import Layout from '../Layout/Layout';
 
 const KnowledgeCont = () => {
   const [category, setCategory] = useState([]);
@@ -41,19 +42,21 @@ const KnowledgeCont = () => {
       <div className={styles.container}>
         <section>
           <HeaderComponent />
-          <KnowledgeSectionNav />
-          <div className={styles.cont}>
+          <Layout>
+            <KnowledgeSectionNav />
+            <div className={styles.cont}>
 
-            <div>
-              <KnowledgeCategories loading={loading} category={category} />
+              <div>
+                <KnowledgeCategories loading={loading} category={category} />
 
-              <SetupAlerts />
+                <SetupAlerts />
 
-              <Vendors />
+                <Vendors />
+              </div>
+
+              <KnowledgeList loading={loading} questions={questions} />
             </div>
-
-            <KnowledgeList loading={loading} questions={questions} />
-          </div>
+          </Layout>
         </section>
       </div>
     </>

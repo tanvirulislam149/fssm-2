@@ -1,0 +1,80 @@
+.container {
+  height: var(--s-450);
+  width: var(--hundred);
+  margin-top: var(--s-50);
+}
+
+.title {
+  font-size: var(--fs-24);
+  color: var(--white-color);
+  font-weight: var(--font-weight-bold);
+  padding-top: var(--s-20);
+}
+
+.list {
+  font-size: var(--fs-1rem);
+  line-height: var(--lh-35);
+  font-weight: var(--fw-400);
+  color: var(--white-color);
+  list-style-type: disc;
+}
+
+.btn {
+  background-color: var(--white-color);
+  color: var(--black);
+  padding: var(--pa-btn);
+  border-radius: var(--s-10);
+  font-weight: var(--font-weight-bold);
+  border-width: 0;
+  width: var(--size-35);
+  margin-bottom: var(var(--s-20));
+}
+
+.btn:hover {
+  background: var(--primary-blue);
+  color: var(--white-color);
+}
+
+.one,
+.two,
+.three,
+.four {
+  width: var(--size-75);
+  margin: 0 auto;
+  height: var(--s-400);
+  background-size: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: var(--primary-border-radius);
+  /* position: relative; */
+}
+
+.one {
+  background: url(../../../assets/latest_news\ 1.png) no-repeat center center;
+}
+.two {
+  background: url(../../../assets/fssm_glance\ 1.png) no-repeat center center;
+}
+.three {
+  background: url(../../../assets/discussion_board\ 1.png) no-repeat center
+    center;
+}
+.four {
+  background: url(../../../assets/tenders\ 1.png) no-repeat center center;
+}
+
+@media (max-width: 950px) {
+  .one,
+  .two,
+  .three,
+  .four {
+    width: var(--hundred);
+    background-size: cover;
+  }
+
+  .btn {
+    width: var(--fifty);
+  }
+}

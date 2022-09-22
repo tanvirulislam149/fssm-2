@@ -7,6 +7,7 @@ import HeaderComponent from '../components/Headers/HeaderComponent';
 import { homePageText } from '../components/TextArrays';
 import HomePageMidSection from '../components/Sections/HomePageMidSection/HomePageMidSection';
 import HomePageBottomSlider from '../components/Sections/HomePageBottomSlider/HomePageBottomSlider';
+import Layout from '../components/Sections/Layout/Layout';
 
 export default function Home() {
   return (
@@ -22,13 +23,15 @@ export default function Home() {
 
         <h1 className={styles.title}>{homePageText.h1}</h1>
 
-        <HomePageTopSection />
+        <Layout>
+          <HomePageTopSection />
 
-        <HomePageMidSection />
+          <HomePageMidSection />
 
-        <HomePageBottomSlider />
+          <HomePageBottomSlider />
 
-        <Footer />
+          <Footer />
+        </Layout>
       </div>
     </>
   )

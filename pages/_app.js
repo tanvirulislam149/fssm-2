@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { axiosInstance } from '../services/authService';
 import Cookies from 'js-cookie';
-import Layout from '../components/Sections/Layout/Layout';
+import SiteBackground from '../components/Sections/SiteBackground/SiteBackground';
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -15,9 +15,9 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <Layout>
+    <SiteBackground>
       <Component {...pageProps} />
-    </Layout>
+    </SiteBackground>
   )
   // return <Component {...pageProps} />
 }

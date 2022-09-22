@@ -1,31 +1,107 @@
 import React, { useEffect } from 'react';
-import styles from './Carousel.module.css';
+import styles from './CarouselCont.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import right from '../../../assets/rigtt.png';
-import left from '../../../assets/left.png';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-const Carousel = () => {
+const CarouselCont = () => {
   const router = useRouter();
-
-  const handleChange = (el) => {
-    document.getElementById('carousel_1').classList.remove('carousel_select');
-    document.getElementById('carousel_2').classList.remove('carousel_select');
-    document.getElementById('carousel_3').classList.remove('carousel_select');
-    document.getElementById('carousel_4').classList.remove('carousel_select');
-    el.classList.add('carousel_select');
-  }
 
   const handleNav = (path) => {
     path === 1 ? router.push('/advancedsearch?theme=latest') : router.push(`/${path}`);
   }
 
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+      //slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+      //slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      //slidesToSlide: 1 // optional, default to 1.
+    }
+  };
+
   return (
     <>
-      <div className={styles.container}>
+      <Carousel
+        swipeable={true}
+        draggable={false}
+        showDots={true}
+        responsive={responsive}
+        ssr={true} // means to render carousel on server-side.
+        infinite={true}
+        //autoPlay={this.props.deviceType !== "mobile" ? true : false}
+        autoPlaySpeed={1000}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={['tablet', 'mobile']}
+        //deviceType={this.props.deviceType}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+        className={styles.container}
+      >
+        <div className={styles.one}>
+          <h3 className={styles.title}>{homePageMidSectionText.slide1}</h3>
+          <ul className={styles.list}>
+            {homePageMidSectionText.card1.map(({ id, link, text }) => {
+              return (
+                <Link href={link} key={id}><a><li>{text}</li></a></Link>
+              )
+            })}
+          </ul>
+          <Button title='Show more' style={styles.btn} onClick={() => { handleNav(1); }} />
+        </div>
+        <div className={styles.two}>
+          <h3 className={styles.title}>{homePageMidSectionText.slide2}</h3>
+          <ul className={styles.list}>
+            {homePageMidSectionText.card2.map(({ id, link, text }) => {
+              return (
+                <Link href={link} key={id}><a><li>{text}</li></a></Link>
+              )
+            })}
+          </ul>
+          <Button title='Show more' style={styles.btn} onClick={() => { handleNav('faq'); }} />
+        </div>
+        <div className={styles.three}>
+          <h3 className={styles.title}>{homePageMidSectionText.slide3}</h3>
+          <ul className={styles.list}>
+            {homePageMidSectionText.card3.map(({ id, link, text }) => {
+              return (
+                <Link href={link} key={id}><a><li>{text}</li></a></Link>
+              )
+            })}
+          </ul>
+          <Button title='Show more' style={styles.btn} onClick={() => { handleNav('discussionboard'); }} />
+        </div>
+        <div className={styles.four}>
+          <h3 className={styles.title}>{homePageMidSectionText.slide4}</h3>
+          <ul className={styles.list}>
+            {homePageMidSectionText.card4.map(({ id, link, text }) => {
+              return (
+                <Link href={link} key={id}><a><li>{text}</li></a></Link>
+              )
+            })}
+          </ul>
+          <Button title='Show more' style={styles.btn} onClick={() => { handleNav('tenders'); }} />
+        </div>
+      </Carousel>
+
+
+
+      {/* <div className={styles.container}>
         <section className={styles.carousel} aria-label="Gallery">
           <ol className={styles.carousel__viewport}>
             <li id="carousel__slide1"
@@ -167,10 +243,10 @@ const Carousel = () => {
             </ol>
           </aside>
         </section>
-      </div>
+      </div> */}
     </>
   )
 }
 
 
-export default Carousel
+export default CarouselCont

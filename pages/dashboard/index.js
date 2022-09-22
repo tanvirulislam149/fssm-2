@@ -1,13 +1,16 @@
 import React from 'react';
 import DashboardHeader from '../../components/Dashboard/Header/DashboardHeader';
 import MainDashboard from '../../components/Dashboard/MainDashboard/MainDashboard';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const Dashboard = () => {
   return (
     <>
-      <DashboardHeader />
+      <Layout>
+        <DashboardHeader />
 
-      <MainDashboard />
+        <MainDashboard />
+      </Layout>
     </>
   )
 }

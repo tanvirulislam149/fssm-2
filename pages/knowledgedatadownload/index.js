@@ -3,6 +3,7 @@ import Header from '../../components/Headers/Header';
 import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
 import KnowledgeDownload from '../../components/Sections/KnowledgeDownload/KnowledgeDownload';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const KnowledgeDataDownload = () => {
   return (
@@ -10,9 +11,11 @@ const KnowledgeDataDownload = () => {
       <Header />
       <HeaderComponent />
 
-      <KnowledgeDownload />
+      <Layout>
+        <KnowledgeDownload />
 
-      <Footer />
+        <Footer />
+      </Layout>
     </>
   )
 }
