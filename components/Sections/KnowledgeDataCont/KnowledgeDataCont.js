@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './KnowledgeDataCont.module.css';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
-import HeaderComponent from '../../Headers/HeaderComponent';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import { getAllKnowledgeRepo, getSubItem } from '../../../services/knowledgeRepoService';
 import TenderCard from '../../Cards/TenderCard/TenderCard';
@@ -80,7 +79,6 @@ const KnowledgeDataCont = () => {
     <>
       <div className={styles.container}>
         <section>
-          <HeaderComponent />
           <Layout>
             <KnowledgeSectionNav />
             <div className={styles.cont}>

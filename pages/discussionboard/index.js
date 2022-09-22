@@ -13,9 +13,9 @@ const DiscussionBoard = () => {
 
       <Layout>
         <DiscussionCont />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

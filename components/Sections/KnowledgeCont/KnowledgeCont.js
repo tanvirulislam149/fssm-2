@@ -5,7 +5,6 @@ import Vendors from '../Vendors/Vendors';
 import SetupAlerts from '../SetupAlerts/SetupAlerts';
 import KnowledgeList from '../KnowledgeList/KnowledgeList';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
-import HeaderComponent from '../../Headers/HeaderComponent';
 import { useRouter } from 'next/router';
 import { getAllKnowledgeRepo } from '../../../services/knowledgeRepoService';
 import Layout from '../Layout/Layout';
@@ -41,7 +40,6 @@ const KnowledgeCont = () => {
     <>
       <div className={styles.container}>
         <section>
-          <HeaderComponent />
           <Layout>
             <KnowledgeSectionNav />
             <div className={styles.cont}>

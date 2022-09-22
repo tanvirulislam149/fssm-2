@@ -13,9 +13,9 @@ const Interested = () => {
 
       <Layout>
         <GetInvolved />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

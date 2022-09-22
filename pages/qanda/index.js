@@ -14,11 +14,11 @@ const HelpDeskCont = () => {
 
       <Layout>
         <HelpDesk />
-
-        <Disclaimer />
-
-        <Footer />
       </Layout>
+
+      <Disclaimer />
+
+      <Footer />
     </>
   )
 }

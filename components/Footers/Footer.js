@@ -10,6 +10,7 @@ import { footerText } from '../TextArrays';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { axiosInstance } from '../../services/authService';
+import ComponentLayout from '../Sections/ComponentLayout/ComponentLayout';
 
 const Footer = () => {
   const [action, setAction] = useState('Sign In');
@@ -42,28 +43,30 @@ const Footer = () => {
   return (
     <>
       <footer className={styles.container}>
-        <div className={styles.left}>
-          <Link href='https://nfssmalliance.org/'><a><span className={styles.logo}></span>
-            <Image src={nfssm} height={130} width={85} alt='nfssm logo' /></a></Link>
+        <ComponentLayout>
+          <div className={styles.left}>
+            <Link href='https://nfssmalliance.org/'><a><span className={styles.logo}></span>
+              <Image src={nfssm} height={130} width={85} alt='nfssm logo' /></a></Link>
 
-          <Link href='https://twitter.com/nfssmalliance?lang=en'><a><div className={styles.icon_cont}>
-            <FontAwesomeIcon icon={faTwitter} size="2x" />
-          </div></a></Link>
-          <Link href='https://www.linkedin.com/company/nfssmalliance'><a><div className={styles.icon_cont}>
-            <FontAwesomeIcon icon={faLinkedin} size="2x" />
-          </div></a></Link>
-          <Link href='https://www.instagram.com/nfssmalliance/'><a><div className={styles.icon_cont}>
-            <FontAwesomeIcon icon={faInstagram} size="2x" />
-          </div></a></Link>
-        </div>
-
-        <div className={styles.right}>
-          <div className={styles.btn_cont}>
-            <SubmitButton title={action} style={styles.btn} onClick={clickHandler} />
-            <SubmitButton onClick={() => { handleRoute(); }} title='Get Involved' style={styles.btn} />
+            <Link href='https://twitter.com/nfssmalliance?lang=en'><a><div className={styles.icon_cont}>
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </div></a></Link>
+            <Link href='https://www.linkedin.com/company/nfssmalliance'><a><div className={styles.icon_cont}>
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
+            </div></a></Link>
+            <Link href='https://www.instagram.com/nfssmalliance/'><a><div className={styles.icon_cont}>
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </div></a></Link>
           </div>
-          <p className={styles.bottom_text}>{footerText.visitors}</p>
-        </div>
+
+          <div className={styles.right}>
+            <div className={styles.btn_cont}>
+              <SubmitButton title={action} style={styles.btn} onClick={clickHandler} />
+              <SubmitButton onClick={() => { handleRoute(); }} title='Get Involved' style={styles.btn} />
+            </div>
+            <p className={styles.bottom_text}>{footerText.visitors}</p>
+          </div>
+        </ComponentLayout>
       </footer>
     </>
   )

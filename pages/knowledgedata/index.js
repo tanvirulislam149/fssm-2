@@ -9,12 +9,13 @@ const KnowledgeData = () => {
   return (
     <>
       <Header />
-
-      <KnowledgeDataCont />
+      <HeaderComponent />
 
       <Layout>
-        <Footer />
+        <KnowledgeDataCont />
       </Layout>
+
+      <Footer />
     </>
   )
 }

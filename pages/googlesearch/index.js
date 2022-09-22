@@ -13,9 +13,9 @@ const Search = () => {
 
       <Layout>
         <GoogleSearch />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

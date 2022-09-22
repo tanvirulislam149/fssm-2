@@ -14,11 +14,11 @@ const Faq = () => {
 
       <Layout>
         <Faqs />
-
-        <Disclaimer />
-
-        <Footer />
       </Layout>
+
+      <Disclaimer />
+
+      <Footer />
     </>
   )
 }

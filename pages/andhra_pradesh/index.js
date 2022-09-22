@@ -45,9 +45,9 @@ const AndraPradesh = () => {
         <TelanganaMidSection />
 
         <TelanganaBottomSection />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

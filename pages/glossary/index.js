@@ -14,11 +14,11 @@ const Glossary = () => {
 
       <Layout>
         <GlossaryComponent />
-
-        <Disclaimer />
-
-        <Footer />
       </Layout>
+
+      <Disclaimer />
+
+      <Footer />
     </>
   )
 }

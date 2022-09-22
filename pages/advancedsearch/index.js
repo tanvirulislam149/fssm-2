@@ -13,9 +13,9 @@ const AdvancedSearch = () => {
 
       <Layout>
         <AdvancedSearchCont />
-
-        <Footer />
       </Layout>
+
+      <Footer />
 
     </>
   )

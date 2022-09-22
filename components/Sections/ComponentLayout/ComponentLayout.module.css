@@ -6,7 +6,6 @@
 .layout {
   display: flex;
   justify-content: center;
-  flex-grow: 100;
 }
 
 .header {

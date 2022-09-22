@@ -1,5 +1,8 @@
 .container {
   background: var(--white-color);
+}
+
+.container > div > div {
   padding: var(--pa-footer);
   padding-bottom: var(--s-50);
   display: flex;

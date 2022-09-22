@@ -6,7 +6,7 @@ import Input from '../../components/Inputs/Input';
 import search from '../../assets/search.png';
 import down from '../../assets/down.png';
 import { useRouter } from 'next/router';
-import Layout from '../Sections/Layout/Layout';
+import ComponentLayout from '../Sections/ComponentLayout/ComponentLayout';
 
 const HeaderComponent = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const HeaderComponent = () => {
   return (
     <>
       <div id='cont'>
-        <Layout>
+        <ComponentLayout>
           <div className={styles.cont_2}>
             <p className={styles.text} onClick={() => { handleRefresh() }}>Faecal Sludge and Septage <br />Management in India(FSSM)</p>
             <ul className={styles.links}>
@@ -107,7 +107,7 @@ const HeaderComponent = () => {
               <Link href='/tenders'><h2 className={styles.item} id='tenders'>Tenders</h2></Link>
             </div>
           </div>
-        </Layout>
+        </ComponentLayout>
       </div>
     </>
   )

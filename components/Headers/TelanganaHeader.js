@@ -7,7 +7,7 @@ import amrut from '../../assets/AMRUT.png';
 import sbm from '../../assets/sbm.png';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Layout from '../Sections/Layout/Layout';
+import ComponentLayout from '../Sections/ComponentLayout/ComponentLayout';
 
 const TelanganaHeader = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const TelanganaHeader = () => {
       <header>
         <div>
           <div id='header' className={styles.container}>
-            <Layout>
+            <ComponentLayout>
               <Link href=''><a>
                 <div className={styles.logo1}></div>
                 <Image className={styles.logo} src={bharat} alt='logo1' height={82} width={79} />
@@ -46,7 +46,7 @@ const TelanganaHeader = () => {
                   <Image src={sbm} alt='logo4' height={73} width={166} />
                 </a></Link>
               </div>
-            </Layout>
+            </ComponentLayout>
           </div>
         </div>
       </header>

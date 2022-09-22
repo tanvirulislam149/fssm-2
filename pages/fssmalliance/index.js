@@ -16,9 +16,9 @@ const About = () => {
 
         <Layout>
           <AboutDescription />
-
-          <Footer />
         </Layout>
+
+        <Footer />
       </div >
     </>
   )

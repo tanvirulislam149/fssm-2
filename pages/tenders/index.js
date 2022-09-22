@@ -13,9 +13,9 @@ const Tenders = () => {
 
       <Layout>
         <TendersCont />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

@@ -13,9 +13,9 @@ const DiscussionThread = () => {
 
       <Layout>
         <DiscussionThreadCont />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

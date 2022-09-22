@@ -29,9 +29,9 @@ export default function Home() {
           <HomePageMidSection />
 
           <HomePageBottomSlider />
-
-          <Footer />
         </Layout>
+
+        <Footer />
       </div>
     </>
   )

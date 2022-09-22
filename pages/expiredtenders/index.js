@@ -13,9 +13,9 @@ const index = () => {
 
       <Layout>
         <ExpiredTendersCont />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

@@ -7,7 +7,7 @@ import amrut from '../../assets/AMRUT.png';
 import sbm from '../../assets/sbm.png';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Layout from '../Sections/Layout/Layout';
+import ComponentLayout from '../Sections/ComponentLayout/ComponentLayout';
 
 const Header = () => {
   const router = useRouter();
@@ -48,7 +48,7 @@ const Header = () => {
       <header>
         <div>
           <div id='header' className={styles.container}>
-            <Layout>
+            <ComponentLayout>
               <Link href='https://aatmanirbharbharat.mygov.in/'><a>
                 <div className={styles.logo_1}></div>
                 <Image src={bharat} alt='logo1' height={91} width={77} />
@@ -70,7 +70,7 @@ const Header = () => {
                   <Image src={sbm} alt='logo4' height={73} width={166} />
                 </a></Link>
               </div>
-            </Layout>
+            </ComponentLayout>
           </div>
         </div>
       </header>

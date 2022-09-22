@@ -13,9 +13,9 @@ const KnowledgeDataDownload = () => {
 
       <Layout>
         <KnowledgeDownload />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

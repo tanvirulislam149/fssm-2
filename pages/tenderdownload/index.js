@@ -13,9 +13,9 @@ const TenderDownload = () => {
 
       <Layout>
         <TenderDownloadCont />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

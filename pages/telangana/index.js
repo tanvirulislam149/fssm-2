@@ -22,9 +22,9 @@ const Telangana = () => {
         <TelanganaMidSection />
 
         <TelanganaBottomSection />
-
-        <Footer />
       </Layout>
+
+      <Footer />
     </>
   )
 }

@@ -3,17 +3,19 @@ import Header from '../../components/Headers/Header';
 import Footer from '../../components/Footers/Footer';
 import KnowledgeCont from '../../components/Sections/KnowledgeCont/KnowledgeCont';
 import Layout from '../../components/Sections/Layout/Layout';
+import HeaderComponent from '../../components/Headers/HeaderComponent';
 
 const KnowledgeContent = () => {
   return (
     <>
       <Header />
-
-      <KnowledgeCont />
+      <HeaderComponent />
 
       <Layout>
-        <Footer />
+        <KnowledgeCont />
       </Layout>
+
+      <Footer />
     </>
   )
 }
