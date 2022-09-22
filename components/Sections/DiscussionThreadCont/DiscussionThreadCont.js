@@ -13,6 +13,7 @@ import { postComment } from '../../../services/discussionService';
 
 const DiscussionThreadCont = () => {
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(false);
   const [topic, setTopic] = useState(null);
   const [text, setText] = useState('');
 
@@ -25,6 +26,7 @@ const DiscussionThreadCont = () => {
 
   const handleError = (err) => {
     setLoading(false);
+    setLoading2(false);
     console.log({ e: err })
   }
 
@@ -65,7 +67,7 @@ const DiscussionThreadCont = () => {
       (err, res) => {
         if (err) return handleError(err)
         if (res !== null) {
-          setLoading(false);
+          setLoading2(false);
           console.log({ r: res });
           document.querySelector('.modal2').style.display = "flex";
         }
@@ -156,8 +158,24 @@ const DiscussionThreadCont = () => {
                   required
                   placeholder='Leave a comment here...'
                   onChange={(e) => { setText(e.target.value) }}
+                  onFocus={() => { document.querySelector('.form-error').classList.add('none'); }}
                 />
-                <button data-modal="myModal2" onClick={() => { text.length ? handleSubmit() : null; }} className={styles.btn}>Post Comment</button>
+                <span className={`${styles.error} form-error none`}>Comment cannot be empty</span>
+                {loading2 ?
+                  <CircularProgress /> :
+                  <button
+                    data-modal="myModal2"
+                    onClick={() => {
+                      if (text.length) {
+                        setLoading2(true);
+                        handleSubmit();
+                      } else {
+                        document.querySelector('.form-error').classList.remove('none');
+                      }
+                    }}
+                    className={styles.btn}>
+                    Post Comment
+                  </button>}
               </div>
             </div>
           </section>}

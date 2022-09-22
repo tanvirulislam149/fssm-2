@@ -1,5 +1,5 @@
 .container {
-  background: var(--bg-blue);
+  background: var(--bg);
   padding: var(--ma-about-main);
   padding-top: var(--s-40);
 }
@@ -145,7 +145,6 @@
   border-width: 0;
   width: var(--s-360);
   height: max-content;
-  border-radius: var(--size-5);
   box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 1s;
@@ -236,6 +235,10 @@
   top: 0;
   height: var(--min-height-100);
   width: var(--hundred);
+}
+
+.error {
+  margin-bottom: var(--s-10);
 }
 
 @media (max-width: 950px) {

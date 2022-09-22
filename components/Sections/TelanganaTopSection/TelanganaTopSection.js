@@ -9,8 +9,8 @@ import { useRouter } from 'next/router';
 const TelanganaTopSection = () => {
   const navigate = useRouter();
 
-  const route = () => {
-    navigate.push('/advancedsearch');
+  const route = (path) => {
+    navigate.push(`/${path}`);
   }
 
   const handleScroll = () => {
@@ -55,11 +55,12 @@ const TelanganaTopSection = () => {
                 <Button
                   title='Search'
                   style={styles.btn}
+                  onClick={() => { route('googlesearch') }}
                 />
                 <Button
                   title='Advance search'
                   style={styles.btn}
-                  onClick={() => { route(); }}
+                  onClick={() => { route('advancedsearch'); }}
                 />
               </div>
             </div>

@@ -17,10 +17,9 @@ const Header = () => {
 
     if (router.pathname === '/discussionboard'
       || router.pathname === '/interested'
-      || router.pathname === '/googlesearch') {
+      || router.pathname === '/googlesearch'
+      || router.pathname === '/discussionthread') {
       return;
-    } else if (id === 'discussionthread') {
-      document.getElementById('header').classList.add('bg-blue');
     } else if (id === 'glossary') {
       document.querySelector('#faq').classList.add('onroute');
       document.querySelector('#faq-desktop').classList.add('onroute-desktop');
