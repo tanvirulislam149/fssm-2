@@ -166,7 +166,7 @@ const DiscussionThreadCont = () => {
                   <button
                     data-modal="myModal2"
                     onClick={() => {
-                      if (text.length) {
+                      if (text.trim().length) {
                         setLoading2(true);
                         handleSubmit();
                       } else {
