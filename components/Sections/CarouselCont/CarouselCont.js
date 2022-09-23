@@ -16,7 +16,7 @@ const CarouselCont = () => {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 5500, min: 1024 },
       items: 1,
       //slidesToSlide: 3 // optional, default to 1.
     },

@@ -12,7 +12,7 @@ const TelanganaBottomSection = () => {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 5500, min: 1024 },
       items: 4,
     },
     tablet: {

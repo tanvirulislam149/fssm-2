@@ -92,7 +92,6 @@
   color: var(--header-txt);
   line-height: var(--lh-16);
   cursor: pointer;
-  margin-left: var(--s-10);
 }
 
 .search_cont {
