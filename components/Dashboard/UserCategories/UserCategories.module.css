@@ -50,6 +50,7 @@
   border: solid 1px var(--shade);
   padding: var(--s-10);
   margin-top: var(--size-3);
+  font-size: var(--fs-1rem);
 }
 
 .btn {
