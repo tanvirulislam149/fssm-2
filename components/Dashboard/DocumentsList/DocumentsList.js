@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './DocumentsList.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -11,38 +11,74 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 const data = [
-  { name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
-  { name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf', id: 2, date: '2021-08-22 08:38:40 AM' },
-  { name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf', id: 3, date: '2021-08-22 08:38:40 AM' },
+  { name: 'SXM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
+  { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 2, date: '2021-08-22 08:38:40 AM' },
+  { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 3, date: '2021-08-22 08:38:40 AM' },
 ]
 
 const DocumentsList = () => {
   const [number, setNumber] = useState(10);
+  const [search, setSearch] = useState('');
+  const [list, setList] = useState(data);
+  const [update, setUpdate] = useState(false);
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
 
+  const filterIt = (arr, searchKey) => {
+    return arr.filter(obj => {
+      return Object.keys(obj).some(key => {
+        if (typeof obj[key] === 'string') {
+          return obj[key].toLowerCase().trim().includes(searchKey);
+        }
+      })
+    });
+  }
+
+  const handleFilter = () => {
+    const results = filterIt(data, search.toLowerCase().trim());
+    setList(results);
+  }
+
+  useEffect(() => {
+    handleFilter();
+  }, [update])
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.control}>
-          <p>Show</p>
-          <FormControl sx={{ m: 1, width: 55 }} size="small">
-            <Select
-              labelId="demo-select-small"
-              id="demo-select-small"
-              value={number}
-              className={styles.select}
-              onChange={handleChange}
-            >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={25}>25</MenuItem>
-              <MenuItem value={50}>50</MenuItem>
-              <MenuItem value={100}>100</MenuItem>
-            </Select>
-          </FormControl>
-          <p>entries</p>
+          <div>
+            <p>Show</p>
+            <FormControl sx={{ m: 1, width: 55 }} size="small">
+              <Select
+                labelId="demo-select-small"
+                id="demo-select-small"
+                value={number}
+                className={styles.select}
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={25}>25</MenuItem>
+                <MenuItem value={50}>50</MenuItem>
+                <MenuItem value={100}>100</MenuItem>
+              </Select>
+            </FormControl>
+            <p>entries</p>
+          </div>
+
+          <div>
+            <p>Search : </p>
+            <input
+              type="text"
+              className={styles.input}
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setUpdate(!update);
+              }} />
+          </div>
         </div>
 
         <div className={styles.cont}>
@@ -50,8 +86,11 @@ const DocumentsList = () => {
             <div className={styles.one}>
               <p>S.NO</p>
             </div>
-            <div className={styles.two}>
+            <div className={styles.one}>
               <p>Thumbnail</p>
+            </div>
+            <div className={styles.two}>
+              <p>Title</p>
             </div>
             <div className={styles.three}>
               <p>Document Name</p>
@@ -63,17 +102,20 @@ const DocumentsList = () => {
               <p>Action</p>
             </div>
           </div>
-          {
-            data.map(({ name, id, date }, i) => {
+          {list.length ?
+            list.map(({ name, id, date, title }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
                     <p>{i + 1}</p>
                   </div>
-                  <div className={styles.two}>
+                  <div className={styles.one}>
                     <div className={styles.pdf}>
                       pdf
                     </div>
+                  </div>
+                  <div className={styles.two}>
+                    {title}
                   </div>
                   <div className={styles.three}>
                     <p>{name}</p>
@@ -108,7 +150,8 @@ const DocumentsList = () => {
                   </div>
                 </div>
               )
-            })
+            }) :
+            <p className={styles.no_results}>No results</p>
           }
         </div>
       </div>
@@ -119,7 +162,6 @@ const DocumentsList = () => {
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m').style.display = "none";
-            //document.getElementById('user-cat').style.display = 'none';
           }}>
         </div>
         <div className={styles.modal_content}>
@@ -127,7 +169,6 @@ const DocumentsList = () => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m').style.display = "none";
-              //document.getElementById('user-cat').style.display = 'none';
             }}
           >
             <p>View Document Data</p>
@@ -270,7 +311,9 @@ const DocumentsList = () => {
                   View Document
                 </div>
                 <div className={styles.details}>
-
+                  <div className={styles.view}>
+                    View
+                  </div>
                 </div>
               </div>
             </div>

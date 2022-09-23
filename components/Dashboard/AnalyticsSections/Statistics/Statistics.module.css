@@ -57,6 +57,17 @@
   font-weight: var(--font-weight-bold);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify_center > span {
+  height: var(--s-30) !important;
+  width: var(--s-30) !important;
+}
+
 @media (max-width: 950px) {
   .cont {
     flex-direction: column;

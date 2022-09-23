@@ -9,7 +9,6 @@ const SiteBackground = ({ children }) => {
 
   useEffect(() => {
     var id = router.pathname;
-    console.log({ id })
     if (id === '/' || id === '/telangana' || id === '/andhra_pradesh') {
       setState(false);
     } else setState(true);

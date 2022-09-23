@@ -94,11 +94,13 @@
   width: var(--s-40);
 }
 
-.mapbtn {
+.mapbtn,
+.yes {
   background: var(--l-blue);
 }
 
-.mapbtn:hover {
+.mapbtn:hover,
+.yes:hover {
   background: var(--lb-hov);
 }
 
@@ -116,7 +118,8 @@
   margin-left: var(--size-5);
 }
 
-.delbtn:hover {
+.delbtn:hover,
+.no:hover {
   background: var(--red-hov);
 }
 
@@ -132,6 +135,25 @@
   padding: 0;
   border-width: 0;
   width: var(--s-900);
+  height: max-content;
+  box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+.modal_content2 {
+  position: relative;
+  background-color: var(--white-color);
+  margin: auto;
+  font-family: var(--font-family-secondary);
+  margin-top: var(--s-40);
+  margin-bottom: var(--s-20);
+  z-index: 2;
+  padding: 0;
+  border-width: 0;
+  width: var(--s-380);
   height: max-content;
   box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
   -webkit-animation-name: animatetop;
@@ -202,6 +224,70 @@
   }
 }
 
+.cover {
+  padding: var(--s-20) var(--fs-14);
+  font-weight: var(--fw-400);
+  text-align: center;
+}
+
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+
+.ok {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--s-30);
+}
+
+.ok div {
+  background: var(--primary-blue);
+  color: var(--white-color);
+  font-weight: var(--fw-600);
+  height: var(--lh-35);
+  width: var(--s-50);
+  border-radius: var(--size-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ok div:hover {
+  background: var(--l-blue);
+}
+
+.btn_cont {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--s-30);
+}
+
+.btn3 {
+  height: var(--s-30);
+  width: var(--s-40);
+  color: var(--white-color);
+  border-width: 0;
+  font-weight: var(--fw-400);
+  border-radius: var(--size-3);
+}
+
+.yes {
+  margin-left: var(--s-8);
+}
+
+.no {
+  background: var(--pale-red);
+}
+
+/* .content2 {
+  padding: var(--s-20);
+  padding-left: var(--s-40);
+} */
+
 @media (max-width: 1050px) {
   .row .five,
   .row2 .five {
@@ -228,6 +314,9 @@
 
 @media (max-width: 690px) {
   .modal_content {
+    width: var(--size-95);
+  }
+  .modal_content2 {
     width: var(--size-95);
   }
 }

@@ -189,6 +189,8 @@ export default function CustomizedHook({ setData, placeholder, content }) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 getInputProps().onMouseDown();
+                e.preventDefault()
+                return;
               }
             }}
             placeholder={value.length ? '' : placeholder}

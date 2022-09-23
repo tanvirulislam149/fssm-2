@@ -8,6 +8,7 @@
   width: var(--hundred);
   border: solid 1px var(--shade);
   padding: var(--s-10);
+  font-size: var(--fs-1rem);
 }
 
 .textarea {
@@ -27,6 +28,15 @@
   padding: 0 !important;
 }
 
+.select input {
+  padding-left: var(--fs-14) !important;
+}
+
+.select input::-webkit-input-placeholder {
+  color: var(--dark-gray) !important;
+  opacity: 1 !important;
+}
+
 /* 
 .select1 {
   background: var(--white-color);
@@ -40,11 +50,12 @@
 
 .chip {
   height: 38px !important;
+  padding-left: var(--fs-14) !important;
 }
 
 .chip::-webkit-input-placeholder {
   font-size: var(--fs-1rem);
-  color: var(--gray);
+  color: var(--dark-gray);
 }
 
 .textInput > label {
@@ -105,6 +116,14 @@
 
 .checkboxes > div {
   width: var(--s-140);
+}
+
+.checkboxes > div > label {
+  display: flex;
+}
+
+.checkboxes > div > label > p {
+  margin-top: 2px;
 }
 
 .checkboxes input[type="radio"] {

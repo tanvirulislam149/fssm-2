@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import styles from './BulkUploadCont.module.css';
 import Image from 'next/image';
 import { imageTypes } from '../../TextArrays';
+import { uploadDocs } from '../../../services/bulkUploadService';
 
 const BulkUploadCont = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleFileEvent = (e) => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
@@ -24,18 +26,42 @@ const BulkUploadCont = () => {
     setUploadedFiles(newState);
   }
 
-  // const handleUpload = (index, start, end, name) => {
-  //   const newState = uploadedFiles.filter((file, i) => {
-  //     return i === index;
-  //   })
-  //   start.classList.add('none');
-  //   end.classList.add('none');
-  //   name.classList.add('onroute-desktop');
-  // }
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+    setError(err.message);
+  }
 
-  // const handleSubmit=()=>{
+  const handleSubmit = (files, start, end, name) => {
+    setLoading(true);
+    uploadDocs(
+      { document: files }
+      , (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          setLoading(false);
+          console.log({ r: res.data.message })
+          if (res.data.message === 'Documents have been added') {
+            name.forEach(item => {
+              item.classList.add('onroute-desktop');
+            })
+            start.forEach(item => {
+              item.classList.add('none');
+            })
+            end.forEach(item => {
+              item.classList.add('none');
+            })
+          }
+        }
+      })
+  }
 
-  // }
+  const handleUpload = (index, start, end, name) => {
+    const newState = uploadedFiles.filter((file, i) => {
+      return i === index;
+    })
+    handleSubmit(newState, [start], [end], [name]);
+  }
 
   return (
     <>
@@ -57,7 +83,12 @@ const BulkUploadCont = () => {
             </label>
             <span
               className={`${styles.btn} ${styles.two}`}
-            // onClick={()=>{handleSubmit();}}
+              onClick={() => {
+                handleSubmit(uploadedFiles,
+                  document.querySelectorAll('.start'),
+                  document.querySelectorAll('.end'),
+                  document.querySelectorAll('.name'));
+              }}
             >Start Upload</span>
             <span
               className={`${styles.btn} ${styles.three}`}
@@ -72,7 +103,7 @@ const BulkUploadCont = () => {
                   <div className={styles.img}>
                     {imageTypes.includes(type) && <Image layout='fill' objectFit='contain' alt='' src={image} />}
                   </div>
-                  <div id={`name${i}`} className={styles.name}>
+                  <div id={`name${i}`} className={`name ${styles.name}`}>
                     <p>{name}</p>
                   </div>
                   <div className={styles.size}>
@@ -80,17 +111,17 @@ const BulkUploadCont = () => {
                   </div>
                   <span
                     id={`start${i}`}
-                    className={styles.start}
-                  // onClick={() => {
-                  //   handleUpload(i,
-                  //     document.getElementById(`start${i}`),
-                  //     document.getElementById(`end${i}`),
-                  //     document.getElementById(`name${i}`),);
-                  // }}
+                    className={`start ${styles.start}`}
+                    onClick={() => {
+                      handleUpload(i,
+                        document.getElementById(`start${i}`),
+                        document.getElementById(`end${i}`),
+                        document.getElementById(`name${i}`),);
+                    }}
                   >Start</span>
                   <span
                     id={`end${i}`}
-                    className={styles.cancel}
+                    className={`end ${styles.cancel}`}
                     onClick={() => { handleCancel(i); }}
                   >Cancel</span>
                 </div>
