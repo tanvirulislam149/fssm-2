@@ -196,5 +196,6 @@ input[type="number"]::-webkit-inner-spin-button {
   .question-btn2 {
     padding: var(--fs-14);
     font-size: var(--fs-1rem);
+    width: var(--fifty);
   }
 }

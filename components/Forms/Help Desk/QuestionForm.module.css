@@ -176,4 +176,9 @@
   .submit_btn {
     width: var(--s-120);
   }
+
+  .btn_cont {
+    justify-content: center;
+    margin-top: var(--s-10);
+  }
 }

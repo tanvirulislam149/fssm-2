@@ -88,7 +88,8 @@
 .details {
   font-weight: var(--fw-400);
   width: var(--sixty);
-  margin-right: auto;
+  flex-grow: 100;
+  margin-right: var(--s-20);
   margin-left: var(--fs-1rem);
 }
 
@@ -104,7 +105,20 @@
   margin-top: -15px;
 }
 
-.footer2 + div > div:hover {
+.mobile {
+  display: none;
+  width: var(--s-30);
+  height: var(--s-28);
+  background: var(--primary-blue);
+  cursor: pointer;
+  border-radius: var(--s-8);
+  justify-content: center;
+  align-items: center;
+  margin-top: -5px;
+}
+
+.footer2 + div > div:hover,
+.mobile:hover {
   background: var(--l-blue);
 }
 
@@ -336,7 +350,34 @@
   }
 }
 
+.cont3 {
+  display: flex;
+}
+
+.cont4 {
+  display: flex;
+}
+
+.cont4 > .date {
+  display: none;
+}
+
 @media (max-width: 950px) {
+  .cont4 {
+    margin-bottom: var(--size-5);
+  }
+  .img_cont2 {
+    width: var(--s-40);
+    height: var(--s-40);
+    margin-right: var(--s-10);
+  }
+  .main > .date {
+    display: none;
+  }
+  .cont4 > .date {
+    display: flex;
+  }
+
   .container {
     padding: var(--s-10);
   }
@@ -346,17 +387,19 @@
   }
 
   .details {
-    width: var(--hundred);
-    margin-left: 0;
     margin-top: var(--s-10);
     margin-bottom: var(--s-10);
   }
 
-  .footer,
-  .footer2 {
+  .footer {
     margin-left: 0;
     flex-direction: column;
     align-items: flex-start;
+    border-bottom: none;
+    margin-bottom: 0;
+    border-top: 1px solid var(--light-gray-color);
+    padding-top: var(--s-20);
+    margin-top: var(--s-20);
   }
 
   .footer p,
@@ -378,8 +421,6 @@
   }
 
   .box1 {
-    flex-direction: column;
-    align-items: flex-start;
     padding: var(--s-8) var(--s-10);
   }
 
@@ -387,11 +428,41 @@
     padding: var(--fs-12) var(--s-8);
   }
 
+  .btn {
+    font-size: var(--s-10);
+    padding: var(--s-8) var(--s-20);
+    border-radius: var(--s-8);
+  }
+
   .input {
-    width: var(--hundred);
+    width: var(--fifty);
+  }
+
+  .input + span {
+    width: var(--s-20) !important;
+    height: var(--s-20) !important;
   }
 
   .answers {
     padding: var(--s-10);
+  }
+
+  .footer2 + div {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .footer2 {
+    justify-content: space-between;
+    margin-left: 0;
+    align-items: center;
+  }
+
+  .img_cont {
+    height: var(--s-40);
+    width: var(--s-40);
   }
 }

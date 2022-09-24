@@ -135,7 +135,8 @@
 
 .search3 {
   width: var(--hundred);
-  padding: var(--s-8);
+  padding: var(--s-10);
+  font-size: var(--s-10);
   padding-left: var(--fs-12);
   border-radius: var(--size-5);
   border-width: 0;
@@ -144,7 +145,7 @@
 
 .search3::-webkit-input-placeholder {
   font-family: var(--font-family-primary);
-  font-size: var(--s-8);
+  font-size: var(--s-10);
   color: var(--light-gray-color);
 }
 
@@ -155,12 +156,11 @@
 
 .item {
   color: var(--primary-blue);
-  font-size: var(--s-8);
-  height: var(--s-30);
+  font-size: var(--s-10);
+  height: var(--s-40);
   display: flex !important;
   align-items: center;
   padding-left: var(--fs-12);
-  text-align: center;
   background: var(--white-color);
   font-weight: var(--fw-500);
   cursor: pointer;
@@ -203,7 +203,7 @@
   position: absolute;
   transition: all 0.5s ease;
   margin-top: var(--fs-1rem);
-  right: var(--s-130);
+  right: var(--s-150);
   display: none;
 }
 
@@ -262,7 +262,7 @@
 .li ul li {
   clear: both;
   width: var(--hundred);
-  height: var(--s-30);
+  height: var(--s-40);
   display: flex;
   align-items: center;
   justify-content: center;

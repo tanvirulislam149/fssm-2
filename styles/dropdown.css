@@ -86,8 +86,8 @@
 .nav div {
   position: relative;
   top: 0;
-  width: var(--s-130);
-  right: var(--s-18);
+  width: var(--s-150);
+  right: 0;
   z-index: 3;
   background: var(--white-color);
   box-shadow: 0 4px 5px var(--shadow);

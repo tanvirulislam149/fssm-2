@@ -41,5 +41,6 @@
   .container {
     grid-template-columns: 1fr;
     margin: var(--five);
+    gap: 0;
   }
 }

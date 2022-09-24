@@ -163,6 +163,8 @@
   .container {
     margin-left: var(--five);
     margin-right: var(--five);
+    padding-top: var(--s-30);
+    margin-bottom: 0;
   }
 
   .card {
