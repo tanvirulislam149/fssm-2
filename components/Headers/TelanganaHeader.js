@@ -23,7 +23,7 @@ const TelanganaHeader = () => {
     <>
       <header>
         <div>
-          <div id='header' className={styles.container}>
+          <div id='header' className={styles.container2}>
             <ComponentLayout>
               <Link href=''><a>
                 <div className={styles.logo1}></div>

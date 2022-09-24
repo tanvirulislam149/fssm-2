@@ -7,6 +7,7 @@ import search from '../../assets/search.png';
 import down from '../../assets/down.png';
 import { useRouter } from 'next/router';
 import ComponentLayout from '../Sections/ComponentLayout/ComponentLayout';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const HeaderComponent = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const HeaderComponent = () => {
               <li id='faq-desktop'><Link href='/faq'>FAQs and Glosarry</Link></li>
 
               <div className={styles.flex_align_center}>
-                <li id='knowledgebase-desktop' className={`${styles.li} ${styles.li2}`}>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
+                <li id='knowledgebase-desktop' className={` ${styles.li2}`}>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
                   <ul className={styles.ul}>
                     <li className={styles.li}><Link href="/knowledgecontent">Knowledge Repository</Link></li>
                     <li className={styles.li}><Link href="/advancedsearch">Advanced Search</Link></li>
@@ -37,7 +38,7 @@ const HeaderComponent = () => {
               </div>
 
               <div className={styles.flex_align_center}>
-                <li id='states-desktop' className={`${styles.li} ${styles.li2}`}>States <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
+                <li id='states-desktop' className={` ${styles.li2}`}>States <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
                   <ul className={styles.ul}>
                     <li className={styles.li}><Link href="/telangana">Telangana</Link></li>
                     <li className={styles.li}><Link href="/andhra_pradesh">Andhra Pradesh</Link></li>
@@ -55,8 +56,8 @@ const HeaderComponent = () => {
                     type="checkbox"
                     id="check"
                     onClick={() => {
-                      document.querySelector('.nav').classList.toggle("none")
-                      document.querySelector('.nav').classList.toggle("show")
+                      document.querySelector('.nav').classList.toggle("none");
+                      document.querySelector('.nav').classList.toggle("show");
                     }}
                   />
                   <span></span>
@@ -92,13 +93,13 @@ const HeaderComponent = () => {
               <Link href='/fssmalliance'><h2 className={styles.item} id='fssmalliance'>About</h2></Link>
               <Link href='/qanda'><h2 className={styles.item} id='qanda'>Help Desk</h2></Link>
               <Link href='/faq'><h2 className={styles.item} id='faq'>FAQs and Glosarry</h2></Link>
-              <li id='knowledgebase' className={`${styles.item} ${styles.li}`}>FSSM Knowledge Base <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
+              <li id='knowledgebase' className={`${styles.item} ${styles.li}`}>FSSM Knowledge Base <span className={styles.down}></span><KeyboardArrowDownIcon sx={{ height: '15px', width: '15px' }} />
                 <ul className={styles.ul}>
                   <li className={styles.li}><Link href="/knowledgecontent">Knowledge Repository</Link></li>
                   <li className={styles.li}><Link href="/advancedsearch">Advanced Search</Link></li>
                 </ul>
               </li>
-              <li id='states' className={`${styles.item} ${styles.li}`}>States <span className={styles.down}></span><Image src={down} alt='drop down' height={8} width={12} />
+              <li id='states' className={`${styles.item} ${styles.li}`}>States <span className={styles.down}></span><KeyboardArrowDownIcon sx={{ height: '15px', width: '15px' }} />
                 <ul className={styles.ul}>
                   <li className={styles.li}><Link href="/telangana">Telangana</Link></li>
                   <li className={styles.li}><Link href="/andhra_pradesh">Andhra Pradesh</Link></li>

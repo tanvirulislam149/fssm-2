@@ -2,6 +2,7 @@
   margin-left: var(--ma-homepage);
   margin-right: var(--ma-homepage);
   margin-bottom: var(--s-120);
+  padding-top: var(--s-75);
 }
 
 .card_cont {

@@ -14,15 +14,22 @@ const Telangana = () => {
       <TelanganaHeader />
       <TelanganaHeaderComponent />
 
-      <TelanganaTopSection />
+      <div
+        onClick={() => {
+          if (document.querySelector('.nav').classList.contains('none')) return;
+          document.getElementById('check').click();
+        }}>
+        <TelanganaTopSection />
 
-      <Layout>
-        <HomePageMidSection />
+        <Layout>
 
-        <TelanganaMidSection />
+          <HomePageMidSection />
 
-        <TelanganaBottomSection />
-      </Layout>
+          <TelanganaMidSection />
+
+          <TelanganaBottomSection />
+        </Layout>
+      </div>
 
       <Footer />
     </>

@@ -21,14 +21,27 @@ export default function Home() {
         <Header />
         <HeaderComponent />
 
-        <h1 className={styles.title}>{homePageText.h1}</h1>
+        <h1
+          className={styles.title}
+          onClick={() => {
+            if (document.querySelector('.nav').classList.contains('none')) return;
+            document.getElementById('check').click();
+          }}>
+          {homePageText.h1}
+        </h1>
 
         <Layout>
-          <HomePageTopSection />
+          <div
+            onClick={() => {
+              if (document.querySelector('.nav').classList.contains('none')) return;
+              document.getElementById('check').click();
+            }}>
+            <HomePageTopSection />
 
-          <HomePageMidSection />
+            <HomePageMidSection />
 
-          <HomePageBottomSlider />
+            <HomePageBottomSlider />
+          </div>
         </Layout>
 
         <Footer />

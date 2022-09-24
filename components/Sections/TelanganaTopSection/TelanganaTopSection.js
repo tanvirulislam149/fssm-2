@@ -35,7 +35,15 @@ const TelanganaTopSection = () => {
         <div>Towards ODF++</div>
       </div>
 
-      <h1 id='heading' className={styles.title}><p>{homePageText.h1}</p>      <span>Towards ODF++</span></h1>
+      <h1
+        id='heading'
+        className={styles.title}
+        onClick={() => {
+          if (document.querySelector('.nav').classList.contains('none')) return;
+          document.getElementById('check').click();
+        }}><p>
+          {homePageText.h1}
+        </p>      <span>Towards ODF++</span></h1>
       <Layout>
         <div className={styles.container}>
 
