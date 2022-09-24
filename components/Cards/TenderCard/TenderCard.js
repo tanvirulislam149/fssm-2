@@ -32,12 +32,14 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
   return (
     <>
       <div className={styles.container}>
+        <div></div>
         <div className={styles.avatar}>
           <Image width={75} height={80} src={pdf} alt='pdf icon' />
+          <p className={`${styles.title} ${styles.title2}`}>{title}</p>
         </div>
         <div className={styles.main}>
           <div className={styles.top}>
-            <p className={styles.title}>{title}</p>
+            <p className={`${styles.title} ${styles.title3}`}>{title}</p>
             <button className={styles.btn} onClick={() => { handleNav(); }}>View Document</button>
           </div>
           <p className={styles.body}>{description}</p>
