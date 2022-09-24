@@ -16,8 +16,8 @@ const Telangana = () => {
 
       <div
         onClick={() => {
-          if (document.querySelector('.nav').classList.contains('none')) return;
-          document.getElementById('check').click();
+          // if (document.querySelector('.nav').classList.contains('none')) return;
+          // document.getElementById('check').click();
         }}>
         <TelanganaTopSection />
 

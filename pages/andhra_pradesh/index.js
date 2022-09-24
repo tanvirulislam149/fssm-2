@@ -37,8 +37,8 @@ const AndraPradesh = () => {
 
       <div
         onClick={() => {
-          if (document.querySelector('.nav').classList.contains('none')) return;
-          document.getElementById('check').click();
+          // if (document.querySelector('.nav').classList.contains('none')) return;
+          // document.getElementById('check').click();
         }}>
         <h1 id='heading' className={styles.title2}><p>{homePageText.h1}</p>      <span>Towards ODF++</span></h1>
 

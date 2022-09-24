@@ -24,8 +24,8 @@ export default function Home() {
         <h1
           className={styles.title}
           onClick={() => {
-            if (document.querySelector('.nav').classList.contains('none')) return;
-            document.getElementById('check').click();
+            // if (document.querySelector('.nav').classList.contains('none')) return;
+            // document.getElementById('check').click();
           }}>
           {homePageText.h1}
         </h1>
@@ -33,8 +33,8 @@ export default function Home() {
         <Layout>
           <div
             onClick={() => {
-              if (document.querySelector('.nav').classList.contains('none')) return;
-              document.getElementById('check').click();
+              // if (document.querySelector('.nav').classList.contains('none')) return;
+              // document.getElementById('check').click();
             }}>
             <HomePageTopSection />
 
