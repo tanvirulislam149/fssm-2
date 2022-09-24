@@ -35,23 +35,25 @@ const AndraPradesh = () => {
       <TelanganaHeader />
       <TelanganaHeaderComponent />
 
-      <div
+      <h1
+        id='heading'
+        className={styles.title2}
         onClick={() => {
-          // if (document.querySelector('.nav').classList.contains('none')) return;
-          // document.getElementById('check').click();
-        }}>
-        <h1 id='heading' className={styles.title2}><p>{homePageText.h1}</p>      <span>Towards ODF++</span></h1>
+          if (document.querySelector('.nav').classList.contains('none')) return;
+          document.getElementById('check').click();
+        }}><p>
+          {homePageText.h1}
+        </p>      <span>Towards ODF++</span></h1>
 
-        <Layout>
-          <HomePageTopSection />
+      <Layout>
+        <HomePageTopSection />
 
-          <HomePageMidSection />
+        <HomePageMidSection />
 
-          <TelanganaMidSection />
+        <TelanganaMidSection />
 
-          <TelanganaBottomSection />
-        </Layout>
-      </div>
+        <TelanganaBottomSection />
+      </Layout>
 
       <Footer />
     </>

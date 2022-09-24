@@ -39,8 +39,8 @@ const TelanganaTopSection = () => {
         id='heading'
         className={styles.title}
         onClick={() => {
-          // if (document.querySelector('.nav').classList.contains('none')) return;
-          // document.getElementById('check').click();
+          if (document.querySelector('.nav').classList.contains('none')) return;
+          document.getElementById('check').click();
         }}><p>
           {homePageText.h1}
         </p>      <span>Towards ODF++</span></h1>
