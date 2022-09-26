@@ -356,14 +356,12 @@ const StackedGraph = () => {
         {error ?
           <span className={`error ${styles.justify_center}`}>{error}</span> :
           <div className={styles.chart}>
-            <div>
-              {loading ?
-                <div className={styles.justify_center}><CircularProgress /></div> :
-                <div id="chart">
-                  <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
-                </div>
-              }
-            </div>
+            {loading ?
+              <div className={styles.justify_center}><CircularProgress /></div> :
+              <div id="chart">
+                <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
+              </div>
+            }
           </div>}
       </section>
 

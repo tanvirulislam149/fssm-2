@@ -82,7 +82,8 @@
 
 .chart {
   width: var(--hundred);
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .chart > div {
