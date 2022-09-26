@@ -2,6 +2,7 @@
   margin-left: var(--ma-homepage);
   margin-right: var(--ma-homepage);
   margin-bottom: var(--s-120);
+  padding-top: var(--s-75);
 }
 
 .card_cont {
@@ -62,6 +63,7 @@
   height: var(--card-h);
   width: 31.8%;
   box-shadow: 0 0 2px var(--shadow);
+  border-radius: var(--size-5);
 }
 
 .btn_cont {
@@ -124,12 +126,20 @@
 
 .input {
   border: 1px solid var(--input-border-color);
+  /* background: var(
+    --white-color
+  ); */
+  /* remove this to activate other dropdown icon */
   border-radius: var(--s-10);
   width: var(--hundred);
   height: var(--s-40);
   color: var(--light-gray-color);
   padding: var(--s-10);
 }
+
+/* .input > span:first-child {
+  margin-left: auto;
+} */
 
 .input:focus {
   box-shadow: none;
@@ -153,6 +163,8 @@
   .container {
     margin-left: var(--five);
     margin-right: var(--five);
+    padding-top: var(--s-30);
+    margin-bottom: 0;
   }
 
   .card {

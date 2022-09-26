@@ -129,7 +129,7 @@ const AdvancedSearchCont = () => {
                 <Multiselect placeholder='Partner' data={data} setData={setData} val={data.partner} content={advancedSearchText.partners} id='partner' />
               </div>
 
-              <button className={styles.btn}>Search</button>
+              <button type='reset' className={styles.btn}>Search</button>
             </div>
           </form>
 

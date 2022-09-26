@@ -4,6 +4,7 @@ import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
 import Disclaimer from '../../components/Sections/Disclaimer/Disclaimer';
 import Faqs from '../../components/Sections/Faqs/Faqs';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const Faq = () => {
   return (
@@ -11,7 +12,9 @@ const Faq = () => {
       <Header />
       <HeaderComponent />
 
-      <Faqs />
+      <Layout>
+        <Faqs />
+      </Layout>
 
       <Disclaimer />
 

@@ -203,7 +203,15 @@ export default function CustomizedHook({ setData }) {
           {value.map((option, index) => (
             <StyledTag key={index} label={option.title} {...getTagProps({ index })} />
           ))}
-          <input className={styles.input} placeholder={value.length ? '' : 'Search for Keywords, Themes, Subcategories, Stakeholders, Value chain, State...'} {...getInputProps()} />
+          <input
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                getInputProps().onMouseDown();
+              }
+            }}
+            className={styles.input}
+            placeholder={value.length ? '' : 'Search for Keywords, Themes, Subcategories, Stakeholders, Value chain, State...'}
+            {...getInputProps()} />
         </InputWrapper>
       </div>
       {groupedOptions.length > 0 ? (

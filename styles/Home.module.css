@@ -1,5 +1,8 @@
 .container {
-  min-height: var(--min-height-100);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .title {
@@ -9,7 +12,6 @@
   padding: var(--pa-home-h1);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--s-75);
 }
 
 .title2 {
@@ -19,7 +21,6 @@
   padding: var(--pa-home-h1);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--s-75);
   display: flex;
 }
 
@@ -39,7 +40,7 @@
   position: fixed;
   top: var(--s-140);
   right: 0;
-  z-index: 100;
+  z-index: 5;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -webkit-animation: fadeIn 0.5s;
@@ -104,7 +105,7 @@
   }
 
   .float {
-    top: var(--s-90);
+    top: var(--s-100);
   }
 
   .float div {

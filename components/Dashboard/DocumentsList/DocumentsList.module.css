@@ -20,14 +20,27 @@
 .control {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: var(--s-10);
   padding-bottom: 0;
   border-bottom: 1px solid var(--d-bg);
 }
 
+.control > div {
+  display: flex;
+  align-items: center;
+}
+
 .control > p {
   font-weight: var(--fw-400);
   font-size: var(--fs-14);
+}
+
+.no_results {
+  font-weight: var(--fw-400);
+  padding: var(--s-30);
+  text-align: center;
+  border-top: 1px solid var(--d-bg);
 }
 
 .cont {
@@ -48,23 +61,33 @@
 }
 
 .one {
-  width: var(--ten);
+  width: 7%;
 }
 
 .two {
-  width: var(--ten);
+  width: 25%;
 }
 
 .three {
-  width: 48%;
+  width: 33%;
 }
 
 .four {
-  width: 17%;
+  width: 16%;
 }
 
 .five {
-  width: 15%;
+  width: 12%;
+}
+
+.view {
+  background: var(--l-blue);
+  color: var(--white-color);
+  font-size: var(--s-10);
+  font-weight: var(--fw-400);
+  padding: var(--size-5) var(--s-10);
+  width: max-content;
+  cursor: pointer;
 }
 
 .row,
@@ -227,6 +250,12 @@
   padding-bottom: var(--size-3);
 }
 
+.input {
+  height: var(--fs-24);
+  padding: var(--s-10);
+  margin-left: var(--s-10);
+}
+
 .row3 {
   display: flex;
   margin-bottom: var(--s-20);
@@ -262,7 +291,8 @@
   background: var(--l-blue);
 }
 
-.btn2:hover {
+.btn2:hover,
+.view:hover {
   background: var(--lb-hov);
 }
 
@@ -277,6 +307,13 @@
 
 .cont > div {
   min-width: var(--s-900);
+}
+
+@media (max-width: 950px) {
+  .control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 690px) {

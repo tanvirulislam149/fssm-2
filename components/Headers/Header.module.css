@@ -1,16 +1,31 @@
-.container {
+.container,
+.container2 {
+  width: var(--hundred);
+  background: var(--bg);
+}
+
+.container2 > div > div {
+  padding: var(--fs-1rem) !important;
+  padding-left: var(--header-padding) !important;
+  padding-right: var(--header-padding) !important;
+}
+
+.container > div > div,
+.container2 > div > div {
   padding: var(--fs-12);
   padding-left: var(--header-padding);
   padding-right: var(--header-padding);
   display: flex;
   align-items: center;
-  width: var(--hundred);
-  background: var(--bg);
+  justify-content: space-between;
 }
 
 .div {
-  margin-left: auto;
   display: flex;
+}
+
+.middle {
+  margin-left: var(--fifteen);
 }
 
 .space {
@@ -27,16 +42,12 @@
   width: var(--logo-2-width) !important;
 }
 
-.logo_2 + a {
-  position: absolute;
-  left: var(--ministry-logo-margin);
+.logo_2 + a > span {
   height: var(--logo2-height) !important;
   width: var(--logo2-width) !important;
 }
 
-.logo2 + a {
-  position: absolute;
-  left: var(--ministry-logo-margin);
+.logo2 + a > span {
   height: var(--logo-2-height) !important;
   width: var(--logo-2-width) !important;
 }
@@ -89,7 +100,6 @@
   color: var(--header-txt);
   line-height: var(--lh-16);
   cursor: pointer;
-  margin-left: var(--s-10);
 }
 
 .search_cont {
@@ -115,34 +125,44 @@
 }
 
 .search2 {
-  height: var(--searchbox-h);
+  position: initial !important;
   display: flex;
   align-items: center;
   width: var(--hundred);
   box-shadow: none !important;
+  padding: var(--size-5) 0;
 }
 
 .search3 {
-  width: var(--size-75);
-  margin-left: var(--login-checkbox-dimensions);
-  padding: var(--primary-margin-top);
+  width: var(--hundred);
+  padding: var(--s-10);
+  font-size: var(--s-10);
+  padding-left: var(--fs-12);
   border-radius: var(--size-5);
   border-width: 0;
   background: var(--search-bg);
 }
 
+.search3::-webkit-input-placeholder {
+  font-family: var(--font-family-primary);
+  font-size: var(--s-10);
+  color: var(--light-gray-color);
+}
+
 .search_icon2 + span {
   position: absolute !important;
-  right: var(--size-25) !important;
+  right: var(--s-10) !important;
 }
 
 .item {
-  padding: var(--s-20);
   color: var(--primary-blue);
-  font-size: var(--fs-16);
-  width: var(--size-87);
+  font-size: var(--s-10);
+  height: var(--s-40);
+  display: flex !important;
+  align-items: center;
+  padding-left: var(--fs-12);
   background: var(--white-color);
-  font-weight: var(--fw-400);
+  font-weight: var(--fw-500);
   cursor: pointer;
 }
 
@@ -152,10 +172,9 @@
 }
 
 .ul {
-  background: darkorange;
   list-style: none;
   width: var(--hundred);
-  box-shadow: 0 var(--size-3) var(--size-3) var(--shadow);
+  box-shadow: 0 0 var(--size-5) var(--shadow);
   margin-top: 0;
   padding-left: 0;
 }
@@ -184,12 +203,18 @@
   position: absolute;
   transition: all 0.5s ease;
   margin-top: var(--fs-1rem);
-  left: 0;
+  right: var(--s-150);
   display: none;
 }
 
 .li2 ul li {
   background: var(--faded-white);
+  padding: var(--fs-14) var(--s-20);
+  clear: both;
+  width: var(--hundred);
+  z-index: 5;
+  color: var(--black);
+  margin: 0;
 }
 
 .li2 ul {
@@ -197,16 +222,36 @@
   border-bottom: 1px solid var(--bg-login-gray);
   box-shadow: 0 var(--size-5) var(--size-5) -2px var(--shadow);
   background: var(--transparent);
+  left: 0;
   width: auto;
+  visibility: hidden;
+  opacity: 0;
+  min-width: var(--s-60);
+  position: absolute;
+  transition: all 0.5s ease;
+  display: none;
+}
+
+.li2 ul li:hover {
+  float: left;
+  color: var(--primary-blue);
+  background: var(--input-border-color);
+  cursor: pointer;
 }
 
 .li2 {
   background: var(--transparent);
   color: var(--black);
+  display: block;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
 }
 
 .li:hover > ul,
-.li ul:hover {
+.li ul:hover,
+.li2:hover > ul,
+.li2 ul:hover {
   visibility: visible;
   opacity: 1;
   display: block;
@@ -217,7 +262,10 @@
 .li ul li {
   clear: both;
   width: var(--hundred);
-  padding: var(--fs-14) var(--s-20);
+  height: var(--s-40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 5;
   color: var(--black);
   margin: 0;
@@ -245,11 +293,5 @@
   .links,
   .search_cont {
     display: none;
-  }
-}
-
-@media (max-width: 410px) {
-  .logo2 + a {
-    left: var(--size-45);
   }
 }

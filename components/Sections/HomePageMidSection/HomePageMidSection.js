@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from '../Carousel/Carousel';
+import CarouselCont from '../CarouselCont/CarouselCont';
 import styles from './HomePageMidSection.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import { homePageMidSectionText } from '../../TextArrays';
@@ -21,7 +21,7 @@ const HomePageMidSection = () => {
             onClick={() => { handleRoute() }}
             style={styles.btn} />
         </div>
-        <Carousel />
+        <CarouselCont />
       </div>
     </>
   )

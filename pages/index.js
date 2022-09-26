@@ -7,6 +7,7 @@ import HeaderComponent from '../components/Headers/HeaderComponent';
 import { homePageText } from '../components/TextArrays';
 import HomePageMidSection from '../components/Sections/HomePageMidSection/HomePageMidSection';
 import HomePageBottomSlider from '../components/Sections/HomePageBottomSlider/HomePageBottomSlider';
+import Layout from '../components/Sections/Layout/Layout';
 
 export default function Home() {
   return (
@@ -20,13 +21,22 @@ export default function Home() {
         <Header />
         <HeaderComponent />
 
-        <h1 className={styles.title}>{homePageText.h1}</h1>
+        <h1
+          className={styles.title}
+          onClick={() => {
+            if (document.querySelector('.nav').classList.contains('none')) return;
+            document.getElementById('check').click();
+          }}>
+          {homePageText.h1}
+        </h1>
 
-        <HomePageTopSection />
+        <Layout>
+          <HomePageTopSection />
 
-        <HomePageMidSection />
+          <HomePageMidSection />
 
-        <HomePageBottomSlider />
+          <HomePageBottomSlider />
+        </Layout>
 
         <Footer />
       </div>

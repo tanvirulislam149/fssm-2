@@ -1,6 +1,9 @@
 .container {
-  padding: var(--s-40);
   background: var(--white-color);
+}
+
+.container > div > div {
+  padding: var(--s-40);
 }
 
 .container p {

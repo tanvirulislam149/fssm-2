@@ -29,12 +29,14 @@ const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, 
     <>
       <div className={styles.container}>
         <div className={styles.cont}>
-          <div className={styles.img_cont}>
-            <Image src={profile} width={18} height={21} alt='profile icon' />
-          </div>
+          <div className={styles.cont3}>
+            <div className={styles.img_cont}>
+              <Image src={profile} width={18} height={21} alt='profile icon' />
+            </div>
 
-          <div className={styles.details}>
-            <p className={styles.body}>{question}</p>
+            <div className={styles.details}>
+              <p className={styles.body}>{question}</p>
+            </div>
           </div>
 
           <div className={styles.theme}>{theme}</div>
@@ -50,6 +52,11 @@ const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, 
           <p><Image src={like} width={14} height={14} alt='icon' />{upvotes}</p>
           <p><Image src={warn} width={14} height={14} alt='icon' />{spam}</p>
           <p><Image src={forward} width={14} height={14} alt='icon' /></p>
+          <div
+            className={styles.mobile}
+            onClick={() => { handleShow(document.getElementById(`answer-box${id}`)) }}>
+            <Image src={down} width={24} height={24} alt='icon' />
+          </div>
         </div>
         <div>
           <div
@@ -61,8 +68,14 @@ const QuestionCard = ({ question, id, organization, name, date, theme, upvotes, 
 
         <div id={`answer-box${id}`} className={`${styles.answers} none`}>
           <div className={styles.top}>
-            <div className={styles.img_cont2}>
-              <Image src={profile} width={14} height={18.9} alt='profile icon' />
+            <div className={styles.cont4}>
+              <div className={styles.img_cont2}>
+                <Image src={profile} width={14} height={18.9} alt='profile icon' />
+              </div>
+              <div className={styles.date}>
+                <Image src={calendar} width={19} height={18} alt='icon' />
+                <p>Feb 06, 2020</p>
+              </div>
             </div>
             <div className={styles.main}>
               <div className={styles.date}>

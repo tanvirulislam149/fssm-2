@@ -79,9 +79,8 @@ const ListDocumentsComp = () => {
   }
 
   const handleFilter = () => {
-    console.log({ s: search })
     const results = filterIt(data, search.toLowerCase().trim());
-    setList(results)
+    setList(results);
   }
 
   useEffect(() => {

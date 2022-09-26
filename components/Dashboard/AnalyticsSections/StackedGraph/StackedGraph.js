@@ -15,6 +15,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 const StackedGraph = () => {
   const [value, setValue] = useState(null);
+  const [error, setError] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -184,7 +185,8 @@ const StackedGraph = () => {
 
   const handleError = (err) => {
     setLoading(false);
-    err.response.data.code === 'token_not_valid' && router.push('/signin');
+    setError(err.message);
+    err?.response?.data?.code === 'token_not_valid' && router.push('/signin');
     console.log({ e: err })
   }
 
@@ -335,14 +337,16 @@ const StackedGraph = () => {
           <button onClick={() => { handleSubmit(); }} className={styles.btn}>Search</button>
         </div>
 
-        <div className={styles.chart}>
-          {loading ?
-            <div className={styles.justify_center}><CircularProgress /></div> :
-            <div id="chart">
-              <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
-            </div>
-          }
-        </div>
+        {error ?
+          <span className={`error ${styles.justify_center}`}>{error}</span> :
+          <div className={styles.chart}>
+            {loading ?
+              <div className={styles.justify_center}><CircularProgress /></div> :
+              <div id="chart">
+                <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
+              </div>
+            }
+          </div>}
       </section>
 
 

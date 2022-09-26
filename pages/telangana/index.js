@@ -6,6 +6,7 @@ import TelanganaMidSection from '../../components/Sections/TelanganaMidSection/T
 import TelanganaBottomSection from '../../components/Sections/TelanganaBottomSection/TelanganaBottomSection';
 import TelanganaHeader from '../../components/Headers/TelanganaHeader';
 import TelanganaHeaderComponent from '../../components/Headers/TelanganaHeaderComponent';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const Telangana = () => {
   return (
@@ -15,11 +16,13 @@ const Telangana = () => {
 
       <TelanganaTopSection />
 
-      <HomePageMidSection />
+      <Layout>
+        <HomePageMidSection />
 
-      <TelanganaMidSection />
+        <TelanganaMidSection />
 
-      <TelanganaBottomSection />
+        <TelanganaBottomSection />
+      </Layout>
 
       <Footer />
     </>

@@ -255,7 +255,7 @@ const EditCategoryForm = () => {
             </div>
 
             <div className={styles.btn_cont}>
-              <button type='submit' className={`${styles.btn} ${styles.submit}`}>Submit</button>
+              <button type='reset' className={`${styles.btn} ${styles.submit}`}>Submit</button>
               <button
                 type='reset'
                 className={`${styles.btn} ${styles.cancel}`}

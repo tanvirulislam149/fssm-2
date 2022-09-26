@@ -6,33 +6,50 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomizedHook from './useHook';
 import { advancedSearchText } from '../../TextArrays';
+import { mapDocs } from '../../../services/documentMappingService';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const MappingForm = ({ modal }) => {
+const MappingForm = ({ modal, docId }) => {
   const [keywords, setKeywords] = useState([]);
   const [language, setLanguage] = useState([]);
   const [value_chain, setValue_chain] = useState([]);
   const [stakeholder, setStakeholder] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [sub_cat, setSub_cat] = useState([]);
   const [state, setState] = useState([]);
   const [city, setCity] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [themeOptions, setThemeOptions] = useState([]);
   const [chipKey, setChipKey] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+    //setError(err.response.statusText);
+  }
 
   const handleSubmit = (values) => {
+    setLoading(true);
     let data;
     if (values.geography === 'state') {
       data = {
         ...values,
-        keywords, stakeholder, value_chain, language, category, state, city
+        keywords, stakeholder, value_chain, language, sub_cat, state, city
       }
     } else {
       data = {
         ...values,
-        keywords, stakeholder, value_chain, language, category
+        keywords, stakeholder, value_chain, language, sub_cat
       }
     }
-    console.log(data);
+    console.log(docId, data);
+    mapDocs(docId, data, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        console.log({ r: res })
+      }
+    })
   }
 
   useEffect(() => {
@@ -74,7 +91,7 @@ const MappingForm = ({ modal }) => {
           handleSubmit(data);
           actions.resetForm();
           setKeywords([]);
-          setCategory([]);
+          setSub_cat([]);
           setValue_chain([]);
           setLanguage([]);
           setStakeholder([]);
@@ -110,7 +127,7 @@ const MappingForm = ({ modal }) => {
 
             <div className={styles.textInput}>
               <label htmlFor="category">Sub Category</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.categories} placeholder='--Select Sub Category--' setData={setCategory} />
+              <CustomizedHook key={chipKey} content={advancedSearchText.categories} placeholder='--Select Sub Category--' setData={setSub_cat} />
             </div>
 
             <div className={styles.textInput}>
@@ -128,31 +145,31 @@ const MappingForm = ({ modal }) => {
               <div className={styles.checkboxes}>
                 <div>
                   <label>
-                    <Field type="radio" name="geography" value="national" />
-                    National
+                    <Field type="radio" name="geography" value="National" />
+                    <p>National</p>
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field type="radio" name="geography" value="state" />
-                    State
+                    <Field type="radio" name="geography" value="State" />
+                    <p>State</p>
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field type="radio" name="geography" value="not applicable" />
-                    Not Applicable
+                    <Field type="radio" name="geography" value="Not applicable" />
+                    <p>Not Applicable</p>
                   </label>
                 </div>
               </div>
             </div>
 
             {
-              values.geography === 'state' &&
+              values.geography === 'State' &&
               <div id='state-extra' className={styles.textInput}>
                 <div className={styles.textInput}>
                   <label>State</label>
-                  <CustomizedHook key={chipKey} content={advancedSearchText.valueChain} placeholder='--Select State--' setData={setState} />
+                  <CustomizedHook key={chipKey} content={advancedSearchText.states} placeholder='--Select State--' setData={setState} />
                 </div>
 
                 <div className={styles.textInput}>
@@ -167,14 +184,14 @@ const MappingForm = ({ modal }) => {
               <div className={styles.checkboxes}>
                 <div>
                   <label>
-                    <Field type="radio" name="status" value="urban" />
-                    Urban
+                    <Field type="radio" name="status" value="Urban" />
+                    <p>Urban</p>
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field type="radio" name="status" value="rural" />
-                    Rural
+                    <Field type="radio" name="status" value="Rural" />
+                    <p>Rural</p>
                   </label>
                 </div>
               </div>
@@ -203,7 +220,9 @@ const MappingForm = ({ modal }) => {
             </div>
 
             <div className={styles.btn_cont}>
-              <button type='submit' className={`${styles.btn} ${styles.submit}`}>Submit</button>
+              <button
+                type='submit'
+                className={`${styles.btn} ${styles.submit}`}>Submit</button>
               <button
                 type='reset'
                 className={`${styles.btn} ${styles.cancel}`}

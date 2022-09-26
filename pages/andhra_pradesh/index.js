@@ -8,6 +8,7 @@ import styles from '../../styles/Home.module.css';
 import TelanganaBottomSection from '../../components/Sections/TelanganaBottomSection/TelanganaBottomSection';
 import TelanganaMidSection from '../../components/Sections/TelanganaMidSection/TelanganaMidSection';
 import TelanganaHeaderComponent from '../../components/Headers/TelanganaHeaderComponent';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const AndraPradesh = () => {
   const handleScroll = () => {
@@ -34,15 +35,25 @@ const AndraPradesh = () => {
       <TelanganaHeader />
       <TelanganaHeaderComponent />
 
-      <h1 id='heading' className={styles.title2}><p>{homePageText.h1}</p>      <span>Towards ODF++</span></h1>
+      <h1
+        id='heading'
+        className={styles.title2}
+        onClick={() => {
+          if (document.querySelector('.nav').classList.contains('none')) return;
+          document.getElementById('check').click();
+        }}><p>
+          {homePageText.h1}
+        </p>      <span>Towards ODF++</span></h1>
 
-      <HomePageTopSection />
+      <Layout>
+        <HomePageTopSection />
 
-      <HomePageMidSection />
+        <HomePageMidSection />
 
-      <TelanganaMidSection />
+        <TelanganaMidSection />
 
-      <TelanganaBottomSection />
+        <TelanganaBottomSection />
+      </Layout>
 
       <Footer />
     </>

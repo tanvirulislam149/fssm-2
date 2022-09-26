@@ -37,7 +37,6 @@
 
 .footer_text {
   padding: var(--fs-14);
-  width: var(--size-95);
   font-size: var(--s-10);
   padding-left: var(--three);
   font-weight: var(--fw-400);

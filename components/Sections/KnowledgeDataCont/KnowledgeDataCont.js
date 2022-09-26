@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './KnowledgeDataCont.module.css';
 import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
-import HeaderComponent from '../../Headers/HeaderComponent';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import { getAllKnowledgeRepo, getSubItem } from '../../../services/knowledgeRepoService';
 import TenderCard from '../../Cards/TenderCard/TenderCard';
 import { CircularProgress } from '@mui/material';
 import { useRouter } from 'next/router';
+import Layout from '../Layout/Layout';
 
 const KnowledgeDataCont = () => {
   const [tenders, setTenders] = useState([]);
@@ -79,47 +79,48 @@ const KnowledgeDataCont = () => {
     <>
       <div className={styles.container}>
         <section>
-          <HeaderComponent />
-          <KnowledgeSectionNav />
-          <div className={styles.cont}>
+          <Layout>
+            <KnowledgeSectionNav />
+            <div className={styles.cont}>
 
-            <div>
-              <KnowledgeCategories loading={loading} category={category} />
+              <div>
+                <KnowledgeCategories loading={loading} category={category} />
+              </div>
+              <div style={{ minHeight: '500px' }}>
+                <div className={styles.description}>Home / {route.replace('/', '-')} / {title}</div>
+                {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
+                  tenders.length ?
+                    <>
+                      {tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+                        return (
+                          <TenderCard
+                            key={id}
+                            id={id}
+                            title={title}
+                            document_type={document_type}
+                            stake_holder={stake_holder}
+                            geography={geography}
+                            org={organization.org_name}
+                            urban_rural={status}
+                            citation={citation}
+                            language={language}
+                            value_chain={value_chain}
+                            description={description}
+                            theme={theme.theme_title}
+                            keywords={keywords}
+                          />
+                        )
+                      })}
+                      <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
+                    </>
+                    :
+                    <div className={styles.cont}>
+                      <p>No records found.</p>
+                    </div>
+                }
+              </div>
             </div>
-            <div style={{ minHeight: '500px' }}>
-              <div className={styles.description}>Home / {route.replace('/', '-')} / {title}</div>
-              {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-                tenders.length ?
-                  <>
-                    {tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
-                      return (
-                        <TenderCard
-                          key={id}
-                          id={id}
-                          title={title}
-                          document_type={document_type}
-                          stake_holder={stake_holder}
-                          geography={geography}
-                          org={organization.org_name}
-                          urban_rural={status}
-                          citation={citation}
-                          language={language}
-                          value_chain={value_chain}
-                          description={description}
-                          theme={theme.theme_title}
-                          keywords={keywords}
-                        />
-                      )
-                    })}
-                    <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
-                  </>
-                  :
-                  <div className={styles.cont}>
-                    <p>No records found.</p>
-                  </div>
-              }
-            </div>
-          </div>
+          </Layout>
         </section>
       </div>
     </>

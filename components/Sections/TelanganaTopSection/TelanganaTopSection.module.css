@@ -2,6 +2,7 @@
   margin-left: var(--ma-homepage);
   margin-right: var(--ma-homepage);
   margin-bottom: var(--s-120);
+  padding-top: var(--s-75);
 }
 
 .title {
@@ -11,7 +12,6 @@
   padding: var(--pa-home-h1);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--s-75);
   display: flex;
 }
 
@@ -34,7 +34,7 @@
 .card_1,
 .card_2,
 .card_3 {
-  background-size: auto;
+  background-size: cover !important;
   height: var(--bg-img-h);
   padding: var(--s-10);
 }
@@ -83,6 +83,7 @@
   height: var(--card-h);
   width: 31.8%;
   box-shadow: 0 0 2px var(--shadow);
+  border-radius: var(--size-5);
 }
 
 .btn_cont {
@@ -239,7 +240,7 @@
   }
 
   .float {
-    top: var(--s-90);
+    top: var(--s-100);
   }
 
   .float div {

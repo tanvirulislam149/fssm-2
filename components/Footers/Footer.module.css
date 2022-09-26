@@ -1,5 +1,8 @@
 .container {
   background: var(--white-color);
+}
+
+.container > div > div {
   padding: var(--pa-footer);
   padding-bottom: var(--s-50);
   display: flex;
@@ -63,7 +66,7 @@
 }
 
 @media (max-width: 820px) {
-  .container {
+  .container > div > div {
     flex-direction: column;
     padding: var(--login-checkbox-dimensions);
   }

@@ -184,7 +184,17 @@ export default function CustomizedHook({ setData, placeholder, content }) {
           {value.map((option, index) => (
             <StyledTag key={index} label={option.title} {...getTagProps({ index })} />
           ))}
-          <input className={styles.chip} placeholder={value.length ? '' : placeholder} {...getInputProps()} />
+          <input
+            className={styles.chip}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                getInputProps().onMouseDown();
+                e.preventDefault()
+                return;
+              }
+            }}
+            placeholder={value.length ? '' : placeholder}
+            {...getInputProps()} />
         </InputWrapper>
       </div>
       {groupedOptions.length > 0 ? (

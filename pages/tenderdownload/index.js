@@ -3,6 +3,7 @@ import Header from '../../components/Headers/Header';
 import HeaderComponent from '../../components/Headers/HeaderComponent';
 import Footer from '../../components/Footers/Footer';
 import TenderDownloadCont from '../../components/Sections/TenderDownloadCont/TenderDownloadCont';
+import Layout from '../../components/Sections/Layout/Layout';
 
 const TenderDownload = () => {
   return (
@@ -10,7 +11,9 @@ const TenderDownload = () => {
       <Header />
       <HeaderComponent />
 
-      <TenderDownloadCont />
+      <Layout>
+        <TenderDownloadCont />
+      </Layout>
 
       <Footer />
     </>

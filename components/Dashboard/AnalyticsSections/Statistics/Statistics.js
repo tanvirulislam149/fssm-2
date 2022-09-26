@@ -38,7 +38,9 @@ const Statistics = () => {
           </div>
           <div>
             <p>No of Docs Uploa.....</p>
-            <h6>{stats['No Of Docs Uploaded']}</h6>
+            {loading ?
+              <div className={styles.justify_center}><CircularProgress /></div> :
+              <h6>{stats['No Of Docs Uploaded']}</h6>}
           </div>
         </div>
         <div className={styles.two}>
@@ -47,7 +49,9 @@ const Statistics = () => {
           </div>
           <div>
             <p>No of Docs Mapp.....</p>
-            <h6>{stats['No Of Docs Mapped']}</h6>
+            {loading ?
+              <div className={styles.justify_center}><CircularProgress /></div> :
+              <h6>{stats['No Of Docs Mapped']}</h6>}
           </div>
         </div>
         <div className={styles.three}>
@@ -56,7 +60,9 @@ const Statistics = () => {
           </div>
           <div>
             <p>No of Docs Appr.....</p>
-            <h6>{stats['No Of Docs Approved']}</h6>
+            {loading ?
+              <div className={styles.justify_center}><CircularProgress /></div> :
+              <h6>{stats['No Of Docs Approved']}</h6>}
           </div>
         </div>
       </div>
