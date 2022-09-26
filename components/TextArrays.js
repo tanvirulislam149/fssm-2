@@ -277,7 +277,7 @@ export const sideBarText = [
   { id: 5, text: "All Documents", link: "documents", image: d5 },
   { id: 6, text: "List Documents", link: "documentsdump", image: d6 },
   { id: 7, text: "User Categories", link: "entity", image: d7 },
-  { id: 8, text: "Organization", link: "organization", image: d8 },
+  { id: 8, text: "Organization", link: "org", image: d8 },
   { id: 9, text: "Documents Approval", link: "dashboard", image: d9 },
   { id: 10, text: "Help desk", link: "dashboard", image: d10 },
   { id: 11, text: "Discussion Forum", link: "dashboard", image: d11 },
