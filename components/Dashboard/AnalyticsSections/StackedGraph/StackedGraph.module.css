@@ -80,6 +80,15 @@
   margin: var(--s-20) 0;
 }
 
+.chart {
+  width: var(--hundred);
+  overflow: auto;
+}
+
+.chart > div {
+  min-width: 570px;
+}
+
 .tc {
   background: var(--white-color);
   padding: var(--s-30) var(--s-40);

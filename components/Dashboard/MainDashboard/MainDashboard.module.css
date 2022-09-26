@@ -15,7 +15,10 @@
     flex-direction: column;
   }
 
-  .dash_cont > div:first-child,
+  .dash_cont > div:first-child {
+    display: none;
+  }
+
   .dash_cont > div {
     width: var(--hundred);
   }

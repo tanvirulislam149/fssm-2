@@ -78,7 +78,7 @@ const HeaderComponent = () => {
             </div>
 
           </div>
-          <div className='nav none'>
+          <div className={`${styles.nav} nav none`}>
             <div>
               <div className={styles.search2}>
                 <Input
