@@ -27,6 +27,8 @@ const DashboardHeader = () => {
   useEffect(() => {
     document.getElementById('d-open').classList.remove('none');
     document.getElementById('d-close').classList.add('none');
+    document.querySelector('.nav').classList.remove('show');
+    document.querySelector('.nav').classList.add('none');
   }, [])
 
   return (
