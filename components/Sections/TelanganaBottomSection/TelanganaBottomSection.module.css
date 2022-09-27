@@ -91,6 +91,6 @@
   }
 
   .container {
-    margin-top: var(--ma-btm-home-top);
+    margin-top: var(--s-20);
   }
 }

@@ -3,10 +3,10 @@ import AdvancedSearchCategories from '../AdvancedSearchCategories/AdvancedSearch
 import AdvancedSearchResults from '../AdvancedSearchResults/AdvancedSearchResults';
 import styles from './AdvancedSearchCont.module.css';
 import { advancedSearch } from '../../../services/advancedSearchServices';
-import { advancedSearchText } from '../../TextArrays';
 import CustomizedHook from './useHook';
 import { useRouter } from 'next/router';
 import Multiselect from '../../Inputs/Multiselect/Multiselect';
+import useOptions from '../../useOptions';
 
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
@@ -24,6 +24,7 @@ const AdvancedSearchCont = () => {
 
   const router = useRouter();
   const theme = router.query.theme;
+  const { advancedSearchText } = useOptions();
 
   const handleError = (err) => {
     setLoading(false);
@@ -32,7 +33,6 @@ const AdvancedSearchCont = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data)
     setLoading(true);
     advancedSearch(data, (err, res) => {
       if (err) return handleError(err);
@@ -129,16 +129,16 @@ const AdvancedSearchCont = () => {
                 <Multiselect placeholder='Partner' data={data} setData={setData} val={data.partner} content={advancedSearchText.partners} id='partner' />
               </div>
 
-              <button type='reset' className={styles.btn}>Search</button>
+              <button onClick={(e) => { handleSubmit(e); }} type='reset' className={styles.btn}>Search</button>
             </div>
           </form>
 
-          <p className={styles.footer_text}>Showing 0-20 of 0 Results</p>
+          <p className={styles.footer_text}>Showing 0-20 of {results.length} Results</p>
 
           <div className={styles.cont}>
             <AdvancedSearchCategories handleSelect={handleSelect} />
 
-            <AdvancedSearchResults loading={loading} results={results} />
+            <AdvancedSearchResults searchData={data} loading={loading} results={results} />
           </div>
         </section>
       </div>

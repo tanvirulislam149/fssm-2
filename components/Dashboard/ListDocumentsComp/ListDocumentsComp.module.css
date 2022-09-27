@@ -75,11 +75,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: var(--fs-14);
   font-weight: var(--fw-400);
   padding: var(--fs-14) var(--size-3);
   word-break: break-word;
-  border-right: 1px solid var(--shade);
+  border-right: 1px solid var(--d-bg);
 }
 
 .heading > div:nth-last-child(1),

@@ -5,3 +5,9 @@ export const advancedSearch = (data, cb) => {
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
+
+export const getOptions = cb => {
+  axios.get('dashboard/getinfo/')
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}

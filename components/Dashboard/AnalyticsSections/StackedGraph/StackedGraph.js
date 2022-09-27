@@ -241,7 +241,6 @@ const StackedGraph = () => {
     setEndDate(val);
   }
 
-
   const handleSubmit = () => {
     console.log(option.xaxis.categories.length)
     if (startDate['$y'] > endDate['$y'] ||
@@ -358,7 +357,7 @@ const StackedGraph = () => {
           <div className={styles.chart}>
             {loading ?
               <div className={styles.justify_center}><CircularProgress /></div> :
-              <div id="chart">
+              <div className={styles.div} id="chart">
                 <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
               </div>
             }

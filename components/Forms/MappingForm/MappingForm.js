@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomizedHook from './useHook';
-import { advancedSearchText } from '../../TextArrays';
 import { mapDocs } from '../../../services/documentMappingService';
+import useOptions from '../../useOptions';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const MappingForm = ({ modal, docId }) => {
@@ -21,6 +21,8 @@ const MappingForm = ({ modal, docId }) => {
   const [themeOptions, setThemeOptions] = useState([]);
   const [chipKey, setChipKey] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const { advancedSearchText } = useOptions();
 
   const handleError = (err) => {
     setLoading(false);
@@ -58,7 +60,7 @@ const MappingForm = ({ modal, docId }) => {
       options.push(title);
     })
     setThemeOptions(options);
-  }, [])
+  }, [advancedSearchText])
 
   return (
     <>

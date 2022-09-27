@@ -5,11 +5,7 @@ import Image from 'next/image';
 import MappingForm from '../../Forms/MappingForm/MappingForm';
 import { getUnmappedDocs, deleteDocs } from '../../../services/documentMappingService';
 import CircularProgress from '@mui/material/CircularProgress';
-
-// const data = [
-//   { name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
-//   { name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf', id: 2, date: '2021-08-22 08:38:40 AM' },
-// ]
+import { useRouter } from 'next/router';
 
 const DocumentMappingCont = () => {
   const [unmapped, setUnmapped] = useState([]);
@@ -17,6 +13,8 @@ const DocumentMappingCont = () => {
   const [dateArray, setDateArray] = useState([]);
   const [docId, setDocId] = useState(null);
   const [error, setError] = useState(null);
+
+  const router = useRouter();
 
   const handleError = (err) => {
     setLoading(false);
@@ -62,6 +60,9 @@ const DocumentMappingCont = () => {
     })
   }
 
+  const handleRefresh = () => {
+    router.reload(window.location.pathname);
+  }
 
   return (
     <>
@@ -106,7 +107,7 @@ const DocumentMappingCont = () => {
                           </div>
                         </div>
                         <div className={styles.three}>
-                          <p>{attachment.replaceAll('_', ' ').trim().split("/").pop()}</p>
+                          <p>{attachment?.replaceAll('_', ' ').trim().split("/").pop()}</p>
                         </div>
                         <div className={styles.four}>
                           <p>{dateArray[i]}</p>
@@ -119,14 +120,18 @@ const DocumentMappingCont = () => {
                               setDocId(id);
                               document.querySelector('.m4').style.display = "flex";
                             }}
-                          >Map</button>
+                          >
+                            Map
+                          </button>
                           <button className={`${styles.btn} ${styles.viewbtn}`}>View</button>
                           <button
                             onClick={() => {
                               setDocId(id);
                               document.querySelector('.m10').style.display = "flex";
                             }}
-                            className={`${styles.btn} ${styles.delbtn}`}>Delete</button>
+                            className={`${styles.btn} ${styles.delbtn}`}>
+                            Delete
+                          </button>
                         </div>
                       </div>
                     )
@@ -205,6 +210,7 @@ const DocumentMappingCont = () => {
         <div
           className={styles.bg}
           onClick={() => {
+            handleRefresh();
             document.querySelector('.m9').style.display = "none";
           }}>
         </div>
@@ -212,6 +218,7 @@ const DocumentMappingCont = () => {
           <div
             className={styles.close}
             onClick={() => {
+              handleRefresh();
               document.querySelector('.m9').style.display = "none";
             }}
           >
@@ -225,6 +232,7 @@ const DocumentMappingCont = () => {
             </div>
             <div className={styles.ok}>
               <div onClick={() => {
+                handleRefresh();
                 document.querySelector('.m9').style.display = "none";
               }}>Ok</div>
             </div>

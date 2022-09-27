@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 import DocumentsFilterForm from '../../Forms/DocumentsFilterForm/DocumentsFilterForm';
-import MappingForm from '../../Forms/MappingForm/MappingForm';
 import styles from './MyDocuments.module.css';
-import close from '../../../assets/Close.png';
 import DocumentsList from '../DocumentsList/DocumentsList';
 import CircularProgress from '@mui/material/CircularProgress';
+import { getMyDocs } from '../../../services/mydocumentServices';
+import UploadDocs from '../UploadDocs/UploadDocs';
+import AlertCard from '../AlertCard/AlertCard';
 
 const MyDocuments = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [documents, setDocuments] = useState([]);
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+    setError(err.message);
+  }
 
   const handleSearch = (data) => {
-    // API CALL
+    setLoading(true);
+    console.log(data)
+    getMyDocs(data, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res: res.data['Search Results'] });
+        setDocuments(res.data['Search Results'])
+        setLoading(false);
+      }
+    })
   }
+
 
   return (
     <>
@@ -34,33 +52,13 @@ const MyDocuments = () => {
         {
           loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
-            <DocumentsList />
+            <DocumentsList documents={documents} />
         }
       </div>
 
-      <div id="myModal1" className='modal2 m3'>
-        <div
-          className={styles.bg}
-          onClick={() => {
-            document.querySelector('.m3').style.display = "none";
-          }}>
-        </div>
-        <div className={styles.modal_content}>
-          <div
-            className={styles.close}
-            onClick={() => {
-              document.querySelector('.m3').style.display = "none";
-            }}
-          >
-            <p>Upload Document</p>
-            <span><Image src={close} alt='icon' height={24} width={24} /></span>
-          </div>
+      <UploadDocs />
 
-          <div className={styles.form}>
-            <MappingForm modal='m3' />
-          </div>
-        </div>
-      </div>
+      <AlertCard message='Upload is done successfuly.' />
     </>
   )
 }

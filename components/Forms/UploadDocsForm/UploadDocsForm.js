@@ -5,37 +5,71 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomizedHook from './useHook';
 import styles from '../MappingForm/MappingForm.module.css';
+import { uploadMyDocs } from '../../../services/mydocumentServices';
+import Input from '../../Inputs/Input';
 import useOptions from '../../useOptions';
 
-const EditCategoryForm = () => {
+const UploadDocsForm = () => {
   const [keywords, setKeywords] = useState([]);
   const [language, setLanguage] = useState([]);
   const [value_chain, setValue_chain] = useState([]);
   const [stakeholder, setStakeholder] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [sub_cat, setSub_cat] = useState([]);
   const [state, setState] = useState([]);
   const [city, setCity] = useState('');
+  const [url, setUrl] = useState('');
+  const [attachment, setAttachment] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [themeOptions, setThemeOptions] = useState([]);
   const [chipKey, setChipKey] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { advancedSearchText } = useOptions();
 
-  const handleSubmit = (values) => {
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+    //setError(err.response.statusText);
+  }
+
+  const handleSubmit = (values, confirmation) => {
     let data;
     if (values.geography === 'state') {
       data = {
         ...values,
-        keywords, stakeholder, value_chain, language, category, state, city
+        keywords, stakeholder, value_chain, language, sub_cat, state, city
       }
     } else {
       data = {
         ...values,
-        keywords, stakeholder, value_chain, language, category
+        keywords, stakeholder, value_chain, language, sub_cat
       }
     }
+    if (values.doc_type === 'file') {
+      data = {
+        ...data,
+        document: attachment
+      }
+    } else if (values.doc_type === 'URL') {
+      data = {
+        ...data,
+        url
+      }
+    }
+
     console.log(data);
+    uploadMyDocs(data, (err, res) => {
+      setLoading(true);
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        console.log({ r: res.data.message })
+        if (res.data.message === 'Documents have been added') {
+          confirmation.style.display = 'flex';
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -48,11 +82,11 @@ const EditCategoryForm = () => {
 
   useEffect(() => {
     if (inputValue2 === 'file') {
-      document.getElementById('file-cont').classList.remove('none');
-      document.getElementById('url').classList.add('none');
+      document.getElementById('file-cont2').classList.remove('none');
+      document.getElementById('url2').classList.add('none');
     } else if (inputValue2 === 'URL') {
-      document.getElementById('file-cont').classList.add('none');
-      document.getElementById('url').classList.remove('none');
+      document.getElementById('file-cont2').classList.add('none');
+      document.getElementById('url2').classList.remove('none');
     }
   }, [inputValue2])
 
@@ -61,14 +95,12 @@ const EditCategoryForm = () => {
       <Formik
         initialValues={{
           title: '',
-          url: '',
           theme: '',
-          type: '',
+          doc_type: '',
           geography: '',
           status: '',
           description: '',
           citation: '',
-          attachment: '',
         }}
         validationSchema={Yup.object({
           title: Yup.string()
@@ -84,19 +116,21 @@ const EditCategoryForm = () => {
           theme: Yup.string()
             .required('Required')
             .nullable(),
-          type: Yup.string()
+          doc_type: Yup.string()
             .required('Required')
             .nullable(),
         })}
         onSubmit={(data, actions) => {
-          document.querySelector('.m2').style.display = "none";
-          handleSubmit(data);
+          document.querySelector('.m3').style.display = "none";
+          handleSubmit(data, document.querySelector('.m15'));
           actions.resetForm();
           setKeywords([]);
-          setCategory([]);
+          setSub_cat([]);
           setValue_chain([]);
           setLanguage([]);
           setStakeholder([]);
+          setAttachment(null);
+          setUrl('');
           setChipKey(!chipKey);
         }}
       >
@@ -128,8 +162,8 @@ const EditCategoryForm = () => {
             </div>
 
             <div className={styles.textInput}>
-              <label htmlFor="category">Sub Category</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.categories} placeholder='--Select Sub Category--' setData={setCategory} />
+              <label htmlFor="sub_cat">Sub Category</label>
+              <CustomizedHook key={chipKey} content={advancedSearchText.categories} placeholder='--Select Sub Category--' setData={setSub_cat} />
             </div>
 
             <div className={styles.textInput}>
@@ -222,47 +256,48 @@ const EditCategoryForm = () => {
             </div>
 
             <div className={styles.textInput}>
-              <label htmlFor="type">Document Type <span>*</span></label>
+              <label htmlFor="doc_type">Document Type <span>*</span></label>
               <Autocomplete
                 key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
-                  setFieldValue('type', newValue);
+                  setFieldValue('doc_type', newValue);
                 }}
                 inputValue={inputValue2}
                 onInputChange={(event, newInputValue) => {
                   setInputValue2(newInputValue);
                 }}
-                id='type'
+                id='doc_type'
                 options={['file', 'URL']}
                 renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
               />
-              <span className='form-error'><ErrorMessage name="type" /></span>
+              <span className='form-error'><ErrorMessage name="doc_type" /></span>
             </div>
 
-            <div id='url' className={`${styles.textInput} none`}>
+            <div id='url2' className={`${styles.textInput} none`}>
               <label htmlFor="url">URL</label>
-              <Field name="url" id='url' className={styles.input} type="text" />
+              <Field id='url' value={url} onChange={(e) => { setUrl(e.target.value); }} className={styles.input} type="text" />
             </div>
 
-            <div id='file-cont' className={`${styles.textInput} none`}>
+            <div id='file-cont2' className={`${styles.textInput} none`}>
               <div className={styles.div}>Choose File ( Accepts Only gif, jpeg, png, pdf, doc, docx, xls, xlsx, mp4, mp3, avi, flv, mkv, mov, mpeg, mpg, webm, wmv)</div>
-              <input
+              <Input
+                key={chipKey}
                 type='file'
                 accept='.xlsx, .xls, image/*, .doc, .docx, video/*, audio/*, .pdf'
                 onChange={(e) => {
-                  setFieldValue('attachment', e.currentTarget.files[0])
+                  setAttachment(e.currentTarget.files[0]);
                 }}
               />
             </div>
 
             <div className={styles.btn_cont}>
-              <button type='reset' className={`${styles.btn} ${styles.submit}`}>Submit</button>
+              <button type='submit' className={`${styles.btn} ${styles.submit}`}>Submit</button>
               <button
                 type='reset'
                 className={`${styles.btn} ${styles.cancel}`}
                 onClick={() => {
-                  document.querySelector('.m2').style.display = "none";
+                  document.querySelector('.m3').style.display = "none";
                 }}>Cancel</button>
             </div>
           </Form>
@@ -272,4 +307,4 @@ const EditCategoryForm = () => {
   )
 }
 
-export default EditCategoryForm
+export default UploadDocsForm

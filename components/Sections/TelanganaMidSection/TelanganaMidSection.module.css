@@ -80,7 +80,7 @@
   }
 
   .container {
-    margin-top: var(--s-150);
+    margin-top: 0;
   }
 
   .img > span {

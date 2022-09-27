@@ -9,6 +9,10 @@ const Multiselect = ({ val, content, id, setData, data, placeholder }) => {
   const [updated, setUpdated] = useState(false);
   const [dropped, setDropped] = useState(false);
 
+  useEffect(() => {
+    setArray(content);
+  }, [content])
+
   const handleDropDown = (el) => {
     el.classList.toggle('none');
   }

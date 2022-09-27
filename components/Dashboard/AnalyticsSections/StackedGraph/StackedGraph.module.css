@@ -86,7 +86,7 @@
   overflow-x: auto;
 }
 
-.chart > div {
+.chart > .div {
   min-width: 570px;
 }
 
