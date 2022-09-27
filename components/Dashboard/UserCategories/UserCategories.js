@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
 import styles from './UserCategories.module.css';
-import { advancedSearchText } from '../../TextArrays';
 import UserCategoriesList from '../UserCategoriesList/UserCategoriesList';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import useOptions from '../../useOptions';
 
 const UserCategories = () => {
   const [profile, setProfile] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [profileOptions, setProfileOptions] = useState([]);
 
+  const { advancedSearchText } = useOptions();
+
   useEffect(() => {
     let options = [];
     advancedSearchText.themes.forEach(({ title }) => {
       options.push(title);
     })
-    setProfileOptions(options);
-  }, [])
+    setProfileOptions([]);
+  }, [advancedSearchText])
 
   const handleSubmit = (e) => {
     e.preventDefault();
