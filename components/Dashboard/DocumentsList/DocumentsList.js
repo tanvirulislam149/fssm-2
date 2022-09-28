@@ -62,7 +62,7 @@ const DocumentsList = ({ documents }) => {
 
   useEffect(() => {
     setList(documents);
-    //list.length && document.getElementById('edit0').click();
+    setClick(!click);
   }, [documents])
 
   const handleError = (err) => {
