@@ -152,7 +152,6 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
       >
         {({ setFieldValue, values }) => (
           <Form className={styles.form}>
-            <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
             <div className={styles.textInput}>
               <label htmlFor="title">Title <span>*</span></label>
               <input value={text} name="title" id='title' onChange={(e) => { setText(e.target.value); }} className={styles.input} type="text" />
@@ -384,6 +383,7 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
                   document.querySelector('.m2').style.display = "none";
                 }}>Cancel</button>
             </div>
+            <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
           </Form>
         )}
       </Formik>

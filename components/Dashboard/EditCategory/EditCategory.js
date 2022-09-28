@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import EditCategoryForm from '../../Forms/EditCategoryForm/EditCategoryForm';
 import styles from './EditCategory.module.css';
 import close from '../../../assets/Close.png';
 
-const EditCategory = ({ update, documents, setUpdate, docDetails }) => {
+const EditCategory = ({ update, setUpdate, docDetails }) => {
   const [chipKey, setChipKey] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      document.querySelector('.m2') ? document.querySelector('.m2').style.display = "none" : null;
-    }, 1);
-  }, [documents])
 
   return (
     <>
