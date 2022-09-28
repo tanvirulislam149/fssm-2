@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./ApprovedList.module.css";
+import styles from "./UnapprovedList.module.css";
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Image from "next/image";
 import close from "../../../assets/Close.png";
@@ -14,7 +14,7 @@ const data = [
   { orgName: "NFSSM", thumbnail: "", title: "DRDA Picks 47 Trichy Villages To Make Them Odf Plus Model Places", documentName: "", uploadedOn: "2022-08-05 07:53:34", id: 6 },
 ];
 
-const ApprovedList = () => {
+const UnapprovedList = () => {
   const [number, setNumber] = useState(10);
 
   const handleChange = (event) => {
@@ -304,4 +304,4 @@ const ApprovedList = () => {
   );
 };
 
-export default ApprovedList;
+export default UnapprovedList;
