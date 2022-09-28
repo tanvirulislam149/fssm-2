@@ -62,7 +62,7 @@ const DocumentsList = ({ documents }) => {
 
   useEffect(() => {
     setList(documents);
-    list.length && document.getElementById('edit').click();
+    //list.length && document.getElementById('edit0').click();
   }, [documents])
 
   const handleError = (err) => {
@@ -240,7 +240,7 @@ const DocumentsList = ({ documents }) => {
                     </div>
                     <div
                       title='edit'
-                      id='edit'
+                      id={`edit${i}`}
                       className={`${styles.btn} ${styles.editbtn}`}
                       data-modal="myModal"
                       onClick={() => {

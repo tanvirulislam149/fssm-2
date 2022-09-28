@@ -9,7 +9,6 @@ const EditCategory = ({ update, documents, setUpdate, docDetails }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('kj')
       document.querySelector('.m2') ? document.querySelector('.m2').style.display = "none" : null;
     }, 1);
   }, [documents])

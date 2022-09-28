@@ -68,9 +68,10 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
   }
 
   useEffect(() => {
+    console.log({ docDetails })
     setInputValue(docDetails.theme);
-    setInputValue2(docDetails.doc_type);
-    setCity(docDetails.city);
+    docDetails.doc_type && setInputValue2(docDetails.doc_type);
+    docDetails.city && setCity(docDetails.city);
     document.getElementById('span-click').click();
     docDetails.geography?.length ? document.getElementById(`${docDetails.geography?.replace(' ', '').toLowerCase()}`).checked = true : null;
     docDetails.status?.length ? document.getElementById(`${docDetails.status.toLowerCase()}`).checked = true : null;
@@ -98,11 +99,11 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
     setFieldValue('theme', docDetails.theme);
     setFieldValue('doc_type', docDetails.doc_type);
     setFieldValue('title', docDetails.title);
-    setFieldValue('citation', docDetails.citation);
-    setFieldValue('description', docDetails.description);
+    docDetails.title && setFieldValue('citation', docDetails.citation);
+    docDetails.title && setFieldValue('description', docDetails.description);
     setFieldValue('geography', docDetails.geography);
     setFieldValue('status', docDetails.status);
-    setText(docDetails.title);
+    docDetails.title && setText(docDetails.title);
   }
 
   return (
@@ -154,7 +155,7 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
             <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
             <div className={styles.textInput}>
               <label htmlFor="title">Title <span>*</span></label>
-              <input value={docDetails.title ? text : ''} name="title" id='title' onChange={(e) => { setText(e.target.value); }} className={styles.input} type="text" />
+              <input value={text} name="title" id='title' onChange={(e) => { setText(e.target.value); }} className={styles.input} type="text" />
               <span className='form-error'><ErrorMessage name="title" /></span>
             </div>
 
