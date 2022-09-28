@@ -154,7 +154,7 @@ export default function CustomizedHook({ setData, placeholder, content, currentD
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'demo',
+    id: 'demo2',
     multiple: true,
     options: content,
     getOptionLabel: (option) => option.title,
@@ -197,8 +197,8 @@ export default function CustomizedHook({ setData, placeholder, content, currentD
 
     setTimeout(() => {
       setOpened(!opened);
-      document.getElementById('demo') && document.getElementById('demo').click();
-    }, 4);
+      document.getElementById('demo2') && document.getElementById('demo2').click();
+    }, 3);
   }, [content, currentData])
 
   return (

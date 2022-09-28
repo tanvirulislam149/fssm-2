@@ -154,7 +154,7 @@ export default function CustomizedHook({ setData, placeholder, content, currentD
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'demo',
+    id: 'demo3',
     multiple: true,
     options: content,
     getOptionLabel: (option) => option.title,
@@ -182,6 +182,7 @@ export default function CustomizedHook({ setData, placeholder, content, currentD
     let index = [];
     currentData.forEach(option => {
       content.forEach(({ title }, i) => {
+        console.log('ran2')
         if (title === option) {
           index.push(i);
         }
@@ -194,11 +195,10 @@ export default function CustomizedHook({ setData, placeholder, content, currentD
       value.length = 0;
       setUpdate(true);
     }
-
     setTimeout(() => {
       setOpened(!opened);
-      document.getElementById('demo') && document.getElementById('demo').click();
-    }, 4);
+      document.getElementById('demo3') && document.getElementById('demo3').click();
+    }, 5);
   }, [content, currentData])
 
   return (

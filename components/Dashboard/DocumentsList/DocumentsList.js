@@ -3,8 +3,6 @@ import styles from './DocumentsList.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Image from 'next/image';
-import close from '../../../assets/Close.png';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import EditCategory from '../EditCategory/EditCategory';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -13,21 +11,29 @@ import { delMyDocs } from '../../../services/mydocumentServices';
 import DeletePopup from '../DeletePopup/DeletePopup';
 import { useRouter } from 'next/router';
 import { delAllDocs } from '../../../services/allDocumentServices';
-
-// const data = [
-//   { name: 'SXM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
-//   { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 2, date: '2021-08-22 08:38:40 AM' },
-//   { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 3, date: '2021-08-22 08:38:40 AM' },
-// ]
+import ViewDocument from '../ViewDocument/ViewDocument';
+import AlertCard from '../AlertCard/AlertCard';
 
 const DocumentsList = ({ documents }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
   const [list, setList] = useState(documents);
+  const [updated, setUpdated] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [docId, setDocId] = useState(null);
+  const [currentDoc, setCurrentDoc] = useState([]);
+  const [index, setIndex] = useState(null);
+  const [click, setClick] = useState(false);
+  const [docDetails, setDocDetails] = useState({
+    categories: [],
+    stake_holder: [],
+    valueChain: [],
+    states: [],
+    languages: [],
+    chips: [],
+    theme: ''
+  });
 
   const router = useRouter();
 
@@ -52,14 +58,13 @@ const DocumentsList = ({ documents }) => {
 
   useEffect(() => {
     handleFilter();
-  }, [update])
+  }, [updated])
 
   useEffect(() => {
     setList(documents);
   }, [documents])
 
   const handleError = (err) => {
-    setLoading(false);
     console.log({ e: err })
     setError(err.message);
   }
@@ -70,7 +75,6 @@ const DocumentsList = ({ documents }) => {
       delMyDocs(id, (err, res) => {
         if (err) return handleError(err)
         if (res !== null) {
-          setLoading(false);
           console.log({ r: res })
           if (res.data.message === 'Document has been deleted') {
             confirmation.style.display = "flex";
@@ -81,7 +85,6 @@ const DocumentsList = ({ documents }) => {
       delAllDocs(id, (err, res) => {
         if (err) return handleError(err)
         if (res !== null) {
-          setLoading(false);
           console.log({ r: res })
           if (res.data.message === 'Document has been deleted') {
             confirmation.style.display = "flex";
@@ -90,6 +93,50 @@ const DocumentsList = ({ documents }) => {
       })
     }
   }
+
+  useEffect(() => {
+    let data = [];
+    list.forEach((doc) => {
+      data.push({
+        id: doc.id,
+        theme: doc.theme?.theme_title,
+        title: doc.title,
+        citation: doc.citation,
+        description: doc.description,
+        city: doc.city,
+        status: doc.status,
+        geography: doc.geography,
+        doc_type: doc.document_type === 'file' ? 'file' : 'URL',
+        categories: [],
+        stake_holder: [
+          doc.stake_holder?.map(({ stake_holderName }) => {
+            return stake_holderName;
+          })
+        ][0],
+        valueChain: [
+          doc.value_chain?.map(({ vc_name }) => {
+            return vc_name;
+          })
+        ][0],
+        states: [
+          doc.state?.map(({ stateName }) => {
+            return stateName;
+          })
+        ][0],
+        languages: [
+          doc.language?.map(({ lang }) => {
+            return lang;
+          })
+        ][0],
+        chips: [
+          doc.keywords?.map(({ keyword }) => {
+            return keyword;
+          })
+        ][0]
+      })
+    });
+    setDocDetails(data[index]);
+  }, [click, index])
 
   return (
     <>
@@ -122,7 +169,7 @@ const DocumentsList = ({ documents }) => {
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
-                setUpdate(!update);
+                setUpdated(!updated);
               }} />
           </div>
         </div>
@@ -184,6 +231,7 @@ const DocumentsList = ({ documents }) => {
                       title='view'
                       data-modal="myModal"
                       onClick={() => {
+                        setCurrentDoc(list[i]);
                         document.querySelector('.m').style.display = "flex";
                       }}
                     >
@@ -194,7 +242,9 @@ const DocumentsList = ({ documents }) => {
                       className={`${styles.btn} ${styles.editbtn}`}
                       data-modal="myModal"
                       onClick={() => {
-                        document.querySelector('.m2').style.display = "flex";
+                        setClick(!click);
+                        setIndex(i)
+                        document.querySelector('.m2').style.display = "flex"
                       }}
                     >
                       <CreateOutlinedIcon sx={{ color: 'white', height: '15px', width: '15px' }} />
@@ -209,178 +259,13 @@ const DocumentsList = ({ documents }) => {
       </div>
       <p className={styles.results}>Showing 10 of 10 entries</p>
 
-      <div id="myModal" className='modal2 m'>
-        <div
-          className={styles.bg}
-          onClick={() => {
-            document.querySelector('.m').style.display = "none";
-          }}>
-        </div>
-        <div className={styles.modal_content}>
-          <div
-            className={styles.close}
-            onClick={() => {
-              document.querySelector('.m').style.display = "none";
-            }}
-          >
-            <p>View Document Data</p>
-            <span><Image src={close} alt='icon' height={24} width={24} /></span>
-          </div>
+      <ViewDocument setDocId={setDocId} currentDoc={currentDoc} />
 
-          <div className={styles.cover}>
-            <div className={styles.content}>
-              <h4>Document Details</h4>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Document Name
-                </div>
-                <div className={styles.details}>
-                  : https://www.google.com/url?rct=jsa=turl
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Title
-                </div>
-                <div className={styles.details}>
-                  : DRDA Picks 47 Trichy Villages To Make Them Odf Plus Model Places
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Organization Name
-                </div>
-                <div className={styles.details}>
-                  : NFSSM
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Theme
-                </div>
-                <div className={styles.details}>
-                  : Latest FSSM News
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Sub Category
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Stakeholder
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Value Chain
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Geography
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Urban / Rural
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  State
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  City
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Language
-                </div>
-                <div className={styles.details}>
-                  : English
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Description
-                </div>
-                <div className={styles.details}>
-                  : The District Rural Development Agency
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Keywords
-                </div>
-                <div className={styles.details}>
-                  : AMRUT,Faecal Sludge and Septage Management, FSM, FSSM, FSTP, Open Defecation Free, Open Defecation Free and Sanitation, sanitation, Septage Management, Swachh Bharat Mission, Urban Local Bodies Faecal Sludge and Septage Management
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Citation
-                </div>
-                <div className={styles.details}>
-                  : All
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  Created On
-                </div>
-                <div className={styles.details}>
-                  : 2022-04-07 12:16:07
-                </div>
-              </div>
-              <div className={styles.row3}>
-                <div className={styles.title}>
-                  View Document
-                </div>
-                <div className={styles.details}>
-                  <div className={styles.view}>
-                    View
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <button className={styles.btn2}>Edit Document</button>
-              <button className={styles.btn3}>Delete Document</button>
-              <button className={styles.btn2}>Map Document</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <EditCategory />
+      <EditCategory update={update} setUpdate={setUpdate} docDetails={docDetails} />
 
       <DeletePopup docId={docId} handleDelete={handleDelete} />
+
+      <AlertCard message='Document Edited Sucessfully' />
     </>
   )
 }

@@ -4,39 +4,77 @@ import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomizedHook from './useHook';
+import CustomizedHook2 from './useHook2';
+import CustomizedHook3 from './useHook3';
+import CustomizedHook4 from './useHook4';
+import CustomizedHook5 from './useHook5';
+import CustomizedHook6 from './useHook6';
 import styles from '../MappingForm/MappingForm.module.css';
 import useOptions from '../../useOptions';
+import { editMyDocs } from '../../../services/mydocumentServices';
+import { editAllDocs } from '../../../services/allDocumentServices';
+import { useRouter } from 'next/router';
 
-const EditCategoryForm = () => {
+const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }) => {
   const [keywords, setKeywords] = useState([]);
   const [language, setLanguage] = useState([]);
   const [value_chain, setValue_chain] = useState([]);
   const [stakeholder, setStakeholder] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [sub_cat, setSub_cat] = useState([]);
   const [state, setState] = useState([]);
   const [city, setCity] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [themeOptions, setThemeOptions] = useState([]);
-  const [chipKey, setChipKey] = useState(false);
+  const [text, setText] = useState('');
 
   const { advancedSearchText } = useOptions();
+  const router = useRouter();
 
-  const handleSubmit = (values) => {
+  const handleError = (err) => {
+    console.log({ e: err })
+    //setError(err.response.statusText);
+  }
+
+  const handleSubmit = (values, confirmation) => {
     let data;
-    if (values.geography === 'state') {
-      data = {
-        ...values,
-        keywords, stakeholder, value_chain, language, category, state, city
-      }
-    } else {
-      data = {
-        ...values,
-        keywords, stakeholder, value_chain, language, category
-      }
+    data = {
+      ...values,
+      keywords, stakeholder, value_chain, language, sub_cat, state, city
     }
     console.log(data);
+
+    if (router.pathname === '/mydocuments') {
+      editMyDocs(docDetails.id, data, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          console.log({ r: res.data })
+          if (res.data.message === 'Document Edited Sucessfully') {
+            confirmation.style.display = 'flex';
+          }
+        }
+      })
+    } else if (router.pathname === '/documents') {
+      editAllDocs(docDetails.id, data, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          console.log({ r: res.data })
+          if (res.data.message === 'Document Edited Sucessfully') {
+            confirmation.style.display = 'flex';
+          }
+        }
+      })
+    }
   }
+
+  useEffect(() => {
+    setInputValue(docDetails.theme);
+    setInputValue2(docDetails.doc_type);
+    setCity(docDetails.city);
+    document.getElementById('span-click').click();
+    docDetails.geography?.length ? document.getElementById(`${docDetails.geography?.replace(' ', '').toLowerCase()}`).checked = true : null;
+    docDetails.status?.length ? document.getElementById(`${docDetails.status.toLowerCase()}`).checked = true : null;
+  }, [docDetails])
 
   useEffect(() => {
     const options = [];
@@ -56,6 +94,17 @@ const EditCategoryForm = () => {
     }
   }, [inputValue2])
 
+  const handleValues = (setFieldValue) => {
+    setFieldValue('theme', docDetails.theme);
+    setFieldValue('doc_type', docDetails.doc_type);
+    setFieldValue('title', docDetails.title);
+    setFieldValue('citation', docDetails.citation);
+    setFieldValue('description', docDetails.description);
+    setFieldValue('geography', docDetails.geography);
+    setFieldValue('status', docDetails.status);
+    setText(docDetails.title);
+  }
+
   return (
     <>
       <Formik
@@ -63,37 +112,37 @@ const EditCategoryForm = () => {
           title: '',
           url: '',
           theme: '',
-          type: '',
+          doc_type: '',
           geography: '',
           status: '',
           description: '',
           citation: '',
-          attachment: '',
+          document: null,
         }}
         validationSchema={Yup.object({
           title: Yup.string()
             .required('Required')
-            .min(3, '3 or more characters')
-            .test('is title a letter?', 'Title must consist of letters only', (val) => {
-              return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
-            }),
+            // .test('is title a letter?', 'Title must consist of letters only', (val) => {
+            //   return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
+            // })
+            .min(3, '3 or more characters'),
           description: Yup.string()
-            .min(10, 'Must be 10 characters minimum'),
+            .min(4, 'Must be 4 characters minimum'),
           citation: Yup.string()
-            .min(10, 'Must be 10 characters minimum'),
+            .min(4, 'Must be 4 characters minimum'),
           theme: Yup.string()
             .required('Required')
             .nullable(),
-          type: Yup.string()
+          doc_type: Yup.string()
             .required('Required')
             .nullable(),
         })}
         onSubmit={(data, actions) => {
           document.querySelector('.m2').style.display = "none";
-          handleSubmit(data);
+          handleSubmit(data, document.querySelector('.m15'));
           actions.resetForm();
           setKeywords([]);
-          setCategory([]);
+          setSub_cat([]);
           setValue_chain([]);
           setLanguage([]);
           setStakeholder([]);
@@ -102,9 +151,10 @@ const EditCategoryForm = () => {
       >
         {({ setFieldValue, values }) => (
           <Form className={styles.form}>
+            <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
             <div className={styles.textInput}>
               <label htmlFor="title">Title <span>*</span></label>
-              <Field name="title" id='title' className={styles.input} type="text" />
+              <input value={docDetails.title ? text : ''} name="title" id='title' onChange={(e) => { setText(e.target.value); }} className={styles.input} type="text" />
               <span className='form-error'><ErrorMessage name="title" /></span>
             </div>
 
@@ -118,7 +168,7 @@ const EditCategoryForm = () => {
                 }}
                 inputValue={inputValue}
                 onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
+                  event && setInputValue(event.target.innerHTML);;
                 }}
                 id='theme'
                 options={themeOptions}
@@ -128,18 +178,39 @@ const EditCategoryForm = () => {
             </div>
 
             <div className={styles.textInput}>
-              <label htmlFor="category">Sub Category</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.categories} placeholder='--Select Sub Category--' setData={setCategory} />
+              <label htmlFor="sub_cat">Sub Category</label>
+              <CustomizedHook3
+                update={update}
+                setUpdate={setUpdate}
+                key={chipKey}
+                currentData={docDetails.categories}
+                content={advancedSearchText.categories}
+                placeholder='--Select Sub Category--'
+                setData={setSub_cat} />
             </div>
 
             <div className={styles.textInput}>
               <label htmlFor="stakeholder">Stakeholder</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.stake_holder} placeholder='--Select Stakeholder--' setData={setStakeholder} />
+              <CustomizedHook
+                update={update}
+                setUpdate={setUpdate}
+                key={chipKey}
+                currentData={docDetails.stake_holder}
+                content={advancedSearchText.stake_holder}
+                placeholder='--Select Stakeholder--'
+                setData={setStakeholder} />
             </div>
 
             <div className={styles.textInput}>
               <label htmlFor="value_chain">Value Chain</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.valueChain} placeholder='--Select Value Chain--' setData={setValue_chain} />
+              <CustomizedHook2
+                update={update}
+                setUpdate={setUpdate}
+                key={chipKey}
+                currentData={docDetails.valueChain}
+                content={advancedSearchText.valueChain}
+                placeholder='--Select Value Chain--'
+                setData={setValue_chain} />
             </div>
 
             <div className={styles.textInput}>
@@ -147,19 +218,46 @@ const EditCategoryForm = () => {
               <div className={styles.checkboxes}>
                 <div>
                   <label>
-                    <Field type="radio" name="geography" value="national" />
+                    <input
+                      onChange={(e) => {
+                        setFieldValue('geography', e.target.value);
+                        setState([]);
+                        setCity('');
+                      }}
+                      id='national'
+                      type="radio"
+                      name="geography"
+                      value="National" />
                     National
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field type="radio" name="geography" value="state" />
+                    <input
+                      onChange={(e) => {
+                        setFieldValue('geography', e.target.value);
+                        setState([]);
+                        setCity('');
+                      }}
+                      id='state'
+                      type="radio"
+                      name="geography"
+                      value="State" />
                     State
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field type="radio" name="geography" value="not applicable" />
+                    <input
+                      onChange={(e) => {
+                        setFieldValue('geography', e.target.value);
+                        setState([]);
+                        setCity('');
+                      }}
+                      id='notapplicable'
+                      type="radio"
+                      name="geography"
+                      value="Not applicable" />
                     Not Applicable
                   </label>
                 </div>
@@ -167,11 +265,18 @@ const EditCategoryForm = () => {
             </div>
 
             {
-              values.geography === 'state' &&
+              values.geography === 'State' &&
               <div id='state-extra' className={styles.textInput}>
                 <div className={styles.textInput}>
                   <label>State</label>
-                  <CustomizedHook key={chipKey} content={advancedSearchText.states} placeholder='--Select State--' setData={setState} />
+                  <CustomizedHook4
+                    update={update}
+                    setUpdate={setUpdate}
+                    key={chipKey}
+                    currentData={docDetails.states}
+                    content={advancedSearchText.states}
+                    placeholder='--Select State--'
+                    setData={setState} />
                 </div>
 
                 <div className={styles.textInput}>
@@ -186,13 +291,13 @@ const EditCategoryForm = () => {
               <div className={styles.checkboxes}>
                 <div>
                   <label>
-                    <Field type="radio" name="status" value="urban" />
+                    <input onChange={(e) => { setFieldValue('status', e.target.value); }} id='urban' type="radio" name="status" value="urban" />
                     Urban
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field type="radio" name="status" value="rural" />
+                    <input onChange={(e) => { setFieldValue('status', e.target.value); }} id='rural' type="radio" name="status" value="rural" />
                     Rural
                   </label>
                 </div>
@@ -201,7 +306,13 @@ const EditCategoryForm = () => {
 
             <div className={styles.textInput}>
               <label htmlFor="language">Language</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.languages} placeholder='--Select Language--' setData={setLanguage} />
+              <CustomizedHook5
+                update={update}
+                setUpdate={setUpdate} key={chipKey}
+                currentData={docDetails.languages}
+                content={advancedSearchText.languages}
+                placeholder='--Select Language--'
+                setData={setLanguage} />
             </div>
 
             <div className={styles.textInput}>
@@ -212,7 +323,14 @@ const EditCategoryForm = () => {
 
             <div className={styles.textInput}>
               <label htmlFor="description">Keywords</label>
-              <CustomizedHook key={chipKey} content={advancedSearchText.chips} placeholder='--Select Keywords--' setData={setKeywords} />
+              <CustomizedHook6
+                update={update}
+                setUpdate={setUpdate}
+                key={chipKey}
+                currentData={docDetails.chips}
+                content={advancedSearchText.chips}
+                placeholder='--Select Keywords--'
+                setData={setKeywords} />
             </div>
 
             <div className={styles.textInput}>
@@ -222,22 +340,22 @@ const EditCategoryForm = () => {
             </div>
 
             <div className={styles.textInput}>
-              <label htmlFor="type">Document Type <span>*</span></label>
+              <label htmlFor="doc_type">Document Type <span>*</span></label>
               <Autocomplete
                 key={chipKey}
                 className={styles.select}
                 onChange={(event, newValue) => {
-                  setFieldValue('type', newValue);
+                  setFieldValue('doc_type', newValue);
                 }}
                 inputValue={inputValue2}
                 onInputChange={(event, newInputValue) => {
-                  setInputValue2(newInputValue);
+                  event && setInputValue2(event.target.innerHTML);
                 }}
-                id='type'
+                id='doc_type'
                 options={['file', 'URL']}
                 renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
               />
-              <span className='form-error'><ErrorMessage name="type" /></span>
+              <span className='form-error'><ErrorMessage name="doc_type" /></span>
             </div>
 
             <div id='url' className={`${styles.textInput} none`}>
@@ -251,13 +369,13 @@ const EditCategoryForm = () => {
                 type='file'
                 accept='.xlsx, .xls, image/*, .doc, .docx, video/*, audio/*, .pdf'
                 onChange={(e) => {
-                  setFieldValue('attachment', e.currentTarget.files[0])
+                  setFieldValue('document', e.currentTarget.files[0])
                 }}
               />
             </div>
 
             <div className={styles.btn_cont}>
-              <button type='reset' className={`${styles.btn} ${styles.submit}`}>Submit</button>
+              <button type='submit' className={`${styles.btn} ${styles.submit}`}>Submit</button>
               <button
                 type='reset'
                 className={`${styles.btn} ${styles.cancel}`}

@@ -6,6 +6,7 @@ import MappingForm from '../../Forms/MappingForm/MappingForm';
 import { getUnmappedDocs, deleteDocs } from '../../../services/documentMappingService';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useRouter } from 'next/router';
+import AlertCard from '../AlertCard/AlertCard';
 
 const DocumentMappingCont = () => {
   const [unmapped, setUnmapped] = useState([]);
@@ -239,6 +240,8 @@ const DocumentMappingCont = () => {
           </div>
         </div>
       </div>
+
+      <AlertCard message='Mapping is Done successfully' />
     </>
   )
 }

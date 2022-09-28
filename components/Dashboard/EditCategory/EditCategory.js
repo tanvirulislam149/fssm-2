@@ -1,10 +1,12 @@
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import React from 'react';
 import EditCategoryForm from '../../Forms/EditCategoryForm/EditCategoryForm';
 import styles from './EditCategory.module.css';
 import close from '../../../assets/Close.png';
 
-const EditCategory = () => {
+const EditCategory = ({ update, setUpdate, docDetails }) => {
+  const [chipKey, setChipKey] = useState(false);
+
   return (
     <>
       <div id="myModal1" className='modal2 m2'>
@@ -12,7 +14,7 @@ const EditCategory = () => {
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m2').style.display = "none";
-            //document.getElementById('user-cat').style.display = 'none';
+            setChipKey(!chipKey);
           }}>
         </div>
         <div className={styles.modal_content}>
@@ -20,7 +22,7 @@ const EditCategory = () => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m2').style.display = "none";
-              //document.getElementById('user-cat').style.display = 'none';
+              setChipKey(!chipKey);
             }}
           >
             <p>Edit Categories</p>
@@ -28,7 +30,16 @@ const EditCategory = () => {
           </div>
 
           <div className={styles.form}>
-            <EditCategoryForm />
+            {
+              docDetails &&
+              <EditCategoryForm
+                update={update}
+                setUpdate={setUpdate}
+                chipKey={chipKey}
+                setChipKey={setChipKey}
+                docDetails={docDetails}
+              />
+            }
           </div>
         </div>
       </div>

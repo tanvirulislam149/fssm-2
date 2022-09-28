@@ -30,26 +30,22 @@ const MappingForm = ({ modal, docId }) => {
     //setError(err.response.statusText);
   }
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, confirmation) => {
     setLoading(true);
     let data;
-    if (values.geography === 'state') {
-      data = {
-        ...values,
-        keywords, stakeholder, value_chain, language, sub_cat, state, city
-      }
-    } else {
-      data = {
-        ...values,
-        keywords, stakeholder, value_chain, language, sub_cat
-      }
+    data = {
+      ...values,
+      keywords, stakeholder, value_chain, language, sub_cat, state, city
     }
     console.log(docId, data);
     mapDocs(docId, data, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
         setLoading(false);
-        console.log({ r: res })
+        console.log({ r: res.data.message })
+        if (res.data.message === 'Mapping is Done successfully') {
+          confirmation.style.display = 'flex';
+        }
       }
     })
   }
@@ -90,7 +86,7 @@ const MappingForm = ({ modal, docId }) => {
         })}
         onSubmit={(data, actions) => {
           document.querySelector(`.${modal}`).style.display = "none";
-          handleSubmit(data);
+          handleSubmit(data, document.querySelector('.m15'));
           actions.resetForm();
           setKeywords([]);
           setSub_cat([]);
