@@ -2,6 +2,7 @@
   background: var(--white-color);
   border-radius: var(--primary-border-radius);
   margin-bottom: var(--s-20);
+  height: max-content;
 }
 
 .head {
@@ -21,6 +22,7 @@
 
 .whole {
   padding: var(--size-5);
+  word-break: break-word;
 }
 
 .link {

@@ -3,32 +3,15 @@ import styles from './TenderDownloadCont.module.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getExpiredTenders } from '../../../services/tenderServices';
 import DownloadCard from '../../Cards/DownloadCard/DownloadCard';
+import { useRouter } from 'next/router';
+import { advancedSearch } from '../../../services/advancedSearchServices';
 
 const TenderDownloadCont = () => {
   const [loading, setLoading] = useState(true);
   const [tenders, setTenders] = useState([]);
 
-  const dropDown = (e, s, u, u2, c, ex, m) => {
-    if (e.classList.contains("active-dropdown")) {
-      e.style.maxHeight = 0;
-      e.classList.remove("active-dropdown");
-      u.style.display = 'block';
-      u2.classList.add('none');
-      c.style.display = 'flex';
-      ex.classList.add('none');
-      s.style.display = 'flex';
-      m.classList.add('none');
-    } else {
-      e.style.maxHeight = 'max-content';
-      e.classList.add("active-dropdown");
-      u.style.display = 'none';
-      u2.classList.remove('none');
-      c.style.display = 'none';
-      ex.classList.remove('none');
-      s.style.display = 'block';
-      m.classList.remove('none');
-    }
-  }
+  const router = useRouter();
+  const { page, stakeholder, value_chain, state, language, partner, words, theme, status } = router.query;
 
   const handleError = (err) => {
     setLoading(false);
@@ -36,29 +19,58 @@ const TenderDownloadCont = () => {
   }
 
   useEffect(() => {
-    getExpiredTenders((err, res) => {
-      if (err) return handleError(err)
-      if (res !== null) {
-        setLoading(false);
-        console.log({ r: res })
+    if (page === 'Tenders') {
+      getExpiredTenders((err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          console.log({ r: res })
 
-        const { search } = window.location;
-        const path = new URLSearchParams(search).get('id');
+          const { search } = window.location;
+          const path = new URLSearchParams(search).get('id');
 
-        res.data['Expired Tenders'].forEach(item => {
-          if (item.id === Number(path)) {
-            setTenders(item);
-            return;
-          }
-        });
-      }
-    });
+          res.data['Expired Tenders'].forEach(item => {
+            if (item.id === Number(path)) {
+              setTenders(item);
+              return;
+            }
+          });
+          setLoading(false);
+        }
+      });
+    } else {
+      advancedSearch({
+        stakeholder: stakeholder.split(',')[0] === '' ? [] : stakeholder.split(','),
+        value_chain: value_chain.split(',')[0] === '' ? [] : value_chain.split(','),
+        state: state.split(',')[0] === '' ? [] : state.split(','),
+        language: language.split(',')[0] === '' ? [] : language.split(','),
+        partner: partner.split(',')[0] === '' ? [] : partner.split(','),
+        words: words.split(',')[0] === '' ? [] : words.split(','),
+        theme: theme.split(',')[0] === '' ? [] : theme.split(','),
+        status: status.split(',')[0] === '' ? [] : status.split(',')
+      }, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          console.log({ r: res });
+
+          const { search } = window.location;
+          const path = new URLSearchParams(search).get('id');
+
+          res.data['Search Results'].forEach(item => {
+            if (item.id === Number(path)) {
+              setTenders(item);
+              return;
+            }
+          });
+          setLoading(false);
+        }
+      });
+    }
   }, [])
 
   return (
     <>
       <div className={styles.container}>
-        <h1 className={styles.title}>Tenders</h1>
+        <h1 className={styles.title}>{page}</h1>
 
         <section>
           {

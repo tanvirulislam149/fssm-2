@@ -3,16 +3,17 @@ import styles from './AdvancedSearchResults.module.css';
 import TenderCard from '../../Cards/TenderCard/TenderCard';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const AdvancedSearchResults = ({ results, loading }) => {
+const AdvancedSearchResults = ({ searchData, results, loading }) => {
 
   return (
-    <>
+    <div>
       {loading ?
         <div className={styles.justify_center}><CircularProgress /></div> :
         results.length ?
           results.map(({ theme, id, status, organization, document_type, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
             return (
               <TenderCard
+                searchData={searchData}
                 key={id}
                 id={id}
                 title={title}
@@ -34,7 +35,7 @@ const AdvancedSearchResults = ({ results, loading }) => {
             <p>No records found.</p>
           </div>
       }
-    </>
+    </div>
   )
 }
 

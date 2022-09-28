@@ -4,7 +4,7 @@ import pdf from '../../../assets/pdf.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+const TenderCard = ({ searchData, theme, id, urban_rural, org, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
   const [clicked, setClicked] = useState(true);
 
   const router = useRouter();
@@ -26,7 +26,11 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
   }
 
   const handleNav = () => {
-    router.pathname === '/knowledgedata' ? router.push(`/knowledgedatadownload?id=${id}&category=${router.query.category}&subitem=${subitem}&title=${router.query.title}`) : router.push(`/tenderdownload?id=${id}`);
+    router.pathname === '/knowledgedata' ?
+      router.push(`/knowledgedatadownload?id=${id}&category=${router.query.category}&subitem=${subitem}&title=${router.query.title}`) :
+      router.pathname === '/advancedsearch' ?
+        router.push(`/tenderdownload?stakeholder=${searchData.stakeholder}&value_chain=${searchData.value_chain}&state=${searchData.state}&language=${searchData.language}&partner=${searchData.partner}&words=${searchData.words}&theme=${searchData.theme}&status=${searchData.status}&page=${'Advanced Search'}&id=${id}`) :
+        router.push(`/tenderdownload?page=${'Tenders'}&id=${id}`);
   }
 
   return (
@@ -76,7 +80,14 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
                   </span>
                 </div>
                 <div>
-                  <p>Value Chain </p><span>: {''}</span>
+                  <p>Value Chain </p>
+                  <span>
+                    : {
+                      value_chain.map(({ vc_name }) => {
+                        return vc_name + ', ';
+                      })
+                    }
+                  </span>
                 </div>
               </div>
 
@@ -90,18 +101,29 @@ const TenderCard = ({ theme, id, urban_rural, org, document_type, expiry_date, c
               </div>
 
               <div className={styles.row}>
-                <p>Language </p>
-                <span>
-                  : {
-                    language.map(({ lang }) => {
-                      return lang + ', ';
-                    })
-                  }
-                </span>
+                <div>
+                  <p>Language </p>
+                  <span>
+                    : {
+                      language.map(({ lang }) => {
+                        return lang + ', ';
+                      })
+                    }
+                  </span>
+                </div>
               </div>
 
               <div className={styles.row}>
-                <p>Keywords </p><span>: {''}</span>
+                <div>
+                  <p>Keywords </p>
+                  <span>
+                    :  {
+                      keywords.map(({ keyword }) => {
+                        return keyword + ', ';
+                      })
+                    }
+                  </span>
+                </div>
               </div>
             </div>
           </div>

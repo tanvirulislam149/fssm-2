@@ -9,18 +9,27 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import EditCategory from '../EditCategory/EditCategory';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import { delMyDocs } from '../../../services/mydocumentServices';
+import DeletePopup from '../DeletePopup/DeletePopup';
+import { useRouter } from 'next/router';
+import { delAllDocs } from '../../../services/allDocumentServices';
 
-const data = [
-  { name: 'SXM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
-  { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 2, date: '2021-08-22 08:38:40 AM' },
-  { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 3, date: '2021-08-22 08:38:40 AM' },
-]
+// const data = [
+//   { name: 'SXM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 1, date: '2021-08-22 08:38:40 AM' },
+//   { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 2, date: '2021-08-22 08:38:40 AM' },
+//   { name: 'SBM-U Gender Responsive Guidelines (2).pdf', title: 'Gender Responsive Guidelines (2).pdf', id: 3, date: '2021-08-22 08:38:40 AM' },
+// ]
 
-const DocumentsList = () => {
+const DocumentsList = ({ documents }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
-  const [list, setList] = useState(data);
+  const [list, setList] = useState(documents);
   const [update, setUpdate] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [docId, setDocId] = useState(null);
+
+  const router = useRouter();
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -37,13 +46,50 @@ const DocumentsList = () => {
   }
 
   const handleFilter = () => {
-    const results = filterIt(data, search.toLowerCase().trim());
+    const results = filterIt(documents, search.toLowerCase().trim());
     setList(results);
   }
 
   useEffect(() => {
     handleFilter();
   }, [update])
+
+  useEffect(() => {
+    setList(documents);
+  }, [documents])
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+    setError(err.message);
+  }
+
+  const handleDelete = (id, confirmation) => {
+    console.log(id);
+    if (router.pathname === '/mydocuments') {
+      delMyDocs(id, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          setLoading(false);
+          console.log({ r: res })
+          if (res.data.message === 'Document has been deleted') {
+            confirmation.style.display = "flex";
+          }
+        }
+      })
+    } else if (router.pathname === '/documents') {
+      delAllDocs(id, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          setLoading(false);
+          console.log({ r: res })
+          if (res.data.message === 'Document has been deleted') {
+            confirmation.style.display = "flex";
+          }
+        }
+      })
+    }
+  }
 
   return (
     <>
@@ -103,7 +149,7 @@ const DocumentsList = () => {
             </div>
           </div>
           {list.length ?
-            list.map(({ name, id, date, title }, i) => {
+            list.map(({ name, id, description, title }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
@@ -118,13 +164,19 @@ const DocumentsList = () => {
                     {title}
                   </div>
                   <div className={styles.three}>
-                    <p>{name}</p>
+                    <p>{description}</p>
                   </div>
                   <div className={styles.four}>
-                    <p>{date}</p>
+                    <p>date</p>
                   </div>
                   <div className={styles.five}>
-                    <div title='delete' className={`${styles.btn} ${styles.delbtn}`}>
+                    <div
+                      title='delete'
+                      onClick={() => {
+                        setDocId(id);
+                        document.querySelector('.m10').style.display = "flex";
+                      }}
+                      className={`${styles.btn} ${styles.delbtn}`}>
                       <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                     </div>
                     <div
@@ -327,6 +379,8 @@ const DocumentsList = () => {
       </div>
 
       <EditCategory />
+
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
     </>
   )
 }

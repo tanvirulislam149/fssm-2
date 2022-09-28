@@ -21,9 +21,7 @@
 
 .description,
 .description .row,
-.description .row2,
 .description .row div,
-.description .row2 div,
 .description p,
 .description span,
 .main2 {
@@ -33,17 +31,6 @@
 .description {
   width: var(--hundred);
   margin-top: var(--s-30);
-}
-
-.row2 {
-  width: var(--hundred);
-  display: flex;
-  margin-bottom: var(--lh-35);
-  padding: var(--s-8);
-}
-
-.row2 > div {
-  width: var(--fifty);
 }
 
 .row {
@@ -56,7 +43,6 @@
 .row p {
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
-  width: var(--s-150);
 }
 
 .row span {
@@ -67,7 +53,8 @@
 
 .row > div {
   width: var(--fifty);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .main {
@@ -216,7 +203,21 @@
   margin-top: var(--s-10);
 }
 
+.title2 {
+  display: none;
+}
+
 @media (max-width: 950px) {
+  .title2 {
+    display: block;
+    margin-left: var(--s-18);
+    margin-top: var(--s-10);
+  }
+
+  .title3 {
+    display: none;
+  }
+
   .cont {
     flex-direction: column;
     width: var(--hundred);
@@ -225,6 +226,7 @@
   .avatar {
     width: var(--hundred);
     margin-top: 0;
+    display: flex;
   }
 
   .main {
@@ -246,15 +248,6 @@
   }
 
   .row > div {
-    width: var(--hundred);
-    margin-bottom: var(--s-18);
-  }
-
-  .row2 {
-    display: block;
-  }
-
-  .row2 > div {
     width: var(--hundred);
     margin-bottom: var(--s-18);
   }

@@ -41,9 +41,11 @@
   .cont {
     padding: var(--s-20) var(--fs-1rem);
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .description {
     width: var(--hundred);
+    margin-top: var(--s-20);
   }
 }

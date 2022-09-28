@@ -4,64 +4,64 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const data = [
-  {
-    name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
-    id: 1,
-    date: '2021-08-22',
-    title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
-    partner: 'CFAR',
-    theme: 'Capacity Building',
-    category: 'Training Modules',
-    stakeholder: 'All',
-    value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
-    state: 'Delhi',
-    city: 'New Delhi',
-    language: 'Hindi',
-    geography: 'National',
-    status: 'Rural',
-    citation: 'Null'
-  },
-  {
-    name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
-    id: 2,
-    date: '2022-08-22',
-    title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
-    partner: 'CFAR',
-    theme: 'Capacity Building',
-    category: 'Training Modules',
-    stakeholder: 'All',
-    value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
-    state: 'Delhi',
-    city: 'New Delhi',
-    language: 'Hindi',
-    geography: 'National',
-    status: 'Rural',
-    citation: 'Null'
-  },
-  {
-    name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
-    id: 3,
-    date: '2021-08-22',
-    title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
-    partner: 'BBC',
-    theme: 'Capacity Building',
-    category: 'Training Modules',
-    stakeholder: 'All',
-    value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
-    state: 'Delhi',
-    city: 'New Delhi',
-    language: 'Hindi',
-    geography: 'National',
-    status: 'Rural',
-    citation: 'Null'
-  },
-]
+// const data = [
+//   {
+//     name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
+//     id: 1,
+//     date: '2021-08-22',
+//     title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
+//     partner: 'CFAR',
+//     theme: 'Capacity Building',
+//     category: 'Training Modules',
+//     stakeholder: 'All',
+//     value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
+//     state: 'Delhi',
+//     city: 'New Delhi',
+//     language: 'Hindi',
+//     geography: 'National',
+//     status: 'Rural',
+//     citation: 'Null'
+//   },
+//   {
+//     name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
+//     id: 2,
+//     date: '2022-08-22',
+//     title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
+//     partner: 'CFAR',
+//     theme: 'Capacity Building',
+//     category: 'Training Modules',
+//     stakeholder: 'All',
+//     value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
+//     state: 'Delhi',
+//     city: 'New Delhi',
+//     language: 'Hindi',
+//     geography: 'National',
+//     status: 'Rural',
+//     citation: 'Null'
+//   },
+//   {
+//     name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
+//     id: 3,
+//     date: '2021-08-22',
+//     title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
+//     partner: 'BBC',
+//     theme: 'Capacity Building',
+//     category: 'Training Modules',
+//     stakeholder: 'All',
+//     value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
+//     state: 'Delhi',
+//     city: 'New Delhi',
+//     language: 'Hindi',
+//     geography: 'National',
+//     status: 'Rural',
+//     citation: 'Null'
+//   },
+// ]
 
-const ListDocumentsComp = () => {
+const ListDocumentsComp = ({ documents }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
-  const [list, setList] = useState(data);
+  const [list, setList] = useState(documents);
   const [update, setUpdate] = useState(false);
 
   const handleChange = (event) => {
@@ -79,13 +79,17 @@ const ListDocumentsComp = () => {
   }
 
   const handleFilter = () => {
-    const results = filterIt(data, search.toLowerCase().trim());
+    const results = filterIt(documents, search.toLowerCase().trim());
     setList(results);
   }
 
   useEffect(() => {
     handleFilter();
   }, [update])
+
+  useEffect(() => {
+    setList(documents);
+  }, [documents])
 
   return (
     <>
@@ -176,7 +180,7 @@ const ListDocumentsComp = () => {
           </div>
           {
             list.length ?
-              list.map(({ name, id, date, title, partner, theme, category, language, geography, stakeholder, status, state, value_chain, citation, city }, i) => {
+              list.map(({ id, description, title, theme, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
@@ -191,34 +195,58 @@ const ListDocumentsComp = () => {
                       <p>{title}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{name}</p>
+                      <p>{description}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{date}</p>
+                      <p>date</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{partner}</p>
+                      <p>partner</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{theme}</p>
+                      <p>{theme?.theme_title}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{category}</p>
+                      <p>category</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{stakeholder}</p>
+                      <p>
+                        {
+                          stake_holder.map(({ stake_holderName }) => {
+                            return stake_holderName + ', ';
+                          })
+                        }
+                      </p>
                     </div>
                     <div className={styles.two}>
-                      <p>{value_chain}</p>
+                      <p>
+                        {
+                          value_chain.map(({ vc_name }) => {
+                            return vc_name + ', ';
+                          })
+                        }
+                      </p>
                     </div>
                     <div className={styles.two}>
-                      <p>{state}</p>
+                      <p>
+                        {
+                          state.map(({ stateName }) => {
+                            return stateName + ', ';
+                          })
+                        }
+                      </p>
                     </div>
                     <div className={styles.two}>
                       <p>{city}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{language}</p>
+                      <p>
+                        {
+                          language.map(({ lang }) => {
+                            return lang + ', ';
+                          })
+                        }
+                      </p>
                     </div>
                     <div className={styles.two}>
                       <p>{geography}</p>

@@ -39,7 +39,6 @@ const KnowledgeDownload = () => {
     }, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
-        setLoading(false);
         console.log({ z: res })
 
         const { search } = window.location;
@@ -51,6 +50,7 @@ const KnowledgeDownload = () => {
             return;
           }
         });
+        setLoading(false);
       }
     });
   }, [router.query.category, path, subitem])

@@ -33,10 +33,11 @@ const DownloadCard = ({ tenders }) => {
       <div className={styles.cont}>
         <div className={styles.avatar}>
           <Image width={75} height={80} src={pdf} alt='pdf icon' />
+          <p className={`${styles.heading} ${styles.title2}`}>{tenders?.title}</p>
         </div>
         <div className={styles.main}>
           <div className={styles.top}>
-            <p className={styles.heading}>{tenders?.title}</p>
+            <p className={`${styles.heading} ${styles.title3}`}>{tenders?.title}</p>
             <button className={styles.btn}>Download</button>
           </div>
           <p className={styles.body}>{tenders?.description}</p>
@@ -81,7 +82,14 @@ const DownloadCard = ({ tenders }) => {
                     </span>
                   </div>
                   <div>
-                    <p>Value Chain </p><span>: {''}</span>
+                    <p>Value Chain </p>
+                    <span>
+                      :  {
+                        tenders?.value_chain?.map(({ vc_name }) => {
+                          return vc_name + ', ';
+                        })
+                      }
+                    </span>
                   </div>
                 </div>
 
@@ -95,18 +103,29 @@ const DownloadCard = ({ tenders }) => {
                 </div>
 
                 <div className={styles.row}>
-                  <p>Language </p>
-                  <span>
-                    : {
-                      tenders?.language?.map(({ lang }) => {
-                        return lang + ', ';
-                      })
-                    }
-                  </span>
+                  <div>
+                    <p>Language </p>
+                    <span>
+                      : {
+                        tenders?.language?.map(({ lang }) => {
+                          return lang + ', ';
+                        })
+                      }
+                    </span>
+                  </div>
                 </div>
 
                 <div className={styles.row}>
-                  <p>Keywords </p><span>: {''}</span>
+                  <div>
+                    <p>Keywords </p>
+                    <span>
+                      :  {
+                        tenders?.keywords?.map(({ keyword }) => {
+                          return keyword + ', ';
+                        })
+                      }
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

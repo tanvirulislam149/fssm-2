@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
 import styles from '../DocumentsFilterForm/DocumentsFilterForm.module.css';
-import { advancedSearchText } from '../../TextArrays';
+import useOptions from '../../useOptions';
 
 const AllDocumentsForm = ({ handleSearch }) => {
   const [theme, setTheme] = useState('');
   const [stakeholder, setStakeholder] = useState('')
-  const [category, setCategory] = useState('');
+  const [subcategory, setSubcategory] = useState('');
   const [organization, setOrganization] = useState('');
-  const [type, setType] = useState('');
+  const [doc_type, setDoc_type] = useState('');
   const [value_chain, setValue_chain] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
@@ -21,10 +21,13 @@ const AllDocumentsForm = ({ handleSearch }) => {
   const [valOptions, setValOptions] = useState([]);
   const [orgOptions, setOrgOptions] = useState([]);
   const [catOptions, setCatOptions] = useState([]);
+  const [typeOptions, setTypeOptions] = useState([]);
+
+  const { advancedSearchText } = useOptions();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { theme, category, stakeholder, value_chain, organization, type };
+    const data = { theme, subcategory, stakeholder, value_chain, organization, doc_type };
     handleSearch(data);
   }
 
@@ -54,7 +57,12 @@ const AllDocumentsForm = ({ handleSearch }) => {
       options.push(title);
     })
     setCatOptions(options);
-  }, [])
+    options = [];
+    advancedSearchText.types.forEach(({ title }) => {
+      options.push(title);
+    })
+    setTypeOptions(options);
+  }, [advancedSearchText])
 
   return (
     <>
@@ -82,7 +90,7 @@ const AllDocumentsForm = ({ handleSearch }) => {
             <Autocomplete
               className={styles.select}
               onChange={(event, newValue) => {
-                setCategory(newValue);
+                setSubcategory(newValue);
               }}
               inputValue={inputValue2}
               onInputChange={(event, newInputValue) => {
@@ -133,14 +141,14 @@ const AllDocumentsForm = ({ handleSearch }) => {
             <Autocomplete
               className={styles.select}
               onChange={(event, newValue) => {
-                setType(newValue);
+                setDoc_type(newValue);
               }}
               inputValue={inputValue5}
               onInputChange={(event, newInputValue) => {
                 setInputValue5(newInputValue);
               }}
               id='type'
-              options={[]}
+              options={typeOptions}
               renderInput={(params) => <TextField {...params} placeholder="--Select--" />}
             />
           </div>

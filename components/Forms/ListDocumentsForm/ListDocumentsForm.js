@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
-import { advancedSearchText } from '../../TextArrays';
+import useOptions from '../../useOptions';
 import styles from '../DocumentsFilterForm/DocumentsFilterForm.module.css';
 
 const ListDocumentsForm = ({ handleSearch }) => {
   const [theme, setTheme] = useState('');
   const [stakeholder, setStakeholder] = useState('')
-  const [category, setCategory] = useState('');
+  const [subcategory, setSubcategory] = useState('');
   const [value_chain, setValue_chain] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
@@ -17,9 +17,16 @@ const ListDocumentsForm = ({ handleSearch }) => {
   const [valOptions, setValOptions] = useState([]);
   const [catOptions, setCatOptions] = useState([]);
 
+  const { advancedSearchText } = useOptions();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { theme, category, stakeholder, value_chain };
+    if (theme === null) setTheme('');
+    if (subcategory === null) setSubcategory('');
+    if (stakeholder === null) setStakeholder('');
+    if (value_chain === null) setValue_chain('');
+
+    const data = { theme, subcategory, stakeholder, value_chain };
     handleSearch(data);
   }
 
@@ -44,7 +51,7 @@ const ListDocumentsForm = ({ handleSearch }) => {
       options.push(title);
     })
     setCatOptions(options);
-  }, [])
+  }, [advancedSearchText])
 
   return (
     <>
@@ -72,7 +79,7 @@ const ListDocumentsForm = ({ handleSearch }) => {
             <Autocomplete
               className={styles.select}
               onChange={(event, newValue) => {
-                setCategory(newValue);
+                setSubcategory(newValue);
               }}
               inputValue={inputValue2}
               onInputChange={(event, newInputValue) => {

@@ -173,7 +173,7 @@
   position: fixed;
   top: 140px;
   right: 0;
-  z-index: 100;
+  z-index: 4;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -webkit-animation: fadeIn 0.5s;
@@ -224,6 +224,8 @@
   .container {
     margin-left: var(--five);
     margin-right: var(--five);
+    padding-top: var(--s-30);
+    margin-bottom: 0;
   }
 
   .card {

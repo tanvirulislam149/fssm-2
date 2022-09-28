@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './AdvancedSearchCategories.module.css';
-import { advancedSearchText } from '../../TextArrays';
 import { useRouter } from 'next/router';
+import useOptions from '../../useOptions';
 
 const AdvancedSearchCategories = ({ handleSelect }) => {
   const router = useRouter();
+  const { advancedSearchText } = useOptions();
 
   const handleDropDown = (el) => {
     const a = document.getElementById('cat-1')

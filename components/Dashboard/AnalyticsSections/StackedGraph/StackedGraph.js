@@ -191,6 +191,7 @@ const StackedGraph = () => {
   }
 
   useEffect(() => {
+    if (window.matchMedia('(max-width:950px').matches) setMultiplier(45);
     getStats((err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
@@ -198,6 +199,21 @@ const StackedGraph = () => {
       }
     });
   }, []);
+
+  const handleResize = () => {
+    if (window.matchMedia('(max-width:950px').matches) {
+      setMultiplier(45);
+    } else {
+      setMultiplier(90);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  })
 
   const handleStart = (val) => {
     const day = val ?
@@ -224,7 +240,6 @@ const StackedGraph = () => {
     setEnd(`${year}-${month}-${day}`);
     setEndDate(val);
   }
-
 
   const handleSubmit = () => {
     console.log(option.xaxis.categories.length)
@@ -342,7 +357,7 @@ const StackedGraph = () => {
           <div className={styles.chart}>
             {loading ?
               <div className={styles.justify_center}><CircularProgress /></div> :
-              <div id="chart">
+              <div className={styles.div} id="chart">
                 <ReactApexChart options={option} height={option.xaxis.categories.length * multiplier} series={series} type="bar" />
               </div>
             }

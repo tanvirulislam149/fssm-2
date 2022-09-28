@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
-import { advancedSearchText } from '../../TextArrays';
+import useOptions from '../../useOptions';
 import styles from './DocumentsFilterForm.module.css';
 
 const DocumentsFilterForm = ({ handleSearch }) => {
   const [theme, setTheme] = useState('');
   const [stakeholder, setStakeholder] = useState('')
-  const [keyword, setKeyword] = useState('');
-  const [category, setCategory] = useState('');
+  const [words, setWords] = useState('');
+  const [subcategory, setSubcategory] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [inputValue3, setInputValue3] = useState('');
@@ -15,9 +15,15 @@ const DocumentsFilterForm = ({ handleSearch }) => {
   const [stakeOptions, setStakeOptions] = useState([]);
   const [catOptions, setCatOptions] = useState([]);
 
+  const { advancedSearchText } = useOptions();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { theme, category, keyword, stakeholder };
+    if (theme === null) setTheme('');
+    if (subcategory === null) setSubcategory('');
+    if (stakeholder === null) setStakeholder('');
+
+    const data = { theme, subcategory, words, stakeholder };
     handleSearch(data);
   }
 
@@ -32,7 +38,12 @@ const DocumentsFilterForm = ({ handleSearch }) => {
       options.push(title);
     })
     setStakeOptions(options);
-  }, [])
+    options = [];
+    advancedSearchText.categories.forEach(({ title }) => {
+      options.push(title);
+    })
+    setCatOptions(options);
+  }, [advancedSearchText])
 
   return (
     <>
@@ -60,7 +71,7 @@ const DocumentsFilterForm = ({ handleSearch }) => {
             <Autocomplete
               className={styles.select}
               onChange={(event, newValue) => {
-                setCategory(newValue);
+                setSubcategory(newValue);
               }}
               inputValue={inputValue2}
               onInputChange={(event, newInputValue) => {
@@ -94,9 +105,9 @@ const DocumentsFilterForm = ({ handleSearch }) => {
             <input
               className={styles.input}
               type='text'
-              value={keyword}
+              value={words}
               onChange={(e) => {
-                setKeyword(e.target.value);
+                setWords(e.target.value);
               }} />
           </div>
         </section>

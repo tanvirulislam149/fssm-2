@@ -2,6 +2,7 @@
   padding: var(--s-20);
   background: var(--white-color);
   border-radius: var(--fs-12);
+  margin-bottom: var(--s-20);
   display: flex;
 }
 
@@ -17,9 +18,7 @@
 
 .description,
 .description .row,
-.description .row2,
 .description .row div,
-.description .row2 div,
 .description p,
 .description span {
   padding: 0;
@@ -28,16 +27,6 @@
 .description {
   width: var(--hundred);
   margin-top: var(--s-30);
-}
-
-.row2 {
-  width: var(--hundred);
-  display: flex;
-  margin-bottom: var(--lh-35);
-}
-
-.row2 > div {
-  width: var(--fifty);
 }
 
 .row {
@@ -50,7 +39,6 @@
 .row p {
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
-  width: var(--s-150);
 }
 
 .row span {
@@ -61,7 +49,8 @@
 
 .row > div {
   width: var(--fifty);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .main {
@@ -196,15 +185,6 @@
   }
 
   .row > div {
-    width: var(--hundred);
-    margin-bottom: var(--s-18);
-  }
-
-  .row2 {
-    display: block;
-  }
-
-  .row2 > div {
     width: var(--hundred);
     margin-bottom: var(--s-18);
   }
