@@ -62,6 +62,7 @@ const DocumentsList = ({ documents }) => {
 
   useEffect(() => {
     setList(documents);
+    list.length && document.getElementById('edit').click();
   }, [documents])
 
   const handleError = (err) => {
@@ -239,6 +240,7 @@ const DocumentsList = ({ documents }) => {
                     </div>
                     <div
                       title='edit'
+                      id='edit'
                       className={`${styles.btn} ${styles.editbtn}`}
                       data-modal="myModal"
                       onClick={() => {
@@ -261,7 +263,7 @@ const DocumentsList = ({ documents }) => {
 
       <ViewDocument setDocId={setDocId} currentDoc={currentDoc} />
 
-      <EditCategory update={update} setUpdate={setUpdate} docDetails={docDetails} />
+      <EditCategory update={update} documents={documents} setUpdate={setUpdate} docDetails={docDetails} />
 
       <DeletePopup docId={docId} handleDelete={handleDelete} />
 

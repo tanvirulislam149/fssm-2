@@ -4,8 +4,15 @@ import EditCategoryForm from '../../Forms/EditCategoryForm/EditCategoryForm';
 import styles from './EditCategory.module.css';
 import close from '../../../assets/Close.png';
 
-const EditCategory = ({ update, setUpdate, docDetails }) => {
+const EditCategory = ({ update, documents, setUpdate, docDetails }) => {
   const [chipKey, setChipKey] = useState(false);
+
+  useState(() => {
+    setTimeout(() => {
+      console.log('kj')
+      document.querySelector('.m2').style.display = "none";
+    }, 1);
+  }, [documents])
 
   return (
     <>
