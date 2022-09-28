@@ -1,5 +1,6 @@
 import { Autocomplete, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
+import UnapprovedList from '../../Sections/UnapprovedList/UnapprovedList';
 import { advancedSearchText } from '../../TextArrays';
 import styles from "./UnapprovedDocs.module.css"
 
@@ -190,7 +191,7 @@ const UnapprovedDocs = () => {
         </div>
       </form>
       <h4 className={styles.label3}>Un Approved List</h4>
-      {/* <OrganizationList /> */}
+      <UnapprovedList></UnapprovedList>
     </>
   )
 }

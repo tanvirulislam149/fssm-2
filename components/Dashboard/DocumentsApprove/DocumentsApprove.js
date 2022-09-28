@@ -8,7 +8,7 @@ import styles from "./DocumentsApprove.module.css"
 
 const DocumentsApprove = () => {
 
-  const [layout, setLayout] = useState(true);
+  const [layout, setLayout] = useState(false);
 
 
   return (
