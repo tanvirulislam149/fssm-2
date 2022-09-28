@@ -63,6 +63,7 @@ const DocumentsList = ({ documents }) => {
   useEffect(() => {
     setList(documents);
     setClick(!click);
+    setIndex(0);
   }, [documents])
 
   const handleError = (err) => {
