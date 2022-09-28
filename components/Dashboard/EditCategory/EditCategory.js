@@ -7,7 +7,7 @@ import close from '../../../assets/Close.png';
 const EditCategory = ({ update, documents, setUpdate, docDetails }) => {
   const [chipKey, setChipKey] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     setTimeout(() => {
       console.log('kj')
       document.querySelector('.m2') ? document.querySelector('.m2').style.display = "none" : null;
