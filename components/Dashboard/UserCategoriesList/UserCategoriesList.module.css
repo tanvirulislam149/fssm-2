@@ -286,9 +286,9 @@
   background: var(--light-gray-color);
 }
 
-@media (max-width: 940px) {
+@media (max-width: 950px) {
   .modal_content2 {
-    width: var(--size-95);
+    width: var(--size-88);
   }
 
   .overflow > div {
@@ -298,7 +298,7 @@
 
 @media (max-width: 690px) {
   .modal_content {
-    width: var(--size-95);
+    width: var(--size-88);
   }
 }
 

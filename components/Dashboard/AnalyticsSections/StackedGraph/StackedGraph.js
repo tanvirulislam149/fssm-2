@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { getOrgStackedGraph } from '../../../../services/dashboardService';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const StackedGraph = () => {
@@ -186,7 +187,12 @@ const StackedGraph = () => {
   const handleError = (err) => {
     setLoading(false);
     setError(err.message);
-    err?.response?.data?.code === 'token_not_valid' && router.push('/signin');
+    if (err?.response?.data?.code === 'token_not_valid') {
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
+      router.push('/signin');
+    }
     console.log({ e: err })
   }
 

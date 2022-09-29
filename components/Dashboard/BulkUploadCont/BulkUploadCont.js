@@ -3,10 +3,15 @@ import styles from './BulkUploadCont.module.css';
 import Image from 'next/image';
 import { imageTypes } from '../../TextArrays';
 import { uploadDocs } from '../../../services/bulkUploadService';
+import AlertCard from '../AlertCard/AlertCard';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 const BulkUploadCont = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
 
   const handleFileEvent = (e) => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
@@ -28,11 +33,17 @@ const BulkUploadCont = () => {
 
   const handleError = (err) => {
     setLoading(false);
+    //setError(err.message);
+    if (err?.response?.data?.code === 'token_not_valid') {
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
+      router.push('/signin');
+    }
     console.log({ e: err })
-    setError(err.message);
   }
 
-  const handleSubmit = (files, start, end, name) => {
+  const handleSubmit = (files, start, end, name, confirmation) => {
     setLoading(true);
     uploadDocs(
       { document: files }
@@ -51,16 +62,17 @@ const BulkUploadCont = () => {
             end.forEach(item => {
               item.classList.add('none');
             })
+            confirmation.style.display = 'flex';
           }
         }
       })
   }
 
-  const handleUpload = (index, start, end, name) => {
+  const handleUpload = (index, start, end, name, confirmation) => {
     const newState = uploadedFiles.filter((file, i) => {
       return i === index;
     })
-    handleSubmit(newState, [start], [end], [name]);
+    handleSubmit(newState, [start], [end], [name], confirmation);
   }
 
   return (
@@ -87,7 +99,8 @@ const BulkUploadCont = () => {
                 handleSubmit(uploadedFiles,
                   document.querySelectorAll('.start'),
                   document.querySelectorAll('.end'),
-                  document.querySelectorAll('.name'));
+                  document.querySelectorAll('.name'),
+                  document.querySelector('.m15'));
               }}
             >Start Upload</span>
             <span
@@ -116,7 +129,8 @@ const BulkUploadCont = () => {
                       handleUpload(i,
                         document.getElementById(`start${i}`),
                         document.getElementById(`end${i}`),
-                        document.getElementById(`name${i}`),);
+                        document.getElementById(`name${i}`),
+                        document.querySelector('.m15'));
                     }}
                   >Start</span>
                   <span
@@ -130,6 +144,8 @@ const BulkUploadCont = () => {
           }
         </div>
       </div>
+
+      <AlertCard message='Documents have been added' />
     </>
   )
 }

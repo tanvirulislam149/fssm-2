@@ -42,7 +42,6 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
       ...values,
       keywords, stakeholder, value_chain, language, sub_cat, state, city
     }
-    console.log(data);
 
     if (router.pathname === '/mydocuments') {
       editMyDocs(docDetails.id, data, (err, res) => {
@@ -68,7 +67,6 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
   }
 
   useEffect(() => {
-    console.log({ docDetails })
     setInputValue(docDetails.theme);
     docDetails.doc_type && setInputValue2(docDetails.doc_type);
     docDetails.city && setCity(docDetails.city);
@@ -236,8 +234,6 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
                     <input
                       onChange={(e) => {
                         setFieldValue('geography', e.target.value);
-                        setState([]);
-                        setCity('');
                       }}
                       id='state'
                       type="radio"

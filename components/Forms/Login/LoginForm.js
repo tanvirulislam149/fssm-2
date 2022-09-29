@@ -27,10 +27,14 @@ const LoginForm = () => {
   const handleError = (err) => {
     console.log({ e: err })
     setLoading(false);
-    err === 'Email or Password Incorrect' ?
-      setError('Email or Password Incorrect') :
-      err === 'Refresh token expired' ?
-        navigate.push('/signin') : setError('An Error Occured, Please Refresh And Try Again');
+    if (err === 'Email or Password Incorrect') {
+      setError('Email or Password Incorrect');
+    } else if (err === 'Refresh token expired') {
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
+      router.push('/signin');
+    } else setError('An Error Occured, Please Refresh And Try Again');
   }
 
   const handleSubmit = async (loginData) => {

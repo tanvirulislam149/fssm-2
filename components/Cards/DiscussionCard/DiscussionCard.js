@@ -104,7 +104,12 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
 
   const handleError = (err) => {
     setLoading(false);
-    err.response.data.code === 'token_not_valid' && router.push('/signin');
+    if (err?.response?.data?.code === 'token_not_valid') {
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
+      router.push('/signin');
+    }
     console.log({ e: err })
   }
 

@@ -86,8 +86,8 @@
   }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 950px) {
   .modal_content {
-    width: var(--size-95);
+    width: var(--size-88);
   }
 }

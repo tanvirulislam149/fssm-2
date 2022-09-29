@@ -111,10 +111,14 @@
 
 .title {
   width: var(--twenty);
+  padding: var(--size-3);
+  word-break: break-word;
 }
 
 .details {
   width: var(--eighty);
+  padding: var(--size-3);
+  word-break: break-word;
 }
 
 .content + div {
@@ -151,8 +155,8 @@
   background: var(--red-hov);
 }
 
-@media (max-width: 690px) {
+@media (max-width: 950px) {
   .modal_content {
-    width: var(--size-95);
+    width: var(--size-88);
   }
 }

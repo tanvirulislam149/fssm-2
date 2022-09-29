@@ -313,10 +313,8 @@
 }
 
 @media (max-width: 690px) {
-  .modal_content {
-    width: var(--size-95);
-  }
+  .modal_content,
   .modal_content2 {
-    width: var(--size-95);
+    width: var(--size-88);
   }
 }
