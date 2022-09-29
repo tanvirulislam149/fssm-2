@@ -264,7 +264,7 @@ const ListDocumentsComp = ({ documents }) => {
           }
         </div>
       </div>
-      <p className={styles.results}>Showing 10 of 10 entries</p>
+      <p className={styles.results}>Showing 10 of {list.length} entries</p>
     </>
   )
 }
