@@ -3,7 +3,7 @@ import styles from './DocumentsList.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import EditCategory from '../EditCategory/EditCategory';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -197,7 +197,7 @@ const DocumentsList = ({ documents }) => {
               <p>Action</p>
             </div>
           </div>
-          {list.length ?
+          {list?.length ?
             list.map(({ name, id, description, title }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
@@ -234,6 +234,7 @@ const DocumentsList = ({ documents }) => {
                       data-modal="myModal"
                       onClick={() => {
                         setCurrentDoc(list[i]);
+                        setIndex(i);
                         document.querySelector('.m').style.display = "flex";
                       }}
                     >
@@ -241,16 +242,15 @@ const DocumentsList = ({ documents }) => {
                     </div>
                     <div
                       title='edit'
-                      id={`edit${i}`}
                       className={`${styles.btn} ${styles.editbtn}`}
                       data-modal="myModal"
                       onClick={() => {
                         setClick(!click);
-                        setIndex(i)
-                        document.querySelector('.m2').style.display = "flex"
+                        setIndex(i);
+                        document.querySelector('.m2').style.display = "flex";
                       }}
                     >
-                      <CreateOutlinedIcon sx={{ color: 'white', height: '15px', width: '15px' }} />
+                      <CheckBoxOutlinedIcon sx={{ height: '15px', width: '15px' }} />
                     </div>
                   </div>
                 </div>
@@ -260,9 +260,9 @@ const DocumentsList = ({ documents }) => {
           }
         </div>
       </div>
-      <p className={styles.results}>Showing 10 of {list.length} entries</p>
+      <p className={styles.results}>Showing 10 of {list?.length} entries</p>
 
-      <ViewDocument setDocId={setDocId} currentDoc={currentDoc} />
+      <ViewDocument click={click} setClick={setClick} setDocId={setDocId} currentDoc={currentDoc} />
 
       <EditCategory update={update} setUpdate={setUpdate} docDetails={docDetails} />
 

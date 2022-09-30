@@ -6,7 +6,6 @@ import file from '../../../assets/file.png';
 
 const AddItems = ({ subitems, count }) => {
   count++;
-  const identifier = Math.random();
 
   const handleAction = (el) => {
     el.classList.toggle('none');
@@ -26,12 +25,12 @@ const AddItems = ({ subitems, count }) => {
                 <p
                   className={count === 4 ? styles.key2 : styles.key}
                   onClick={() => {
-                    handleAction(document.getElementById(`${title.replace(/\s/g, '')}${identifier}`));
+                    handleAction(document.getElementById(`${title.replace(/\s/g, '')}`));
                   }}>{id}</p>
                 <p className={styles.title}><Image src={count === 4 ? file : folder} alt='icon' height={21} width={count === 4 ? 17 : 21} />{title}</p>
                 {
                   subitems.length ?
-                    <div className={styles.div} id={`${title.replace(/\s/g, '')}${identifier}`}>
+                    <div className={styles.div} id={`${title.replace(/\s/g, '')}`}>
                       <AddItems count={count} subitems={subitems} />
                     </div> :
                     null

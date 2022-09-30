@@ -2,8 +2,9 @@ import React from 'react';
 import styles from './ViewDocument.module.css';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
+import MapSection from '../MapSection/MapSection';
 
-const ViewDocument = ({ currentDoc, setDocId }) => {
+const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
   return (
     <>
       <div id="myModal" className='modal2 m'>
@@ -187,7 +188,14 @@ const ViewDocument = ({ currentDoc, setDocId }) => {
               </div>
             </div>
             <div>
-              <button className={styles.btn2}>Edit Document</button>
+              <button
+                className={styles.btn2}
+                onClick={() => {
+                  setClick(!click);
+                  document.querySelector('.m2').style.display = "flex";
+                }}>
+                Edit Document
+              </button>
               <button
                 className={styles.btn3}
                 onClick={() => {
@@ -196,11 +204,19 @@ const ViewDocument = ({ currentDoc, setDocId }) => {
                 }}>
                 Delete Document
               </button>
-              <button className={styles.btn2}>Map Document</button>
+              <button
+                className={styles.btn2}
+                onClick={() => {
+                  document.querySelector('.m8').style.display = "flex";
+                }}>
+                Map Document
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      <MapSection />
     </>
   )
 }

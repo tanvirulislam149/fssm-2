@@ -98,11 +98,13 @@
   --s-300: 300px;
   --s-270: 270px;
   --s-266: 266px;
+  --s-250: 250px;
   --s-240: 240px;
   --s-216: 216.85px;
   --s-200: 200px;
   --s-180: 180px;
   --s-165: 165px;
+  --s-160: 160px;
   --s-150: 150px;
   --s-140: 140px;
   --s-135: 135px;
@@ -115,7 +117,7 @@
 
   /* colors */
   --primary-blue: #024c73;
-  --transparent-blue: #024c73b3;
+  --transparent-blue: #024b73a4;
   --bg-main-button-hov: #024b73d8;
   --blue: #2758ca;
   --blue-hov: #2758cab3;

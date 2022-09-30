@@ -128,12 +128,8 @@
 }
 
 .editbtn {
-  background: var(--primary-blue);
+  border: solid 1px var(--black);
   margin-left: var(--size-5);
-}
-
-.editbtn:hover {
-  background: var(--l-blue);
 }
 
 .viewbtn {

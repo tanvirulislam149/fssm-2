@@ -3,14 +3,17 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 import styles from './UserCategoriesList.module.css';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import AddItems from '../AddItems/AddItems';
 import { addItemsText } from '../../TextArrays';
+import { editUserProfile, delUserProfile } from '../../../services/userCatServices';
+import DeletePopup from '../DeletePopup/DeletePopup';
+import AlertCard from '../AlertCard/AlertCard';
 
 const data = [
   { profile: 'Govt - National/State', display: 'Show', id: 1, order: 2 },
@@ -20,10 +23,30 @@ const data = [
 
 const UserCategoriesList = () => {
   const [number, setNumber] = useState(10);
+  const [docId, setDocId] = useState(null);
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
+
+  const handleSubmit = (values) => {
+    console.log({ values })
+    // editUserProfile('id',values, (err, res) => {
+    //   if (err) return handleError(err)
+    //   if (res !== null) {
+    //     console.log({ res: res });
+    //   }
+    // })
+  }
+
+  const handleDelete = (id, confirmation) => {
+    // delUserProfile(id, values, (err, res) => {
+    //   if (err) return handleError(err)
+    //   if (res !== null) {
+    //     console.log({ res: res });
+    //   }
+    // })
+  }
 
   return (
     <>
@@ -104,7 +127,11 @@ const UserCategoriesList = () => {
                     </div>
                     <div
                       title='Delete User Profile'
-                      className={`${styles.btn} ${styles.delbtn}`}>
+                      className={`${styles.btn} ${styles.delbtn}`}
+                      onClick={() => {
+                        setDocId(id);
+                        document.querySelector('.m10').style.display = "flex";
+                      }}>
                       <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                     </div>
                   </div>
@@ -137,57 +164,64 @@ const UserCategoriesList = () => {
           <div className={styles.cover}>
             <div className={styles.content}>
               <Formik
-                initialValues={{ userProfile: '', display: '', displayOrder: '' }}
+                initialValues={{ user_profile: '', is_hidden: false, display_order: '' }}
                 validationSchema={Yup.object({
-                  userProfile: Yup.string()
+                  user_profile: Yup.string()
                     .required('Required')
                     .min(4, '4 or more characters')
                     .test('is value valid?', 'Characters must consist of letters only', (val) => {
                       return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
                     }),
-                  displayOrder: Yup.string()
+                  display_order: Yup.string()
                     .required('Required')
                     .test('is value a number?', 'Display order must be a number', (val) => {
                       return !isNaN(val);
                     }),
                 })}
-                onSubmit={values => {
-                  //handleSubmit(values);
+                onSubmit={(values, actions) => {
+                  handleSubmit({ ...values, display_order: Number(values.display_order) });
+                  actions.resetForm();
+                  document.querySelector('.m7').style.display = "none";
                 }}
               >
-                <Form>
-                  <div className={styles.textInput2}>
-                    <label htmlFor="userProfile">User Profile <span>*</span></label>
-                    <Field name="userProfile" id='userProfile' className={styles.input} type="text" />
-                    <span className='form-error'><ErrorMessage name="userProfile" /></span>
-                  </div>
+                {({ resetForm, setFieldValue, values }) => (
+                  <Form>
+                    <div className={styles.textInput2}>
+                      <label htmlFor="user_profile">User Profile <span>*</span></label>
+                      <Field name="user_profile" id='user_profile' className={styles.input} type="text" />
+                      <span className='form-error'><ErrorMessage name="user_profile" /></span>
+                    </div>
 
-                  <div className={styles.textInput2}>
-                    <label htmlFor="display">Display</label>
-                    <Field name='display' as='select' id='display' className={`${styles.select2} ${styles.form_select} form-select`}>
-                      <option hidden value=''>--Select--</option>
-                      <option value={1}>Show</option>
-                      <option value={2}>Hide</option>
-                    </Field>
-                  </div>
+                    <div className={styles.textInput2}>
+                      <label htmlFor="is_hidden">Display</label>
+                      <Field name='is_hidden' as='select' id='is_hidden' onChange={() => { setFieldValue('is_hidden', !values.is_hidden) }} className={`${styles.select2} ${styles.form_select} form-select`}>
+                        <option hidden value=''>--Select--</option>
+                        <option value={false}>Show</option>
+                        <option value={true}>Hide</option>
+                      </Field>
+                    </div>
 
-                  <div className={styles.textInput2}>
-                    <label htmlFor="displayOrder">Display Order <span>*</span></label>
-                    <Field name="displayOrder" id='displayOrder' className={styles.input} type="text" />
-                    <span className='form-error'><ErrorMessage name="displayOrder" /></span>
-                  </div>
-                </Form>
+                    <div className={styles.textInput2}>
+                      <label htmlFor="display_order">Display Order <span>*</span></label>
+                      <Field name="display_order" id='display_order' className={styles.input} type="text" />
+                      <span className='form-error'><ErrorMessage name="display_order" /></span>
+                    </div>
+
+                    <div className={styles.btn_cont}>
+                      <button type='submit' className={`${styles.btn3} ${styles.save}`}>Save</button>
+                      <button
+                        className={`${styles.btn3} ${styles.cancel}`}
+                        type='reset'
+                        onClick={() => {
+                          resetForm();
+                          document.querySelector('.m7').style.display = "none";
+                        }}>
+                        Cancel
+                      </button>
+                    </div>
+                  </Form>
+                )}
               </Formik>
-            </div>
-            <div className={styles.btn_cont}>
-              <button className={`${styles.btn3} ${styles.save}`}>Save</button>
-              <button
-                className={`${styles.btn3} ${styles.cancel}`}
-                onClick={() => {
-                  document.querySelector('.m7').style.display = "none";
-                }}>
-                Cancel
-              </button>
             </div>
           </div>
         </div>
@@ -237,6 +271,10 @@ const UserCategoriesList = () => {
           </div>
         </div>
       </div>
+
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
+
+      <AlertCard message='' />
     </>
   )
 }

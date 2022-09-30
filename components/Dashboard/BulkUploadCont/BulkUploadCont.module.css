@@ -3,6 +3,10 @@
   margin-bottom: var(--s-20);
 }
 
+.container {
+  font-family: var(--font-family-secondary);
+}
+
 .label {
   margin: 0;
   color: var(--primary-blue);
@@ -11,6 +15,16 @@
   border-top: var(--size-3) solid var(--primary-blue);
   background: var(--white-color);
   margin-bottom: var(--s-10);
+}
+
+.limit {
+  color: var(--red);
+  font-weight: var(--fw-600);
+}
+
+.cursor {
+  cursor: no-drop !important;
+  background: var(--transparent-blue) !important;
 }
 
 .btn {

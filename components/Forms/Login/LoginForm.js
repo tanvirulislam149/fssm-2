@@ -34,7 +34,7 @@ const LoginForm = () => {
       Cookies.remove('refresh');
       Cookies.remove('isAdmin');
       router.push('/signin');
-    } else setError('An Error Occured, Please Refresh And Try Again');
+    } else setError('An Error Occured, Please Try Again');
   }
 
   const handleSubmit = async (loginData) => {
@@ -53,22 +53,22 @@ const LoginForm = () => {
         }
         console.log({ r: res })
         setError(null);
-        axiosInstance.defaults.headers.common["Authorization"] = 'Bearer ' + Cookies.get('access');
         Cookies.set('access', res.data.access_token, { expires: 14 })
         Cookies.set('refresh', res.data.refresh_token, { expires: 14 })
         Cookies.set('isAdmin', res.data.isAdmin, { expires: 14 })
+        axiosInstance.defaults.headers.common["Authorization"] = 'Bearer ' + Cookies.get('access');
         navigate.push('/');
         setLoading(false);
       }
     })
   }
 
-  useEffect(() => {
-    if (!Cookies.get('swass-fssm')) {
-      Cookies.set("swass-fssm", "true", { expires: 0.00005787 });
-      window.location.reload();
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!Cookies.get('swass-fssm')) {
+  //     Cookies.set("swass-fssm", "true", { expires: 0.00005787 });
+  //     window.location.reload();
+  //   }
+  // }, [])
 
   const goHome = () => {
     navigate.push('/');

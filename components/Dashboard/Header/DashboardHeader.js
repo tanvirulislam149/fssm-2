@@ -54,10 +54,9 @@ const DashboardHeader = () => {
           <h4>NFSSM</h4>
           <div
             className={styles.admin}
-          // onClick={() => {
-          //   document.getElementById('pop_up').classList.toggle('none');
-          // }}
-          >
+            onClick={() => {
+              document.getElementById('pop_up').classList.toggle('none');
+            }}>
             <Image src={profile} height={40} width={40} alt='logo' />
             <p>Admin</p>
           </div>
@@ -83,7 +82,7 @@ const DashboardHeader = () => {
         </div>
       </div>
 
-      {/* <div id='pop_up' className={`none ${styles.pop_up}`}>
+      <div id='pop_up' className={`none ${styles.pop_up}`}>
         <div className={styles.cont}>
           <Image src={profile} height={80} width={80} alt='logo' />
         </div>
@@ -91,7 +90,7 @@ const DashboardHeader = () => {
           <div className={styles.btn2}>Change Password</div>
           <div className={styles.btn3}>Sign Out</div>
         </div>
-      </div> */}
+      </div>
     </>
   )
 }

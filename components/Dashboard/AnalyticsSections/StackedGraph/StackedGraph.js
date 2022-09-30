@@ -187,7 +187,7 @@ const StackedGraph = () => {
   const handleError = (err) => {
     setLoading(false);
     setError(err.message);
-    if (err?.response?.data?.code === 'token_not_valid') {
+    if (err === 'Refresh token expired') {
       Cookies.remove('access');
       Cookies.remove('refresh');
       Cookies.remove('isAdmin');

@@ -1,0 +1,142 @@
+.modal_content2 {
+  position: relative;
+  background-color: var(--white-color);
+  margin: auto;
+  font-family: var(--font-family-secondary);
+  margin-top: var(--s-40);
+  margin-bottom: var(--s-20);
+  z-index: 2;
+  padding: 0;
+  border-width: 0;
+  width: var(--s-900);
+  height: max-content;
+  box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+.close {
+  color: var(--black);
+  font-size: var(--s-20);
+  font-weight: bold;
+  color: var(--white-color);
+  background: var(--l-blue);
+  padding: var(--fs-1rem);
+  padding-right: var(--s-30);
+  text-align: center;
+}
+
+.close > span {
+  height: var(--lh-35);
+  width: var(--lh-35);
+  background: var(--pale-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: var(--fifty);
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+}
+
+.close > span:hover {
+  background: var(--red-hov);
+  transition: ease-in-out 0.2s;
+}
+
+.bg {
+  background: var(--transparent);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  height: var(--min-height-100);
+  width: var(--hundred);
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cover2 {
+  padding: var(--s-20) var(--fs-14);
+}
+
+.buttons {
+  display: flex;
+  padding-bottom: var(--s-10);
+}
+
+.btn4 {
+  height: var(--s-22);
+  width: var(--s-30);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.yellow {
+  background: var(--yellow);
+  margin-left: var(--fs-14);
+  font-weight: var(--fw-400);
+  font-size: var(--s-8);
+}
+
+.yellow:hover {
+  background: var(--y-hov);
+}
+
+.red {
+  background: var(--pale-red);
+  margin-left: var(--fs-14);
+}
+
+.red:hover {
+  background: var(--red-hov);
+}
+
+.green {
+  background: var(--m-green);
+}
+
+.green:hover {
+  background: var(--g-hov);
+}
+
+.bold {
+  stroke: var(--black);
+  stroke-width: 2px;
+}
+
+.content2 {
+  padding: var(--s-20);
+  padding-left: var(--s-40);
+  background: var(--light-gray-color);
+}
+
+@media (max-width: 950px) {
+  .modal_content2 {
+    width: var(--size-88);
+  }
+
+  .overflow > div {
+    overflow: auto;
+  }
+}

@@ -280,7 +280,7 @@ export const sideBarText = [
   { id: 8, text: "Organization", link: "org", image: d8 },
   { id: 9, text: "Documents Approval", link: "docu", image: d9 },
   { id: 10, text: "Help desk", link: "dashboard", image: d10 },
-  { id: 11, text: "Discussion Forum", link: "dashboard", image: d11 },
+  { id: 11, text: "Discussion Forum", link: "forum", image: d11 },
   { id: 12, text: `FAQ's`, link: "dashboard", image: d12 },
   { id: 13, text: "Get Involved", link: "dashboard", image: d13 },
   { id: 14, text: "Analytics", link: "dashboard", image: d14 },

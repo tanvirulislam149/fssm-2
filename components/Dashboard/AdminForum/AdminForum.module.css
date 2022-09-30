@@ -1,0 +1,226 @@
+.container2 {
+  font-family: var(--font-family-secondary);
+}
+
+.approveLabel {
+  margin: 0;
+  font-weight: var(--font-weight-bold);
+  padding: var(--size-5);
+  background: var(--white-color);
+}
+
+.unapproveBtn {
+  background-color: var(--white-color);
+  color: var(--black);
+}
+
+.activeBtn {
+  background-color: var(--green);
+  color: var(--white-color);
+}
+
+.activeBtn,
+.unapproveBtn {
+  height: var(--s-42);
+  font-weight: var(--fw-400);
+  line-height: var(--s-20);
+  /* padding: var(--fs-12) var(--s-30); */
+  margin-top: var(--size-5);
+  width: var(--s-216);
+  border: 1px solid var(--green);
+  margin-right: var(--fs-12);
+  font-size: var(--fs-1rem);
+}
+
+.label2 {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+  padding: var(--fs-14) var(--s-10);
+  border-top: var(--size-3) solid var(--primary-blue);
+  background: var(--white-color);
+  margin-bottom: var(--s-10);
+}
+
+.label2 {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--d-bg);
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-400);
+  color: var(--white-color);
+  border-width: 0;
+  background: var(--pale-red);
+  height: var(--s-30);
+  width: var(--s-120);
+  text-align: center;
+  margin-top: -10px;
+}
+
+.btn:hover {
+  background: var(--red-hov);
+}
+
+/* modal */
+.modal_content2 {
+  position: relative;
+  background-color: var(--white-color);
+  margin: auto;
+  font-family: var(--font-family-secondary);
+  margin-top: var(--s-40);
+  margin-bottom: var(--s-20);
+  z-index: 2;
+  padding: 0;
+  border-width: 0;
+  width: var(--s-420);
+  height: max-content;
+  box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+.close {
+  color: var(--black);
+  font-size: var(--s-20);
+  font-weight: bold;
+  color: var(--white-color);
+  background: var(--l-blue);
+  padding: var(--fs-1rem);
+  padding-right: var(--s-30);
+  text-align: center;
+}
+
+.close > span {
+  height: var(--lh-35);
+  width: var(--lh-35);
+  background: var(--pale-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: var(--fifty);
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+}
+
+.close > span:hover {
+  background: var(--red-hov);
+  transition: ease-in-out 0.2s;
+}
+
+.bg {
+  background: var(--transparent);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  height: var(--min-height-100);
+  width: var(--hundred);
+}
+
+.cover2 {
+  padding: var(--fs-14);
+  padding-bottom: var(--s-20);
+}
+
+.content2 {
+  border: solid 1px var(--light-gray-color);
+  background: var(--input-border-color);
+  padding: var(--s-30);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-400);
+}
+
+.content2 label {
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+}
+
+.btn3 {
+  height: var(--fs-24);
+  padding: 0 var(--s-20);
+  color: var(--white-color);
+  border-width: 0;
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+}
+
+.save {
+  background: var(--l-blue);
+}
+
+.save:hover {
+  background: var(--lb-hov);
+}
+
+.cancel {
+  background: var(--pale-red);
+  margin-left: var(--s-10);
+}
+
+.cancel:hover {
+  background: var(--red-hov);
+}
+
+.btn_cont {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--s-10);
+  margin-top: var(--s-20);
+}
+
+.input {
+  padding: var(--s-8);
+  width: var(--hundred);
+  margin-top: var(--s-10);
+  border-width: 0;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 690px) {
+  .modal_content2 {
+    width: var(--size-88);
+  }
+}
+
+@media (max-width: 506px) {
+  .unapproveBtn {
+    margin-right: 0;
+    width: var(--hundred);
+    font-size: var(--fs-1rem);
+  }
+
+  .activeBtn {
+    margin-right: 0;
+    width: var(--hundred);
+    font-size: var(--fs-1rem);
+  }
+
+  .approveLabel {
+    display: flex;
+    flex-direction: column;
+  }
+}

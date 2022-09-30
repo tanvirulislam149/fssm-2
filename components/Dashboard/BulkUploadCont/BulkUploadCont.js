@@ -18,6 +18,7 @@ const BulkUploadCont = () => {
     const uploaded = [...uploadedFiles];
 
     chosenFiles.forEach((file, i) => {
+      file.size > 30000000 ? file.limit = true : file.limit = false;
       file.image = URL.createObjectURL(e.target.files[i]);
       uploaded.push(file);
     })
@@ -34,7 +35,7 @@ const BulkUploadCont = () => {
   const handleError = (err) => {
     setLoading(false);
     //setError(err.message);
-    if (err?.response?.data?.code === 'token_not_valid') {
+    if (err === 'Refresh token expired') {
       Cookies.remove('access');
       Cookies.remove('refresh');
       Cookies.remove('isAdmin');
@@ -86,7 +87,7 @@ const BulkUploadCont = () => {
               className='none'
               id='fileUpload'
               multiple
-              //accept='image/png, image/jpg, image/jpeg'
+              accept='image/png, image/jpg, image/jpeg, .mkv, .webm, .wmv, .xlsx, .xls, .doc, .docx, video/*, audio/*, .pdf'
               type='file'
               onChange={(e) => { handleFileEvent(e); }}
             />
@@ -110,22 +111,24 @@ const BulkUploadCont = () => {
           </section>
 
           {
-            uploadedFiles.map(({ name, image, size, type }, i) => {
+            uploadedFiles.map(({ name, limit, image, size, type }, i) => {
               return (
                 <div key={i} className={i % 2 === 0 ? styles.display2 : styles.display}>
                   <div className={styles.img}>
                     {imageTypes.includes(type) && <Image layout='fill' objectFit='contain' alt='' src={image} />}
                   </div>
                   <div id={`name${i}`} className={`name ${styles.name}`}>
-                    <p>{name}</p>
+                    <p>{name}<br /> {limit && <span className={styles.limit}>File size is too large. Maximum size is 30MB.</span>}</p>
                   </div>
                   <div className={styles.size}>
                     <p>{size < 1000 ? 0 : size.toString().slice(0, size.toString().length - 3)} KB</p>
                   </div>
                   <span
                     id={`start${i}`}
-                    className={`start ${styles.start}`}
+                    className={`start ${styles.start} ${limit && styles.cursor}`}
                     onClick={() => {
+                      if (limit) return;
+                      console.log('wa')
                       handleUpload(i,
                         document.getElementById(`start${i}`),
                         document.getElementById(`end${i}`),

@@ -15,6 +15,12 @@ const MyDocuments = () => {
   const handleError = (err) => {
     setLoading(false);
     console.log({ e: err })
+    if (err === 'Refresh token expired') {
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
+      router.push('/signin');
+    }
     setError(err.message);
   }
 
@@ -23,8 +29,8 @@ const MyDocuments = () => {
     console.log(data)
     getMyDocs(data, (err, res) => {
       if (err) return handleError(err)
-      if (res !== null) {
-        console.log({ res: res.data['Search Results'] });
+      if (res !== null && res) {
+        console.log({ re: res.data['Search Results'] });
         setDocuments(res.data['Search Results'])
         setLoading(false);
       }
