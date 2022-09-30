@@ -55,6 +55,7 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
   const [search, setSearch] = useState('');
   const [updated, setUpdated] = useState(false);
   const [list, setList] = useState(documents);
+  console.log(layout)
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -178,7 +179,7 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
                       className={`${styles.btn} ${styles.delbtn}`}>
                       <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                     </div>
-                    {layout === 2 || layout === 4 && <div
+                    {layout !== 1 && <div
                       className={`${styles.btn} ${styles.viewbtn}`}
                       title='view'
                       onClick={() => {
