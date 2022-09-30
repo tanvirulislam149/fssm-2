@@ -54,6 +54,7 @@ const DashboardHeader = () => {
           <h4>NFSSM</h4>
           <div
             className={styles.admin}
+            title='Toggle pop-up'
             onClick={() => {
               document.getElementById('pop_up').classList.toggle('none');
             }}>
