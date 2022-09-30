@@ -55,7 +55,6 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
   const [search, setSearch] = useState('');
   const [updated, setUpdated] = useState(false);
   const [list, setList] = useState(documents);
-  console.log(layout)
 
   const handleChange = (event) => {
     setNumber(event.target.value);
