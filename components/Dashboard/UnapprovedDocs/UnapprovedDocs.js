@@ -5,56 +5,33 @@ import styles from "./UnapprovedDocs.module.css"
 import useOptions from "../../useOptions";
 
 const UnapprovedDocs = () => {
-
+  const [inputValue, setInputValue] = useState("");
   const { advancedSearchText } = useOptions();
 
-  const [inputValue, setInputValue] = useState("");
-  const [themeOptions, setThemeOptions] = useState([]);
-  const [stakeholderOptions, setStakeholderOptions] = useState([]);
-  const [organizationOption, setOrganizationOption] = useState([]);
-  const [valueChainOption, setValueChainOption] = useState([]);
-  const [subCategoryOption, setSubCategoryOption] = useState([]);
-  const [documentTypeOption, setDocumentTypeOption] = useState([]);
-
-  useEffect(() => {
-    let options = [];
-    advancedSearchText.themes.forEach(({ title }) => {
-      options.push(title);
-    });
-    setThemeOptions(options);
-  }, []);
-  useEffect(() => {
-    let options = [];
-    advancedSearchText.stake_holder.forEach(({ title }) => {
-      options.push(title);
-    });
-    setStakeholderOptions(options);
-  }, []);
-  useEffect(() => {
-    let options = [];
-    advancedSearchText.partners.forEach(({ title }) => {
-      options.push(title);
-    });
-    setOrganizationOption(options);
-  }, []);
-  useEffect(() => {
-    let options = [];
-    advancedSearchText.valueChain.forEach(({ title }) => {
-      options.push(title);
-    });
-    setValueChainOption(options);
-  }, []);
-  useEffect(() => {
-    let options = [];
-    advancedSearchText.categories.forEach(({ title }) => {
-      options.push(title);
-    });
-    setSubCategoryOption(options);
-  }, []);
-  useEffect(() => {
-    let options = advancedSearchText.types;
-    setDocumentTypeOption(options);
-  }, []);
+  const themeOptions = [];
+  advancedSearchText.themes.forEach(({ title }) => {
+    themeOptions.push(title);
+  });
+  const stakeholderOptions = [];
+  advancedSearchText.stake_holder.forEach(({ title }) => {
+    stakeholderOptions.push(title);
+  });
+  const organizationOption = [];
+  advancedSearchText.partners.forEach(({ title }) => {
+    organizationOption.push(title);
+  });
+  const valueChainOption = [];
+  advancedSearchText.valueChain.forEach(({ title }) => {
+    valueChainOption.push(title);
+  });
+  const subCategoryOption = [];
+  advancedSearchText.categories.forEach(({ title }) => {
+    subCategoryOption.push(title);
+  });
+  const documentTypeOption = [];
+  advancedSearchText.types.forEach(({ title }) => {
+    documentTypeOption.push(title);
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -7,7 +7,6 @@ import useOptions from '../../useOptions';
 const ApprovedDocs = () => {
 
   const { advancedSearchText } = useOptions();
-  console.log(advancedSearchText);
 
   const themeOptions = [];
   advancedSearchText.themes.forEach(({ title }) => {
