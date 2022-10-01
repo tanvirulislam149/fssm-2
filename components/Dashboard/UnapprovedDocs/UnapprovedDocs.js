@@ -1,10 +1,13 @@
 import { Autocomplete, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import UnapprovedList from '../../Sections/UnapprovedList/UnapprovedList';
-import { advancedSearchText } from '../../TextArrays';
 import styles from "./UnapprovedDocs.module.css"
+import useOptions from "../../useOptions";
 
 const UnapprovedDocs = () => {
+
+  const { advancedSearchText } = useOptions();
+
   const [inputValue, setInputValue] = useState("");
   const [themeOptions, setThemeOptions] = useState([]);
   const [stakeholderOptions, setStakeholderOptions] = useState([]);
