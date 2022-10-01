@@ -54,15 +54,26 @@
   font-weight: var(--fw-400);
   color: var(--white-color);
   border-width: 0;
-  background: var(--pale-red);
+  background: var(--primary-blue);
   height: var(--s-30);
-  width: var(--s-120);
+  padding: 0 var(--s-20);
   text-align: center;
   margin-top: -10px;
 }
 
 .btn:hover {
-  background: var(--red-hov);
+  background: var(--l-blue);
+}
+
+.textarea {
+  height: auto;
+  resize: none;
+  border: solid 1px var(--shade);
+  font-family: var(--font-family-secondary);
+  font-size: var(--fs-1rem);
+  padding: var(--s-10);
+  width: var(--hundred);
+  margin-top: var(--s-8);
 }
 
 /* modal */
@@ -76,7 +87,7 @@
   z-index: 2;
   padding: 0;
   border-width: 0;
-  width: var(--s-420);
+  width: var(--s-900);
   height: max-content;
   box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
   -webkit-animation-name: animatetop;
@@ -178,8 +189,9 @@
 .input {
   padding: var(--s-8);
   width: var(--hundred);
-  margin-top: var(--s-10);
+  margin-top: var(--s-8);
   border: solid 1px var(--shade);
+  margin-bottom: var(--s-20);
 }
 
 @-webkit-keyframes animatetop {

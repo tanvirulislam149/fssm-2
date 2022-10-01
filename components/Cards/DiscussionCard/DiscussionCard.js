@@ -13,7 +13,6 @@ import Input from '../../Inputs/Input';
 import { startDiscussion } from '../../../services/discussionService';
 import CircularProgress from '@mui/material/CircularProgress';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 const DiscussionCard = ({ category, cat_id, topics }) => {
   const [clicked, setClicked] = useState(true);
@@ -21,8 +20,6 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
   const [loading, setLoading] = useState(false);
   const [dateArray, setDateArray] = useState([]);
   const [modalText, setModalText] = useState('');
-
-  const router = useRouter();
 
   useEffect(() => {
     let date = [];
@@ -104,12 +101,6 @@ const DiscussionCard = ({ category, cat_id, topics }) => {
 
   const handleError = (err) => {
     setLoading(false);
-    if (err === 'Refresh token expired') {
-      Cookies.remove('access');
-      Cookies.remove('refresh');
-      Cookies.remove('isAdmin');
-      router.push('/signin');
-    }
     console.log({ e: err })
   }
 

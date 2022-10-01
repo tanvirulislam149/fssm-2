@@ -1,55 +1,25 @@
 import React, { useState } from 'react';
+import styles from './AdminFaqs.module.css';
 import DeletePopup from '../DeletePopup/DeletePopup';
-import ForumCategories from '../ForumCategories/ForumCategories';
-import ForumList from '../ForumList/ForumList';
-import styles from './AdminForum.module.css';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
+import FaqAndGlossaryList from '../FaqAndGlossaryList/FaqAndGlossaryList';
 
 const data = [
-  {
-    name: "162",
-    cat: "qef",
-    topic: "Donor/Philanthropist/CSR",
-    date: "2022-08-05 07:53",
-    id: 1
-  },
-  {
-    name: "162",
-    cat: "qef",
-    topic: "Donor/Philanthropist/CSR",
-    date: "2022-08-05 07:53",
-    id: 2
-  },
-  {
-    name: "162",
-    cat: "qef",
-    topic: "Donor/Philanthropist/CSR",
-    date: "2022-08-05 07:53",
-    id: 3
-  },
+  { id: 1, name: 'Who is the NFSSM Alliance?', order: 1, status: 'Active' },
+  { id: 2, name: 'Who is the NFSSM Alliance?', order: 2, status: 'Active' },
 ];
 
-const catList = [
-  { id: 1, cat: 'qef', order: 1, status: 'Active' },
-  { id: 2, cat: 'qef', order: 2, status: 'Active' },
-];
-
-const AdminForum = () => {
+const AdminFaqs = () => {
   const [layout, setLayout] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [documents, setDocuments] = useState(data);
-  const [categories, setCategories] = useState(catList);
-  const [reactKey, setReactKey] = useState(false);
   const [docId, setDocId] = useState(null);
   const [text, setText] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const handleDelete = () => {
-
-  }
-
-  const handleAdd = () => {
 
   }
 
@@ -61,56 +31,34 @@ const AdminForum = () => {
             className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
             onClick={() => {
               setLayout(1);
-              setReactKey(!reactKey);
             }}>
-            Un Approved Topics
+            FAQs
           </button>
           <button
             className={layout === 2 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
             onClick={() => {
               setLayout(2);
-              setReactKey(!reactKey);
             }}>
-            Approved Topics
-          </button>
-          <button
-            className={layout === 3 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-            onClick={() => {
-              setLayout(3);
-              setReactKey(!reactKey);
-            }}>
-            Forum Categories
-          </button>
-          <button
-            className={layout === 4 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-            onClick={() => {
-              setLayout(4);
-              setReactKey(!reactKey);
-            }}>
-            Notifications
+            Glossary
           </button>
         </div>
 
         <h4 className={styles.label2}>
-          {layout === 1 ? 'Unapproved Topics' : layout === 2 ? 'Questions' : layout === 3 ? 'Categories' : 'Questions'}
-          {layout === 3 && <button
+          {layout === 1 ? 'FAQs' : 'Glossary'}
+          <button
             className={styles.btn}
             onClick={() => {
               document.querySelector('.m2').style.display = "flex";
             }}>
-            Add category
-          </button>}
+            {layout === 1 ? 'Add FAQs' : 'Add Glossary'}
+          </button>
         </h4>
 
-        {
-          layout === 1 || layout === 2 || layout === 4 ?
-            <ForumList
-              setDocId={setDocId}
-              reactKey={reactKey}
-              layout={layout}
-              documents={documents} /> :
-            <ForumCategories setDocId={setDocId} categories={categories} />
-        }
+        <FaqAndGlossaryList
+          setDocId={setDocId}
+          layout={layout}
+          documents={documents}
+        />
       </div>
 
       <DeletePopup docId={docId} handleDelete={handleDelete} />
@@ -128,19 +76,29 @@ const AdminForum = () => {
             onClick={() => {
               document.querySelector('.m2').style.display = "none";
             }}>
-            <p>Add Category</p>
+            <p>{layout === 1 ? 'Add FAQs' : 'Add Glossary'}</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
           </div>
 
           <div className={styles.cover2}>
             <div className={styles.content2}>
-              <label htmlFor='text'>Category Name</label>
+              <label htmlFor='quest'>Question</label>
               <input
-                id='text'
+                id='quest'
                 type='text'
                 value={text}
                 onChange={(e) => { setText(e.target.value); }}
                 className={styles.input} />
+              <label htmlFor='answer'>Answer</label>
+              <textarea
+                type="text"
+                id='answer'
+                value={answer}
+                onChange={(e) => { setAnswer(e.target.value); }}
+                className={styles.textarea}
+                cols="30"
+                rows="7" >
+              </textarea>
               <div className={styles.btn_cont}>
                 <button
                   type='submit'
@@ -164,4 +122,4 @@ const AdminForum = () => {
   )
 }
 
-export default AdminForum
+export default AdminFaqs

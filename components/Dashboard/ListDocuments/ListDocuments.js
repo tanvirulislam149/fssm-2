@@ -18,11 +18,10 @@ const ListDocuments = () => {
 
   const handleSearch = (data) => {
     setLoading(true);
-    console.log(data)
     getListedDocs(data, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
-        setDocuments(res.data['Search Results'])
+        setDocuments([res.data['Search Results']])
         setLoading(false);
         console.log({ res: res.data['Search Results'] });
       }

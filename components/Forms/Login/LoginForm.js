@@ -29,11 +29,6 @@ const LoginForm = () => {
     setLoading(false);
     if (err === 'Email or Password Incorrect') {
       setError('Email or Password Incorrect');
-    } else if (err === 'Refresh token expired') {
-      Cookies.remove('access');
-      Cookies.remove('refresh');
-      Cookies.remove('isAdmin');
-      router.push('/signin');
     } else setError('An Error Occured, Please Try Again');
   }
 
