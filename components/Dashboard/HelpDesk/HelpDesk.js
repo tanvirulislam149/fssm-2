@@ -1,8 +1,10 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { style } from '@mui/system';
 import React, { useEffect, useState } from 'react'
-import ApprovedDocs from '../ApprovedDocs/ApprovedDocs';
-import UnapprovedDocs from '../UnapprovedDocs/UnapprovedDocs';
+import Emails from '../../Sections/Emails/Emails';
+import Questions from '../../Sections/Questions/Questions';
+import Themes from '../../Sections/Themes/Themes';
+import UnapprovedQueList from '../../Sections/UnapprovedQueList/UnapprovedQueList';
 import styles from "./HelpDesk.module.css"
 
 const HelpDesk = () => {
@@ -28,6 +30,7 @@ const HelpDesk = () => {
             Emails
           </button>
         </div>
+        {layout === 1 ? <UnapprovedQueList /> : layout === 2 ? <Questions /> : layout === 3 ? <Themes /> : <Emails />}
       </div>
     </>
   )
