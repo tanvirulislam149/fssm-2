@@ -16,7 +16,7 @@ const FaqAdmin = () => {
             <SideBar />
           </div>
           <div>
-            {/* <AdminFaqs /> */}
+            <AdminFaqs />
           </div>
         </div>
       </Layout>
