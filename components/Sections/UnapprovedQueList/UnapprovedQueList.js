@@ -151,7 +151,7 @@ const UnapprovedQueList = () => {
                         className={`${styles.btn} ${styles.approvedAns}`}
                         data-modal="myModal"
                         onClick={() => {
-                          document.querySelector(".m7").style.display =
+                          document.querySelector(".m12").style.display =
                             "flex";
                         }}
                       >
@@ -379,6 +379,31 @@ const UnapprovedQueList = () => {
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
           </div>
           {/* Unapproved Answer Modal Content */}
+          <div className={styles.cover}>
+            <div className={styles.content}>
+              <h4 className={styles.label5}>No records</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="myModal" className='modal2 m12'>
+        <div
+          className={styles.bg}
+          onClick={() => {
+            document.querySelector('.m12').style.display = "none";
+          }}>
+        </div>
+        <div className={styles.modal_content}>
+          <div
+            className={styles.close}
+            onClick={() => {
+              document.querySelector('.m12').style.display = "none";
+            }}
+          >
+            <p>Approved Answer</p>
+            <span><Image src={close} alt='icon' height={24} width={24} /></span>
+          </div>
+          {/* Approved Answer Modal Content */}
           <div className={styles.cover}>
             <div className={styles.content}>
               <h4 className={styles.label5}>No records</h4>
