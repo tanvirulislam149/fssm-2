@@ -84,7 +84,7 @@
   z-index: 2;
   padding: 0;
   border-width: 0;
-  width: var(--s-900);
+  width: var(--s-1000);
   height: max-content;
   box-shadow: 0 4px 8px 0 #00000033, 0 6px 20px 0 #00000030;
   -webkit-animation-name: animatetop;
@@ -199,7 +199,7 @@
   border: solid 1px var(--shade);
   padding: var(--s-10);
   margin-top: var(--size-3);
-  color: var(--black);
+  color: var(--light-gray-color);
   font-size: var(--fs-1rem);
 }
 
@@ -417,4 +417,8 @@
   width: 70%;
   color: #8e8e8e;
   font-weight: 400;
+}
+.editQuestion {
+  display: flex;
+  justify-content: space-between;
 }
