@@ -399,6 +399,17 @@
   margin-bottom: var(--s-10);
   border-bottom: 1px solid var(--d-bg);
 }
+.label5 {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-bold);
+  padding: var(--fs-14) var(--s-10);
+  border-top: var(--size-3) solid #22b8cf;
+  background: var(--white-color);
+  margin-bottom: var(--s-10);
+  border-bottom: 1px solid var(--d-bg);
+  text-align: center;
+}
 .questionDetails {
   display: flex;
   font-family: "Roboto";
@@ -421,4 +432,8 @@
 .editQuestion {
   display: flex;
   justify-content: space-between;
+}
+.content {
+  box-shadow: 0px 4px 17px 1px rgba(0, 0, 0, 0.15);
+  height: 110px;
 }
