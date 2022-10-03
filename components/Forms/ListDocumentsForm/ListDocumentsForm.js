@@ -26,7 +26,13 @@ const ListDocumentsForm = ({ handleSearch }) => {
     if (stakeholder === null) setStakeholder('');
     if (value_chain === null) setValue_chain('');
 
-    const data = { theme, subcategory, stakeholder, value_chain };
+    const data = {
+      theme: theme ? theme : '',
+      subcategory: subcategory ? subcategory : '',
+      stakeholder: stakeholder ? stakeholder : '',
+      value_chain: value_chain ? value_chain : ''
+    };
+    console.log(data)
     handleSearch(data);
   }
 

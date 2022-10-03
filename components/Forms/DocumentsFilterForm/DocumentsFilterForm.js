@@ -23,7 +23,12 @@ const DocumentsFilterForm = ({ handleSearch }) => {
     if (subcategory === null) setSubcategory('');
     if (stakeholder === null) setStakeholder('');
 
-    const data = { theme, subcategory, words, stakeholder };
+    const data = {
+      theme: theme ? theme : '',
+      subcategory: subcategory ? subcategory : '',
+      stakeholder: stakeholder ? stakeholder : '',
+      words
+    };
     handleSearch(data);
   }
 
