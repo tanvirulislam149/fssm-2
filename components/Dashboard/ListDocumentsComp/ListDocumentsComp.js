@@ -61,7 +61,7 @@ import Select from '@mui/material/Select';
 const ListDocumentsComp = ({ documents }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
-  const [list, setList] = useState(documents);
+  const [list, setList] = useState([]);
   const [update, setUpdate] = useState(false);
 
   const handleChange = (event) => {
@@ -88,7 +88,7 @@ const ListDocumentsComp = ({ documents }) => {
   }, [update])
 
   useEffect(() => {
-    setList(documents);
+    documents.length && setList(...documents);
   }, [documents])
 
   return (
@@ -212,7 +212,7 @@ const ListDocumentsComp = ({ documents }) => {
                     <div className={styles.two}>
                       <p>
                         {
-                          stake_holder.map(({ stake_holderName }) => {
+                          stake_holder?.map(({ stake_holderName }) => {
                             return stake_holderName + ', ';
                           })
                         }
@@ -221,7 +221,7 @@ const ListDocumentsComp = ({ documents }) => {
                     <div className={styles.two}>
                       <p>
                         {
-                          value_chain.map(({ vc_name }) => {
+                          value_chain?.map(({ vc_name }) => {
                             return vc_name + ', ';
                           })
                         }
@@ -230,7 +230,7 @@ const ListDocumentsComp = ({ documents }) => {
                     <div className={styles.two}>
                       <p>
                         {
-                          state.map(({ stateName }) => {
+                          state?.map(({ stateName }) => {
                             return stateName + ', ';
                           })
                         }
@@ -242,7 +242,7 @@ const ListDocumentsComp = ({ documents }) => {
                     <div className={styles.two}>
                       <p>
                         {
-                          language.map(({ lang }) => {
+                          language?.map(({ lang }) => {
                             return lang + ', ';
                           })
                         }
