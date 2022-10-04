@@ -281,7 +281,7 @@ export const sideBarText = [
   { id: 9, text: "Documents Approval", link: "docu", image: d9 },
   { id: 10, text: "Help desk", link: "qanda-admin", image: d10 },
   { id: 11, text: "Discussion Forum", link: "forum", image: d11 },
-  { id: 12, text: `FAQ's`, link: "dashboard", image: d12 },
+  { id: 12, text: `FAQs`, link: "faq-admin", image: d12 },
   { id: 13, text: "Get Involved", link: "dashboard", image: d13 },
   { id: 14, text: "Analytics", link: "dashboard", image: d14 },
   { id: 15, text: "Landing page Missions", link: "dashboard", image: d14 },

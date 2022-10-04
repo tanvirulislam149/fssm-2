@@ -27,7 +27,14 @@ const AllDocumentsForm = ({ handleSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { theme, subcategory, stakeholder, value_chain, organization, doc_type };
+    const data = {
+      theme: theme ? theme : '',
+      subcategory: subcategory ? subcategory : '',
+      stakeholder: stakeholder ? stakeholder : '',
+      value_chain: value_chain ? value_chain : '',
+      organization: organization ? organization : '',
+      doc_type: doc_type ? doc_type : ''
+    };
     handleSearch(data);
   }
 

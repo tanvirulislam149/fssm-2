@@ -22,6 +22,10 @@ axiosInstance.interceptors.response.use(response => response,
       error.response.status === 401 &&
       originalRequest.url.includes('api/token/refresh')
     ) {
+      window.location.href = '/signin';
+      Cookies.remove('access');
+      Cookies.remove('refresh');
+      Cookies.remove('isAdmin');
       return Promise.reject('Refresh token expired');
     }
 

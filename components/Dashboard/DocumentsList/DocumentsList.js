@@ -260,7 +260,7 @@ const DocumentsList = ({ documents }) => {
           }
         </div>
       </div>
-      <p className={styles.results}>Showing 10 of {list?.length} entries</p>
+      <p className={styles.results}>Showing {number} of {list?.length} entries</p>
 
       <ViewDocument click={click} setClick={setClick} setDocId={setDocId} currentDoc={currentDoc} />
 

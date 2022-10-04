@@ -15,12 +15,6 @@ const MyDocuments = () => {
   const handleError = (err) => {
     setLoading(false);
     console.log({ e: err })
-    if (err === 'Refresh token expired') {
-      Cookies.remove('access');
-      Cookies.remove('refresh');
-      Cookies.remove('isAdmin');
-      router.push('/signin');
-    }
     setError(err.message);
   }
 
