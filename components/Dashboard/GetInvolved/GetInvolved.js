@@ -138,6 +138,80 @@ const GetInvolved = () => {
       </div>
 
       <DeletePopup />
+
+      <div id="myModal" className='modal2 m7'>
+        <div
+          className={styles.bg}
+          onClick={() => {
+            document.querySelector('.m7').style.display = "none";
+          }}>
+        </div>
+        <div className={styles.modal_content}>
+          <div
+            className={styles.close}
+            onClick={() => {
+              document.querySelector('.m7').style.display = "none";
+            }}
+          >
+            <p>View Get Involved</p>
+            <span><Image src={close} alt='icon' height={24} width={24} /></span>
+          </div>
+          {/* View Question Modal Content */}
+          <div className={styles.cover}>
+            <div className={styles.content}>
+              <h4 className={styles.label4}>View Details</h4>
+              <div className={styles.questionDetails}>
+                <div className={styles.questionHeading}>
+                  <p>Name</p>
+                </div>
+                <div className={styles.questionBody}>
+                  <p>:Nandhini</p>
+                </div>
+              </div>
+              <div className={styles.questionDetails}>
+                <div className={styles.questionHeading}>
+                  <p>Email</p>
+                </div>
+                <div className={styles.questionBody}>
+                  <p>:abc@gmail</p>
+                </div>
+              </div>
+              <div className={styles.questionDetails}>
+                <div className={styles.questionHeading}>
+                  <p>Join FSSM</p>
+                </div>
+                <div className={styles.questionBody}>
+                  <p>:No</p>
+                </div>
+              </div>
+              <div className={styles.questionDetails}>
+                <div className={styles.questionHeading}>
+                  <p>Know about FSSM</p>
+                </div>
+                <div className={styles.questionBody}>
+                  <p>:No</p>
+                </div>
+              </div>
+              <div className={styles.questionDetails}>
+                <div className={styles.questionHeading}>
+                  <p>Short Notes</p>
+                </div>
+                <div className={styles.questionBody}>
+                  <p>:</p>
+                </div>
+              </div>
+              <div className={styles.questionDetails}>
+                <div className={styles.questionHeading}>
+                  <p>Creator on</p>
+                </div>
+                <div className={styles.questionBody}>
+                  <p>:2021-07-27 16:46:31</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
