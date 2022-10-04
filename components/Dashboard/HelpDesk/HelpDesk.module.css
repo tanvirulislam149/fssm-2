@@ -275,6 +275,11 @@
   .cont {
     margin-top: var(--s-20);
   }
+  .activeBtn,
+  .inactiveBtn {
+    margin-top: 5px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 690px) {
