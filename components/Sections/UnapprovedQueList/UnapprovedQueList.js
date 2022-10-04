@@ -126,7 +126,7 @@ const UnapprovedQueList = () => {
                       className={`${styles.btn} ${styles.delbtn}`}
                       onClick={() => {
                         setDocId(id);
-                        document.querySelector('.m11').style.display = "flex";
+                        document.querySelector('.m10').style.display = "flex";
                       }}>
                       <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                     </div>
@@ -189,7 +189,7 @@ const UnapprovedQueList = () => {
           </div>
           {/* View Question Modal Content */}
           <div className={styles.cover}>
-            <div className={styles.content}>
+            <div>
               <h4 className={styles.label4}>Question Details</h4>
               <div className={styles.questionDetails}>
                 <div className={styles.questionHeading}>
@@ -287,7 +287,7 @@ const UnapprovedQueList = () => {
           </div>
 
           <div className={styles.cover}>
-            <div className={styles.content}>
+            <div>
               <Formik
               >
                 {({ resetForm, setFieldValue, values }) => (
