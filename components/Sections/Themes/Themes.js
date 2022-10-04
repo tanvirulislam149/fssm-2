@@ -9,16 +9,13 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import DeletePopup from "../../Dashboard/DeletePopup/DeletePopup"
-
-const data = [
-  { question: 'qef', roleName: 'Donor/Philanthropist/CSR', creatorName: "162", creatorOn: "2022-08-05 07:53:34", id: 1 },
-  { question: 'qef', roleName: 'Donor/Philanthropist/CSR', creatorName: "162", creatorOn: "2022-08-05 07:53:34", id: 2 },
-  { question: 'qef', roleName: 'Donor/Philanthropist/CSR', creatorName: "162", creatorOn: "2022-08-05 07:53:34", id: 3 },
-]
+import useOptions from "../../useOptions.js"
 
 const Themes = () => {
   const [number, setNumber] = useState(10);
   const [docId, setDocId] = useState(null);
+
+  const { advancedSearchText } = useOptions();
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -27,8 +24,9 @@ const Themes = () => {
   return (
     <>
       <div className={styles.container}>
-        <div>
+        <div className={styles.headingCont}>
           <h4 className={styles.label2}>Themes</h4>
+          <button className={styles.addTheme}>Add Theme</button>
         </div>
         <div className={styles.control}>
           <div>
@@ -64,14 +62,14 @@ const Themes = () => {
             </div>
           </div>
           {
-            data.map(({ id, creatorOn, creatorName, roleName, question }, i) => {
+            advancedSearchText.themes.map(({ title }, i) => {
               return (
-                <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
+                <div key={i} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
                     <p>{i + 1}</p>
                   </div>
                   <div className={styles.two}>
-                    <p>{question}</p>
+                    <p>{title}</p>
                   </div>
                   <div className={styles.three}>
                     <div
@@ -116,7 +114,7 @@ const Themes = () => {
               document.querySelector('.m8').style.display = "none";
             }}
           >
-            <p>Edit Question</p>
+            <p>Edit Theme</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
           </div>
 
@@ -126,51 +124,8 @@ const Themes = () => {
               >
                 {({ resetForm, setFieldValue, values }) => (
                   <Form>
-                    <div className={styles.editQuestion}>
-                      <div>
-                        <div className={styles.textInput2}>
-                          <label htmlFor="user_profile">Creator Name</label>
-                          <Field name="user_profile" id='user_profile' className={styles.input} type="text" />
-                          <span className='form-error'><ErrorMessage name="user_profile" /></span>
-                        </div>
-                        <div className={styles.textInput2}>
-                          <label htmlFor="user_profile">Creator Email</label>
-                          <Field name="user_profile" id='user_profile' className={styles.input} type="text" />
-                          <span className='form-error'><ErrorMessage name="user_profile" /></span>
-                        </div>
-                        <div className={styles.textInput2}>
-                          <label htmlFor="is_hidden">Theme</label>
-                          <Field name='is_hidden' as='select' id='is_hidden' onChange={() => { setFieldValue('is_hidden', !values.is_hidden) }} className={`${styles.select2} ${styles.form_select} form-select`}>
-                            <option>--Select--</option>
-                            <option value={false}>Show</option>
-                            <option value={true}>Hide</option>
-                          </Field>
-                        </div>
-                      </div>
-                      <div>
-                        <div className={styles.textInput2}>
-                          <label htmlFor="user_profile">Mobile</label>
-                          <Field name="user_profile" id='user_profile' className={styles.input} type="text" />
-                          <span className='form-error'><ErrorMessage name="user_profile" /></span>
-                        </div>
-                        <div className={styles.textInput2}>
-                          <label htmlFor="user_profile">Organization</label>
-                          <Field name="user_profile" id='user_profile' className={styles.input} type="text" />
-                          <span className='form-error'><ErrorMessage name="user_profile" /></span>
-                        </div>
-                        <div className={styles.textInput2}>
-                          <label htmlFor="is_hidden">User Profile</label>
-                          <Field name='is_hidden' as='select' id='is_hidden' onChange={() => { setFieldValue('is_hidden', !values.is_hidden) }} className={`${styles.select2} ${styles.form_select} form-select`}>
-                            <option>--Select--</option>
-                            <option value={false}>Show</option>
-                            <option value={true}>Hide</option>
-                          </Field>
-                        </div>
-                      </div>
-                    </div>
-
                     <div className={styles.textInput2}>
-                      <label htmlFor="display_order">Question</label>
+                      <label htmlFor="display_order">Theme <span>*</span></label>
                       <Field name="display_order" id='display_order' className={styles.input} type="text" />
                       <span className='form-error'><ErrorMessage name="display_order" /></span>
                     </div>

@@ -152,6 +152,9 @@
 
 .cover {
   padding: var(--s-26) var(--s-50);
+  background: #eaeaea;
+  border: 1px solid #bfbfbf;
+  margin: 15px;
 }
 
 .btn3 {
@@ -391,7 +394,6 @@
   color: var(--primary-blue);
   font-weight: var(--font-weight-bold);
   padding: var(--fs-14) var(--s-10);
-  border-top: var(--size-3) solid var(--primary-blue);
   background: var(--white-color);
   margin-bottom: var(--s-10);
   border-bottom: 1px solid var(--d-bg);
@@ -442,4 +444,22 @@
 .content {
   box-shadow: 0px 4px 17px 1px rgba(0, 0, 0, 0.15);
   /* height: 110px; */
+}
+.headingCont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: var(--size-3) solid var(--primary-blue);
+}
+.addTheme {
+  background: #024c73;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: white;
+  border: 0;
+  margin-right: 30px;
+  padding: 7px 15px;
 }
