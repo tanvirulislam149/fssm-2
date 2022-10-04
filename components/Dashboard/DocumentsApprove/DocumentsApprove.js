@@ -17,10 +17,10 @@ const DocumentsApprove = () => {
         <h4 className={styles.label}>Documents Approve</h4>
 
         <div className={styles.approveLabel}>
-          <button className={layout ? `${styles.unapproveBtn}` : `${styles.activeBtn}`} onClick={() => setLayout(false)}>
+          <button className={layout ? `${styles.inactiveBtn}` : `${styles.activeBtn}`} onClick={() => setLayout(false)}>
             Un Approved Documents
           </button>
-          <button className={layout ? `${styles.activeBtn}` : `${styles.unapproveBtn}`} onClick={() => setLayout(true)}>
+          <button className={layout ? `${styles.activeBtn}` : `${styles.inactiveBtn}`} onClick={() => setLayout(true)}>
             Approved Documents
           </button>
         </div>

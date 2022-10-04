@@ -19,6 +19,7 @@
   font-weight: var(--font-weight-bold);
   padding: var(--size-5);
   background: var(--white-color);
+  border-top: var(--size-3) solid var(--primary-blue);
 }
 
 .label {
@@ -42,25 +43,15 @@
 .textInput > .title {
   font-weight: var(--fw-500);
   font-size: var(--fs-14);
+  margin-right: var(--s-100);
 }
 
 .textInput {
-  margin-bottom: var(--fs-24);
+  margin-bottom: var(--fs-14);
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
-.textInputContainer {
-  display: flex;
-}
-.textInputSubCont1 {
-  width: 50%;
-  margin-right: 50px;
-}
-.textInputSubCont2 {
-  width: 50%;
-  margin-left: 50px;
-}
+
 .textInput2 {
   margin-bottom: var(--fs-14);
 }
@@ -125,6 +116,7 @@
 .cont {
   display: flex;
   justify-content: center;
+  margin-top: var(--s-40);
   margin-bottom: var(--s-20);
 }
 
@@ -136,7 +128,7 @@
 
 .select {
   background: var(--white-color);
-  width: var(--fifty);
+  width: var(--seventy);
 }
 
 .select > div > div {
@@ -222,6 +214,34 @@
   width: var(--hundred);
 }
 
+.inactiveBtn {
+  background-color: white;
+  color: black;
+  height: var(--s-42);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 12px 40px;
+  border: 1px solid var(--green);
+  margin-right: 5px;
+}
+
+.activeBtn {
+  background-color: var(--green);
+  color: white;
+  height: var(--s-42);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 12px 40px;
+  border: 1px solid var(--green);
+  margin-right: 5px;
+}
+
 @-webkit-keyframes animatetop {
   from {
     opacity: 0;
@@ -254,14 +274,6 @@
 
   .cont {
     margin-top: var(--s-20);
-  }
-  .textInputContainer {
-    display: block;
-  }
-  .textInputSubCont1,
-  .textInputSubCont2 {
-    width: 100%;
-    margin: 0;
   }
 }
 

@@ -213,10 +213,11 @@
   width: var(--hundred);
 }
 
-.unapproveBtn {
+.inactiveBtn {
   background-color: white;
   color: black;
   height: var(--s-42);
+  width: 260px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -231,6 +232,7 @@
   background-color: var(--green);
   color: white;
   height: var(--s-42);
+  width: 260px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -279,5 +281,9 @@
 @media (max-width: 690px) {
   .modal_content {
     width: var(--size-95);
+  }
+  .activeBtn,
+  .inactiveBtn {
+    margin-top: 5px;
   }
 }
