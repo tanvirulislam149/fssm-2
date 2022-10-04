@@ -7,7 +7,6 @@ import close from '../../../assets/Close.png';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import DeletePopup from "../../Dashboard/DeletePopup/DeletePopup"
 import styles from "./GetInvolved.module.css"
 
 const data = [
@@ -137,7 +136,35 @@ const GetInvolved = () => {
         </div>
       </div>
 
-      <DeletePopup />
+      <div id="myModal" className='modal2 m10'>
+        <div
+          className={styles.bg}
+          onClick={() => {
+            document.querySelector('.m10').style.display = "none";
+          }}>
+        </div>
+        <div className={styles.modal_content2}>
+          <div
+            className={styles.deleteRecordHeading}
+            onClick={() => {
+              document.querySelector('.m10').style.display = "none";
+            }}
+          >
+            <p>Attention !!</p>
+            <span><Image src={close} alt='icon' height={24} width={24} /></span>
+          </div>
+
+          <div>
+            <p className={styles.deleteRecord}>
+              Do You want to delete this records?
+            </p>
+            <button
+              className={styles.btn3} onClick={() => {
+                document.querySelector('.m10').style.display = "none";
+              }}>Ok</button>
+          </div>
+        </div>
+      </div>
 
       <div id="myModal" className='modal2 m7'>
         <div
