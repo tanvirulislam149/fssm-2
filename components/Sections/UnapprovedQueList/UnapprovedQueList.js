@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FormControl, MenuItem, Select, Switch } from '@mui/material';
 import styles from "./UnapprovedQueList.module.css"
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
