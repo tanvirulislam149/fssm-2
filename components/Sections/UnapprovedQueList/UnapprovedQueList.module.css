@@ -285,25 +285,6 @@
   background: var(--light-gray-color);
 }
 
-@media (max-width: 950px) {
-  .modal_content2 {
-    width: var(--size-88);
-  }
-
-  .overflow > div {
-    overflow: auto;
-  }
-  .editQuestion {
-    display: block;
-  }
-}
-
-@media (max-width: 690px) {
-  .modal_content {
-    width: var(--size-88);
-  }
-}
-
 .one {
   width: 12%;
 }
@@ -432,11 +413,29 @@
   color: #8e8e8e;
   font-weight: 400;
 }
+.content {
+  box-shadow: 0px 4px 17px 1px rgba(0, 0, 0, 0.15);
+}
 .editQuestion {
   display: flex;
   justify-content: space-between;
 }
-.content {
-  box-shadow: 0px 4px 17px 1px rgba(0, 0, 0, 0.15);
-  /* height: 110px; */
+
+@media (max-width: 950px) {
+  .modal_content2 {
+    width: var(--size-88);
+  }
+
+  .overflow > div {
+    overflow: auto;
+  }
+  .editQuestion {
+    display: block;
+  }
+}
+
+@media (max-width: 690px) {
+  .modal_content {
+    width: var(--size-88);
+  }
 }
