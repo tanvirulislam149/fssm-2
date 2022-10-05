@@ -32,6 +32,7 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
   const handleError = (err) => {
     setLoading2(false);
     console.log({ e: err });
+    document.getElementById('form') && document.getElementById('form').classList.add("none");
     // setError(err.message);
   }
 
@@ -141,6 +142,10 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
                 title='Edit'
                 className={clicked ? `${styles.yellow} ${styles.btn4}` : `${styles.yellow2} ${styles.cursor} ${styles.btn4}`}
                 onClick={() => {
+                  if (idArray[1] === '') {
+                    alert('Cannot edit node on first level');
+                    return;
+                  }
                   setApi(2);
                   document.getElementById('span2-click').click();
                   document.getElementById('del').classList.add('none');

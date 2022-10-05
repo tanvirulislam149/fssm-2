@@ -118,6 +118,7 @@ const UserCategories = () => {
         if (res.data.message === 'User Profile Successfully created') {
           setMessage('User Profile Successfully created');
           confirmation.style.display = 'flex';
+          setUpdate(!update);
         } else if (res.data.message === 'User profile already exists') {
           setMessage('User profile already exists');
           confirmation.style.display = 'flex';
@@ -173,6 +174,7 @@ const UserCategories = () => {
             <div className={styles.justify_center}><CircularProgress /></div> :
             <UserCategoriesList
               update={update}
+              setMessage={setMessage}
               setUpdate={setUpdate}
               addItemsText={addItemsText}
               setLoading={setLoading}
@@ -209,10 +211,10 @@ const UserCategories = () => {
                 validationSchema={Yup.object({
                   user_profile: Yup.string()
                     .required('Required')
-                    .min(4, '4 or more characters')
-                    .test('is value valid?', 'Characters must consist of letters only', (val) => {
-                      return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
-                    }),
+                    // .test('is value valid?', 'Characters must consist of letters only', (val) => {
+                    //   return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
+                    // })
+                    .min(2, '2 or more characters'),
                   display_order: Yup.string()
                     .required('Required')
                     .test('is value a number?', 'Display order must be a number', (val) => {

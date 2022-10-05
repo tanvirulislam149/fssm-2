@@ -10,10 +10,9 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { editUserProfile, delUserProfile } from '../../../services/userCatServices';
 import DeletePopup from '../DeletePopup/DeletePopup';
-import AlertCard from '../AlertCard/AlertCard';
 import MapSection from '../MapSection/MapSection';
 
-const UserCategoriesList = ({ loading2, setLoading2, update, setUpdate, profiles, setAction, action, setLoading, addItemsText }) => {
+const UserCategoriesList = ({ setMessage, loading2, setLoading2, update, setUpdate, profiles, setAction, action, setLoading, addItemsText }) => {
   const [number, setNumber] = useState(10);
   const [docId, setDocId] = useState(null);
   const [list, setList] = useState(profiles);
@@ -51,7 +50,9 @@ const UserCategoriesList = ({ loading2, setLoading2, update, setUpdate, profiles
       if (res !== null) {
         console.log({ res: res.data.message });
         if (res.data.message === 'Updated Successfully') {
+          setMessage('Updated Successfully');
           confirmation.style.display = 'flex';
+          setUpdate(!update);
         }
       }
     })
@@ -271,8 +272,6 @@ const UserCategoriesList = ({ loading2, setLoading2, update, setUpdate, profiles
       />
 
       <DeletePopup setLoading={setLoading} action={action} setAction={setAction} docId={docId} handleDelete={handleDelete} />
-
-      <AlertCard message='Updated Successfully' />
     </>
   )
 }
