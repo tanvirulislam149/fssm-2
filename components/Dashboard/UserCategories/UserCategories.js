@@ -7,55 +7,123 @@ import close from '../../../assets/Close.png';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import useOptions from '../../useOptions';
-import { getUserProfile, createUserProfile, searchUserProfile } from '../../../services/userCatServices';
+import AlertCard from '../AlertCard/AlertCard';
+import CircularProgress from '@mui/material/CircularProgress';
+import { getUserProfile, createUserProfile, searchUserProfile, getMappedData } from '../../../services/userCatServices';
 
 const UserCategories = () => {
   const [search, setSearch] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [profileOptions, setProfileOptions] = useState([]);
+  const [message, setMessage] = useState('');
+  const [profiles, setProfiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [action, setAction] = useState(false);
+  const [addItemsText, setAddItemsText] = useState([]);
+  const [update, setUpdate] = useState(false);
 
   const { advancedSearchText } = useOptions();
 
   const handleError = (err) => {
+    setLoading(false);
     console.log({ e: err })
   }
 
   useEffect(() => {
-    // getUserProfile((err, res) => {
-    //   if (err) return handleError(err)
-    //   if (res !== null) {
-    //     console.log({ res: res });
-    //   }
-    // })
-  }, [])
+    getUserProfile((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        loading && setProfiles(res.data.message);
+        setLoading(false);
+      }
+    })
+  }, [action])
+
+  const handleItems = (arr) => {
+    const data = [];
+    arr.forEach(item => {
+      if (item.user_profile) {
+        data.push({});
+        data[data.length - 1].title = item.user_profile;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = handleItems(item.section);
+      }
+      if (item.question) {
+        data.push({});
+        data[data.length - 1].title = item.question;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = handleItems(item.items);
+      }
+      if (item.item_title) {
+        data.push({});
+        data[data.length - 1].title = item.item_title;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = handleItems(item.subitems);
+      }
+      if (item.subitem_title) {
+        data.push({});
+        data[data.length - 1].title = item.subitem_title;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = [];
+      }
+    })
+    return data;
+  }
+
+  useEffect(() => {
+    getMappedData((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        const data = handleItems(res.data.message);
+        setAddItemsText(data);
+        setLoading2(false);
+        document.getElementById('form') && document.getElementById('form').classList.add("none");
+        document.getElementById('del') && document.getElementById('del').classList.add('none');
+      }
+    })
+  }, [update])
 
   useEffect(() => {
     let options = [];
-    advancedSearchText.themes.forEach(({ title }) => {
+    advancedSearchText.profile.forEach(({ title }) => {
       options.push(title);
     })
-    setProfileOptions([]);
+    setProfileOptions(options);
   }, [advancedSearchText])
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
-    console.log({ search });
-    // searchUserProfile({ search }, (err, res) => {
-    //   if (err) return handleError(err)
-    //   if (res !== null) {
-    //     console.log({ res: res });
-    //   }
-    // })
+    searchUserProfile({ search: search ? search : '' }, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        console.log({ rey: res.data.message });
+        setProfiles(res.data.message);
+      }
+    })
   }
 
-  const handleCreate = (values) => {
+  const handleCreate = (values, confirmation) => {
     console.log({ values })
-    // createUserProfile(data, (err, res) => {
-    //   if (err) return handleError(err)
-    //   if (res !== null) {
-    //     console.log({ res: res });
-    //   }
-    // })
+    createUserProfile(values, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ rez: res.data.message });
+        if (res.data.message === 'User Profile Successfully created') {
+          setMessage('User Profile Successfully created');
+          confirmation.style.display = 'flex';
+        } else if (res.data.message === 'User profile already exists') {
+          setMessage('User profile already exists');
+          confirmation.style.display = 'flex';
+        }
+      }
+    })
   }
 
   return (
@@ -69,7 +137,7 @@ const UserCategories = () => {
             onClick={() => {
               document.querySelector('.m6').style.display = "flex";
             }}>
-            User Categories
+            Add User Category
           </button>
         </h4>
 
@@ -100,7 +168,20 @@ const UserCategories = () => {
         </form>
 
         <h4 className={styles.label2}>User Categories List</h4>
-        <UserCategoriesList />
+        {
+          loading ?
+            <div className={styles.justify_center}><CircularProgress /></div> :
+            <UserCategoriesList
+              update={update}
+              setUpdate={setUpdate}
+              addItemsText={addItemsText}
+              setLoading={setLoading}
+              loading2={loading2}
+              setLoading2={setLoading2}
+              action={action}
+              setAction={setAction}
+              profiles={profiles} />
+        }
       </div>
 
       <div id="myModal" className='modal2 m6'>
@@ -139,7 +220,7 @@ const UserCategories = () => {
                     }),
                 })}
                 onSubmit={(values, actions) => {
-                  handleCreate({ ...values, display_order: Number(values.display_order) });
+                  handleCreate({ ...values, display_order: Number(values.display_order) }, document.querySelector('.m15'));
                   actions.resetForm();
                   document.querySelector('.m6').style.display = "none";
                 }}
@@ -177,6 +258,8 @@ const UserCategories = () => {
           </div>
         </div>
       </div>
+
+      <AlertCard message={message} />
     </>
   )
 }

@@ -7,6 +7,10 @@
   padding-top: var(--s-10);
 }
 
+/* .li .key:not(.li .title ~ .key) {
+  color: red !important;
+} */
+
 .title {
   border: solid 1px var(--white-color);
   width: max-content;

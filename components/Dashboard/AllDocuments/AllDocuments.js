@@ -9,6 +9,7 @@ const AllDocuments = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [documents, setDocuments] = useState([]);
+  const [dateArray, setDateArray] = useState([]);
 
   const handleError = (err) => {
     setLoading(false);
@@ -18,12 +19,25 @@ const AllDocuments = () => {
 
   const handleSearch = (data) => {
     setLoading(true);
-    console.log(data)
     getAllDocs(data, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
         console.log({ res: res.data['Search Results'] });
-        setDocuments(res.data['Search Results'])
+        setDocuments(res.data['Search Results']);
+        const data = res.data['Search Results'];
+        let date = [];
+        data.forEach(item => {
+          date.push([]);
+        })
+        data.forEach(({ createdOn }, i) => {
+          const month = createdOn.slice(5, 7);
+          const day = createdOn.slice(8, 10);
+          const year = createdOn.slice(0, 4);
+          const hour = createdOn.slice(11, 13);
+          const min = createdOn.slice(14, 16);
+          date[i] = `${year}-${month}-${day} ${hour}:${min} ${hour >= 12 ? 'PM' : 'AM'}`;
+        })
+        setDateArray(date);
         setLoading(false);
       }
     })
@@ -41,7 +55,7 @@ const AllDocuments = () => {
         {
           loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
-            <DocumentsList documents={documents} />
+            <DocumentsList dateArray={dateArray} documents={documents} />
         }
       </div>
     </>

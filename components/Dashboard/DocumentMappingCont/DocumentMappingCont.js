@@ -124,7 +124,10 @@ const DocumentMappingCont = () => {
                           >
                             Map
                           </button>
-                          <button className={`${styles.btn} ${styles.viewbtn}`}>View</button>
+                          <a href={`https://swacchfssm.herokuapp.com${attachment}`} target="_blank"><span
+                            className={`${styles.btn} ${styles.viewbtn}`}>
+                            View
+                          </span></a>
                           <button
                             onClick={() => {
                               setDocId(id);
