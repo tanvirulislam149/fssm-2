@@ -19,6 +19,7 @@
   font-weight: var(--font-weight-bold);
   padding: var(--size-5);
   background: var(--white-color);
+  border-top: var(--size-3) solid var(--primary-blue);
 }
 
 .label {
@@ -217,7 +218,6 @@
   background-color: white;
   color: black;
   height: var(--s-42);
-  width: 260px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -225,14 +225,13 @@
   line-height: 19px;
   padding: 12px 40px;
   border: 1px solid var(--green);
-  margin-right: 13px;
+  margin-right: 5px;
 }
 
 .activeBtn {
   background-color: var(--green);
   color: white;
   height: var(--s-42);
-  width: 260px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -240,7 +239,7 @@
   line-height: 19px;
   padding: 12px 40px;
   border: 1px solid var(--green);
-  margin-right: 13px;
+  margin-right: 5px;
 }
 
 @-webkit-keyframes animatetop {
@@ -276,15 +275,15 @@
   .cont {
     margin-top: var(--s-20);
   }
+  .activeBtn,
+  .inactiveBtn {
+    margin-top: 5px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 690px) {
   .modal_content {
     width: var(--size-95);
-  }
-  .activeBtn,
-  .inactiveBtn {
-    margin-top: 5px;
-    width: 100%;
   }
 }

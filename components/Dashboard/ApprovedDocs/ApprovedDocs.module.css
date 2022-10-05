@@ -255,6 +255,14 @@
   .cont {
     margin-top: var(--s-20);
   }
+  .textInputContainer {
+    display: block;
+  }
+  .textInputSubCont1,
+  .textInputSubCont2 {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 @media (max-width: 690px) {
