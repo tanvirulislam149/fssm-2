@@ -124,7 +124,7 @@ const DocumentMappingCont = () => {
                           >
                             Map
                           </button>
-                          <a href={`https://swacchfssm.herokuapp.com${attachment}`} target="_blank"><span
+                          <a href={`https://swacchfssm.herokuapp.com${attachment}`} rel="noreferrer" target="_blank"><span
                             className={`${styles.btn} ${styles.viewbtn}`}>
                             View
                           </span></a>
