@@ -283,7 +283,7 @@ export const sideBarText = [
   { id: 11, text: "Discussion Forum", link: "forum", image: d11 },
   { id: 12, text: `FAQs`, link: "faq-admin", image: d12 },
   { id: 13, text: "Get Involved", link: "getinvolved", image: d13 },
-  { id: 14, text: "Analytics", link: "dashboard", image: d14 },
+  { id: 14, text: "Analytics", link: "analytics", image: d14 },
   { id: 15, text: "Landing page Missions", link: "dashboard", image: d14 },
   { id: 16, text: "Taxonomy/ Tags", link: "dashboard", image: d14 },
 ];
