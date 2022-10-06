@@ -276,7 +276,14 @@ const UploadDocsForm = () => {
 
             <div id='url2' className={`${styles.textInput} none`}>
               <label htmlFor="url">URL</label>
-              <Field id='url' value={url} onChange={(e) => { setUrl(e.target.value); }} className={styles.input} type="text" />
+              <input
+                id='url'
+                value={url}
+                onChange={(e) => { setUrl(e.target.value); }}
+                className={styles.input}
+                title="Please enter Valid URL starting with http://"
+                pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
+                type="text" />
             </div>
 
             <div id='file-cont2' className={`${styles.textInput} none`}>
@@ -284,7 +291,7 @@ const UploadDocsForm = () => {
               <Input
                 key={chipKey}
                 type='file'
-                accept='.xlsx, .xls, image/*, .doc, .docx, video/*, audio/*, .pdf'
+                accept='.xlsx, .xls, .mkv, image/*, .doc, .docx, video/*, audio/*, .pdf'
                 onChange={(e) => {
                   setAttachment(e.currentTarget.files[0]);
                 }}

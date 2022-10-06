@@ -121,9 +121,6 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
         validationSchema={Yup.object({
           title: Yup.string()
             .required('Required')
-            // .test('is title a letter?', 'Title must consist of letters only', (val) => {
-            //   return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
-            // })
             .min(3, '3 or more characters'),
           description: Yup.string()
             .min(4, 'Must be 4 characters minimum'),
@@ -135,6 +132,10 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
           doc_type: Yup.string()
             .required('Required')
             .nullable(),
+          url: Yup.string()
+          // .test('is title a letter?', 'Title must consist of letters only', (val) => {
+          //   return /[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?/.test(val);
+          // })
         })}
         onSubmit={(data, actions) => {
           document.querySelector('.m2').style.display = "none";
@@ -356,14 +357,20 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
 
             <div id='url' className={`${styles.textInput} none`}>
               <label htmlFor="url">URL</label>
-              <Field name="url" id='url' className={styles.input} type="text" />
+              <Field
+                name="url"
+                id='url'
+                className={styles.input}
+                type="text"
+                title="Please enter Valid URL starting with http://"
+                pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" />
             </div>
 
             <div id='file-cont' className={`${styles.textInput} none`}>
               <div className={styles.div}>Choose File ( Accepts Only gif, jpeg, png, pdf, doc, docx, xls, xlsx, mp4, mp3, avi, flv, mkv, mov, mpeg, mpg, webm, wmv)</div>
               <input
                 type='file'
-                accept='.xlsx, .xls, image/*, .doc, .docx, video/*, audio/*, .pdf'
+                accept='.xlsx, .xls, .mkv, image/*, .doc, .docx, video/*, audio/*, .pdf'
                 onChange={(e) => {
                   setFieldValue('document', e.currentTarget.files[0])
                 }}
