@@ -58,7 +58,7 @@ import Select from '@mui/material/Select';
 //   },
 // ]
 
-const ListDocumentsComp = ({ documents }) => {
+const ListDocumentsComp = ({ dateArray, documents }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
   const [list, setList] = useState([]);
@@ -180,7 +180,7 @@ const ListDocumentsComp = ({ documents }) => {
           </div>
           {
             list.length ?
-              list.map(({ id, description, title, theme, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
+              list.map(({ id, description, title, theme, organization, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
@@ -198,10 +198,10 @@ const ListDocumentsComp = ({ documents }) => {
                       <p>{description}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>date</p>
+                      <p>{dateArray[i]}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>partner</p>
+                      <p>{organization?.org_name}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{theme?.theme_title}</p>

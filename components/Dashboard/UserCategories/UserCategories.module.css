@@ -99,6 +99,13 @@
   padding-top: var(--s-10);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+
 .cont {
   display: flex;
   justify-content: center;

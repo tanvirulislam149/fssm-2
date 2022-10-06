@@ -83,6 +83,15 @@
   padding-bottom: var(--s-10);
 }
 
+.progress {
+  margin-left: var(--s-20);
+}
+
+.progress > span {
+  height: var(--s-20) !important;
+  width: var(--s-20) !important;
+}
+
 .btn4 {
   height: var(--s-22);
   width: var(--s-30);
@@ -99,12 +108,24 @@
   font-size: var(--s-8);
 }
 
+.yellow2 {
+  background: var(--y-hov);
+  margin-left: var(--fs-14);
+  font-weight: var(--fw-400);
+  font-size: var(--s-8);
+}
+
 .yellow:hover {
   background: var(--y-hov);
 }
 
 .red {
   background: var(--pale-red);
+  margin-left: var(--fs-14);
+}
+
+.red2 {
+  background: var(--p-hov);
   margin-left: var(--fs-14);
 }
 
@@ -120,6 +141,10 @@
   background: var(--g-hov);
 }
 
+.cursor {
+  cursor: no-drop !important;
+}
+
 .bold {
   stroke: var(--black);
   stroke-width: 2px;
@@ -129,6 +154,89 @@
   padding: var(--s-20);
   padding-left: var(--s-40);
   background: var(--light-gray-color);
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--s-30);
+}
+
+.form2 {
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+.del {
+  background: var(--red);
+  font-weight: var(--fw-400);
+  color: var(--white-color);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s-20);
+  font-size: var(--s-20);
+  align-items: center;
+  margin-bottom: var(--s-10);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+.del > div {
+  width: var(--s-130);
+  display: flex;
+  justify-content: space-between;
+}
+
+.textInput {
+  width: var(--fifty);
+  height: var(--s-70);
+}
+
+.textInput2 {
+  width: var(--thirty);
+  height: var(--s-70);
+}
+
+.input {
+  padding: var(--s-10);
+  width: var(--hundred);
+  height: var(--s-40);
+  margin-top: var(--s-10);
+}
+
+.btn3 {
+  width: var(--s-60);
+  height: var(--s-40);
+  border-radius: var(--size-3);
+  text-align: center;
+  color: var(--white-color);
+  font-weight: var(--fw-400);
+  border-width: 0;
+}
+
+.ok {
+  background: var(--l-blue);
+}
+
+.ok:hover {
+  background: var(--lb-hov);
+}
+
+.cancel:hover {
+  background: var(--p-hov);
+}
+
+.cancel {
+  background: var(--pale-red);
+}
+
+.white svg {
+  color: var(--white-color) !important;
 }
 
 @media (max-width: 950px) {

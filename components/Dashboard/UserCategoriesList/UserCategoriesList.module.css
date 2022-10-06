@@ -324,6 +324,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: var(--fs-14);
   font-weight: var(--fw-400);
   padding: var(--fs-14) var(--size-3);

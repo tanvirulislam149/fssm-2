@@ -1,10 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ViewDocument.module.css';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import MapSection from '../MapSection/MapSection';
+import { getMappedData } from '../../../services/userCatServices';
 
 const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
+  const [addItemsText, setAddItemsText] = useState([]);
+  const [update, setUpdate] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+
+  const handleItems = (arr) => {
+    const data = [];
+    arr.forEach(item => {
+      if (item.user_profile) {
+        data.push({});
+        data[data.length - 1].title = item.user_profile;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = handleItems(item.section);
+      }
+      if (item.question) {
+        data.push({});
+        data[data.length - 1].title = item.question;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = handleItems(item.items);
+      }
+      if (item.item_title) {
+        data.push({});
+        data[data.length - 1].title = item.item_title;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = handleItems(item.subitems);
+      }
+      if (item.subitem_title) {
+        data.push({});
+        data[data.length - 1].title = item.subitem_title;
+        data[data.length - 1].display_order = item.display_order;
+        data[data.length - 1].id = item.id;
+        data[data.length - 1].subitems = [];
+      }
+    })
+    return data;
+  }
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+  }
+
+  useEffect(() => {
+    getMappedData((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        const data = handleItems(res.data.message);
+        setAddItemsText(data);
+        setLoading2(false);
+        document.getElementById('form') && document.getElementById('form').classList.add("none");
+        document.getElementById('del') && document.getElementById('del').classList.add('none');
+      }
+    })
+  }, [update])
+
   return (
     <>
       <div id="myModal" className='modal2 m'>
@@ -216,7 +274,7 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
         </div>
       </div>
 
-      <MapSection />
+      <MapSection update={update} setUpdate={setUpdate} addItemsText={addItemsText} loading2={loading2} setLoading2={setLoading2} />
     </>
   )
 }

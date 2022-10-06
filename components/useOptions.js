@@ -12,7 +12,8 @@ const useOptions = () => {
     states: [],
     statuses: [],
     languages: [],
-    categories: []
+    categories: [],
+    profile: [],
   })
 
   useEffect(() => {
@@ -23,6 +24,11 @@ const useOptions = () => {
       }
       if (res !== null) {
         setAdvancedSearchText({
+          profile: [
+            res.data['User Profiles'].map(item => {
+              return { title: item }
+            })
+          ][0],
           stake_holder: [
             res.data['Stake Holders'].map(item => {
               return { title: item }

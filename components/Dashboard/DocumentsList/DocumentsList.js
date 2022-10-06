@@ -14,7 +14,7 @@ import { delAllDocs } from '../../../services/allDocumentServices';
 import ViewDocument from '../ViewDocument/ViewDocument';
 import AlertCard from '../AlertCard/AlertCard';
 
-const DocumentsList = ({ documents }) => {
+const DocumentsList = ({ documents, dateArray }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
   const [list, setList] = useState(documents);
@@ -216,7 +216,7 @@ const DocumentsList = ({ documents }) => {
                     <p>{description}</p>
                   </div>
                   <div className={styles.four}>
-                    <p>date</p>
+                    <p>{dateArray[i]}</p>
                   </div>
                   <div className={styles.five}>
                     <div

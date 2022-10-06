@@ -4,11 +4,13 @@ import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import { useRouter } from 'next/router';
 
-const DeletePopup = ({ handleDelete, docId }) => {
+const DeletePopup = ({ handleDelete, docId, setAction, action, setLoading }) => {
   const router = useRouter();
 
   const handleRefresh = () => {
-    router.reload(window.location.pathname);
+    action === undefined && router.reload(window.location.pathname);
+    action !== undefined && setLoading(true);
+    action !== undefined && setAction(!action);
   }
 
   return (

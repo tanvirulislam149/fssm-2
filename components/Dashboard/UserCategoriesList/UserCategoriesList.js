@@ -1,56 +1,88 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import styles from './UserCategoriesList.module.css';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import AddItems from '../AddItems/AddItems';
-import { addItemsText } from '../../TextArrays';
 import { editUserProfile, delUserProfile } from '../../../services/userCatServices';
 import DeletePopup from '../DeletePopup/DeletePopup';
-import AlertCard from '../AlertCard/AlertCard';
+import MapSection from '../MapSection/MapSection';
 
-const data = [
-  { profile: 'Govt - National/State', display: 'Show', id: 1, order: 2 },
-  { profile: 'Govt - National/State', display: 'Show', id: 2, order: 2 },
-  { profile: 'Govt - National/State', display: 'Show', id: 3, order: 2 },
-]
-
-const UserCategoriesList = () => {
+const UserCategoriesList = ({ setMessage, loading2, setLoading2, update, setUpdate, profiles, setAction, action, setLoading, addItemsText }) => {
   const [number, setNumber] = useState(10);
   const [docId, setDocId] = useState(null);
+  const [list, setList] = useState(profiles);
+  const [index, setIndex] = useState(0);
+  const [updated, setUpdated] = useState([]);
+  const [current, setCurrent] = useState([]);
+  const [userProfile, setUserProfile] = useState('');
+
+  const handleClick = (profile) => {
+    const newState = addItemsText.filter(({ title }) => {
+      return title === profile;
+    })
+    setCurrent(newState);
+  }
+
+  useEffect(() => {
+    const newState = addItemsText.filter(({ title }) => {
+      return title === userProfile;
+    })
+    setCurrent(newState);
+  }, [addItemsText])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
 
-  const handleSubmit = (values) => {
+  useState(() => {
+    setList(profiles);
+  }, [profiles])
+
+  const handleSubmit = (values, confirmation) => {
     console.log({ values })
-    // editUserProfile('id',values, (err, res) => {
-    //   if (err) return handleError(err)
-    //   if (res !== null) {
-    //     console.log({ res: res });
-    //   }
-    // })
+    editUserProfile(docId, values, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res: res.data.message });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage('Updated Successfully');
+          confirmation.style.display = 'flex';
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
   const handleDelete = (id, confirmation) => {
-    // delUserProfile(id, values, (err, res) => {
-    //   if (err) return handleError(err)
-    //   if (res !== null) {
-    //     console.log({ res: res });
-    //   }
-    // })
+    delUserProfile(id, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res: res.data.message });
+        if (res.data.message === 'Delete Successfully') {
+          confirmation.style.display = 'flex';
+        }
+      }
+    })
+  }
+
+  useEffect(() => {
+    list.length && document.getElementById('span-click').click();
+  }, [updated])
+
+  const handleValues = (setFieldValue) => {
+    setFieldValue('user_profile', list[index].user_profile);
+    setFieldValue('display_order', list[index].display_order);
+    setFieldValue('is_hidden', list[index].is_hidden);
   }
 
   return (
     <>
-      <div className={styles.container}>
+      {list.length ? <div className={styles.container}>
         <div className={styles.control}>
           <div>
             <p>Show</p>
@@ -90,58 +122,61 @@ const UserCategoriesList = () => {
               <p>Action</p>
             </div>
           </div>
-          {
-            data.map(({ id, order, display, profile }, i) => {
-              return (
-                <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
-                  <div className={styles.one}>
-                    <p>{i + 1}</p>
+          {list.map(({ id, user_profile, display_order, is_hidden }, i) => {
+            return (
+              <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
+                <div className={styles.one}>
+                  <p>{i + 1}</p>
+                </div>
+                <div className={styles.two}>
+                  <p>{user_profile}</p>
+                </div>
+                <div className={styles.two}>
+                  <p>{is_hidden ? 'Hide' : 'Show'}</p>
+                </div>
+                <div className={styles.two}>
+                  <p>{display_order}</p>
+                </div>
+                <div className={styles.two}>
+                  <div
+                    className={`${styles.btn} ${styles.addbtn}`}
+                    title="Add Items"
+                    data-modal="myModal"
+                    onClick={() => {
+                      setUserProfile(user_profile);
+                      handleClick(user_profile);
+                      document.querySelector('.m8').style.display = "flex";
+                    }}>
+                    <AddOutlinedIcon sx={{ color: '#024c73', height: '12px', width: '12px' }} />
                   </div>
-                  <div className={styles.two}>
-                    <p>{profile}</p>
+                  <div
+                    title='Edit User Profile'
+                    className={`${styles.btn} ${styles.editbtn}`}
+                    data-modal="myModal"
+                    onClick={() => {
+                      setDocId(id);
+                      setIndex(i);
+                      setUpdated(!updated);
+                      document.querySelector('.m7').style.display = "flex";
+                    }}>
+                    <CheckBoxOutlinedIcon sx={{ height: '15px', width: '15px' }} />
                   </div>
-                  <div className={styles.two}>
-                    <p>{display}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <p>{order}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <div
-                      className={`${styles.btn} ${styles.addbtn}`}
-                      title="Add Items"
-                      data-modal="myModal"
-                      onClick={() => {
-                        document.querySelector('.m8').style.display = "flex";
-                      }}>
-                      <AddOutlinedIcon sx={{ color: '#024c73', height: '12px', width: '12px' }} />
-                    </div>
-                    <div
-                      title='Edit User Profile'
-                      className={`${styles.btn} ${styles.editbtn}`}
-                      data-modal="myModal"
-                      onClick={() => {
-                        document.querySelector('.m7').style.display = "flex";
-                      }}>
-                      <CheckBoxOutlinedIcon sx={{ height: '15px', width: '15px' }} />
-                    </div>
-                    <div
-                      title='Delete User Profile'
-                      className={`${styles.btn} ${styles.delbtn}`}
-                      onClick={() => {
-                        setDocId(id);
-                        document.querySelector('.m10').style.display = "flex";
-                      }}>
-                      <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
-                    </div>
+                  <div
+                    title='Delete User Profile'
+                    className={`${styles.btn} ${styles.delbtn}`}
+                    onClick={() => {
+                      setDocId(id);
+                      document.querySelector('.m10').style.display = "flex";
+                    }}>
+                    <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                   </div>
                 </div>
-              )
-            })
+              </div>
+            )
+          })
           }
         </div>
-      </div>
-      <p className={styles.results}>Showing 10 of 10 entries</p>
+      </div> : null}
 
       <div id="myModal" className='modal2 m7'>
         <div
@@ -168,10 +203,10 @@ const UserCategoriesList = () => {
                 validationSchema={Yup.object({
                   user_profile: Yup.string()
                     .required('Required')
-                    .min(4, '4 or more characters')
-                    .test('is value valid?', 'Characters must consist of letters only', (val) => {
-                      return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
-                    }),
+                    // .test('is value valid?', 'Characters must consist of letters only', (val) => {
+                    //   return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
+                    // })
+                    .min(4, '4 or more characters'),
                   display_order: Yup.string()
                     .required('Required')
                     .test('is value a number?', 'Display order must be a number', (val) => {
@@ -179,7 +214,7 @@ const UserCategoriesList = () => {
                     }),
                 })}
                 onSubmit={(values, actions) => {
-                  handleSubmit({ ...values, display_order: Number(values.display_order) });
+                  handleSubmit({ ...values, display_order: Number(values.display_order) }, document.querySelector('.m15'));
                   actions.resetForm();
                   document.querySelector('.m7').style.display = "none";
                 }}
@@ -219,6 +254,7 @@ const UserCategoriesList = () => {
                         Cancel
                       </button>
                     </div>
+                    <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
                   </Form>
                 )}
               </Formik>
@@ -227,54 +263,15 @@ const UserCategoriesList = () => {
         </div>
       </div>
 
-      <div id="myModal" className='modal2 m8'>
-        <div
-          className={styles.bg}
-          onClick={() => {
-            document.querySelector('.m8').style.display = "none";
-          }}>
-        </div>
-        <div className={styles.modal_content2}>
-          <div
-            className={styles.close}
-            onClick={() => {
-              document.querySelector('.m8').style.display = "none";
-            }}
-          >
-            <p>Map Section to Role</p>
-            <span><Image src={close} alt='icon' height={24} width={24} /></span>
-          </div>
+      <MapSection
+        loading2={loading2}
+        setLoading2={setLoading2}
+        update={update}
+        setUpdate={setUpdate}
+        addItemsText={current}
+      />
 
-          <div className={styles.cover2}>
-            <div className={styles.buttons}>
-              <div className={`${styles.green} ${styles.btn4}`}>
-                <AddOutlinedIcon className={styles.bold} sx={{ height: '12px', width: '12px' }} />
-              </div>
-              <div className={`${styles.yellow} ${styles.btn4}`}>
-                <CheckBoxOutlinedIcon sx={{ height: '15px', width: '15px' }} />
-              </div>
-              <div className={`${styles.red} ${styles.btn4}`}>
-                <CloseIcon className={styles.bold} sx={{ height: '12px', width: '12px' }} />
-              </div>
-              <div className={`${styles.yellow} ${styles.btn4}`}>
-                Copy
-              </div>
-              <div className={`${styles.yellow} ${styles.btn4}`}>
-                Paste
-              </div>
-            </div>
-            <div className={styles.overflow}>
-              <div className={styles.content2}>
-                <AddItems count={0} subitems={addItemsText.sections} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <DeletePopup docId={docId} handleDelete={handleDelete} />
-
-      <AlertCard message='' />
+      <DeletePopup setLoading={setLoading} action={action} setAction={setAction} docId={docId} handleDelete={handleDelete} />
     </>
   )
 }
