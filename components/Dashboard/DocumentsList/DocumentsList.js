@@ -62,8 +62,8 @@ const DocumentsList = ({ documents, dateArray }) => {
 
   useEffect(() => {
     setList(documents);
-    setClick(!click);
-    setIndex(0);
+    // setClick(!click);
+    // setIndex(0);
   }, [documents])
 
   const handleError = (err) => {

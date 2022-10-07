@@ -35,7 +35,7 @@ const DeletePopup = ({ handleDelete, docId, setAction, action, setLoading }) => 
 
           <div className={styles.cover}>
             <div className={styles.content}>
-              Do You want to delete this document?
+              Do You want to delete this record?
             </div>
             <div className={styles.btn_cont}>
               <button

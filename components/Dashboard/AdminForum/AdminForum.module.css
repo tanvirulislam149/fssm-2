@@ -182,6 +182,13 @@
   border: solid 1px var(--shade);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+
 @-webkit-keyframes animatetop {
   from {
     opacity: 0;

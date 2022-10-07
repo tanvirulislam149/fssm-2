@@ -179,6 +179,7 @@ export default function CustomizedHook({ setData, placeholder, content, currentD
   }, [value, opened])
 
   React.useEffect(() => {
+    value.length = 0;
     let index = [];
     currentData.forEach(option => {
       content.forEach(({ title }, i) => {

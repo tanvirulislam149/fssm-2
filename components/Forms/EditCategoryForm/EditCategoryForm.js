@@ -132,10 +132,6 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
           doc_type: Yup.string()
             .required('Required')
             .nullable(),
-          url: Yup.string()
-          // .test('is title a letter?', 'Title must consist of letters only', (val) => {
-          //   return /[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?/.test(val);
-          // })
         })}
         onSubmit={(data, actions) => {
           document.querySelector('.m2').style.display = "none";

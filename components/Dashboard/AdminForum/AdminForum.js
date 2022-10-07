@@ -1,57 +1,109 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DeletePopup from '../DeletePopup/DeletePopup';
 import ForumCategories from '../ForumCategories/ForumCategories';
 import ForumList from '../ForumList/ForumList';
 import styles from './AdminForum.module.css';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
-
-const data = [
-  {
-    name: "162",
-    cat: "qef",
-    topic: "Donor/Philanthropist/CSR",
-    date: "2022-08-05 07:53",
-    id: 1
-  },
-  {
-    name: "162",
-    cat: "qef",
-    topic: "Donor/Philanthropist/CSR",
-    date: "2022-08-05 07:53",
-    id: 2
-  },
-  {
-    name: "162",
-    cat: "qef",
-    topic: "Donor/Philanthropist/CSR",
-    date: "2022-08-05 07:53",
-    id: 3
-  },
-];
-
-const catList = [
-  { id: 1, cat: 'qef', order: 1, status: 'Active' },
-  { id: 2, cat: 'qef', order: 2, status: 'Active' },
-];
+import { getForumCats, delTopic, delComment, getTopics, addCategory, delCategory } from '../../../services/adminForumServices';
+import CircularProgress from '@mui/material/CircularProgress';
+import AlertCard from '../AlertCard/AlertCard';
 
 const AdminForum = () => {
   const [layout, setLayout] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [documents, setDocuments] = useState(data);
-  const [categories, setCategories] = useState(catList);
+  const [loading, setLoading] = useState(true);
+  const [documents, setDocuments] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [updated, setUpdated] = useState(false);
   const [reactKey, setReactKey] = useState(false);
   const [docId, setDocId] = useState(null);
-  const [text, setText] = useState('');
+  const [name, setName] = useState('');
+  const [update, setUpdate] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const handleDelete = () => {
-
+  const handleError = (err) => {
+    setLoading(false);
+    setMessage('');
+    console.log({ e: err });
   }
 
-  const handleAdd = () => {
-
+  const handleDelete = (id) => {
+    if (message === 'comment') {
+      delComment(id, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          setMessage('');
+          setUpdated(!updated);
+          console.log({ res });
+          // if (res.data.message = 'Discussion Topic has been edited') {
+          //   setMessage('Changes Saved!');
+          //   confirmation.style.display = 'flex';
+          //   setUpdate(!update);
+          // }
+        }
+      })
+    } else if (layout === 3) {
+      delCategory(id, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          if (res.data.message = 'Forum Category has been deleted') {
+            setMessage('Deleted Successfully');
+            document ? document.querySelector('.m15').style.display = 'flex' : null;
+            setUpdate(!update);
+          }
+        }
+      })
+    } else {
+      delTopic(id, (err, res) => {
+        if (err) return handleError(err);
+        if (res !== null) {
+          if (res.data.message = 'Discussion has been deleted') {
+            setMessage('Deleted Successfully');
+            document ? document.querySelector('.m15').style.display = 'flex' : null;
+            setUpdate(!update);
+          }
+        }
+      })
+    }
   }
+
+  const handleAdd = (confirmation) => {
+    addCategory({ name }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        if (res.data.message = 'Forum Category has been created') {
+          setMessage('Forum Category has been created');
+          confirmation.style.display = 'flex';
+          setName('');
+          setUpdate(!update);
+        }
+      }
+    })
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    getForumCats((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        setCategories(res.data['Forum Categories']);
+        setLoading(false);
+      }
+    })
+  }, [update])
+
+  useEffect(() => {
+    setLoading(true);
+    getTopics((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res: res.data });
+        layout === 1 && setDocuments(res.data['Unapproved Topics']);
+        layout === 2 && setDocuments(res.data['Approved Topics']);
+        setLoading(false);
+      }
+    })
+  }, [update])
 
   return (
     <>
@@ -60,7 +112,9 @@ const AdminForum = () => {
           <button
             className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
             onClick={() => {
+              if (layout === 1) return;
               setLayout(1);
+              setUpdate(!update);
               setReactKey(!reactKey);
             }}>
             Un Approved Topics
@@ -68,7 +122,9 @@ const AdminForum = () => {
           <button
             className={layout === 2 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
             onClick={() => {
+              if (layout === 2) return;
               setLayout(2);
+              setUpdate(!update);
               setReactKey(!reactKey);
             }}>
             Approved Topics
@@ -102,24 +158,42 @@ const AdminForum = () => {
           </button>}
         </h4>
 
-        {
+        {loading ?
+          <div className={styles.justify_center}><CircularProgress /></div> :
           layout === 1 || layout === 2 || layout === 4 ?
             <ForumList
               setDocId={setDocId}
+              docId={docId}
               reactKey={reactKey}
               layout={layout}
-              documents={documents} /> :
-            <ForumCategories setDocId={setDocId} categories={categories} />
+              documents={documents}
+              update={update}
+              setUpdate={setUpdate}
+              setMessage={setMessage}
+              updated={updated}
+              setUpdated={setUpdated} /> :
+            <ForumCategories
+              setReactKey={setReactKey}
+              reactKey={reactKey}
+              docId={docId}
+              setDocId={setDocId}
+              categories={categories}
+              update={update}
+              setUpdate={setUpdate}
+              setMessage={setMessage} />
         }
       </div>
 
       <DeletePopup docId={docId} handleDelete={handleDelete} />
+
+      <AlertCard message={message} />
 
       <div id="myModal" className='modal2 m2'>
         <div
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m2').style.display = "none";
+            setName('');
           }}>
         </div>
         <div className={styles.modal_content2}>
@@ -127,6 +201,7 @@ const AdminForum = () => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m2').style.display = "none";
+              setName('');
             }}>
             <p>Add Category</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
@@ -134,24 +209,27 @@ const AdminForum = () => {
 
           <div className={styles.cover2}>
             <div className={styles.content2}>
-              <label htmlFor='text'>Category Name</label>
+              <label htmlFor='name'>Category Name</label>
               <input
-                id='text'
+                id='name'
                 type='text'
-                value={text}
-                onChange={(e) => { setText(e.target.value); }}
+                value={name}
+                onChange={(e) => { setName(e.target.value); }}
                 className={styles.input} />
               <div className={styles.btn_cont}>
                 <button
                   type='submit'
-                  onClick={() => { handleAdd(); }}
+                  onClick={() => {
+                    name.trim().length && handleAdd(document.querySelector('.m15'));
+                    name.trim().length ? document.querySelector('.m2').style.display = "none" : null;
+                  }}
                   className={`${styles.btn3} ${styles.save}`}>Save</button>
                 <button
                   type='reset'
                   className={`${styles.btn3} ${styles.cancel}`}
                   onClick={() => {
                     document.querySelector('.m2').style.display = "none";
-                    setText('');
+                    setName('');
                   }}>
                   Cancel
                 </button>

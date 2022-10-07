@@ -85,6 +85,7 @@
   padding-top: var(--fs-14);
   padding-bottom: var(--fs-14);
   padding: var(--fs-14) var(--size-3);
+  word-break: break-word;
 }
 
 .heading {
@@ -92,10 +93,12 @@
 }
 
 .heading > div {
+  padding: var(--size-3);
   padding-top: var(--fs-14);
   padding-bottom: var(--fs-14);
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .cont {
@@ -105,7 +108,7 @@
 }
 
 .cont > div {
-  min-width: var(--s-900);
+  min-width: var(--s-500);
 }
 
 .one {
@@ -388,7 +391,84 @@
   }
 }
 
+.rep {
+  display: grid;
+  grid-template-columns: var(--ten) var(--ninety);
+  padding: var(--s-10) var(--s-20) var(--s-30);
+  border: 1px solid var(--shade);
+  border-radius: var(--fs-12);
+  margin-bottom: var(--s-10);
+  background: var(--d-bg);
+}
+
+.name {
+  font-size: var(--s-24);
+  font-weight: var(--fw-600);
+  color: var(--primary-blue);
+  padding-top: var(--s-10);
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  font-size: var(--fs-14);
+  font-style: italic;
+  color: var(--light-gray-color);
+}
+
+.body {
+  font-weight: var(--fw-400);
+  margin-top: var(--s-20);
+}
+
+.btn2 {
+  background: var(--pale-red);
+  color: var(--white-color);
+  font-weight: var(--fw-400);
+  border-width: 0;
+  height: var(--s-30);
+  padding: 0 var(--s-30);
+}
+
+.btn2:hover {
+  background: var(--red-hov);
+}
+
+.icon > button {
+  display: none;
+}
+
 @media (max-width: 950px) {
+  .icon + div {
+    padding-left: var(--size-5);
+  }
+
+  .icon {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .icon > button {
+    display: block;
+  }
+
+  .name > button {
+    display: none;
+  }
+
+  .btn2 {
+    font-size: var(--fs-12);
+    padding: 0 var(--s-10);
+  }
+
+  .rep {
+    grid-template-columns: 1fr;
+  }
+
+  .rep > div {
+    margin-top: var(--fs-14);
+  }
+
   .control {
     flex-direction: column;
     align-items: flex-start;
@@ -396,6 +476,14 @@
 
   .modal_content {
     width: var(--size-88);
+  }
+
+  .content {
+    padding: var(--fs-14);
+  }
+
+  .cover {
+    padding: var(--fs-14) var(--s-20);
   }
 }
 

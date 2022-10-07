@@ -25,7 +25,7 @@
 
 .cont {
   border: solid 1px var(--d-bg);
-  min-width: var(--s-900);
+  min-width: var(--s-500);
 }
 
 .heading {

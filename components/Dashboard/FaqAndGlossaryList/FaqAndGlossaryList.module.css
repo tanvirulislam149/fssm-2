@@ -101,7 +101,7 @@
 }
 
 .cont > div {
-  min-width: var(--s-900);
+  min-width: var(--s-500);
 }
 
 .one {
@@ -116,8 +116,119 @@
   width: var(--size-22);
 }
 
+.four {
+  width: var(--size-44);
+}
+
+.textInput2 {
+  margin-bottom: var(--fs-14);
+}
+
+.textInput2 > label span {
+  color: var(--pale-red);
+}
+
+.select2 {
+  width: var(--hundred);
+  border: solid 1px var(--shade);
+  padding: var(--size-5);
+  margin-top: var(--size-3);
+  color: var(--header-txt);
+}
+
+.select2:focus {
+  box-shadow: none;
+}
+
+.select2 option:not(:first-of-type) {
+  color: var(--black);
+}
+
+.select2 option {
+  font-size: var(--fs-1rem);
+}
+
+.form_select {
+  background-position: right 1.5rem center;
+  background-size: 16px 10px;
+}
+
 .cont2 {
   margin-top: 0;
+}
+
+.cover2 {
+  padding: var(--fs-14);
+  padding-bottom: var(--s-20);
+}
+
+.content2 {
+  border: solid 1px var(--light-gray-color);
+  background: var(--input-border-color);
+  padding: var(--s-30);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-400);
+}
+
+.content2 label {
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+}
+
+.btn3 {
+  height: var(--fs-24);
+  padding: 0 var(--s-20);
+  color: var(--white-color);
+  border-width: 0;
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+}
+
+.save {
+  background: var(--l-blue);
+}
+
+.save:hover {
+  background: var(--lb-hov);
+}
+
+.cancel {
+  background: var(--pale-red);
+  margin-left: var(--s-10);
+}
+
+.cancel:hover {
+  background: var(--red-hov);
+}
+
+.btn_cont {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--s-10);
+  margin-top: var(--s-20);
+}
+
+.input3 {
+  padding: var(--s-8);
+  width: var(--hundred);
+  margin-top: var(--s-8);
+  border: solid 1px var(--shade);
+  font-size: var(--fs-1rem);
+}
+
+.content2 input[type="number" i] {
+  margin-bottom: var(--fs-14);
+}
+
+.textarea {
+  height: auto;
+  resize: none;
+  border: solid 1px var(--shade);
+  font-family: var(--font-family-secondary);
+  font-size: var(--fs-1rem);
+  padding: var(--s-10);
+  width: var(--hundred);
+  margin-top: var(--s-8);
 }
 
 .editbtn {
@@ -291,14 +402,16 @@
 
 .textInput2 {
   margin-bottom: var(--fs-14);
+  margin-top: var(--fs-14);
 }
 
-.textInput2 > label span {
+.content2 label span {
   color: var(--pale-red);
 }
 
 .input2 {
   width: var(--hundred);
+  height: var(--fs-36);
   border: solid 1px var(--shade);
   padding: var(--size-5);
   margin-top: var(--size-3);
