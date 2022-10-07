@@ -50,7 +50,6 @@ const AdminFaqs = () => {
     layout === 1 && addFaq({ ques: text, order: Number(order), ans }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log({ res });
         if (res.data.message === 'FAQ has been added') {
           setMessage('FAQ has been added');
           document ? document.querySelector('.m15').style.display = 'flex' : null;
@@ -65,7 +64,6 @@ const AdminFaqs = () => {
     layout === 2 && addGlossary({ word: text, ans }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log({ res });
         if (res.data.message === 'Glossary word has been added') {
           setMessage('Glossary word has been added');
           document ? document.querySelector('.m15').style.display = 'flex' : null;
