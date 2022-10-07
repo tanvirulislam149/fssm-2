@@ -51,6 +51,11 @@ const AdminFaqs = () => {
       if (err) return handleError(err);
       if (res !== null) {
         console.log({ res });
+        if (res.data.message === 'FAQ has been added') {
+          setMessage('FAQ has been added');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
         setText('');
         setOrder('');
         setAns('');
@@ -61,6 +66,11 @@ const AdminFaqs = () => {
       if (err) return handleError(err);
       if (res !== null) {
         console.log({ res });
+        if (res.data.message === 'Glossary word has been added') {
+          setMessage('Glossary word has been added');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
         setText('');
         setAns('');
       }
