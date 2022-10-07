@@ -57,6 +57,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
   const [search, setSearch] = useState('');
   const [list, setList] = useState(documents);
   const [replies, setReplies] = useState([]);
+  const [replyId, setReplyId] = useState('');
   const [dateArray, setDateArray] = useState([]);
 
   const handleChange = (event) => {
@@ -170,7 +171,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
   }
 
   useEffect(() => {
-    replies.length && viewComments({ val: docId }, (err, res) => {
+    replies.length && viewComments({ val: replyId }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
         console.log({ resy: res });
@@ -282,6 +283,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
                       title='View Comments'
                       onClick={() => {
                         setDocId(id);
+                        setReplyId(id);
                         handleReplies(id, document.querySelector('.m'));
                       }}
                     >
