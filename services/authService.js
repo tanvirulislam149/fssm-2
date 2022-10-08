@@ -72,7 +72,6 @@ export const resetPass = (data, uid, token, cb) => {
     .catch(err => cb(err, null))
 }
 
-
 // export const uuu = (data, cb) => {
 //   axios.post('/users/register/', data)
 //     .then(res => cb(null, res))
