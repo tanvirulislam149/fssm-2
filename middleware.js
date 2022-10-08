@@ -3,9 +3,7 @@ import { NextResponse } from "next/dist/server/web/spec-extension/response";
 export default function middleware(req) {
   const { url } = req;
   const path = req.nextUrl.clone();
-  //console.log({ a: path.pathname === '/dashboard' })
   const isAdmin = req.cookies.get('isAdmin');
-  //const { origin } = req.nextUrl;
   if (url.includes('/dashboard') || url.includes('/bulkupload') ||
     url.includes('/documentsmapping') || url.includes('/mydocuments') ||
     url.includes('/documents') || url.includes('/documentsdump') ||
