@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import eye from '../../../assets/eye.png';
 import Image from 'next/image';
-import { resetPass, uuu } from '../../../services/authService';
+import { resetPass } from '../../../services/authService';
 
 const ResetPasswordForm = () => {
   const [error, setError] = useState(null);
@@ -63,24 +63,6 @@ const ResetPasswordForm = () => {
   const handleNav = () => {
     navigate.push('/signin');
   }
-
-  // useEffect(() => {
-  //   uuu({
-  //     email: 'davidjoshua603@gmail.com',
-  //     first_name: 'joshua',
-  //     last_name: 'oni',
-  //     is_admin: false,
-  //     is_restrictedUser: true,
-  //     password: 12345
-  //   }, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       setLoading(false);
-  //       console.log({ r: res });
-  //       //navigate.push('/signin');
-  //     }
-  //   });
-  // }, [])
 
 
   return (

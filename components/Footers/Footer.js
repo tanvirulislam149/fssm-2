@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 import { footerText } from '../TextArrays';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
-import { axiosInstance } from '../../services/authService';
 import ComponentLayout from '../Sections/ComponentLayout/ComponentLayout';
 
 const Footer = () => {
@@ -20,7 +19,7 @@ const Footer = () => {
   useEffect(() => {
     Cookies.get('access') ?
       Cookies.get('isAdmin') === 'true' ?
-        setAction('Admin Dashboard') : setAction('Sign Out')
+        setAction('Admin Dashboard') : setAction('User Dashboard')
       : setAction('Sign In')
   }, [])
 
@@ -29,15 +28,7 @@ const Footer = () => {
   }
 
   const clickHandler = () => {
-    if (Cookies.get('isAdmin') === 'true') {
-      navigate.push('/dashboard');
-    } else {
-      Cookies.remove('access');
-      Cookies.remove('refresh');
-      Cookies.remove('isAdmin');
-      axiosInstance.defaults.headers.common["Authorization"] = null;
-      navigate.push('/signin');
-    }
+    navigate.push('/dashboard');
   }
 
   return (

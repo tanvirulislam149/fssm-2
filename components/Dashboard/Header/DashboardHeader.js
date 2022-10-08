@@ -12,6 +12,7 @@ import Cookies from 'js-cookie';
 
 const DashboardHeader = () => {
   const [clicked, setClicked] = useState(false);
+
   const router = useRouter();
 
   const handleNav = () => {
@@ -52,7 +53,7 @@ const DashboardHeader = () => {
         </div>
         <div className={styles.right}>
           <button onClick={() => { handleNav(); }} className={styles.btn}>Go to website</button>
-          <h4>NFSSM</h4>
+          <h4>{Cookies.get('isAdmin') === 'true' ? 'NFSSM' : 'CDD'}</h4>
           <div
             className={styles.admin}
             title='Toggle pop-up'
@@ -60,7 +61,7 @@ const DashboardHeader = () => {
               document.getElementById('pop_up').classList.toggle('none');
             }}>
             <Image src={profile} height={40} width={40} alt='logo' />
-            <p>Admin</p>
+            <p>{Cookies.get('firstName') + ' ' + Cookies.get('lastName')}</p>
           </div>
         </div>
       </nav>
@@ -95,6 +96,8 @@ const DashboardHeader = () => {
               Cookies.remove('access');
               Cookies.remove('refresh');
               Cookies.remove('isAdmin');
+              Cookies.remove('firstName');
+              Cookies.remove('lastName');
               router.push('/');
             }}
             className={styles.btn3}>Sign Out</div>

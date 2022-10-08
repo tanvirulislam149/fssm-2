@@ -26,6 +26,8 @@ axiosInstance.interceptors.response.use(response => response,
       Cookies.remove('access');
       Cookies.remove('refresh');
       Cookies.remove('isAdmin');
+      Cookies.remove('firstName');
+      Cookies.remove('lastName');
       return Promise.reject('Refresh token expired');
     }
 
@@ -35,7 +37,7 @@ axiosInstance.interceptors.response.use(response => response,
 
       return axiosInstance.post('api/token/refresh/', { refresh: refreshToken })
         .then(res => {
-          Cookies.set('access', res.data.access, { expires: 14 })
+          Cookies.set('access', res.data.access, { expires: 5 })
           axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`;
           originalRequest.headers['Authorization'] = `Bearer ${res.data.access}`;
           return axiosInstance(originalRequest);

@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { delAllDocs } from '../../../services/allDocumentServices';
 import ViewDocument from '../ViewDocument/ViewDocument';
 import AlertCard from '../AlertCard/AlertCard';
+import Cookies from 'js-cookie';
 
 const DocumentsList = ({ documents, dateArray }) => {
   const [number, setNumber] = useState(10);
@@ -219,7 +220,7 @@ const DocumentsList = ({ documents, dateArray }) => {
                     <p>{dateArray[i]}</p>
                   </div>
                   <div className={styles.five}>
-                    <div
+                    {!(Cookies.get('isAdmin') !== 'true' && router.pathname === '/documents') && <div
                       title='delete'
                       onClick={() => {
                         setDocId(id);
@@ -227,7 +228,7 @@ const DocumentsList = ({ documents, dateArray }) => {
                       }}
                       className={`${styles.btn} ${styles.delbtn}`}>
                       <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
-                    </div>
+                    </div>}
                     <div
                       className={`${styles.btn} ${styles.viewbtn}`}
                       title='view'
@@ -240,7 +241,7 @@ const DocumentsList = ({ documents, dateArray }) => {
                     >
                       <RemoveRedEyeOutlinedIcon sx={{ color: 'white', height: '15px', width: '15px' }} />
                     </div>
-                    <div
+                    {!(Cookies.get('isAdmin') !== 'true' && router.pathname === '/documents') && <div
                       title='edit'
                       className={`${styles.btn} ${styles.editbtn}`}
                       data-modal="myModal"
@@ -251,7 +252,7 @@ const DocumentsList = ({ documents, dateArray }) => {
                       }}
                     >
                       <CheckBoxOutlinedIcon sx={{ height: '15px', width: '15px' }} />
-                    </div>
+                    </div>}
                   </div>
                 </div>
               )

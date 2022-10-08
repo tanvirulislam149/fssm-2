@@ -1,6 +1,7 @@
 .container {
   background: var(--header-txt);
   height: var(--hundred);
+  min-height: var(--s-800);
 }
 
 .card {
