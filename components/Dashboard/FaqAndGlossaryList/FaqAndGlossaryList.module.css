@@ -505,6 +505,22 @@
   .modal_content {
     width: var(--size-88);
   }
+
+  .content {
+    padding: var(--s-10);
+  }
+
+  .cover {
+    padding: var(--s-10);
+  }
+
+  .title {
+    width: var(--twenty);
+  }
+
+  .details {
+    width: var(--eighty);
+  }
 }
 
 @media (max-width: 690px) {
