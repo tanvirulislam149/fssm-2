@@ -58,7 +58,6 @@
   height: var(--s-30);
   padding: 0 var(--s-20);
   text-align: center;
-  margin-top: -10px;
 }
 
 .btn:hover {
