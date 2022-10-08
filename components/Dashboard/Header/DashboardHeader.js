@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { sideBarText } from '../../TextArrays';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 
 const DashboardHeader = () => {
   const [clicked, setClicked] = useState(false);
@@ -89,7 +90,14 @@ const DashboardHeader = () => {
         </div>
         <div className={styles.footer}>
           <div className={styles.btn2}>Change Password</div>
-          <div className={styles.btn3}>Sign Out</div>
+          <div
+            onClick={() => {
+              Cookies.remove('access');
+              Cookies.remove('refresh');
+              Cookies.remove('isAdmin');
+              router.push('/');
+            }}
+            className={styles.btn3}>Sign Out</div>
         </div>
       </div>
     </>
