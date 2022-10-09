@@ -6,16 +6,22 @@ import Image from "next/image";
 import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import DeletePopup from "../DeletePopup/DeletePopup";
+import { editOrgList, delOrg } from "../../../services/orgService";
+import { useForm } from "react-hook-form";
 
-const OrganizationList = ({ org }) => {
+const OrganizationList = ({ org, setMessage }) => {
   const [number, setNumber] = useState(10);
   const [orgName, setOrgName] = useState("");
   const [docId, setDocId] = useState(0);
+  const [orgId, setOrgId] = useState(0);
 
-  // console.log(org);
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
+
+  const handleError = (err) => {
+    console.log({ e: err })
+  }
 
   const handleDelete = (id, confirmation) => {
     delOrg(id, (err, res) => {
@@ -28,6 +34,20 @@ const OrganizationList = ({ org }) => {
       }
     })
   }
+
+  const { register, handleSubmit } = useForm();
+  const handleEditOrgList = (data, id, confirmation) => {
+    editOrgList(data, id, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res: res.data.message });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage("Updated Successfully");
+          confirmation.style.display = 'flex';
+        }
+      }
+    })
+  };
 
 
   return (
@@ -72,6 +92,7 @@ const OrganizationList = ({ org }) => {
                           className={`${styles.btn} ${styles.editbtn}`}
                           data-modal="myModal"
                           onClick={() => {
+                            setOrgId(id)
                             document.querySelector(".m7").style.display =
                               "flex";
                             setOrgName(org_name);
@@ -106,7 +127,7 @@ const OrganizationList = ({ org }) => {
           </> : ""
       }
 
-      <DeletePopup handleDelete={handleDelete} />
+      <DeletePopup handleDelete={handleDelete} docId={docId} />
 
       <div id="myModal" className="modal2 m7">
         <div
@@ -130,60 +151,33 @@ const OrganizationList = ({ org }) => {
 
           <div className={styles.cover}>
             <div className={styles.content}>
-              <Formik
-                initialValues={{
-                  orgName: "",
-                  display: "",
-                  displayOrder: "",
-                }}
-                onSubmit={(values) => {
-                  //handleSubmit(values);
-                }}
-              >
-                <Form>
-                  <div className={styles.textInput2}>
-                    <label htmlFor="orgName">
-                      Org Name <span>*</span>
-                    </label>
-                    <Field
-                      name="orgName"
-                      id="orgName"
-                      className={styles.input}
-                      type="text"
-                    />
-                    <span className="form-error">
-                      <ErrorMessage name="orgName" />
-                    </span>
-                  </div>
-                  <div className={styles.textInput2}>
-                    <label htmlFor="displayOrder">
-                      Short Name <span>*</span>
-                    </label>
-                    <Field
-                      name="displayOrder"
-                      id="displayOrder"
-                      className={styles.input}
-                      type="text"
-                    />
-                    <span className="form-error">
-                      <ErrorMessage name="displayOrder" />
-                    </span>
-                  </div>
-                </Form>
-              </Formik>
-            </div>
-            <div className={styles.btn_cont}>
-              <button className={`${styles.btn3} ${styles.save}`}>
-                Save
-              </button>
-              <button
-                className={`${styles.btn3} ${styles.cancel}`}
-                onClick={() => {
-                  document.querySelector(".m7").style.display = "none";
-                }}
-              >
-                Cancel
-              </button>
+              <form onSubmit={handleSubmit(data => handleEditOrgList(data, orgId))}>
+                <div className={styles.textInput2}>
+                  <label htmlFor="orgName">
+                    Org Name <span>*</span>
+                  </label>
+                  <input className={styles.input} {...register("org_name", { required: true })} defaultValue={orgName} />
+                </div>
+                <div className={styles.textInput2}>
+                  <label htmlFor="shortName">
+                    Short Name <span>*</span>
+                  </label>
+                  <input className={styles.input} {...register("short_name", { required: true })} />
+                </div>
+                <div className={styles.btn_cont}>
+                  <button type="submit" className={`${styles.btn3} ${styles.save}`}>
+                    Save
+                  </button>
+                  <button
+                    className={`${styles.btn3} ${styles.cancel}`}
+                    onClick={() => {
+                      document.querySelector(".m7").style.display = "none";
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
