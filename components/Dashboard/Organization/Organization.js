@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import styles from "./Organization.module.css";
 import useOptions from '../../useOptions';
 import OrganizationList from "../OrganizationList/OrganizationList";
@@ -7,24 +7,51 @@ import Image from "next/image";
 import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { getOrgFilter, getOrgList } from "../../../services/orgService";
 
 const Organization = () => {
-  const [profile, setProfile] = useState("");
+  const [search, setSearch] = useState("");
+  const [org, setOrg] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [profileOptions, setProfileOptions] = useState([]);
+  const [orgOptions, setOrgOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { advancedSearchText } = useOptions();
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+  }
+
+  useEffect(() => {
+    getOrgFilter((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        // console.log(res)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     let options = [];
     advancedSearchText.partners.forEach(({ title }) => {
       options.push(title);
     });
-    setProfileOptions(options);
+    setOrgOptions(options);
   }, [advancedSearchText]);
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
+    getOrgList({ search: search ? search : '' }, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        setOrg(res.data.message)
+      }
+    })
+
   };
 
   return (
@@ -40,14 +67,14 @@ const Organization = () => {
               <Autocomplete
                 className={styles.select}
                 onChange={(event, newValue) => {
-                  setProfile(newValue);
+                  setSearch(newValue);
                 }}
                 inputValue={inputValue}
                 onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
                 }}
                 id="profile"
-                options={profileOptions}
+                options={orgOptions}
                 renderInput={(params) => (
                   <TextField {...params} placeholder="--Select--" />
                 )}
@@ -68,7 +95,13 @@ const Organization = () => {
         </form>
 
         <h4 className={styles.label3}>Organization List</h4>
-        <OrganizationList />
+        {
+          loading ?
+            <div className={styles.justify_center}><CircularProgress /></div> :
+            <OrganizationList
+              org={org} />
+        }
+
       </div>
     </>
   );
