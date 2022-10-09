@@ -6,20 +6,20 @@ import Image from "next/image";
 import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import DeletePopup from "../DeletePopup/DeletePopup";
-import { delOrg } from "../../../services/orgService";
+import { editOrgList, delOrg } from "../../../services/orgService";
 import { useForm } from "react-hook-form";
 
-const OrganizationList = ({ org }) => {
+const OrganizationList = ({ org, setMessage }) => {
   const [number, setNumber] = useState(10);
   const [orgName, setOrgName] = useState("");
   const [docId, setDocId] = useState(0);
+  const [orgId, setOrgId] = useState(0);
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
 
   const handleError = (err) => {
-    setLoading(false);
     console.log({ e: err })
   }
 
@@ -36,7 +36,18 @@ const OrganizationList = ({ org }) => {
   }
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const handleEditOrgList = (data, id, confirmation) => {
+    editOrgList(data, id, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res: res.data.message });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage("Updated Successfully");
+          confirmation.style.display = 'flex';
+        }
+      }
+    })
+  };
 
 
   return (
@@ -81,6 +92,7 @@ const OrganizationList = ({ org }) => {
                           className={`${styles.btn} ${styles.editbtn}`}
                           data-modal="myModal"
                           onClick={() => {
+                            setOrgId(id)
                             document.querySelector(".m7").style.display =
                               "flex";
                             setOrgName(org_name);
@@ -139,7 +151,7 @@ const OrganizationList = ({ org }) => {
 
           <div className={styles.cover}>
             <div className={styles.content}>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(data => handleEditOrgList(data, orgId))}>
                 <div className={styles.textInput2}>
                   <label htmlFor="orgName">
                     Org Name <span>*</span>
@@ -147,7 +159,7 @@ const OrganizationList = ({ org }) => {
                   <input className={styles.input} {...register("org_name", { required: true })} defaultValue={orgName} />
                 </div>
                 <div className={styles.textInput2}>
-                  <label htmlFor="displayOrder">
+                  <label htmlFor="shortName">
                     Short Name <span>*</span>
                   </label>
                   <input className={styles.input} {...register("short_name", { required: true })} />

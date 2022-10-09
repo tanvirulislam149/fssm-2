@@ -8,6 +8,7 @@ import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { getOrgFilter, getOrgList } from "../../../services/orgService";
+import AlertCard from "../AlertCard/AlertCard";
 
 const Organization = () => {
   const [search, setSearch] = useState("");
@@ -15,6 +16,7 @@ const Organization = () => {
   const [inputValue, setInputValue] = useState("");
   const [orgOptions, setOrgOptions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const { advancedSearchText } = useOptions();
 
@@ -99,10 +101,12 @@ const Organization = () => {
           loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
             <OrganizationList
-              org={org} />
+              org={org}
+              setMessage={setMessage} />
         }
 
       </div>
+      <AlertCard message={message} />
     </>
   );
 };

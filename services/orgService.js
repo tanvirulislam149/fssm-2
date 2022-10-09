@@ -17,3 +17,8 @@ export const delOrg = (id, cb) => {
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
+export const editOrgList = (data, id, cb) => {
+  axiosInstance.put(`dashboard/org_list/${id}/`, data)
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}
