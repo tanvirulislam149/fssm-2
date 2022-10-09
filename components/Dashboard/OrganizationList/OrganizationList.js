@@ -6,16 +6,21 @@ import Image from "next/image";
 import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import DeletePopup from "../DeletePopup/DeletePopup";
+import { delOrg } from "../../../services/orgService";
 
 const OrganizationList = ({ org }) => {
   const [number, setNumber] = useState(10);
   const [orgName, setOrgName] = useState("");
   const [docId, setDocId] = useState(0);
 
-  // console.log(org);
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
+
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err })
+  }
 
   const handleDelete = (id, confirmation) => {
     delOrg(id, (err, res) => {
@@ -106,7 +111,7 @@ const OrganizationList = ({ org }) => {
           </> : ""
       }
 
-      <DeletePopup handleDelete={handleDelete} />
+      <DeletePopup handleDelete={handleDelete} docId={docId} />
 
       <div id="myModal" className="modal2 m7">
         <div
