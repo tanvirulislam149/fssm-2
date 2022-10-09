@@ -7,6 +7,7 @@ import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import DeletePopup from "../DeletePopup/DeletePopup";
 import { delOrg } from "../../../services/orgService";
+import { useForm } from "react-hook-form";
 
 const OrganizationList = ({ org }) => {
   const [number, setNumber] = useState(10);
@@ -33,6 +34,9 @@ const OrganizationList = ({ org }) => {
       }
     })
   }
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
 
 
   return (
@@ -135,60 +139,33 @@ const OrganizationList = ({ org }) => {
 
           <div className={styles.cover}>
             <div className={styles.content}>
-              <Formik
-                initialValues={{
-                  orgName: "",
-                  display: "",
-                  displayOrder: "",
-                }}
-                onSubmit={(values) => {
-                  //handleSubmit(values);
-                }}
-              >
-                <Form>
-                  <div className={styles.textInput2}>
-                    <label htmlFor="orgName">
-                      Org Name <span>*</span>
-                    </label>
-                    <Field
-                      name="orgName"
-                      id="orgName"
-                      className={styles.input}
-                      type="text"
-                    />
-                    <span className="form-error">
-                      <ErrorMessage name="orgName" />
-                    </span>
-                  </div>
-                  <div className={styles.textInput2}>
-                    <label htmlFor="displayOrder">
-                      Short Name <span>*</span>
-                    </label>
-                    <Field
-                      name="displayOrder"
-                      id="displayOrder"
-                      className={styles.input}
-                      type="text"
-                    />
-                    <span className="form-error">
-                      <ErrorMessage name="displayOrder" />
-                    </span>
-                  </div>
-                </Form>
-              </Formik>
-            </div>
-            <div className={styles.btn_cont}>
-              <button className={`${styles.btn3} ${styles.save}`}>
-                Save
-              </button>
-              <button
-                className={`${styles.btn3} ${styles.cancel}`}
-                onClick={() => {
-                  document.querySelector(".m7").style.display = "none";
-                }}
-              >
-                Cancel
-              </button>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className={styles.textInput2}>
+                  <label htmlFor="orgName">
+                    Org Name <span>*</span>
+                  </label>
+                  <input className={styles.input} {...register("org_name", { required: true })} defaultValue={orgName} />
+                </div>
+                <div className={styles.textInput2}>
+                  <label htmlFor="displayOrder">
+                    Short Name <span>*</span>
+                  </label>
+                  <input className={styles.input} {...register("short_name", { required: true })} />
+                </div>
+                <div className={styles.btn_cont}>
+                  <button type="submit" className={`${styles.btn3} ${styles.save}`}>
+                    Save
+                  </button>
+                  <button
+                    className={`${styles.btn3} ${styles.cancel}`}
+                    onClick={() => {
+                      document.querySelector(".m7").style.display = "none";
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
