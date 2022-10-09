@@ -302,7 +302,7 @@
 }
 
 .cont > div {
-  min-width: var(--s-900);
+  min-width: var(--s-800);
 }
 
 @media (max-width: 950px) {

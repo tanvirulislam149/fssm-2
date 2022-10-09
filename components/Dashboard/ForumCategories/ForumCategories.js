@@ -1,18 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { FormControl, MenuItem, Select } from '@mui/material';
 import styles from '../ForumList/ForumList.module.css';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import { styled } from '@mui/material/styles';
-import Switch from '@mui/material/Switch';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import { editCategory } from '../../../services/adminForumServices';
 
-const ForumCategories = ({ categories, setDocId }) => {
+const ForumCategories = ({ categories, update, setUpdate, setMessage, setReactKey, reactKey, docId, setDocId }) => {
   const [list, setList] = useState(categories);
+  const [index, setIndex] = useState(0);
+  const [updated, setUpdated] = useState([]);
+
+  useEffect(() => {
+    list.length && document.getElementById('span-click').click();
+  }, [updated])
+
+  const handleValues = (setFieldValue) => {
+    setFieldValue('name', list[index].category);
+    setFieldValue('order', list[index].display_order ? list[index].display_order : '');
+    setFieldValue('status', list[index].status ? list[index].status : '');
+  }
+
+  const handleSubmit = (confirmation, data) => {
+    editCategory(docId, data, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message = 'Forum Category has been edited') {
+          setMessage('Forum Category has been edited');
+          confirmation.style.display = 'flex';
+          setReactKey(!reactKey);
+          setUpdate(!update);
+        }
+      }
+    })
+  }
 
   return (
     <>
@@ -35,17 +59,17 @@ const ForumCategories = ({ categories, setDocId }) => {
               <p>Actions</p>
             </div>
           </div>
-          {list.map(({ status, id, order, cat }, i) => {
+          {list.map(({ status, id, display_order, category }, i) => {
             return (
               <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                 <div className={styles.one}>
                   <p>{i + 1}</p>
                 </div>
                 <div className={styles.three}>
-                  <p> {cat}</p>
+                  <p> {category}</p>
                 </div>
                 <div className={styles.three}>
-                  <p> {order}</p>
+                  <p> {display_order}</p>
                 </div>
                 <div className={styles.three}>
                   <p>{status}</p>
@@ -64,6 +88,9 @@ const ForumCategories = ({ categories, setDocId }) => {
                     title='edit'
                     className={`${styles.btn} ${styles.editbtn}`}
                     onClick={() => {
+                      setDocId(id);
+                      setIndex(i);
+                      setUpdated(!updated);
                       document.querySelector('.m7').style.display = "flex"
                     }}
                   >
@@ -81,6 +108,7 @@ const ForumCategories = ({ categories, setDocId }) => {
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m7').style.display = "none";
+            setReactKey(!reactKey);
           }}>
         </div>
         <div className={styles.modal_content2}>
@@ -88,6 +116,7 @@ const ForumCategories = ({ categories, setDocId }) => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m7').style.display = "none";
+              setReactKey(!reactKey);
             }}
           >
             <p>Edit Category</p>
@@ -97,35 +126,37 @@ const ForumCategories = ({ categories, setDocId }) => {
           <div className={styles.cover2}>
             <div className={styles.content2}>
               <Formik
-                initialValues={{ category: '', status: '', display_order: '' }}
+                key={reactKey}
+                initialValues={{ name: '', status: '', order: '' }}
                 validationSchema={Yup.object({
-                  category: Yup.string()
+                  name: Yup.string()
                     .test('is value valid?', 'Characters must consist of letters only', (val) => {
                       return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
                     }),
-                  display_order: Yup.string()
+                  order: Yup.string()
                     .test('is value a number?', 'Display order must be a number', (val) => {
                       return !isNaN(val);
-                    }),
+                    })
+                    .nullable(),
                 })}
                 onSubmit={(values, actions) => {
-                  handleSubmit({ ...values, display_order: Number(values.display_order) });
+                  handleSubmit(document.querySelector('.m15'), { ...values, order: Number(values.order) });
                   actions.resetForm();
                   document.querySelector('.m7').style.display = "none";
                 }}
               >
-                {({ resetForm }) => (
+                {({ setFieldValue, resetForm }) => (
                   <Form>
                     <div className={styles.textInput2}>
-                      <label htmlFor="category">Category Name</label>
-                      <Field name="category" id='category' className={styles.input2} type="text" />
-                      <span className='form-error'><ErrorMessage name="category" /></span>
+                      <label htmlFor="name">Category Name</label>
+                      <Field name="name" id='name' className={styles.input2} type="text" />
+                      <span className='form-error'><ErrorMessage name="name" /></span>
                     </div>
 
                     <div className={styles.textInput2}>
-                      <label htmlFor="display_order">Display Order</label>
-                      <Field name="display_order" id='display_order' className={styles.input2} type="text" />
-                      <span className='form-error'><ErrorMessage name="display_order" /></span>
+                      <label htmlFor="order">Display Order</label>
+                      <Field name="order" id='order' className={styles.input2} type="text" />
+                      <span className='form-error'><ErrorMessage name="order" /></span>
                     </div>
 
                     <div className={styles.textInput2}>
@@ -146,10 +177,12 @@ const ForumCategories = ({ categories, setDocId }) => {
                         onClick={() => {
                           resetForm();
                           document.querySelector('.m7').style.display = "none";
+                          setReactKey(!reactKey);
                         }}>
                         Cancel
                       </button>
                     </div>
+                    <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
                   </Form>
                 )}
               </Formik>

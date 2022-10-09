@@ -38,7 +38,9 @@ const DownloadCard = ({ tenders }) => {
         <div className={styles.main}>
           <div className={styles.top}>
             <p className={`${styles.heading} ${styles.title3}`}>{tenders?.title}</p>
-            <button className={styles.btn}>Download</button>
+            <a href={`https://swacchfssm.herokuapp.com${tenders?.attachment}`} rel="noreferrer" target="_blank">
+              <span className={styles.btn}>Download</span>
+            </a>
           </div>
           <p className={styles.body}>{tenders?.description}</p>
 

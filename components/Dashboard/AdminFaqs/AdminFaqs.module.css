@@ -58,7 +58,6 @@
   height: var(--s-30);
   padding: 0 var(--s-20);
   text-align: center;
-  margin-top: -10px;
 }
 
 .btn:hover {
@@ -194,6 +193,13 @@
   margin-bottom: var(--s-20);
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+
 @-webkit-keyframes animatetop {
   from {
     opacity: 0;
@@ -212,7 +218,7 @@
   }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 950px) {
   .modal_content2 {
     width: var(--size-88);
   }

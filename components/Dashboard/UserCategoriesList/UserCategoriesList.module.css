@@ -369,5 +369,5 @@
 }
 
 .cont > div {
-  min-width: var(--s-900);
+  min-width: var(--s-500);
 }

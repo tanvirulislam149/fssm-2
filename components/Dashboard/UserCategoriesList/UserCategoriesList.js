@@ -52,7 +52,8 @@ const UserCategoriesList = ({ setMessage, loading2, setLoading2, update, setUpda
         if (res.data.message === 'Updated Successfully') {
           setMessage('Updated Successfully');
           confirmation.style.display = 'flex';
-          setUpdate(!update);
+          setLoading(true);
+          setAction(!action);
         }
       }
     })

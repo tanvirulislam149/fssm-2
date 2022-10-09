@@ -6,17 +6,18 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { getMyDocs } from '../../../services/mydocumentServices';
 import UploadDocs from '../UploadDocs/UploadDocs';
 import AlertCard from '../AlertCard/AlertCard';
+import { useRouter } from 'next/router';
 
 const MyDocuments = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [documents, setDocuments] = useState([]);
   const [dateArray, setDateArray] = useState([]);
+
+  const router = useRouter();
 
   const handleError = (err) => {
     setLoading(false);
     console.log({ e: err })
-    setError(err.message);
   }
 
   const handleSearch = (data) => {
@@ -24,7 +25,11 @@ const MyDocuments = () => {
     getMyDocs(data, (err, res) => {
       if (err) return handleError(err)
       if (res !== null && res) {
-        console.log({ re: res.data['Search Results'] });
+        console.log({ re: res });
+        if (res.data.Error) {
+          router.push('/signin');
+          return;
+        }
         setDocuments(res.data['Search Results'])
         const data = res.data['Search Results'];
         let date = [];

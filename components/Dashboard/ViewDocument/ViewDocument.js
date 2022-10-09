@@ -239,9 +239,11 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
                   View Document
                 </div>
                 <div className={styles.details}>
-                  <div className={styles.view}>
-                    View
-                  </div>
+                  <a href={`https://swacchfssm.herokuapp.com${currentDoc.attachment}`} rel="noreferrer" target="_blank">
+                    <div className={styles.view}>
+                      View
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

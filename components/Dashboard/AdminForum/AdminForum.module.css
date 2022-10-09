@@ -58,7 +58,6 @@
   height: var(--s-30);
   width: var(--s-120);
   text-align: center;
-  margin-top: -10px;
 }
 
 .btn:hover {
@@ -180,6 +179,13 @@
   width: var(--hundred);
   margin-top: var(--s-10);
   border: solid 1px var(--shade);
+}
+
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
 }
 
 @-webkit-keyframes animatetop {

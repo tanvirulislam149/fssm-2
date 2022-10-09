@@ -7,6 +7,8 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
+import { editTopicApproval, viewComments } from '../../../services/adminForumServices';
+import EmailIcon from '@mui/icons-material/Email';
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 50,
@@ -50,18 +52,34 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const ForumList = ({ documents, setDocId, reactKey, layout }) => {
+const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId, reactKey, setUpdate, update, layout }) => {
   const [number, setNumber] = useState(10);
   const [search, setSearch] = useState('');
-  const [updated, setUpdated] = useState(false);
   const [list, setList] = useState(documents);
+  const [replies, setReplies] = useState([]);
+  const [replyId, setReplyId] = useState('');
+  const [dateArray, setDateArray] = useState([]);
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
 
-  const handleSwitch = (event) => {
-    console.log(event.target.checked);
+  const handleError = (err) => {
+    console.log({ e: err });
+  }
+
+  const handleSwitch = (confirmation, id) => {
+    editTopicApproval(id, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message = 'Discussion Topic has been edited') {
+          setMessage('Changes Saved!');
+          confirmation.style.display = 'flex';
+          setUpdate(!update);
+        }
+      }
+    })
   };
 
   const filterIt = (arr, searchKey) => {
@@ -80,7 +98,87 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
   }
 
   useEffect(() => {
+    setList(documents);
+  }, [documents])
+
+  useEffect(() => {
     handleFilter();
+  }, [updated])
+
+  const handleDate = (replies, popup) => {
+    let date = [];
+    replies.forEach(({ createdOn }) => {
+      let month;
+      const day = createdOn.slice(8, 10);
+      const year = createdOn.slice(0, 4);
+      const hour = createdOn.slice(11, 13);
+      const min = createdOn.slice(14, 16);
+      switch (createdOn.slice(5, 7)) {
+        case '01':
+          month = 'January';
+          break;
+        case '02':
+          month = 'February';
+          break;
+        case '03':
+          month = 'March';
+          break;
+        case '04':
+          month = 'April';
+          break;
+        case '05':
+          month = 'May';
+          break;
+        case '06':
+          month = 'June';
+          break;
+        case '07':
+          month = 'July';
+          break;
+        case '08':
+          month = 'August';
+          break;
+        case '09':
+          month = 'September';
+          break;
+        case '10':
+          month = 'October';
+          break;
+        case '11':
+          month = 'November';
+          break;
+        case '12':
+          month = 'December';
+          break;
+        default: ''
+          break;
+      }
+      date.push([`${month} ${day}, ${year}`, `${hour}:${min}`])
+    })
+    setDateArray(date);
+    popup ? popup.style.display = 'flex' : null;
+  }
+
+  const handleReplies = (val, popup) => {
+    viewComments({ val }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ resy: res });
+        setReplies(res.data['Topic Data'][0].replies);
+        handleDate(res.data['Topic Data'][0].replies, popup);
+      }
+    })
+  }
+
+  useEffect(() => {
+    replies.length && viewComments({ val: replyId }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ resy: res });
+        setReplies(res.data['Topic Data'][0].replies);
+        handleDate(res.data['Topic Data'][0].replies, null);
+      }
+    })
   }, [updated])
 
   return (
@@ -144,33 +242,35 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
             </div>
           </div>
           {list.length ?
-            list.map(({ name, id, date, cat, topic }, i) => {
+            layout !== 4 &&
+            list.map(({ creatorName, id, category_id, topic_name }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
                     <p>{i + 1}</p>
                   </div>
                   <div className={styles.one}>
-                    <p> {cat}</p>
+                    <p> {category_id?.category}</p>
                   </div>
                   <div className={styles.two}>
-                    <p> {topic}</p>
+                    <p> {topic_name}</p>
                   </div>
                   <div className={styles.one}>
-                    <p>{name}</p>
+                    <p>{creatorName?.first_name}</p>
                   </div>
                   <div className={styles.two}>
-                    <p>{date}</p>
+                    <p>date</p>
                   </div>
                   <div className={styles.two}>
                     <AntSwitch
                       key={reactKey}
                       defaultChecked={layout === 2 || layout === 4 ? true : false}
-                      onChange={handleSwitch} />
+                      onChange={() => { handleSwitch(document.querySelector('.m15'), id); }}
+                    />
                   </div>
                   <div className={styles.two}>
                     <div
-                      title='delete'
+                      title='Delete'
                       onClick={() => {
                         setDocId(id);
                         document.querySelector('.m10').style.display = "flex";
@@ -180,10 +280,11 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
                     </div>
                     {layout !== 1 && <div
                       className={`${styles.btn} ${styles.viewbtn}`}
-                      title='view'
+                      title='View Comments'
                       onClick={() => {
-                        //setCurrentDoc(list[i]);
-                        document.querySelector('.m').style.display = "flex";
+                        setDocId(id);
+                        setReplyId(id);
+                        handleReplies(id, document.querySelector('.m'));
                       }}
                     >
                       <RemoveRedEyeOutlinedIcon sx={{ color: 'white', height: '15px', width: '15px' }} />
@@ -197,12 +298,13 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
         </div>
       </div>
 
-      {/* view docs */}
+
       <div id="myModal" className='modal2 m'>
         <div
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m').style.display = "none";
+            setReplies([]);
           }}>
         </div>
         <div className={styles.modal_content}>
@@ -210,6 +312,7 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m').style.display = "none";
+              setReplies([]);
             }}>
             <p>Approved Topic Answers</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
@@ -217,7 +320,44 @@ const ForumList = ({ documents, setDocId, reactKey, layout }) => {
 
           <div className={styles.cover}>
             <div className={styles.content}>
-              <p className={styles.empty}>No records</p>
+              {
+                replies.length ? replies.map(({ id, creatorName, comment }, i) => {
+                  return (
+                    <div key={id} className={styles.rep}>
+                      <div className={styles.icon}>
+                        <EmailIcon sx={{ color: '#024c73' }} fontSize="large" />
+                        <button
+                          onClick={() => {
+                            setMessage('comment');
+                            setDocId(id);
+                            document.querySelector('.m10').style.display = 'flex';
+                          }}
+                          className={styles.btn2}>
+                          Delete Comment
+                        </button>
+                      </div>
+                      <div>
+                        <p className={styles.name}>
+                          {creatorName}
+                          <button
+                            onClick={() => {
+                              setMessage('comment');
+                              setDocId(id);
+                              document.querySelector('.m10').style.display = 'flex';
+                            }}
+                            className={styles.btn2}>
+                            Delete Comment
+                          </button>
+                        </p>
+                        <p className={styles.date}>{dateArray[i][0]}</p>
+                        <p className={styles.date}>{dateArray[i][1]}</p>
+                        <p className={styles.body}>{comment}</p>
+                      </div>
+                    </div>
+                  )
+                }) :
+                  <p className={styles.empty}>No records</p>
+              }
             </div>
           </div>
         </div>
