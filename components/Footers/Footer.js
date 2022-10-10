@@ -28,6 +28,11 @@ const Footer = () => {
   }
 
   const clickHandler = () => {
+    console.log('ran')
+    navigate.push('/dashboard');
+  }
+
+  const handleAction = () => {
     navigate.push('/dashboard');
   }
 
@@ -52,7 +57,7 @@ const Footer = () => {
 
           <div className={styles.right}>
             <div className={styles.btn_cont}>
-              <SubmitButton title={action} style={styles.btn} onClick={clickHandler} />
+              <SubmitButton title={action} style={styles.btn} onClick={() => { handleAction() }} />
               <SubmitButton onClick={() => { handleRoute(); }} title='Get Involved' style={styles.btn} />
             </div>
             <p className={styles.bottom_text}>{footerText.visitors}</p>
