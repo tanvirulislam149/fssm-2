@@ -12,12 +12,29 @@ import Cookies from 'js-cookie';
 
 const DashboardHeader = () => {
   const [clicked, setClicked] = useState(false);
+  const [text, setText] = useState('');
+  const [name, setName] = useState('');
+  const [data, setData] = useState(sideBarText);
 
   const router = useRouter();
 
   const handleNav = () => {
     router.push('/');
   }
+
+  useEffect(() => {
+    if (Cookies.get('isAdmin') !== 'true') {
+      const newState = sideBarText.filter(({ id }) => {
+        return id < 6 || id === 11 || id === 14;
+      })
+      setData(newState);
+    }
+  }, [])
+
+  useEffect(() => {
+    Cookies.get('isAdmin') === 'true' ? setText('NFSSM') : setText('CDD');
+    setName(Cookies.get('firstName') + ' ' + Cookies.get('lastName'));
+  }, [])
 
   useEffect(() => {
     document.querySelector('.nav').classList.toggle('none');
@@ -53,7 +70,7 @@ const DashboardHeader = () => {
         </div>
         <div className={styles.right}>
           <button onClick={() => { handleNav(); }} className={styles.btn}>Go to website</button>
-          <h4>{Cookies.get('isAdmin') === 'true' ? 'NFSSM' : 'CDD'}</h4>
+          <h4>{text}</h4>
           <div
             className={styles.admin}
             title='Toggle pop-up'
@@ -61,7 +78,7 @@ const DashboardHeader = () => {
               document.getElementById('pop_up').classList.toggle('none');
             }}>
             <Image src={profile} height={40} width={40} alt='logo' />
-            <p>{Cookies.get('firstName') + ' ' + Cookies.get('lastName')}</p>
+            <p>{name}</p>
           </div>
         </div>
       </nav>
@@ -70,7 +87,7 @@ const DashboardHeader = () => {
         <div className={styles.sidebar}>
           <div>
             {
-              sideBarText.map(({ id, text, link, image }) => {
+              data.map(({ id, text, link, image }) => {
                 return (
                   <Link key={id} href={`/${link}`}><a className='mobile-comp'>
                     <div className={`mobile-comp ${styles.card}`}>

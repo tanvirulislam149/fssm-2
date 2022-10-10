@@ -3,6 +3,7 @@ import styles from './ListDocumentsComp.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Pagination } from '@mui/material';
 
 // const data = [
 //   {
@@ -60,9 +61,21 @@ import Select from '@mui/material/Select';
 
 const ListDocumentsComp = ({ dateArray, documents }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [search, setSearch] = useState('');
   const [list, setList] = useState([]);
   const [update, setUpdate] = useState(false);
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = list.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(list.length / number);
+    setNPages(pageCount);
+  }, [currentPage, list, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -179,12 +192,12 @@ const ListDocumentsComp = ({ dateArray, documents }) => {
             </div>
           </div>
           {
-            list.length ?
-              list.map(({ id, description, title, theme, organization, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
+            currentRecords.length ?
+              currentRecords.map(({ id, description, title, theme, organization, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
-                      <p>{i + 1}</p>
+                      <p>{i + 1 + number * (currentPage - 1)}</p>
                     </div>
                     <div className={styles.two}>
                       <div className={styles.pdf}>
@@ -265,6 +278,15 @@ const ListDocumentsComp = ({ dateArray, documents }) => {
         </div>
       </div>
       <p className={styles.results}>Showing {number} of {list.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
     </>
   )
 }

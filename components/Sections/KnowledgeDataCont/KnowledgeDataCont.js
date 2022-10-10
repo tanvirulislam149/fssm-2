@@ -4,7 +4,7 @@ import KnowledgeSectionNav from '../KnowledgeSectionNav/KnowledgeSectionNav';
 import KnowledgeCategories from '../KnowledgeCategories/KnowledgeCategories';
 import { getAllKnowledgeRepo, getSubItem } from '../../../services/knowledgeRepoService';
 import TenderCard from '../../Cards/TenderCard/TenderCard';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Pagination } from '@mui/material';
 import { useRouter } from 'next/router';
 import Layout from '../Layout/Layout';
 
@@ -13,6 +13,19 @@ const KnowledgeDataCont = () => {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState([]);
   const [route, setRoute] = useState('');
+  const [number] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState(tenders);
+  const [nPages, setNPages] = useState(1);
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = tenders.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(tenders.length / number);
+    setNPages(pageCount);
+  }, [currentPage, tenders, number])
 
   const router = useRouter();
   const { title, subitem } = router.query;
@@ -89,9 +102,9 @@ const KnowledgeDataCont = () => {
               <div style={{ minHeight: '500px' }}>
                 <div className={styles.description}>Home / {route.replace('/', '-')} / {title}</div>
                 {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-                  tenders.length ?
+                  currentRecords.length ?
                     <>
-                      {tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+                      {currentRecords.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
                         return (
                           <TenderCard
                             key={id}
@@ -112,6 +125,15 @@ const KnowledgeDataCont = () => {
                         )
                       })}
                       <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
+                      <Pagination
+                        count={nPages}
+                        variant="outlined"
+                        shape="rounded"
+                        page={currentPage}
+                        color='primary'
+                        onChange={(e, val) => {
+                          setCurrentPage(val);
+                        }} />
                     </>
                     :
                     <div className={styles.cont}>

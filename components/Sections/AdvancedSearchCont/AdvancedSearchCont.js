@@ -7,10 +7,15 @@ import CustomizedHook from './useHook';
 import { useRouter } from 'next/router';
 import Multiselect from '../../Inputs/Multiselect/Multiselect';
 import useOptions from '../../useOptions';
+import { Pagination } from '@mui/material';
 
 const AdvancedSearchCont = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
+  const [number] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState(results);
+  const [nPages, setNPages] = useState(1);
   const [data, setData] = useState({
     stakeholder: [],
     value_chain: [],
@@ -25,6 +30,15 @@ const AdvancedSearchCont = () => {
   const router = useRouter();
   const theme = router.query.theme;
   const { advancedSearchText } = useOptions();
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = results.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(results.length / number);
+    setNPages(pageCount);
+  }, [currentPage, results, number])
 
   const handleError = (err) => {
     setLoading(false);
@@ -134,11 +148,22 @@ const AdvancedSearchCont = () => {
           </form>
 
           <p className={styles.footer_text}>Showing 0-20 of {results.length} Results</p>
+          <div>
+            <Pagination
+              count={nPages}
+              variant="outlined"
+              shape="rounded"
+              page={currentPage}
+              color='primary'
+              onChange={(e, val) => {
+                setCurrentPage(val);
+              }} />
+          </div>
 
           <div className={styles.cont}>
             <AdvancedSearchCategories handleSelect={handleSelect} />
 
-            <AdvancedSearchResults searchData={data} loading={loading} results={results} />
+            <AdvancedSearchResults searchData={data} loading={loading} results={currentRecords} />
           </div>
         </section>
       </div>

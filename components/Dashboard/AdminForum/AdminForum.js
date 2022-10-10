@@ -97,10 +97,11 @@ const AdminForum = () => {
       if (res !== null) {
         layout === 1 && setDocuments(res.data['Unapproved Topics']);
         layout === 2 && setDocuments(res.data['Approved Topics']);
+        layout === 4 && setDocuments([]);
         setLoading(false);
       }
     })
-  }, [update])
+  }, [update, layout])
 
   return (
     <>
@@ -141,6 +142,7 @@ const AdminForum = () => {
             onClick={() => {
               setLayout(4);
               setReactKey(!reactKey);
+              setDocuments([]);
             }}>
             Notifications
           </button>

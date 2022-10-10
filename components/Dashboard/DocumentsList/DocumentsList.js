@@ -14,14 +14,17 @@ import { delAllDocs } from '../../../services/allDocumentServices';
 import ViewDocument from '../ViewDocument/ViewDocument';
 import AlertCard from '../AlertCard/AlertCard';
 import Cookies from 'js-cookie';
+import { Pagination } from '@mui/material';
 
 const DocumentsList = ({ documents, dateArray }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [search, setSearch] = useState('');
   const [list, setList] = useState(documents);
   const [updated, setUpdated] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [error, setError] = useState(null);
   const [docId, setDocId] = useState(null);
   const [currentDoc, setCurrentDoc] = useState([]);
   const [index, setIndex] = useState(null);
@@ -37,6 +40,15 @@ const DocumentsList = ({ documents, dateArray }) => {
   });
 
   const router = useRouter();
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = list.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(list.length / number);
+    setNPages(pageCount);
+  }, [currentPage, list, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -69,7 +81,6 @@ const DocumentsList = ({ documents, dateArray }) => {
 
   const handleError = (err) => {
     console.log({ e: err })
-    setError(err.message);
   }
 
   const handleDelete = (id, confirmation) => {
@@ -99,7 +110,7 @@ const DocumentsList = ({ documents, dateArray }) => {
 
   useEffect(() => {
     let data = [];
-    list.forEach((doc) => {
+    currentRecords.forEach((doc) => {
       data.push({
         id: doc.id,
         theme: doc.theme?.theme_title,
@@ -198,12 +209,12 @@ const DocumentsList = ({ documents, dateArray }) => {
               <p>Action</p>
             </div>
           </div>
-          {list?.length ?
-            list.map(({ name, id, description, title }, i) => {
+          {currentRecords?.length ?
+            currentRecords.map(({ id, description, title }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
-                    <p>{i + 1}</p>
+                    <p>{i + 1 + number * (currentPage - 1)}</p>
                   </div>
                   <div className={styles.one}>
                     <div className={styles.pdf}>
@@ -234,8 +245,7 @@ const DocumentsList = ({ documents, dateArray }) => {
                       title='view'
                       data-modal="myModal"
                       onClick={() => {
-                        setCurrentDoc(list[i]);
-                        setIndex(i);
+                        setCurrentDoc(currentRecords[i]);
                         document.querySelector('.m').style.display = "flex";
                       }}
                     >
@@ -262,6 +272,15 @@ const DocumentsList = ({ documents, dateArray }) => {
         </div>
       </div>
       <p className={styles.results}>Showing {number} of {list?.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
       <ViewDocument click={click} setClick={setClick} setDocId={setDocId} currentDoc={currentDoc} />
 
