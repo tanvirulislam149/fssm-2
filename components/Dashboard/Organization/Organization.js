@@ -8,7 +8,6 @@ import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { getOrgFilter, getOrgList } from "../../../services/orgService";
-import AlertCard from "../AlertCard/AlertCard";
 
 const Organization = () => {
   const [search, setSearch] = useState("");
@@ -101,12 +100,10 @@ const Organization = () => {
           loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
             <OrganizationList
-              org={org}
-              setMessage={setMessage} />
+              org={org} />
         }
 
       </div>
-      <AlertCard message={message} />
     </>
   );
 };

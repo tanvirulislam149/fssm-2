@@ -8,12 +8,14 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import DeletePopup from "../DeletePopup/DeletePopup";
 import { editOrgList, delOrg } from "../../../services/orgService";
 import { useForm } from "react-hook-form";
+import AlertCard from "../AlertCard/AlertCard";
 
-const OrganizationList = ({ org, setMessage }) => {
+const OrganizationList = ({ org }) => {
   const [number, setNumber] = useState(10);
   const [orgName, setOrgName] = useState("");
   const [docId, setDocId] = useState(0);
   const [orgId, setOrgId] = useState(0);
+  const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -36,14 +38,15 @@ const OrganizationList = ({ org, setMessage }) => {
   }
 
   const { register, handleSubmit } = useForm();
-  const handleEditOrgList = (data, id, confirmation) => {
+  const handleEditOrgList = (data, id) => {
+    document.querySelector(".m7").style.display = "none";
     editOrgList(data, id, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
         console.log({ res: res.data.message });
         if (res.data.message === 'Updated Successfully') {
           setMessage("Updated Successfully");
-          confirmation.style.display = 'flex';
+          document.querySelector('.m15').style.display = "flex";
         }
       }
     })
@@ -182,6 +185,7 @@ const OrganizationList = ({ org, setMessage }) => {
           </div>
         </div>
       </div>
+      <AlertCard message={message} />
     </>
   );
 };
