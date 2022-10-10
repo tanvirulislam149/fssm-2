@@ -33,7 +33,8 @@ const Footer = () => {
   }
 
   const handleAction = () => {
-    navigate.push('/dashboard');
+    action !== 'Sign In' && navigate.push('/dashboard');
+    action === 'Sign In' && navigate.push('/signin');
   }
 
   return (
