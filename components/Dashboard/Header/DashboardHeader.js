@@ -107,7 +107,9 @@ const DashboardHeader = () => {
           <Image src={profile} height={80} width={80} alt='logo' />
         </div>
         <div className={styles.footer}>
-          <div className={styles.btn2}>Change Password</div>
+          <Link href='/changepassword'><a>
+            <div className={styles.btn2}>Change Password</div>
+          </a></Link>
           <div
             onClick={() => {
               Cookies.remove('access');
@@ -115,6 +117,8 @@ const DashboardHeader = () => {
               Cookies.remove('isAdmin');
               Cookies.remove('firstName');
               Cookies.remove('lastName');
+              Cookies.remove('check');
+              Cookies.remove('email');
               router.push('/');
             }}
             className={styles.btn3}>Sign Out</div>

@@ -250,6 +250,11 @@
   margin-bottom: var(--s-10);
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
 /* modal */
 .modal_content {
   position: relative;
