@@ -28,7 +28,7 @@ const ChangePassword = () => {
             <input
               required
               id="pass"
-              minlength="6"
+              minLength="6"
               className={styles.input}
               type="password"
               placeholder='New Password' />
@@ -38,7 +38,7 @@ const ChangePassword = () => {
             <input
               required
               id="confirm"
-              minlength="6"
+              minLength="6"
               className={styles.input}
               type="password"
               placeholder='Confirm Password' />
