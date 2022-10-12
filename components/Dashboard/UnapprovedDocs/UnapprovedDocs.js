@@ -5,7 +5,20 @@ import styles from "./UnapprovedDocs.module.css"
 import useOptions from "../../useOptions";
 
 const UnapprovedDocs = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [themeInput, setThemeInput] = useState("");
+  const [stakeInput, setStakeInput] = useState("");
+  const [orgInput, setOrgInput] = useState("");
+  const [subCatInput, setSubCatInput] = useState("");
+  const [valueInput, setValueInput] = useState("");
+  const [docTypeInput, setDocTypeInput] = useState("");
+  const [theme, setTheme] = useState("");
+  const [stakeholder, setStakeholder] = useState("");
+  const [org, setOrg] = useState("");
+  const [subCat, setSubCat] = useState("");
+  const [valueChain, setValueChain] = useState("");
+  const [docType, setDocType] = useState("");
+
+
   const { advancedSearchText } = useOptions();
 
   const themeOptions = [];
@@ -50,11 +63,11 @@ const UnapprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setTheme(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={themeInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setThemeInput(newInputValue);
                   }}
                   id="profile"
                   options={themeOptions}
@@ -68,11 +81,11 @@ const UnapprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setStakeholder(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={stakeInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setStakeInput(newInputValue);
                   }}
                   id="profile"
                   options={stakeholderOptions}
@@ -86,11 +99,11 @@ const UnapprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setOrg(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={orgInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setOrgInput(newInputValue);
                   }}
                   id="profile"
                   options={organizationOption}
@@ -106,11 +119,11 @@ const UnapprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setSubCat(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={subCatInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setSubCatInput(newInputValue);
                   }}
                   id="profile"
                   options={subCategoryOption}
@@ -124,11 +137,11 @@ const UnapprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setValueChain(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={valueInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setValueInput(newInputValue);
                   }}
                   id="profile"
                   options={valueChainOption}
@@ -142,11 +155,11 @@ const UnapprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setDocType(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={docTypeInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setDocTypeInput(newInputValue);
                   }}
                   id="profile"
                   options={documentTypeOption}
@@ -171,7 +184,7 @@ const UnapprovedDocs = () => {
         </div>
       </form>
       <h4 className={styles.label3}>Un Approved List</h4>
-      <UnapprovedList></UnapprovedList>
+      <UnapprovedList />
     </>
   )
 }
