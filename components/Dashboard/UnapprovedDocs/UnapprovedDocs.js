@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import UnapprovedList from '../../Sections/UnapprovedList/UnapprovedList';
 import styles from "./UnapprovedDocs.module.css"
@@ -18,6 +18,8 @@ const UnapprovedDocs = () => {
   const [subCat, setSubCat] = useState("");
   const [valueChain, setValueChain] = useState("");
   const [docType, setDocType] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
 
 
   const { advancedSearchText } = useOptions();
@@ -48,6 +50,7 @@ const UnapprovedDocs = () => {
   });
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     const data = {
       theme: `${theme}`,
@@ -61,7 +64,8 @@ const UnapprovedDocs = () => {
     getUnapprovedDocs(data, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
-        console.log(res.data.message)
+        setLoading(false);
+        setSearchResult(res.data.message);
       }
     })
   };
@@ -200,7 +204,14 @@ const UnapprovedDocs = () => {
         </div>
       </form>
       <h4 className={styles.label3}>Un Approved List</h4>
-      <UnapprovedList />
+      {
+        loading ?
+          <div className={styles.justify_center}><CircularProgress /></div> :
+          <UnapprovedList
+            searchResult={searchResult}
+          />
+      }
+
     </>
   )
 }
