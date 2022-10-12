@@ -428,3 +428,9 @@
 .documentDetail {
   width: 85%;
 }
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
