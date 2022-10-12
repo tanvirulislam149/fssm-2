@@ -10,9 +10,8 @@ export const getUnapprovedDocs = (data, cb) => {
     .catch(err => cb(err, null))
 }
 
-
-export const startDiscussion = (data, cb) => {
-  axiosInstance.post('discussion/startdis/', data)
+export const viewUnapprovedDoc = (id, cb) => {
+  axiosInstance.get(`dashboard/un_approved_list/${id}/`)
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }

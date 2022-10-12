@@ -4,14 +4,28 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Image from "next/image";
 import close from "../../../assets/Close.png";
 import { FormControl, MenuItem, Select, Switch } from "@mui/material";
+import { viewUnapprovedDoc } from "../../../services/docsApproveService";
 
 const UnapprovedList = ({ searchResult }) => {
   const [number, setNumber] = useState(10);
   const [docId, setDocId] = useState(0);
+  const [docDetails, setDocDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
+
+  const handleViewDoc = (id) => {
+    setLoading(true);
+    viewUnapprovedDoc(id, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        setDocDetails(res.data.message);
+      }
+    })
+  }
 
   return (
     <>
@@ -98,7 +112,8 @@ const UnapprovedList = ({ searchResult }) => {
                         className={`${styles.btn} ${styles.editbtn}`}
                         data-modal="myModal"
                         onClick={() => {
-                          setDocId(id);
+                          // setDocId(id);
+                          handleViewDoc(id);
                           document.querySelector(".m7").style.display =
                             "flex";
                         }}
