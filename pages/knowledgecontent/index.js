@@ -4,10 +4,16 @@ import Footer from '../../components/Footers/Footer';
 import KnowledgeCont from '../../components/Sections/KnowledgeCont/KnowledgeCont';
 import Layout from '../../components/Sections/Layout/Layout';
 import HeaderComponent from '../../components/Headers/HeaderComponent';
+import Head from 'next/head';
 
 const KnowledgeContent = () => {
   return (
     <>
+      <Head>
+        <title>Knowledge Content</title>
+        <meta name="description" content="SWACHH FSSM Website" />
+      </Head>
+
       <Header />
       <HeaderComponent />
 

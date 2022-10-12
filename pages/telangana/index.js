@@ -7,10 +7,16 @@ import TelanganaBottomSection from '../../components/Sections/TelanganaBottomSec
 import TelanganaHeader from '../../components/Headers/TelanganaHeader';
 import TelanganaHeaderComponent from '../../components/Headers/TelanganaHeaderComponent';
 import Layout from '../../components/Sections/Layout/Layout';
+import Head from 'next/head';
 
 const Telangana = () => {
   return (
     <>
+      <Head>
+        <title>Telangana</title>
+        <meta name="description" content="SWACHH FSSM Website" />
+      </Head>
+
       <TelanganaHeader />
       <TelanganaHeaderComponent />
 

@@ -4,10 +4,16 @@ import ListDocuments from '../../components/Dashboard/ListDocuments/ListDocument
 import SideBar from '../../components/Dashboard/SideBar/SideBar';
 import styles from '../../styles/Home.module.css';
 import Layout from '../../components/Sections/Layout/Layout';
+import Head from 'next/head';
 
 const DocumentsDump = () => {
   return (
     <>
+      <Head>
+        <title>Documents List</title>
+        <meta name="description" content="SWACHH FSSM Website" />
+      </Head>
+
       <Layout>
         <DashboardHeader />
 

@@ -5,10 +5,16 @@ import Footer from '../../components/Footers/Footer';
 import Disclaimer from '../../components/Sections/Disclaimer/Disclaimer';
 import GlossaryComponent from '../../components/Sections/GlossaryComponent/GlossaryComponent';
 import Layout from '../../components/Sections/Layout/Layout';
+import Head from 'next/head';
 
 const Glossary = () => {
   return (
     <>
+      <Head>
+        <title>Glossary</title>
+        <meta name="description" content="SWACHH FSSM Website" />
+      </Head>
+
       <Header />
       <HeaderComponent />
 
