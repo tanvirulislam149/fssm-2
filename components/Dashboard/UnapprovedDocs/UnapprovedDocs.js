@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import UnapprovedList from '../../Sections/UnapprovedList/UnapprovedList';
 import styles from "./UnapprovedDocs.module.css"
 import useOptions from "../../useOptions";
+import { getUnapprovedDocs } from '../../../services/docsApproveService';
 
 const UnapprovedDocs = () => {
   const [themeInput, setThemeInput] = useState("");
@@ -48,6 +49,21 @@ const UnapprovedDocs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = {
+      theme: `${theme}`,
+      sub_cat: `${subCat}`,
+      stake_holder: `${stakeholder}`,
+      value_chain: `${valueChain}`,
+      document_type: `${docType}`,
+      organization: `${org}`
+    }
+
+    getUnapprovedDocs(data, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log(res.data.message)
+      }
+    })
   };
 
 
@@ -72,7 +88,7 @@ const UnapprovedDocs = () => {
                   id="profile"
                   options={themeOptions}
                   renderInput={(params) => (
-                    <TextField {...params} placeholder="--Select--" />
+                    <TextField name='theme' {...params} placeholder="--Select--" />
                   )}
                 />
               </div>
