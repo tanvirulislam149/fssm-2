@@ -3,12 +3,7 @@ import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import styles from "./Organization.module.css";
 import useOptions from '../../useOptions';
 import OrganizationList from "../OrganizationList/OrganizationList";
-import Image from "next/image";
-import close from "../../../assets/Close.png";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { getOrgFilter, getOrgList } from "../../../services/orgService";
-import AlertCard from "../AlertCard/AlertCard";
 
 const Organization = () => {
   const [search, setSearch] = useState("");
@@ -101,12 +96,10 @@ const Organization = () => {
           loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
             <OrganizationList
-              org={org}
-              setMessage={setMessage} />
+              org={org} />
         }
 
       </div>
-      <AlertCard message={message} />
     </>
   );
 };

@@ -428,3 +428,41 @@
 .documentDetail {
   width: 85%;
 }
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+.cover3 {
+  padding: var(--s-26) var(--s-50);
+  background: #eaeaea;
+  border: 1px solid #bfbfbf;
+  margin: 15px;
+}
+
+.input {
+  background-color: white;
+  margin-bottom: var(--fs-14);
+  width: var(--hundred);
+  border: solid 1px var(--shade);
+  padding: var(--s-10);
+  margin-top: var(--size-3);
+  color: var(--light-gray-color);
+  font-size: var(--fs-1rem);
+}
+.cover3 > div > label span {
+  color: var(--pale-red);
+}
+.select {
+  background-color: white;
+  margin-bottom: var(--fs-14);
+  margin-top: var(--size-3);
+}
+.radio {
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+.radio > label {
+  margin-right: 80px;
+}
