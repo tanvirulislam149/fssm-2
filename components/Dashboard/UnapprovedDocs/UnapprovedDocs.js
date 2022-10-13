@@ -14,9 +14,9 @@ const UnapprovedDocs = () => {
   const [docTypeInput, setDocTypeInput] = useState("");
   const [theme, setTheme] = useState("");
   const [stakeholder, setStakeholder] = useState("");
-  const [org, setOrg] = useState("");
   const [subCat, setSubCat] = useState("");
   const [valueChain, setValueChain] = useState("");
+  const [org, setOrg] = useState("");
   const [docType, setDocType] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
@@ -32,13 +32,13 @@ const UnapprovedDocs = () => {
   advancedSearchText.stake_holder.forEach(({ title }) => {
     stakeholderOptions.push(title);
   });
-  const organizationOption = [];
-  advancedSearchText.partners.forEach(({ title }) => {
-    organizationOption.push(title);
-  });
   const valueChainOption = [];
   advancedSearchText.valueChain.forEach(({ title }) => {
     valueChainOption.push(title);
+  });
+  const organizationOption = [];
+  advancedSearchText.partners.forEach(({ title }) => {
+    organizationOption.push(title);
   });
   const subCategoryOption = [];
   advancedSearchText.categories.forEach(({ title }) => {
@@ -48,6 +48,10 @@ const UnapprovedDocs = () => {
   advancedSearchText.types.forEach(({ title }) => {
     documentTypeOption.push(title);
   });
+
+  const handleError = (err) => {
+    console.log(err);
+  }
 
   const handleSubmit = (e) => {
     setLoading(true);
