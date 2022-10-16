@@ -1,5 +1,10 @@
-import React from 'react'
+import { TextField } from '@mui/material'
+import { DatePicker } from '@mui/x-date-pickers'
+import React, { useState } from 'react'
 import styles from "./AnalyticsPage.module.css"
+import DatePickerComponent from '../../Sections/DatePicker/DatePickerComponent';
+
+
 
 const AnalyticsPage = () => {
   return (
@@ -14,11 +19,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -30,11 +35,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -46,11 +51,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -62,11 +67,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -78,11 +83,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -94,11 +99,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -110,11 +115,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -126,11 +131,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -142,11 +147,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -158,11 +163,11 @@ const AnalyticsPage = () => {
               <div className={styles.inputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Submit</button>
               </div>
@@ -176,11 +181,11 @@ const AnalyticsPage = () => {
               <div className={styles.pageViewInputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Search</button>
               </div>
@@ -195,11 +200,11 @@ const AnalyticsPage = () => {
               <div className={styles.pageViewInputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Search</button>
               </div>
@@ -214,11 +219,11 @@ const AnalyticsPage = () => {
               <div className={styles.pageViewInputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Search</button>
               </div>
@@ -233,11 +238,11 @@ const AnalyticsPage = () => {
               <div className={styles.pageViewInputContainer}>
                 <div>
                   <p className={styles.startDate}>Start Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <div>
                   <p className={styles.startDate}>End Date</p>
-                  <input className={styles.userInputField} type="text" />
+                  <DatePickerComponent />
                 </div>
                 <button className={styles.submitBtn}>Search</button>
               </div>
