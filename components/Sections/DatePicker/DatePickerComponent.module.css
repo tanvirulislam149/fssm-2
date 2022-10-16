@@ -1,0 +1,21 @@
+.userInputField > div > input {
+  padding-left: 8px !important;
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #848484;
+}
+.userInputField > div > div > button {
+  display: none;
+}
+.userInputField > div {
+  padding-right: 0 !important;
+  width: 100%;
+}
+.userInputField {
+  width: 100%;
+}
