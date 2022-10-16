@@ -52,22 +52,14 @@
   color: #000000;
   margin-bottom: 12px;
 }
-.userInputField {
-  width: 100%;
-  border: 1px solid #bfbfbf;
-  height: 36px;
-  padding-left: 8px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  color: #848484;
-}
+
 .inputContainer {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 14px;
+}
+.inputContainer > div {
+  width: 100%;
 }
 .submitBtn {
   background: #22b8cf;
