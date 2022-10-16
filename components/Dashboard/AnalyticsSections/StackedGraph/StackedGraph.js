@@ -359,7 +359,8 @@ const StackedGraph = () => {
         </div>
 
         {error ?
-          <span className={`error ${styles.justify_center}`}>{error}</span> :
+          // <span className={`error ${styles.justify_center}`}>{error}</span> :
+          null :
           <div className={styles.chart}>
             {loading ?
               <div className={styles.justify_center}><CircularProgress /></div> :

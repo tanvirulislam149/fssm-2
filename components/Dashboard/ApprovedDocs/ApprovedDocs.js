@@ -1,10 +1,28 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import styles from "./ApprovedDocs.module.css"
 import ApprovedList from '../../Sections/ApprovedList/ApprovedList';
 import useOptions from '../../useOptions';
+import { getUnapprovedDocs } from '../../../services/docsApproveService';
+import DeletePopup from '../DeletePopup/DeletePopup';
 
-const ApprovedDocs = () => {
+const ApprovedDocs = ({ handleDelete, setUpdate, update, setMessage }) => {
+  const [themeInput, setThemeInput] = useState("");
+  const [stakeInput, setStakeInput] = useState("");
+  const [orgInput, setOrgInput] = useState("");
+  const [subCatInput, setSubCatInput] = useState("");
+  const [valueInput, setValueInput] = useState("");
+  const [docTypeInput, setDocTypeInput] = useState("");
+  const [theme, setTheme] = useState("");
+  const [stakeholder, setStakeholder] = useState("");
+  const [subCat, setSubCat] = useState("");
+  const [valueChain, setValueChain] = useState("");
+  const [org, setOrg] = useState("");
+  const [docType, setDocType] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
+  const [originalReq, setOriginaReq] = useState({});
+  const [docId, setDocId] = useState(null);
 
   const { advancedSearchText } = useOptions();
 
@@ -33,11 +51,48 @@ const ApprovedDocs = () => {
     documentTypeOption.push(title);
   });
 
-  const [inputValue, setInputValue] = useState("");
+
+  const handleError = (err) => {
+    console.log(err);
+  }
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
+    const data = {
+      theme: `${theme}`,
+      sub_cat: `${subCat}`,
+      stake_holder: `${stakeholder}`,
+      value_chain: `${valueChain}`,
+      document_type: `${docType}`,
+      organization: `${org}`
+    }
+
+    setOriginaReq(data);
+
+    getUnapprovedDocs({ params: 'True' }, data, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        console.log({ res })
+        setSearchResult(res.data.message);
+      }
+    })
   };
+
+  useEffect(() => {
+    if (typeof originalReq.theme === 'string') {
+      setLoading(true);
+      getUnapprovedDocs({ params: 'True' }, originalReq, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          setLoading(false);
+          console.log({ res })
+          setSearchResult(res.data.message);
+        }
+      })
+    }
+  }, [update])
 
 
   return (
@@ -52,16 +107,16 @@ const ApprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setTheme(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={themeInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setThemeInput(newInputValue);
                   }}
                   id="profile"
                   options={themeOptions}
                   renderInput={(params) => (
-                    <TextField {...params} placeholder="--Select--" />
+                    <TextField name='theme' {...params} placeholder="--Select--" />
                   )}
                 />
               </div>
@@ -70,11 +125,11 @@ const ApprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setStakeholder(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={stakeInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setStakeInput(newInputValue);
                   }}
                   id="profile"
                   options={stakeholderOptions}
@@ -88,11 +143,11 @@ const ApprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setOrg(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={orgInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setOrgInput(newInputValue);
                   }}
                   id="profile"
                   options={organizationOption}
@@ -108,11 +163,11 @@ const ApprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setSubCat(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={subCatInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setSubCatInput(newInputValue);
                   }}
                   id="profile"
                   options={subCategoryOption}
@@ -126,11 +181,11 @@ const ApprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setValueChain(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={valueInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setValueInput(newInputValue);
                   }}
                   id="profile"
                   options={valueChainOption}
@@ -144,11 +199,11 @@ const ApprovedDocs = () => {
                 <Autocomplete
                   className={styles.select}
                   onChange={(event, newValue) => {
-                    setProfile(newValue);
+                    setDocType(newValue);
                   }}
-                  inputValue={inputValue}
+                  inputValue={docTypeInput}
                   onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
+                    setDocTypeInput(newInputValue);
                   }}
                   id="profile"
                   options={documentTypeOption}
@@ -173,7 +228,20 @@ const ApprovedDocs = () => {
         </div>
       </form>
       <h4 className={styles.label3}>Approved List</h4>
-      <ApprovedList></ApprovedList>
+      {
+        loading ?
+          <div className={styles.justify_center}><CircularProgress /></div> :
+          <ApprovedList
+            searchResult={searchResult}
+            updated={update}
+            setUpdated={setUpdate}
+            setDocId={setDocId}
+            docId={docId}
+            setMessage={setMessage}
+          />
+      }
+
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
     </>
   )
 }

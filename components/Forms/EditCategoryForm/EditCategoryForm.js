@@ -13,6 +13,7 @@ import styles from '../MappingForm/MappingForm.module.css';
 import useOptions from '../../useOptions';
 import { editMyDocs } from '../../../services/mydocumentServices';
 import { editAllDocs } from '../../../services/allDocumentServices';
+import { editDoc } from '../../../services/docsApproveService';
 import { useRouter } from 'next/router';
 
 const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }) => {
@@ -42,6 +43,25 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
       ...values,
       keywords, stakeholder, value_chain, language, sub_cat, state, city
     }
+    let data2;
+    data2 = {
+      keywords,
+      stake_holder: stakeholder,
+      document_type: values.doc_type,
+      url_link: values.url,
+      value_chain,
+      language,
+      sub_cat,
+      state,
+      city,
+      title: values.title,
+      theme: values.theme,
+      geography: values.geography,
+      status: values.status,
+      description: values.description,
+      citation: values.citation,
+      document: values.document,
+    }
 
     if (router.pathname === '/mydocuments') {
       editMyDocs(docDetails.id, data, (err, res) => {
@@ -59,6 +79,16 @@ const EditCategoryForm = ({ update, setUpdate, docDetails, chipKey, setChipKey }
         if (res !== null) {
           console.log({ r: res.data })
           if (res.data.message === 'Document Edited Sucessfully') {
+            confirmation.style.display = 'flex';
+          }
+        }
+      })
+    } else if (router.pathname === '/docu') {
+      editDoc(docDetails.id, data2, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          console.log({ r: res.data })
+          if (typeof res.data.message === 'object') {
             confirmation.style.display = 'flex';
           }
         }

@@ -17,6 +17,18 @@
   font-size: var(--fs-1rem) !important;
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+
+.content2 label {
+  font-weight: var(--fw-400);
+  font-size: var(--fs-14);
+}
+
 .control {
   display: flex;
   align-items: center;

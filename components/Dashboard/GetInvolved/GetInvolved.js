@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormControl, MenuItem, Select, Switch } from '@mui/material';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -8,132 +8,176 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import styles from "./GetInvolved.module.css"
-
-const data = [
-  { name: 'Nandini', email: 'abc@gmail.com', joinNFSSM: "Yes", knowFSM: "No", creatorOn: "2022-08-05 07:53:34", id: 1 },
-  { name: 'Jane Copper', email: 'abc@gmail.com', joinNFSSM: "No", knowFSM: "Yes", creatorOn: "2022-08-05 07:53:34", id: 2 },
-  { name: 'Nandini', email: 'abc@gmail.com', joinNFSSM: "Yes", knowFSM: "No", creatorOn: "2022-08-05 07:53:34", id: 1 },
-  { name: 'Jane Copper', email: 'abc@gmail.com', joinNFSSM: "No", knowFSM: "Yes", creatorOn: "2022-08-05 07:53:34", id: 2 },
-  { name: 'Nandini', email: 'abc@gmail.com', joinNFSSM: "Yes", knowFSM: "No", creatorOn: "2022-08-05 07:53:34", id: 1 },
-  { name: 'Jane Copper', email: 'abc@gmail.com', joinNFSSM: "No", knowFSM: "Yes", creatorOn: "2022-08-05 07:53:34", id: 2 },
-]
+import { getData, delData } from '../../../services/adminGetInvolvedService';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const GetInvolved = () => {
   const [number, setNumber] = useState(10);
   const [docId, setDocId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [update, setUpdate] = useState(false);
+  const [documents, setDocuments] = useState([]);
+  const [current, setCurrent] = useState({
+    name: '',
+    email: '',
+    know_more: '',
+    join_NFSSM: '',
+    id: '',
+    shortNote: ''
+  })
 
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
 
+  const handleError = (err) => {
+    setLoading(false);
+    console.log({ e: err });
+  }
+
+  useEffect(() => {
+    getData((err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        setLoading(false);
+        setDocuments(res.data['getInvoled Data']);
+      }
+    })
+  }, [update])
+
+  const handleDelete = () => {
+    delData(docId, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        if (res.data.message === 'Deleted') {
+          alert('Deleted Successfully');
+          setLoading(true);
+          setUpdate(!update);
+        }
+      }
+    })
+  }
+
   return (
     <>
       <div className={styles.container}>
         <h4 className={styles.label2}>Get Involved</h4>
-        <div className={styles.controlCont}>
-          <div className={styles.control}>
-            <div>
-              <p>Show</p>
-              <FormControl sx={{ m: 1, width: 55 }} size="small">
-                <Select
-                  labelId="demo-select-small"
-                  id="demo-select-small"
-                  value={number}
-                  className={styles.select}
-                  onChange={handleChange}
-                >
-                  <MenuItem value={10}>10</MenuItem>
-                  <MenuItem value={25}>25</MenuItem>
-                  <MenuItem value={50}>50</MenuItem>
-                  <MenuItem value={100}>100</MenuItem>
-                </Select>
-              </FormControl>
-              <p>entries</p>
+        {loading ?
+          <div className={styles.justify_center}><CircularProgress /></div> :
+          <>
+            <div className={styles.controlCont}>
+              <div className={styles.control}>
+                <div>
+                  <p>Show</p>
+                  <FormControl sx={{ m: 1, width: 55 }} size="small">
+                    <Select
+                      labelId="demo-select-small"
+                      id="demo-select-small"
+                      value={number}
+                      className={styles.select}
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={10}>10</MenuItem>
+                      <MenuItem value={25}>25</MenuItem>
+                      <MenuItem value={50}>50</MenuItem>
+                      <MenuItem value={100}>100</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <p>entries</p>
+                </div>
+              </div>
+              <div className={styles.search}>
+                <p>Search:</p>
+                <input type="text" name="" id="" />
+              </div>
             </div>
-          </div>
-          <div className={styles.search}>
-            <p>Search:</p>
-            <input type="text" name="" id="" />
-          </div>
-        </div>
 
-        <div className={styles.cont}>
-          <div className={styles.heading}>
-            <div className={styles.one}>
-              <p>S.NO</p>
-            </div>
-            <div className={styles.two}>
-              <p>Name</p>
-            </div>
-            <div className={styles.two}>
-              <p>Email</p>
-            </div>
-            <div className={styles.two}>
-              <p>Join NFSSM</p>
-            </div>
-            <div className={styles.two}>
-              <p>Know about FSM</p>
-            </div>
-            <div className={styles.two}>
-              <p>Created on</p>
-            </div>
-            <div className={styles.two}>
-              <p>Action</p>
-            </div>
-          </div>
-          {
-            data.map(({ id, creatorOn, name, email, joinNFSSM, knowFSM }, i) => {
-              return (
-                <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
-                  <div className={styles.one}>
-                    <p>{i + 1}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <p>{name}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <p>{email}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <p>{joinNFSSM}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <p>{knowFSM}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <p>{creatorOn}</p>
-                  </div>
-                  <div className={styles.two}>
-                    <div className={styles.two}>
-                      <div
-                        title="View Question"
-                        className={`${styles.btn} ${styles.editbtn}`}
-                        data-modal="myModal"
-                        onClick={() => {
-                          document.querySelector(".m7").style.display =
-                            "flex";
-                        }}
-                      >
-                        <RemoveRedEyeOutlinedIcon
-                          sx={{ height: "14px", width: "14px" }}
-                        />
+            <div className={styles.cont}>
+              <div className={styles.heading}>
+                <div className={styles.one}>
+                  <p>S.NO</p>
+                </div>
+                <div className={styles.two}>
+                  <p>Name</p>
+                </div>
+                <div className={styles.two}>
+                  <p>Email</p>
+                </div>
+                <div className={styles.two}>
+                  <p>Join NFSSM</p>
+                </div>
+                <div className={styles.two}>
+                  <p>Know about FSM</p>
+                </div>
+                <div className={styles.two}>
+                  <p>Created on</p>
+                </div>
+                <div className={styles.two}>
+                  <p>Action</p>
+                </div>
+              </div>
+              {
+                documents.map(({ id, name, email, join_NFSSM, know_more, shortNote }, i) => {
+                  return (
+                    <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
+                      <div className={styles.one}>
+                        <p>{i + 1}</p>
+                      </div>
+                      <div className={styles.two}>
+                        <p>{name}</p>
+                      </div>
+                      <div className={styles.two}>
+                        <p>{email}</p>
+                      </div>
+                      <div className={styles.two}>
+                        <p>{join_NFSSM ? 'Yes' : 'No'}</p>
+                      </div>
+                      <div className={styles.two}>
+                        <p>{know_more ? 'Yes' : 'No'}</p>
+                      </div>
+                      <div className={styles.two}>
+                        <p>date</p>
+                      </div>
+                      <div className={styles.two}>
+                        <div className={styles.two}>
+                          <div
+                            title="View Question"
+                            className={`${styles.btn} ${styles.editbtn}`}
+                            data-modal="myModal"
+                            onClick={() => {
+                              setCurrent({
+                                name: name,
+                                know_more: know_more,
+                                join_NFSSM: join_NFSSM,
+                                email: email,
+                                id: id,
+                                shortNote: shortNote
+                              })
+                              document.querySelector(".m7").style.display = "flex";
+                            }}
+                          >
+                            <RemoveRedEyeOutlinedIcon
+                              sx={{ height: "14px", width: "14px" }}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          title='Delete User Profile'
+                          className={`${styles.btn} ${styles.delbtn}`}
+                          onClick={() => {
+                            setDocId(id);
+                            document.querySelector('.m10').style.display = "flex";
+                          }}>
+                          <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
+                        </div>
                       </div>
                     </div>
-                    <div
-                      title='Delete User Profile'
-                      className={`${styles.btn} ${styles.delbtn}`}
-                      onClick={() => {
-                        setDocId(id);
-                        document.querySelector('.m10').style.display = "flex";
-                      }}>
-                      <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
+                  )
+                })
+              }
+            </div>
+          </>
+        }
       </div>
 
       <div id="myModal" className='modal2 m10'>
@@ -160,6 +204,7 @@ const GetInvolved = () => {
             </p>
             <button
               className={styles.btn3} onClick={() => {
+                handleDelete();
                 document.querySelector('.m10').style.display = "none";
               }}>Ok</button>
           </div>
@@ -192,7 +237,7 @@ const GetInvolved = () => {
                   <p>Name</p>
                 </div>
                 <div className={styles.questionBody}>
-                  <p>:Nandhini</p>
+                  <p>:{current.name}</p>
                 </div>
               </div>
               <div className={styles.questionDetails}>
@@ -200,7 +245,7 @@ const GetInvolved = () => {
                   <p>Email</p>
                 </div>
                 <div className={styles.questionBody}>
-                  <p>:abc@gmail</p>
+                  <p>:{current.email}</p>
                 </div>
               </div>
               <div className={styles.questionDetails}>
@@ -208,7 +253,7 @@ const GetInvolved = () => {
                   <p>Join FSSM</p>
                 </div>
                 <div className={styles.questionBody}>
-                  <p>:No</p>
+                  <p>:{current.join_NFSSM === true ? 'Yes' : 'No'}</p>
                 </div>
               </div>
               <div className={styles.questionDetails}>
@@ -216,7 +261,7 @@ const GetInvolved = () => {
                   <p>Know about FSSM</p>
                 </div>
                 <div className={styles.questionBody}>
-                  <p>:No</p>
+                  <p>:{current.know_more === true ? 'Yes' : 'No'}</p>
                 </div>
               </div>
               <div className={styles.questionDetails}>
@@ -224,7 +269,7 @@ const GetInvolved = () => {
                   <p>Short Notes</p>
                 </div>
                 <div className={styles.questionBody}>
-                  <p>:</p>
+                  <p>:{current.shortNote}</p>
                 </div>
               </div>
               <div className={styles.questionDetails}>
@@ -232,7 +277,7 @@ const GetInvolved = () => {
                   <p>Creator on</p>
                 </div>
                 <div className={styles.questionBody}>
-                  <p>:2021-07-27 16:46:31</p>
+                  <p>:date</p>
                 </div>
               </div>
             </div>

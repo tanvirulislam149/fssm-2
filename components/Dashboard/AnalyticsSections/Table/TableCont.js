@@ -54,16 +54,6 @@ const TableCont = () => {
     return { name, calories, fat, carbs, protein };
   }
 
-
-  // const rows = [
-  //   createData(1, 'NFSSM', 6.0, 24, 4.0),
-  //   createData(2, 'BMGF', 9.0, 37, 4.3),
-  //   createData(3, 'NFSSM', 16.0, 24, 6.0),
-  //   createData(4, 'BMGF', 3.7, 67, 4.3),
-  //   createData(5, 'NFSSM', 16.0, 49, 3.9),
-  //   createData('', 'Total', 656, 321, 23)
-  // ];
-
   const handleStats = (data) => {
     let uploaded = 0, approved = 0, unmapped = 0;
     const cats = Object.keys(data).map((key) => key);

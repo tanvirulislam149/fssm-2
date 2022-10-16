@@ -5,10 +5,11 @@ import Emails from '../../Sections/Emails/Emails';
 import Questions from '../../Sections/Questions/Questions';
 import Themes from '../../Sections/Themes/Themes';
 import UnapprovedQueList from '../../Sections/UnapprovedQueList/UnapprovedQueList';
-import styles from "./HelpDesk.module.css"
+import styles from "./HelpDesk.module.css";
+import AlertCard from '../AlertCard/AlertCard';
 
 const HelpDesk = () => {
-
+  const [message, setMessage] = useState('');
   const [layout, setLayout] = useState(1);
 
 
@@ -30,8 +31,14 @@ const HelpDesk = () => {
             Emails
           </button>
         </div>
-        {layout === 1 ? <UnapprovedQueList /> : layout === 2 ? <Questions /> : layout === 3 ? <Themes /> : <Emails />}
+        {layout === 1 ?
+          <UnapprovedQueList setMessage={setMessage} /> : layout === 2 ?
+            <Questions setMessage={setMessage} /> : layout === 3 ?
+              <Themes setMessage={setMessage} /> :
+              <Emails setMessage={setMessage} />}
       </div>
+
+      <AlertCard message={message} />
     </>
   )
 }

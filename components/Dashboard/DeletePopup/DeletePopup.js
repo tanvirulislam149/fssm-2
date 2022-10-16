@@ -45,7 +45,14 @@ const DeletePopup = ({ handleDelete, docId, setAction, action, setLoading }) => 
               <button
                 className={`${styles.btn3} ${styles.yes}`}
                 onClick={() => {
-                  document.querySelector('.m10').style.display = "none";
+                  if (router.pathname === '/forum') {
+                    document.querySelector('.m10').style.display = "none";
+                    handleDelete(docId, document.querySelector('.m9'));
+                    return;
+                  }
+                  document.querySelectorAll('.modal2').forEach(el => {
+                    el.style.display = "none";
+                  })
                   handleDelete(docId, document.querySelector('.m9'));
                 }}>
                 Yes

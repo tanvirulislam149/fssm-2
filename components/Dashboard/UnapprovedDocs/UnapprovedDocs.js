@@ -4,8 +4,9 @@ import UnapprovedList from '../../Sections/UnapprovedList/UnapprovedList';
 import styles from "./UnapprovedDocs.module.css"
 import useOptions from "../../useOptions";
 import { getUnapprovedDocs } from '../../../services/docsApproveService';
+import DeletePopup from '../DeletePopup/DeletePopup';
 
-const UnapprovedDocs = () => {
+const UnapprovedDocs = ({ handleDelete, setUpdate, update, setMessage }) => {
   const [themeInput, setThemeInput] = useState("");
   const [stakeInput, setStakeInput] = useState("");
   const [orgInput, setOrgInput] = useState("");
@@ -20,6 +21,8 @@ const UnapprovedDocs = () => {
   const [docType, setDocType] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
+  const [originalReq, setOriginaReq] = useState({});
+  const [docId, setDocId] = useState(null);
 
 
   const { advancedSearchText } = useOptions();
@@ -65,14 +68,31 @@ const UnapprovedDocs = () => {
       organization: `${org}`
     }
 
-    getUnapprovedDocs(data, (err, res) => {
+    setOriginaReq(data);
+
+    getUnapprovedDocs({ params: 'False' }, data, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
         setLoading(false);
+        console.log({ res })
         setSearchResult(res.data.message);
       }
     })
   };
+
+  useEffect(() => {
+    if (typeof originalReq.theme === 'string') {
+      setLoading(true);
+      getUnapprovedDocs({ params: 'False' }, originalReq, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          setLoading(false);
+          console.log({ res })
+          setSearchResult(res.data.message);
+        }
+      })
+    }
+  }, [update])
 
 
   return (
@@ -213,9 +233,16 @@ const UnapprovedDocs = () => {
           <div className={styles.justify_center}><CircularProgress /></div> :
           <UnapprovedList
             searchResult={searchResult}
+            updated={update}
+            setUpdated={setUpdate}
+            setDocId={setDocId}
+            docId={docId}
+            setMessage={setMessage}
           />
       }
 
+
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
     </>
   )
 }

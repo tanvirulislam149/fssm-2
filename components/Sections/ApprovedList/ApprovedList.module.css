@@ -5,6 +5,13 @@
   margin-top: 0;
 }
 
+.justify_center {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-20) 0;
+  background: var(--white-color);
+}
+
 .select > div {
   padding: 1px !important;
   padding-left: var(--fs-14) !important;

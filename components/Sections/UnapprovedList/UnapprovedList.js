@@ -1,13 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./UnapprovedList.module.css";
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Image from "next/image";
 import close from "../../../assets/Close.png";
-import { Autocomplete, CircularProgress, FormControl, MenuItem, Select, Switch, TextField } from "@mui/material";
-import { viewUnapprovedDoc } from "../../../services/docsApproveService";
+import { Autocomplete, CircularProgress, FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { viewUnapprovedDoc, changeApproval } from "../../../services/docsApproveService";
 import useOptions from "../../useOptions";
+import ViewDocument from '../../Dashboard/ViewDocument/ViewDocument';
+import Switch from '@mui/material/Switch';
+import { styled } from '@mui/material/styles';
+import EditCategory from '../../Dashboard/EditCategory/EditCategory';
 
-const UnapprovedList = ({ searchResult }) => {
+const AntSwitch = styled(Switch)(({ theme }) => ({
+  width: 50,
+  height: 20,
+  padding: 0,
+  display: 'flex',
+  '&:active': {
+    '& .MuiSwitch-thumb': {
+      width: 15,
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      transform: 'translateX(9px)',
+    },
+  },
+  '& .MuiSwitch-switchBase': {
+    padding: 2,
+    '&.Mui-checked': {
+      transform: 'translateX(30px)',
+      color: '#fff',
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#2E69AE',
+      },
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    transition: theme.transitions.create(['width'], {
+      duration: 200,
+    }),
+  },
+  '& .MuiSwitch-track': {
+    borderRadius: 18 / 2,
+    opacity: 1,
+    backgroundColor:
+      theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+    boxSizing: 'border-box',
+  },
+}));
+
+const UnapprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId, docId }) => {
   const [themeInput, setThemeInput] = useState("");
   const [subCatInput, setSubCatInput] = useState("");
   const [valueInput, setValueInput] = useState("");
@@ -21,9 +67,21 @@ const UnapprovedList = ({ searchResult }) => {
   const [keywordInput, setKeywordInput] = useState("");
   const [keywordValue, setKeywordValue] = useState("");
   const [number, setNumber] = useState(10);
-  const [docDetails, setDocDetails] = useState({});
+  const [current, setCurrent] = useState({});
   const [loading, setLoading] = useState(false);
-  const { id, title, organization, theme, sub_cat, stake_holder, value_chain, geography, status, state, city, language, description, keywords, citation, createdOn, attachment } = docDetails;
+  const [currentDoc, setCurrentDoc] = useState([]);
+  const [index, setIndex] = useState(null);
+  const [click, setClick] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [docDetails, setDocDetails] = useState({
+    categories: [],
+    stake_holder: [],
+    valueChain: [],
+    states: [],
+    languages: [],
+    chips: [],
+    theme: ''
+  });
 
   // console.log(document.getElementsByName("title")[0].value);
   // console.log(document.querySelector('input[name="fav_language"]:checked').value);
@@ -67,16 +125,67 @@ const UnapprovedList = ({ searchResult }) => {
     console.log(err);
   }
 
-  const handleViewDoc = (id) => {
-    setLoading(true);
-    viewUnapprovedDoc(id, (err, res) => {
-      if (err) return handleError(err)
+  const handleSwitch = (id) => {
+    changeApproval(id, { is_approved: true }, (err, res) => {
+      if (err) return handleError(err);
       if (res !== null) {
-        setLoading(false);
-        setDocDetails(res.data.message);
+        console.log({ res });
+        if (res.data.message === 'Updated Successfully') {
+          alert('Changes Saved Successfully');
+          setUpdated(!updated);
+        }
       }
     })
-  }
+  };
+
+  useEffect(() => {
+    setClick(!click);
+    setIndex(0);
+  }, [searchResult])
+
+  useEffect(() => {
+    let data = [];
+    searchResult.forEach((doc) => {
+      data.push({
+        id: doc.id,
+        theme: doc.theme?.theme_title,
+        title: doc.title,
+        citation: doc.citation,
+        description: doc.description,
+        city: doc.city,
+        status: doc.status,
+        geography: doc.geography,
+        doc_type: doc.document_type === 'file' ? 'file' : 'URL',
+        categories: [],
+        stake_holder: [
+          doc.stake_holder?.map(({ stake_holderName }) => {
+            return stake_holderName;
+          })
+        ][0],
+        valueChain: [
+          doc.value_chain?.map(({ vc_name }) => {
+            return vc_name;
+          })
+        ][0],
+        states: [
+          doc.state?.map(({ stateName }) => {
+            return stateName;
+          })
+        ][0],
+        languages: [
+          doc.language?.map(({ lang }) => {
+            return lang;
+          })
+        ][0],
+        chips: [
+          doc.keywords?.map(({ keyword }) => {
+            return keyword;
+          })
+        ][0]
+      })
+    });
+    setDocDetails(data[index]);
+  }, [click, index])
 
   return (
     <>
@@ -130,7 +239,7 @@ const UnapprovedList = ({ searchResult }) => {
                   <p>Action</p>
                 </div>
               </div>
-              {searchResult.map(({ id, organization, title, documentName, updated, thumbnail }, i) => {
+              {searchResult.map(({ id, organization, title, updated, thumbnail }, i) => {
                 return (
                   <div
                     key={id}
@@ -143,28 +252,34 @@ const UnapprovedList = ({ searchResult }) => {
                       <p className={styles.thumbnail}>{thumbnail}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{organization}</p>
+                      <p>{organization?.org_name}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{title}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>{documentName}</p>
+                      <p>{''}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{updated}</p>
                     </div>
                     <div className={styles.two}>
-                      <Switch defaultChecked color="default" />
+                      <AntSwitch
+                        onChange={() => {
+                          handleSwitch(id);
+                        }}
+                      />
                     </div>
                     <div className={styles.two}>
                       <div
-                        title="Edit User Profile"
+                        title="View"
                         className={`${styles.btn} ${styles.editbtn}`}
                         data-modal="myModal"
                         onClick={() => {
-                          handleViewDoc(id);
-                          document.querySelector(".m7").style.display =
+                          setIndex(i);
+                          setMessage('Edited Successfully');
+                          setCurrentDoc(searchResult[i]);
+                          document.querySelector(".m").style.display =
                             "flex";
                         }}
                       >
@@ -179,360 +294,14 @@ const UnapprovedList = ({ searchResult }) => {
             </div>
           </div>
 
-          <div id="myModal" className="modal2 m7">
-            <div
-              className={styles.bg}
-              onClick={() => {
-                document.querySelector(".m7").style.display = "none";
-              }}
-            ></div>
-            <div className={styles.modal_content}>
-              <div
-                className={styles.close}
-                onClick={() => {
-                  document.querySelector(".m7").style.display = "none";
-                }}
-              >
-                <p>View Document Data</p>
-                <span>
-                  <Image src={close} alt="icon" height={24} width={24} />
-                </span>
-              </div>
+          <ViewDocument
+            click={click}
+            setClick={setClick}
+            setDocId={setDocId}
+            currentDoc={currentDoc} />
 
-              {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-                <>
-                  <div className={styles.cover}>
-                    <div className={styles.content}>
-                      <h4 className={styles.questionDetailsTitle}>Question Details</h4>
-                      <div className={styles.documentDataCont}>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Document Name
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p></p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Title
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{title}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Organization Name
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{organization}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Theme
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{theme}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Sub Category
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{sub_cat}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Stakeholder
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{stake_holder}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Value Chain
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{value_chain}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Geography
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{geography}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Urban / Rural
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{status}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            State
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{state}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            City
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{city}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Language
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{language}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Description
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{description}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Keyword
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{keywords}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Citation
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{citation}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            Created On
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{createdOn}</p>
-                          </div>
-                        </div>
-                        <div className={styles.documentData}>
-                          <div className={styles.documentHeading}>
-                            View Document
-                          </div>
-                          <div className={styles.documentDetail}>
-                            <p>{attachment}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={styles.btn_cont}>
-                      <button
-                        onClick={() => {
-                          document.querySelector(".m8").style.display =
-                            "flex";
-                        }}
-                        className={`${styles.btn3} ${styles.save}`}>
-                        Edit Document
-                      </button>
-                      <button
-                        className={`${styles.btn3} ${styles.cancel}`}
-                        onClick={() => {
-                          document.querySelector(".m7").style.display = "none";
-                        }}
-                      >
-                        Delete Document
-                      </button>
-                      <button className={`${styles.btn3} ${styles.save}`}>
-                        Map Document
-                      </button>
-                    </div>
-                  </div>
-                </>}
-            </div>
-          </div>
+          <EditCategory update={update} setUpdate={setUpdate} docDetails={docDetails} />
 
-
-          <div id="myModal" className="modal2 m8">
-            <div
-              className={styles.bg}
-              onClick={() => {
-                document.querySelector(".m8").style.display = "none";
-              }}
-            ></div>
-            <div className={styles.modal_content}>
-              <div
-                className={styles.close}
-                onClick={() => {
-                  document.querySelector(".m8").style.display = "none";
-                }}
-              >
-                <p>View Document Data</p>
-                <span>
-                  <Image src={close} alt="icon" height={24} width={24} />
-                </span>
-              </div>
-
-              {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-                <>
-                  <div className={styles.cover3}>
-                    <div>
-                      <label htmlFor="display_order">Title <span>*</span></label>
-                      <input className={styles.input} type="text" name="title" />
-                      <label htmlFor="display_order">Theme <span>*</span></label>
-                      <Autocomplete
-                        onChange={(event, newValue) => {
-                          setThemeValue(newValue);
-                        }}
-                        inputValue={themeInput}
-                        onInputChange={(event, newInputValue) => {
-                          setThemeInput(newInputValue);
-                        }}
-                        id="profile"
-                        options={themeOptions}
-                        renderInput={(params) => (
-                          <TextField className={styles.select} name='theme' {...params} placeholder="--Select--" />
-                        )}
-                      />
-                      <label htmlFor="display_order">Sub Category</label>
-                      <Autocomplete
-                        onChange={(event, newValue) => {
-                          setSubCat(newValue);
-                        }}
-                        inputValue={subCatInput}
-                        onInputChange={(event, newInputValue) => {
-                          setSubCatInput(newInputValue);
-                        }}
-                        id="profile"
-                        options={subCategoryOption}
-                        renderInput={(params) => (
-                          <TextField className={styles.select} name='theme' {...params} placeholder="--Select--" />
-                        )}
-                      />
-                      <label htmlFor="display_order">Stakeholder</label>
-                      <Autocomplete
-                        onChange={(event, newValue) => {
-                          setStakeholder(newValue);
-                        }}
-                        inputValue={stakeInput}
-                        onInputChange={(event, newInputValue) => {
-                          setStakeInput(newInputValue);
-                        }}
-                        id="profile"
-                        options={stakeholderOptions}
-                        renderInput={(params) => (
-                          <TextField className={styles.select} name='theme' {...params} placeholder="--Select--" />
-                        )}
-                      />
-                      <label htmlFor="display_order">Value Chain</label>
-                      <Autocomplete
-                        onChange={(event, newValue) => {
-                          setValueChain(newValue);
-                        }}
-                        inputValue={valueInput}
-                        onInputChange={(event, newInputValue) => {
-                          setValueInput(newInputValue);
-                        }}
-                        id="profile"
-                        options={valueChainOption}
-                        renderInput={(params) => (
-                          <TextField className={styles.select} name='theme' {...params} placeholder="--Select--" />
-                        )}
-                      />
-                      <label htmlFor="display_order">Geography</label> <br />
-                      <div className={styles.radio}>
-                        <input type="radio" id="National" name="geography" value="National" />
-                        <label for="National">National</label>
-                        <input type="radio" id="State" name="geography" value="State" />
-                        <label for="State">State</label>
-                        <input type="radio" id="Not Applicable" name="geography" value="Not Applicable" />
-                        <label for="Not Applicable">Not Applicable</label>
-                      </div>
-                      <label htmlFor="display_order">Urbal / Rural</label> <br />
-                      <div className={styles.radio}>
-                        <input type="radio" id="Urban" name="urban" value="urban" />
-                        <label for="Urban">Urban</label>
-                        <input type="radio" id="Rural" name="urban" value="Rural" />
-                        <label for="Rural">Rural</label>
-                      </div>
-                      <label htmlFor="display_order">Language</label>
-                      <Autocomplete
-                        onChange={(event, newValue) => {
-                          setLanguageValue(newValue);
-                        }}
-                        inputValue={languageInput}
-                        onInputChange={(event, newInputValue) => {
-                          setLanguageInput(newInputValue);
-                        }}
-                        id="profile"
-                        options={languageOption}
-                        renderInput={(params) => (
-                          <TextField className={styles.select} name='theme' {...params} placeholder="--Select--" />
-                        )}
-                      />
-                      <label htmlFor="display_order">Description</label><br />
-                      <textarea className={styles.input} name="description" id="description"></textarea>
-                      <label htmlFor="display_order">Keywords</label>
-                      <Autocomplete
-                        onChange={(event, newValue) => {
-                          setKeywordValue(newValue);
-                        }}
-                        inputValue={languageInput}
-                        onInputChange={(event, newInputValue) => {
-                          setKeywordInput(newInputValue);
-                        }}
-                        id="profile"
-                        options={keywordOption}
-                        renderInput={(params) => (
-                          <TextField className={styles.select} name='theme' {...params} placeholder="--Select--" />
-                        )}
-                      />
-                      <label htmlFor="display_order">Citation</label><br />
-                      <textarea className={styles.input} name="citation" id="citation"></textarea>
-                      <label htmlFor="display_order">Document Type <span>*</span></label>
-                      <input className={styles.input} type="text" name="docType" />
-                      <label htmlFor="file">Choose File ( Accepts Only gif,jpe?g,png,pdf,doc,docx,xls,xlsx,mp4,mp3,avi,flv,mkv,mov,mpeg,mpg,webm,wmv)</label><br />
-                      <input type="file" id="myfile" name="myfile" /><br />
-                    </div>
-                    <div className={styles.btn_cont}>
-                      <button
-                        onClick={() => {
-                          handleSubmit()
-                          document.querySelector(".m8").style.display = "none";
-                        }}
-                        className={`${styles.btn3} ${styles.save}`}>
-                        Submit
-                      </button>
-                      <button
-                        className={`${styles.btn3} ${styles.cancel}`}
-                        onClick={() => {
-                          document.querySelector(".m8").style.display = "none";
-                        }}
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                </>}
-            </div>
-          </div>
         </> : ""}
     </>
   );

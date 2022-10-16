@@ -9,6 +9,7 @@
   margin: 0;
   color: var(--primary-blue);
   font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-secondary);
   padding: var(--s-8) var(--size-5);
   display: flex;
   justify-content: space-between;
