@@ -4,11 +4,24 @@ import TendersNavigation from '../TendersNavigation/TendersNavigation';
 import TenderCard from '../../Cards/TenderCard/TenderCard';
 import { getExpiredTenders } from '../../../services/tenderServices';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Pagination } from '@mui/material';
 
 const ExpiredTendersCont = () => {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tenders, setTenders] = useState([]);
+  const [number] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState(tenders);
+  const [nPages, setNPages] = useState(1);
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = tenders.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(tenders.length / number);
+    setNPages(pageCount);
+  }, [currentPage, tenders, number])
 
   const handleError = (err) => {
     setLoading(false);
@@ -35,9 +48,9 @@ const ExpiredTendersCont = () => {
           <TendersNavigation />
 
           {loading ? <div className={styles.justify_center}><CircularProgress /></div> :
-            tenders.length ?
+            currentRecords.length ?
               <>
-                {tenders.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
+                {currentRecords.map(({ theme, id, status, organization, document_type, expiry_date, citation, description, title, value_chain, keywords, language, stake_holder, geography }) => {
                   return (
                     <TenderCard
                       key={id}
@@ -60,6 +73,15 @@ const ExpiredTendersCont = () => {
                 })}
 
                 <p className={styles.footer_text}>Showing 0-20 of {tenders.length} Results</p>
+                <Pagination
+                  count={nPages}
+                  variant="outlined"
+                  shape="rounded"
+                  page={currentPage}
+                  color='primary'
+                  onChange={(e, val) => {
+                    setCurrentPage(val);
+                  }} />
               </>
               :
               <div className={styles.cont}>

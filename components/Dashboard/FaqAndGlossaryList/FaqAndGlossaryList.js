@@ -6,9 +6,13 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
 import { editFaq, editGlossary } from '../../../services/adminFaqGlossaryService';
+import Pagination from '@mui/material/Pagination';
 
 const FaqAndGlossaryList = ({ documents, setMessage, setUpdate, update, setDocId, layout }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [search, setSearch] = useState('');
   const [updated, setUpdated] = useState(false);
   const [list, setList] = useState(documents);
@@ -23,6 +27,15 @@ const FaqAndGlossaryList = ({ documents, setMessage, setUpdate, update, setDocId
     display_order: '',
     id: ''
   })
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = list.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(list.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -131,12 +144,12 @@ const FaqAndGlossaryList = ({ documents, setMessage, setUpdate, update, setDocId
               <p>Actions</p>
             </div>
           </div>
-          {list.length ?
-            list.map(({ question, id, word, answer, display_order, is_active }, i) => {
+          {currentRecords.length ?
+            currentRecords.map(({ question, id, word, answer, display_order, is_active }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
-                    <p>{i + 1}</p>
+                    <p>{i + 1 + number * (currentPage - 1)}</p>
                   </div>
                   <div className={layout === 1 ? styles.three : styles.four}>
                     <p>{layout === 1 ? question : word}</p>
@@ -181,6 +194,16 @@ const FaqAndGlossaryList = ({ documents, setMessage, setUpdate, update, setDocId
           }
         </div>
       </div>
+      <p className={styles.results}>Showing {number} of {list?.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
 
       <div id="myModal" className='modal2 m'>

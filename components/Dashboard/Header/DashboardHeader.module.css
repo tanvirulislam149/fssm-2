@@ -45,7 +45,6 @@
   display: flex;
   align-items: center;
   padding: var(--size-5);
-  /* border-radius: var(--size-5); */
   cursor: pointer;
 }
 
@@ -58,6 +57,7 @@
   font-weight: var(--fw-400);
   color: var(--l-blue);
   margin-left: var(--size-5);
+  text-transform: capitalize;
 }
 
 .pop_up {
@@ -104,12 +104,12 @@
 
 .btn2 {
   background: var(--l-blue);
-  width: var(--s-130);
+  width: var(--s-140);
 }
 
 .btn3 {
   background: var(--pale-red);
-  width: var(--s-70);
+  width: var(--s-80);
 }
 
 .btn3:hover {

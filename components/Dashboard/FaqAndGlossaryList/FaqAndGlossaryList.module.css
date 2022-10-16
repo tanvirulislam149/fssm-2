@@ -243,6 +243,18 @@
   border-top: 1px solid var(--d-bg);
 }
 
+.results {
+  color: var(--light-gray-color);
+  font-weight: var(--fw-400);
+  margin-top: var(--fs-14);
+  margin-bottom: var(--s-10);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
 /* modal */
 .modal_content {
   position: relative;

@@ -8,6 +8,7 @@
   color: var(--light-gray-color);
   border-radius: var(--primary-border-radius);
   background: var(--white-color);
+  margin-bottom: var(--s-10);
 }
 
 .footer_text2 {

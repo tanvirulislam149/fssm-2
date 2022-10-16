@@ -4,7 +4,7 @@ import SubmitButton from '../../Buttons/Submit/SubmitButton';
 import { loginFormText } from '../../TextArrays';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { loginUser, axiosInstance } from '../../../services/authService';
+import { loginUser, uuu, axiosInstance } from '../../../services/authService';
 import { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
 import FormControl from '@mui/material/FormControl';
@@ -38,8 +38,8 @@ const LoginForm = () => {
       if (err) return handleError(err);
       if (res !== null) {
         if (loginData.check === true) {
-          Cookies.set('check', true, { expires: 14 });
-          Cookies.set('email', loginData.email, { expires: 14 });
+          Cookies.set('check', true, { expires: 30 });
+          Cookies.set('email', loginData.email, { expires: 30 });
         } else {
           if (Cookies.get('check')) {
             Cookies.remove('check');
@@ -48,9 +48,11 @@ const LoginForm = () => {
         }
         console.log({ r: res })
         setError(null);
-        Cookies.set('access', res.data.access_token, { expires: 14 })
-        Cookies.set('refresh', res.data.refresh_token, { expires: 14 })
-        Cookies.set('isAdmin', res.data.isAdmin, { expires: 14 })
+        Cookies.set('access', res.data.access_token, { expires: 5 })
+        Cookies.set('refresh', res.data.refresh_token, { expires: 5 })
+        Cookies.set('isAdmin', res.data.isAdmin, { expires: 5 })
+        Cookies.set('firstName', res.data.firstName, { expires: 5 })
+        Cookies.set('lastName', res.data.lastName, { expires: 5 })
         axiosInstance.defaults.headers.common["Authorization"] = 'Bearer ' + Cookies.get('access');
         navigate.push('/');
         setLoading(false);
@@ -63,6 +65,24 @@ const LoginForm = () => {
   //     Cookies.set("swass-fssm", "true", { expires: 0.00005787 });
   //     window.location.reload();
   //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   uuu({
+  //     email: 'davidjoshua603@gmail.com',
+  //     first_name: 'joshua',
+  //     last_name: 'oni',
+  //     is_admin: false,
+  //     is_restrictedUser: true,
+  //     password: 12345
+  //   }, (err, res) => {
+  //     if (err) return handleError(err);
+  //     if (res !== null) {
+  //       setLoading(false);
+  //       console.log({ r: res });
+  //       //navigate.push('/signin');
+  //     }
+  //   });
   // }, [])
 
   const goHome = () => {

@@ -46,7 +46,6 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
   }
 
   const handleError = (err) => {
-    setLoading(false);
     console.log({ e: err })
   }
 

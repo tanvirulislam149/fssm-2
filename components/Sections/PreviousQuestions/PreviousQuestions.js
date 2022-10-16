@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './PreviousQuestions.module.css';
 import Button from '../../Buttons/Submit/SubmitButton';
 import QuestionCard from '../../Cards/QuestionCard/QuestionCard';
 import { Formik, Field, Form } from 'formik';
 import CircularProgress from '@mui/material/CircularProgress';
-import search from '../../../assets/search.png';
-import Image from 'next/image';
-import { IconButton, InputBase, Paper } from '@mui/material';
+import { IconButton, InputBase, Pagination, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, dateArray, handleSubmit, error }) => {
+  const [number] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState(prevQuestions);
+  const [nPages, setNPages] = useState(1);
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = prevQuestions.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(prevQuestions.length / number);
+    setNPages(pageCount);
+  }, [currentPage, prevQuestions, number])
 
   return (
     <>
@@ -63,8 +74,8 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, dateArray,
 
         {loading ?
           <div className={styles.justify_center}><CircularProgress /></div> :
-          prevQuestions.length ?
-            prevQuestions.map(({ id, upvotes, theme, views, spam, question, name, organization }, i) => {
+          currentRecords.length ?
+            currentRecords.map(({ id, upvotes, theme, views, spam, question, name, organization }, i) => {
               return (
                 <QuestionCard
                   key={id}
@@ -84,6 +95,15 @@ const PreviousQuestions = ({ loading, setttingLoading, prevQuestions, dateArray,
         }
 
         <p className={styles.footer_text}>Showing 0-20 of {prevQuestions.length} Results</p>
+        <Pagination
+          count={nPages}
+          variant="outlined"
+          shape="rounded"
+          page={currentPage}
+          color='primary'
+          onChange={(e, val) => {
+            setCurrentPage(val);
+          }} />
       </div>
     </>
   )

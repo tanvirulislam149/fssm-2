@@ -134,9 +134,9 @@ const ForumCategories = ({ categories, update, setUpdate, setMessage, setReactKe
                       return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
                     }),
                   order: Yup.string()
-                    .test('is value a number?', 'Display order must be a number', (val) => {
-                      return !isNaN(val);
-                    })
+                    // .test('is value a number?', 'Display order must be a number', (val) => {
+                    //   return !isNaN(val);
+                    // })
                     .nullable(),
                 })}
                 onSubmit={(values, actions) => {
@@ -155,7 +155,7 @@ const ForumCategories = ({ categories, update, setUpdate, setMessage, setReactKe
 
                     <div className={styles.textInput2}>
                       <label htmlFor="order">Display Order</label>
-                      <Field name="order" id='order' className={styles.input2} type="text" />
+                      <Field name="order" id='order' className={styles.input2} type="number" />
                       <span className='form-error'><ErrorMessage name="order" /></span>
                     </div>
 

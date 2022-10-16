@@ -17,6 +17,7 @@
   font-weight: var(--fw-400);
   font-family: var(--font-family-secondary);
   position: absolute;
+  z-index: 1;
   width: var(--eighteen);
   padding-bottom: var(--size-5);
   border-radius: 0 0 10px 10px;

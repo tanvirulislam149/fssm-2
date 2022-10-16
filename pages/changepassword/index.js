@@ -1,16 +1,16 @@
 import React from 'react';
 import DashboardHeader from '../../components/Dashboard/Header/DashboardHeader';
-import ListDocuments from '../../components/Dashboard/ListDocuments/ListDocuments';
 import SideBar from '../../components/Dashboard/SideBar/SideBar';
 import styles from '../../styles/Home.module.css';
 import Layout from '../../components/Sections/Layout/Layout';
+import ChangePassword from '../../components/Dashboard/ChangePassword/ChangePassword';
 import Head from 'next/head';
 
-const DocumentsDump = () => {
+const index = () => {
   return (
     <>
       <Head>
-        <title>Documents List</title>
+        <title>Change Password</title>
         <meta name="description" content="SWACHH FSSM Website" />
       </Head>
 
@@ -22,7 +22,7 @@ const DocumentsDump = () => {
             <SideBar />
           </div>
           <div>
-            <ListDocuments />
+            <ChangePassword />
           </div>
         </div>
       </Layout>
@@ -30,4 +30,4 @@ const DocumentsDump = () => {
   )
 }
 
-export default DocumentsDump
+export default index

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FormControl, MenuItem, Select } from '@mui/material';
+import { FormControl, MenuItem, Pagination, Select } from '@mui/material';
 import styles from './ForumList.module.css';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -54,11 +54,23 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId, reactKey, setUpdate, update, layout }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [search, setSearch] = useState('');
   const [list, setList] = useState(documents);
   const [replies, setReplies] = useState([]);
   const [replyId, setReplyId] = useState('');
   const [dateArray, setDateArray] = useState([]);
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = list.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(list.length / number);
+    setNPages(pageCount);
+  }, [currentPage, list, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -241,9 +253,9 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
               <p>Actions</p>
             </div>
           </div>
-          {list.length ?
+          {currentRecords.length ?
             layout !== 4 &&
-            list.map(({ creatorName, id, category_id, topic_name }, i) => {
+            currentRecords.map(({ creatorName, id, category_id, topic_name }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
@@ -297,7 +309,16 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
           }
         </div>
       </div>
-
+      <p className={styles.results}>Showing {number} of {list.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
       <div id="myModal" className='modal2 m'>
         <div

@@ -8,6 +8,7 @@ import close from '../../../assets/Close.png';
 import { getForumCats, delTopic, delComment, getTopics, addCategory, delCategory } from '../../../services/adminForumServices';
 import CircularProgress from '@mui/material/CircularProgress';
 import AlertCard from '../AlertCard/AlertCard';
+import Cookies from 'js-cookie';
 
 const AdminForum = () => {
   const [layout, setLayout] = useState(1);
@@ -24,8 +25,11 @@ const AdminForum = () => {
   const handleError = (err) => {
     setLoading(false);
     setMessage('');
-    console.log({ e: err });
   }
+
+  useEffect(() => {
+    Cookies.get('isAdmin') !== 'true' && setLayout(4);
+  }, [])
 
   const handleDelete = (id) => {
     if (message === 'comment') {
@@ -34,12 +38,6 @@ const AdminForum = () => {
         if (res !== null) {
           setMessage('');
           setUpdated(!updated);
-          console.log({ res });
-          // if (res.data.message = 'Discussion Topic has been edited') {
-          //   setMessage('Changes Saved!');
-          //   confirmation.style.display = 'flex';
-          //   setUpdate(!update);
-          // }
         }
       })
     } else if (layout === 3) {
@@ -97,51 +95,54 @@ const AdminForum = () => {
     getTopics((err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log({ res: res.data });
         layout === 1 && setDocuments(res.data['Unapproved Topics']);
         layout === 2 && setDocuments(res.data['Approved Topics']);
+        layout === 4 && setDocuments([]);
         setLoading(false);
       }
     })
-  }, [update])
+  }, [update, layout])
 
   return (
     <>
       <div className={styles.container2}>
         <div className={styles.approveLabel}>
-          <button
-            className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-            onClick={() => {
-              if (layout === 1) return;
-              setLayout(1);
-              setUpdate(!update);
-              setReactKey(!reactKey);
-            }}>
-            Un Approved Topics
-          </button>
-          <button
-            className={layout === 2 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-            onClick={() => {
-              if (layout === 2) return;
-              setLayout(2);
-              setUpdate(!update);
-              setReactKey(!reactKey);
-            }}>
-            Approved Topics
-          </button>
-          <button
-            className={layout === 3 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-            onClick={() => {
-              setLayout(3);
-              setReactKey(!reactKey);
-            }}>
-            Forum Categories
-          </button>
+          {Cookies.get('isAdmin') === 'true' && <>
+            <button
+              className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
+              onClick={() => {
+                if (layout === 1) return;
+                setLayout(1);
+                setUpdate(!update);
+                setReactKey(!reactKey);
+              }}>
+              Un Approved Topics
+            </button>
+            <button
+              className={layout === 2 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
+              onClick={() => {
+                if (layout === 2) return;
+                setLayout(2);
+                setUpdate(!update);
+                setReactKey(!reactKey);
+              }}>
+              Approved Topics
+            </button>
+            <button
+              className={layout === 3 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
+              onClick={() => {
+                setLayout(3);
+                setReactKey(!reactKey);
+              }}>
+              Forum Categories
+            </button>
+          </>}
           <button
             className={layout === 4 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
             onClick={() => {
               setLayout(4);
               setReactKey(!reactKey);
+              setDocuments([]);
             }}>
             Notifications
           </button>

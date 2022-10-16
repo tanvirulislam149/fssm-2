@@ -5,11 +5,6 @@ import ListDocumentsForm from '../../Forms/ListDocumentsForm/ListDocumentsForm';
 import ListDocumentsComp from '../ListDocumentsComp/ListDocumentsComp';
 import { getListedDocs } from '../../../services/listDocumentServices';
 import * as XLSX from 'xlsx'
-// import ReactExport from "react-export-excel";
-
-// const ExcelFile = ReactExport.ExcelFile;
-// const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-// const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 const dataSet1 = [
   {
@@ -40,7 +35,6 @@ const dataSet1 = [
 
 const ListDocuments = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [documents, setDocuments] = useState([]);
   const [excelData, setExcelData] = useState([]);
   const [dateArray, setDateArray] = useState([]);
@@ -48,7 +42,6 @@ const ListDocuments = () => {
   const handleError = (err) => {
     setLoading(false);
     console.log({ e: err })
-    setError(err.message);
   }
 
   const handleSearch = (data) => {

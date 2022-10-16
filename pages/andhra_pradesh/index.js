@@ -9,6 +9,7 @@ import TelanganaBottomSection from '../../components/Sections/TelanganaBottomSec
 import TelanganaMidSection from '../../components/Sections/TelanganaMidSection/TelanganaMidSection';
 import TelanganaHeaderComponent from '../../components/Headers/TelanganaHeaderComponent';
 import Layout from '../../components/Sections/Layout/Layout';
+import Head from 'next/head';
 
 const AndraPradesh = () => {
   const handleScroll = () => {
@@ -31,6 +32,12 @@ const AndraPradesh = () => {
       <div id='float' className={styles.float}>
         <div>Towards ODF++</div>
       </div>
+
+      <Head>
+        <title>Andra Pradesh</title>
+        <meta name="description" content="SWACHH FSSM Website" />
+      </Head>
+
 
       <TelanganaHeader />
       <TelanganaHeaderComponent />

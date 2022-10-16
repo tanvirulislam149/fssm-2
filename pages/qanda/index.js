@@ -5,10 +5,16 @@ import Footer from '../../components/Footers/Footer';
 import HelpDesk from '../../components/Sections/HelpDesk/HelpDesk';
 import Disclaimer from '../../components/Sections/Disclaimer/Disclaimer';
 import Layout from '../../components/Sections/Layout/Layout';
+import Head from 'next/head';
 
 const HelpDeskCont = () => {
   return (
     <>
+      <Head>
+        <title>Help Desk</title>
+        <meta name="description" content="SWACHH FSSM Website" />
+      </Head>
+
       <Header />
       <HeaderComponent />
 

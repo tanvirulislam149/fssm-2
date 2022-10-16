@@ -12,11 +12,29 @@ import Cookies from 'js-cookie';
 
 const DashboardHeader = () => {
   const [clicked, setClicked] = useState(false);
+  const [text, setText] = useState('');
+  const [name, setName] = useState('');
+  const [data, setData] = useState(sideBarText);
+
   const router = useRouter();
 
   const handleNav = () => {
     router.push('/');
   }
+
+  useEffect(() => {
+    if (Cookies.get('isAdmin') !== 'true') {
+      const newState = sideBarText.filter(({ id }) => {
+        return id < 6 || id === 11 || id === 14;
+      })
+      setData(newState);
+    }
+  }, [])
+
+  useEffect(() => {
+    Cookies.get('isAdmin') === 'true' ? setText('NFSSM') : setText('CDD');
+    setName(Cookies.get('firstName') + ' ' + Cookies.get('lastName'));
+  }, [])
 
   useEffect(() => {
     document.querySelector('.nav').classList.toggle('none');
@@ -52,7 +70,7 @@ const DashboardHeader = () => {
         </div>
         <div className={styles.right}>
           <button onClick={() => { handleNav(); }} className={styles.btn}>Go to website</button>
-          <h4>NFSSM</h4>
+          <h4>{text}</h4>
           <div
             className={styles.admin}
             title='Toggle pop-up'
@@ -60,7 +78,7 @@ const DashboardHeader = () => {
               document.getElementById('pop_up').classList.toggle('none');
             }}>
             <Image src={profile} height={40} width={40} alt='logo' />
-            <p>Admin</p>
+            <p>{name}</p>
           </div>
         </div>
       </nav>
@@ -69,7 +87,7 @@ const DashboardHeader = () => {
         <div className={styles.sidebar}>
           <div>
             {
-              sideBarText.map(({ id, text, link, image }) => {
+              data.map(({ id, text, link, image }) => {
                 return (
                   <Link key={id} href={`/${link}`}><a className='mobile-comp'>
                     <div className={`mobile-comp ${styles.card}`}>
@@ -89,12 +107,18 @@ const DashboardHeader = () => {
           <Image src={profile} height={80} width={80} alt='logo' />
         </div>
         <div className={styles.footer}>
-          <div className={styles.btn2}>Change Password</div>
+          <Link href='/changepassword'><a>
+            <div className={styles.btn2}>Change Password</div>
+          </a></Link>
           <div
             onClick={() => {
               Cookies.remove('access');
               Cookies.remove('refresh');
               Cookies.remove('isAdmin');
+              Cookies.remove('firstName');
+              Cookies.remove('lastName');
+              Cookies.remove('check');
+              Cookies.remove('email');
               router.push('/');
             }}
             className={styles.btn3}>Sign Out</div>

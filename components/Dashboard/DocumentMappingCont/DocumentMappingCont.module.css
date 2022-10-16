@@ -37,6 +37,7 @@
   padding-bottom: var(--fs-14);
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .one {
@@ -44,19 +45,19 @@
 }
 
 .two {
-  width: var(--ten);
+  width: var(--twenty);
 }
 
 .three {
-  width: 48%;
+  width: var(--fourty);
 }
 
 .four {
-  width: 17%;
+  width: var(--fifteen);
 }
 
 .five {
-  width: 15%;
+  width: var(--fifteen);
 }
 
 .row,
