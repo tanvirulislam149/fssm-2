@@ -31,17 +31,17 @@ const Themes = ({ setMessage }) => {
     console.log(err);
   }
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getThemes((err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       setLoading(false);
-  //       console.log({ res });
-  //       setDocuments(res.data.message);
-  //     }
-  //   })
-  // }, [update])
+  useEffect(() => {
+    setLoading(true);
+    getThemes((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        setLoading(false);
+        console.log({ res });
+        setDocuments(res.data.message);
+      }
+    })
+  }, [update])
 
   const handleSubmit = () => {
     // updateTheme(docId, { theme_title }, (err, res) => {
@@ -85,7 +85,11 @@ const Themes = ({ setMessage }) => {
       <div className={styles.container}>
         <div className={styles.headingCont}>
           <h4 className={styles.label2}>Themes</h4>
-          <button className={styles.addTheme}>Add Theme</button>
+          <button
+            onClick={() => {
+              document.querySelector('.m9').style.display = "flex";
+            }}
+            className={styles.addTheme}>Add Theme</button>
         </div>
         <div className={styles.control}>
           <div>
@@ -161,7 +165,7 @@ const Themes = ({ setMessage }) => {
           </div>}
       </div>
 
-      <DeletePopup docId={docId} handleDelete={handleDelete} />
+      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
 
       <div id="myModal" className='modal2 m8'>
         <div
@@ -183,7 +187,7 @@ const Themes = ({ setMessage }) => {
 
           <div className={styles.cover}>
             <div>
-              <label htmlFor='name'>Category Name</label>
+              <label htmlFor='name'>Theme</label>
               <input
                 id='name'
                 type='text'
@@ -206,6 +210,57 @@ const Themes = ({ setMessage }) => {
                   onClick={() => {
                     setTheme_title('');
                     document.querySelector('.m8').style.display = "none";
+                  }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* add theme modal */}
+
+      <div id="myModal" className='modal2 m9'>
+        <div
+          className={styles.bg}
+          onClick={() => {
+            document.querySelector('.m9').style.display = "none";
+          }}>
+        </div>
+        <div className={styles.modal_content2}>
+          <div
+            className={styles.close}
+            onClick={() => {
+              document.querySelector('.m9').style.display = "none";
+            }}
+          >
+            <p>Add Q & A Theme</p>
+            <span><Image src={close} alt='icon' height={24} width={24} /></span>
+          </div>
+
+          <div className={styles.cover}>
+            <div>
+              <label htmlFor='name'>Theme</label>
+              <input
+                id='name'
+                type='text'
+                className={styles.input} />
+              <div className={styles.btn_cont}>
+                <button
+                  type='reset'
+                  onClick={() => {
+                    document.querySelector('.m9').style.display = "none"
+                  }}
+                  className={`${styles.btn3} ${styles.save}`}>
+                  Save
+                </button>
+                <button
+                  className={`${styles.btn3} ${styles.cancel}`}
+                  type='reset'
+                  onClick={() => {
+                    setTheme_title('');
+                    document.querySelector('.m9').style.display = "none";
                   }}>
                   Cancel
                 </button>

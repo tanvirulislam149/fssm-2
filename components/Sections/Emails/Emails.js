@@ -57,17 +57,17 @@ const Emails = ({ setMessage }) => {
     console.log(err);
   }
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getEmail((err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       setLoading(false);
-  //       console.log({ res });
-  //       setDocuments(res.data.message);
-  //     }
-  //   })
-  // }, [update])
+  useEffect(() => {
+    setLoading(true);
+    getEmail((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        setLoading(false);
+        console.log({ res });
+        setDocuments(res.data.message);
+      }
+    })
+  }, [update])
 
   const handleSubmit = (data) => {
     // let d = { name: data.name, email: data.email, is_active: data.is_active, theme_expert: 15 }
@@ -113,7 +113,11 @@ const Emails = ({ setMessage }) => {
       <div className={styles.container}>
         <div className={styles.headingCont}>
           <h4 className={styles.label2}>Emails</h4>
-          <button className={styles.addTheme}>Add email</button>
+          <button
+            onClick={() => {
+              document.querySelector('.m9').style.display = "flex";
+            }}
+            className={styles.addTheme}>Add email</button>
         </div>
         <div className={styles.control}>
           <div>
@@ -213,7 +217,7 @@ const Emails = ({ setMessage }) => {
           </div>}
       </div>
 
-      <DeletePopup docId={docId} handleDelete={handleDelete} />
+      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
 
       <div id="myModal" className='modal2 m8'>
         <div
@@ -229,7 +233,7 @@ const Emails = ({ setMessage }) => {
               document.querySelector('.m8').style.display = "none";
             }}
           >
-            <p>Edit Theme</p>
+            <p>Edit Email</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
           </div>
 
@@ -294,6 +298,92 @@ const Emails = ({ setMessage }) => {
                         onClick={() => {
                           resetForm();
                           document.querySelector('.m8').style.display = "none";
+                        }}>
+                        Cancel
+                      </button>
+                    </div>
+                    <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Add email modal */}
+      <div id="myModal" className='modal2 m9'>
+        <div
+          className={styles.bg}
+          onClick={() => {
+            document.querySelector('.m9').style.display = "none";
+          }}>
+        </div>
+        <div className={styles.modal_content2}>
+          <div
+            className={styles.close}
+            onClick={() => {
+              document.querySelector('.m9').style.display = "none";
+            }}
+          >
+            <p>Add Email</p>
+            <span><Image src={close} alt='icon' height={24} width={24} /></span>
+          </div>
+
+          <div className={styles.cover}>
+            <div>
+              <Formik
+                initialValues={{ name: '', email: '', theme_expert: '', is_active: '' }}
+                validationSchema={Yup.object({
+                  name: Yup.string()
+                    .required('Required')
+                    .test('is value valid?', 'Characters must consist of letters only', (val) => {
+                      return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
+                    }),
+                  email: Yup.string()
+                    .required('Required')
+                    .email('Invalid email address')
+                    .test('is email valid?', 'Invalid email address', (val) => {
+                      return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
+                    }),
+                })}
+                onSubmit={(values, actions) => {
+                  handleSubmit(values);
+                  actions.resetForm();
+                  document.querySelector('.m9').style.display = "none";
+                }}
+              >
+                {({ resetForm, setFieldValue, values }) => (
+                  <Form>
+                    <div className={styles.textInput2}>
+                      <label htmlFor="theme_expert">Theme <span>*</span></label>
+                      <Field name='theme_expert' as='select' id='theme_expert' className={`${styles.select2} ${styles.form_select} form-select`}>
+                        {themeOptions.map(title => {
+                          return (
+                            <option key={title} value={title}>{title}</option>
+                          )
+                        })}
+                      </Field>
+                    </div>
+                    <div className={styles.textInput2}>
+                      <label htmlFor="name">Name <span>*</span></label>
+                      <Field name="name" id='name' className={styles.input} type="text" />
+                      <span className='form-error'><ErrorMessage name="name" /></span>
+                    </div>
+                    <div className={styles.textInput2}>
+                      <label htmlFor="email">Email <span>*</span></label>
+                      <Field name="email" id='email' className={styles.input} type="text" />
+                      <span className='form-error'><ErrorMessage name="email" /></span>
+                    </div>
+
+                    <div className={styles.btn_cont}>
+                      <button type='submit' className={`${styles.btn3} ${styles.save}`}>Save</button>
+                      <button
+                        className={`${styles.btn3} ${styles.cancel}`}
+                        type='reset'
+                        onClick={() => {
+                          resetForm();
+                          document.querySelector('.m9').style.display = "none";
                         }}>
                         Cancel
                       </button>
