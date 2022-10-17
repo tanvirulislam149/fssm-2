@@ -254,7 +254,7 @@ const Questions = ({ setMessage }) => {
           </div>}
       </div>
 
-      <DeletePopup docId={docId} handleDelete={handleDelete} />
+      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
 
       <div id="myModal" className='modal2 m11'>
         <div

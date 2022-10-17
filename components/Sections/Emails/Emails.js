@@ -57,17 +57,17 @@ const Emails = ({ setMessage }) => {
     console.log(err);
   }
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getEmail((err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       setLoading(false);
-  //       console.log({ res });
-  //       setDocuments(res.data.message);
-  //     }
-  //   })
-  // }, [update])
+  useEffect(() => {
+    setLoading(true);
+    getEmail((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        setLoading(false);
+        console.log({ res });
+        setDocuments(res.data.message);
+      }
+    })
+  }, [update])
 
   const handleSubmit = (data) => {
     // let d = { name: data.name, email: data.email, is_active: data.is_active, theme_expert: 15 }
@@ -213,7 +213,7 @@ const Emails = ({ setMessage }) => {
           </div>}
       </div>
 
-      <DeletePopup docId={docId} handleDelete={handleDelete} />
+      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
 
       <div id="myModal" className='modal2 m8'>
         <div
