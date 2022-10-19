@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './MapSection.module.css';
 import AddItems from '../AddItems/AddItems';
 import Image from 'next/image';
@@ -10,9 +10,10 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { addItem, delItem, editItem, pasteItem } from '../../../services/userCatServices';
+import { mapDocs } from '../../../services/mydocumentServices';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) => {
+const MapSection = ({ loading2, map, docId, setLoading2, update, setUpdate, addItemsText }) => {
   const [clicked, setClicked] = useState(false);
   const [nameVal, setNameVal] = useState('');
   const [orderVal, setOrderVal] = useState('');
@@ -21,6 +22,15 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
   const [level, setLevel] = useState(null);
   const [node, setNode] = useState(null);
   const [copyId, setCopyId] = useState(null);
+  const [mapping, setMapping] = useState([]);
+
+  useEffect(() => {
+    const data = [];
+    map.forEach(obj => {
+      data.push(obj.id);
+    })
+    setMapping(data);
+  }, [map])
 
   const router = useRouter();
 
@@ -37,66 +47,74 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
   }
 
   const handleSubmit = (data) => {
-    if (router.pathname === '/entity') {
-      setLoading2(true);
-      if (api === 1) {
-        if (idArray[3] !== '') {
-          alert(`Cannot add to end nodes`);
-          document.getElementById('form') && document.getElementById('form').classList.add("none");
-          setLoading2(false);
-          return;
-        }
-        addItem(idArray, data, (err, res) => {
-          if (err) return handleError(err)
-          if (res !== null) {
-            console.log({ res });
-            if (res.data.message === 'User Profile Successfully created') {
-              setUpdate(!update);
-            }
-          }
-        })
-      } else {
-        editItem(idArray, data, (err, res) => {
-          if (err) return handleError(err)
-          if (res !== null) {
-            console.log({ res });
-            if (res.data.message === 'Updated Successfully') {
-              setUpdate(!update);
-            }
-          }
-        })
+    setLoading2(true);
+    if (api === 1) {
+      if (idArray[3] !== '') {
+        alert(`Cannot add to end nodes`);
+        document.getElementById('form') && document.getElementById('form').classList.add("none");
+        setLoading2(false);
+        return;
       }
+      addItem(idArray, data, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          console.log({ res });
+          if (res.data.message === 'User Profile Successfully created') {
+            setUpdate(!update);
+          }
+        }
+      })
+    } else {
+      editItem(idArray, data, (err, res) => {
+        if (err) return handleError(err)
+        if (res !== null) {
+          console.log({ res });
+          if (res.data.message === 'Updated Successfully') {
+            setUpdate(!update);
+          }
+        }
+      })
     }
   }
 
   const handleDelete = () => {
-    if (router.pathname === '/entity') {
-      setLoading2(true);
-      delItem(idArray, (err, res) => {
-        if (err) return handleError(err)
-        if (res !== null) {
-          console.log({ res });
-          if (res.data.message === 'Delete Successfully') {
-            setUpdate(!update);
-          }
+    setLoading2(true);
+    delItem(idArray, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Delete Successfully') {
+          setUpdate(!update);
         }
-      })
-    }
+      }
+    })
+  }
+
+  const handleMapping = () => {
+    console.log(mapping)
+    mapDocs(docId, { mapping }, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Mapping is Done Successfully') {
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
   const handlePaste = () => {
-    if (router.pathname === '/entity') {
-      setLoading2(true);
-      pasteItem(idArray, { node, id: copyId }, (err, res) => {
-        if (err) return handleError(err)
-        if (res !== null) {
-          console.log({ res });
-          if (res.data.message === 'Tree node is copied successfully.') {
-            setUpdate(!update);
-          }
+    setLoading2(true);
+    pasteItem(idArray, { node, id: copyId }, (err, res) => {
+      if (err) return handleError(err)
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Tree node is copied successfully.') {
+          setUpdate(!update);
         }
-      })
-    }
+      }
+    })
   }
 
   return (
@@ -120,7 +138,7 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
           </div>
 
           <div className={styles.cover2}>
-            <div className={styles.buttons}>
+            {router.pathname === '/entity' && <div className={styles.buttons}>
               <div
                 className={`${styles.green} ${styles.btn4}`}
                 title='Add'
@@ -210,7 +228,7 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
                 Paste
               </div>
               {api === 3 && loading2 && <span className={styles.progress}><CircularProgress /></span>}
-            </div>
+            </div>}
 
             <div id='del' className={`${styles.del} none`}>
               <p>Are you sure you want to delete this node?</p>
@@ -298,9 +316,18 @@ const MapSection = ({ loading2, setLoading2, update, setUpdate, addItemsText }) 
                     values={['', '', '', '']}
                     setIdArray={setIdArray}
                     setLevel={setLevel}
+                    mapping={mapping}
+                    setMapping={setMapping}
                   />
                 }
               </div>
+              {router.pathname !== '/entity' && <div className={styles.final}>
+                <button
+                  className={styles.btn5}
+                  onClick={() => {
+                    handleMapping();
+                  }}>Submit</button>
+              </div>}
             </div>
           </div>
         </div>

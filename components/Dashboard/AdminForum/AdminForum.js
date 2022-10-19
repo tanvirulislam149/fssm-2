@@ -107,7 +107,7 @@ const AdminForum = () => {
     <>
       <div className={styles.container2}>
         <div className={styles.approveLabel}>
-          {Cookies.get('isAdmin') === 'true' && <>
+          {layout !== 4 && <>
             <button
               className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
               onClick={() => {

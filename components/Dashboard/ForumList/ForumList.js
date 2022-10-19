@@ -62,6 +62,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
   const [replies, setReplies] = useState([]);
   const [replyId, setReplyId] = useState('');
   const [dateArray, setDateArray] = useState([]);
+  const [dateArray2, setDateArray2] = useState([]);
 
   useEffect(() => {
     const indexOfLastRecord = currentPage * number;
@@ -111,6 +112,20 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
 
   useEffect(() => {
     setList(documents);
+    const data = documents;
+    let date = [];
+    data.forEach(item => {
+      date.push([]);
+    })
+    data.forEach(({ createdOn }, i) => {
+      const month = createdOn.slice(5, 7);
+      const day = createdOn.slice(8, 10);
+      const year = createdOn.slice(0, 4);
+      const hour = createdOn.slice(11, 13);
+      const min = createdOn.slice(14, 16);
+      date[i] = `${year}-${month}-${day} ${hour}:${min} ${hour >= 12 ? 'PM' : 'AM'}`;
+    })
+    setDateArray2(date);
   }, [documents])
 
   useEffect(() => {
@@ -271,7 +286,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
                     <p>{creatorName?.first_name}</p>
                   </div>
                   <div className={styles.two}>
-                    <p>date</p>
+                    <p>{dateArray2[i]}</p>
                   </div>
                   <div className={styles.two}>
                     <AntSwitch

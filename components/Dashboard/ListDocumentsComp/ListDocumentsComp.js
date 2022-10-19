@@ -5,60 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Pagination } from '@mui/material';
 
-// const data = [
-//   {
-//     name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
-//     id: 1,
-//     date: '2021-08-22',
-//     title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
-//     partner: 'CFAR',
-//     theme: 'Capacity Building',
-//     category: 'Training Modules',
-//     stakeholder: 'All',
-//     value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
-//     state: 'Delhi',
-//     city: 'New Delhi',
-//     language: 'Hindi',
-//     geography: 'National',
-//     status: 'Rural',
-//     citation: 'Null'
-//   },
-//   {
-//     name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
-//     id: 2,
-//     date: '2022-08-22',
-//     title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
-//     partner: 'CFAR',
-//     theme: 'Capacity Building',
-//     category: 'Training Modules',
-//     stakeholder: 'All',
-//     value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
-//     state: 'Delhi',
-//     city: 'New Delhi',
-//     language: 'Hindi',
-//     geography: 'National',
-//     status: 'Rural',
-//     citation: 'Null'
-//   },
-//   {
-//     name: 'PPE for sanitation workers_ReadyReckoner-NFSSMAlliance (1).pdf',
-//     id: 3,
-//     date: '2021-08-22',
-//     title: 'Working In Tandem: The Informal Septic Tank Emptying Market In Aya Nagar, Delhi',
-//     partner: 'BBC',
-//     theme: 'Capacity Building',
-//     category: 'Training Modules',
-//     stakeholder: 'All',
-//     value_chain: ['Emptying', 'Reuse', 'Transport', 'Treat'],
-//     state: 'Delhi',
-//     city: 'New Delhi',
-//     language: 'Hindi',
-//     geography: 'National',
-//     status: 'Rural',
-//     citation: 'Null'
-//   },
-// ]
-
 const ListDocumentsComp = ({ dateArray, documents }) => {
   const [number, setNumber] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);

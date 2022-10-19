@@ -245,7 +245,7 @@ const DocumentsList = ({ documents, dateArray }) => {
                       title='view'
                       data-modal="myModal"
                       onClick={() => {
-                        setCurrentDoc(currentRecords[i]);
+                        setCurrentDoc({ ...currentRecords[i], date: dateArray[i] });
                         document.querySelector('.m').style.display = "flex";
                       }}
                     >

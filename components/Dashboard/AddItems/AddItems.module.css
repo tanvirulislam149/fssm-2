@@ -11,6 +11,13 @@
   color: red !important;
 } */
 
+.check {
+  position: absolute;
+  top: var(--s-8);
+  right: 0;
+  cursor: pointer;
+}
+
 .title {
   border: solid 1px var(--white-color);
   width: max-content;

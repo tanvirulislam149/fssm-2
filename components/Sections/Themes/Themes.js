@@ -44,40 +44,46 @@ const Themes = ({ setMessage }) => {
   }, [update])
 
   const handleSubmit = () => {
-    // updateTheme(docId, { theme_title }, (err, res) => {
-    //   if (err) return handleError(err);
-    //   if (res !== null) {
-    //     console.log({ res });
-    //     if (res.data.message === 'Updated Successfully') {
-    //       setMessage('Updated Successfully');
-    //       document ? document.querySelector('.m15').style.display = 'flex' : null;
-    //       setUpdate(!update);
-    //     }
-    //   }
-    // })
+    updateTheme(docId, { theme_title }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage('Updated Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
-  // const handleDelete = (id) => {
-  //   delTheme(id, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       console.log({ res });
-  //       if (res.data.message === 'Delete Successfully') {
-  //         setMessage('Deleted Successfully');
-  //         document ? document.querySelector('.m15').style.display = 'flex' : null;
-  //         setUpdate(!update);
-  //       }
-  //     }
-  //   })
-  // }
+  const handleDelete = (id) => {
+    delTheme(id, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Delete Successfully') {
+          setMessage('Deleted Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
+  }
 
-  const handleCreate = (data) => {
-    // createTheme(data, (err, res) => {
-    //   if (err) return handleError(err);
-    //   if (res !== null) {
-    //     console.log({ res });
-    //   }
-    // })
+  const handleCreate = () => {
+    createTheme({ theme_title }, (err, res) => {
+      setTheme_title('');
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'User Profile Successfully created') {
+          setMessage('Theme Added Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
   return (
@@ -87,7 +93,7 @@ const Themes = ({ setMessage }) => {
           <h4 className={styles.label2}>Themes</h4>
           <button
             onClick={() => {
-              document.querySelector('.m9').style.display = "flex";
+              document.querySelector('.m19').style.display = "flex";
             }}
             className={styles.addTheme}>Add Theme</button>
         </div>
@@ -165,7 +171,7 @@ const Themes = ({ setMessage }) => {
           </div>}
       </div>
 
-      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
 
       <div id="myModal" className='modal2 m8'>
         <div
@@ -221,18 +227,18 @@ const Themes = ({ setMessage }) => {
 
       {/* add theme modal */}
 
-      <div id="myModal" className='modal2 m9'>
+      <div id="myModal" className='modal2 m19'>
         <div
           className={styles.bg}
           onClick={() => {
-            document.querySelector('.m9').style.display = "none";
+            document.querySelector('.m19').style.display = "none";
           }}>
         </div>
         <div className={styles.modal_content2}>
           <div
             className={styles.close}
             onClick={() => {
-              document.querySelector('.m9').style.display = "none";
+              document.querySelector('.m19').style.display = "none";
             }}
           >
             <p>Add Q & A Theme</p>
@@ -245,12 +251,15 @@ const Themes = ({ setMessage }) => {
               <input
                 id='name'
                 type='text'
+                value={theme_title}
+                onChange={(e) => { setTheme_title(e.target.value); }}
                 className={styles.input} />
               <div className={styles.btn_cont}>
                 <button
                   type='reset'
                   onClick={() => {
-                    document.querySelector('.m9').style.display = "none"
+                    theme_title.trim().length && handleCreate();
+                    theme_title.trim().length ? document.querySelector('.m19').style.display = "none" : null;
                   }}
                   className={`${styles.btn3} ${styles.save}`}>
                   Save
@@ -260,7 +269,7 @@ const Themes = ({ setMessage }) => {
                   type='reset'
                   onClick={() => {
                     setTheme_title('');
-                    document.querySelector('.m9').style.display = "none";
+                    document.querySelector('.m19').style.display = "none";
                   }}>
                   Cancel
                 </button>

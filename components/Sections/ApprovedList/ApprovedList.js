@@ -3,7 +3,7 @@ import styles from "./ApprovedList.module.css";
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Image from "next/image";
 import close from "../../../assets/Close.png";
-import { Autocomplete, CircularProgress, FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { Autocomplete, CircularProgress, FormControl, MenuItem, Pagination, Select, TextField } from "@mui/material";
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
 import { viewUnapprovedDoc, changeApproval } from "../../../services/docsApproveService";
@@ -66,12 +66,16 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
   const [keywordInput, setKeywordInput] = useState("");
   const [keywordValue, setKeywordValue] = useState("");
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [current, setCurrent] = useState({});
   const [loading, setLoading] = useState(false);
   const [currentDoc, setCurrentDoc] = useState([]);
   const [index, setIndex] = useState(null);
   const [click, setClick] = useState(false);
   const [update, setUpdate] = useState(false);
+  const [dateArray2, setDateArray2] = useState([]);
   const [docDetails, setDocDetails] = useState({
     categories: [],
     stake_holder: [],
@@ -81,6 +85,15 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
     chips: [],
     theme: ''
   });
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = searchResult.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(searchResult.length / number);
+    setNPages(pageCount);
+  }, [currentPage, searchResult, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -106,11 +119,25 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
   useEffect(() => {
     setClick(!click);
     setIndex(0);
+    const data = searchResult;
+    let date = [];
+    data.forEach(item => {
+      date.push([]);
+    })
+    data.forEach(({ createdOn }, i) => {
+      const month = createdOn.slice(5, 7);
+      const day = createdOn.slice(8, 10);
+      const year = createdOn.slice(0, 4);
+      const hour = createdOn.slice(11, 13);
+      const min = createdOn.slice(14, 16);
+      date[i] = `${year}-${month}-${day} ${hour}:${min} ${hour >= 12 ? 'PM' : 'AM'}`;
+    })
+    setDateArray2(date);
   }, [searchResult])
 
   useEffect(() => {
     let data = [];
-    searchResult.forEach((doc) => {
+    currentRecords.forEach((doc) => {
       data.push({
         id: doc.id,
         theme: doc.theme?.theme_title,
@@ -203,14 +230,14 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
                 <p>Action</p>
               </div>
             </div>
-            {searchResult.map(({ id, organization, title, updated, thumbnail }, i) => {
+            {currentRecords.map(({ id, organization, title, thumbnail }, i) => {
               return (
                 <div
                   key={id}
                   className={i % 2 !== 0 ? styles.row : styles.row2}
                 >
                   <div className={styles.one}>
-                    <p>{i + 1}</p>
+                    <p>{i + 1 + number * (currentPage - 1)}</p>
                   </div>
                   <div className={styles.two}>
                     <p className={styles.thumbnail}>{thumbnail}</p>
@@ -225,7 +252,7 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
                     <p>{''}</p>
                   </div>
                   <div className={styles.two}>
-                    <p>{updated}</p>
+                    <p>{dateArray2[i]}</p>
                   </div>
                   <div className={styles.two}>
                     <AntSwitch
@@ -243,7 +270,7 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
                       onClick={() => {
                         setIndex(i);
                         setMessage('Edited Successfully');
-                        setCurrentDoc(searchResult[i]);
+                        setCurrentDoc({ ...searchResult[i], date: dateArray2[i] });
                         document.querySelector(".m").style.display =
                           "flex";
                       }}
@@ -266,6 +293,17 @@ const ApprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocId,
         currentDoc={currentDoc} />
 
       <EditCategory update={update} setUpdate={setUpdate} docDetails={docDetails} />
+
+      <p className={styles.results}>Showing {number} of {searchResult.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
     </>
   );
 };

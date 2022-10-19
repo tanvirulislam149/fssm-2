@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress, FormControl, MenuItem, Select } from '@mui/material';
+import { CircularProgress, FormControl, MenuItem, Pagination, Select } from '@mui/material';
 import styles from "./UnapprovedQueList.module.css"
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -58,6 +58,9 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 const UnapprovedQueList = ({ setMessage }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [docId, setDocId] = useState(null);
   const [updated, setUpdated] = useState(false);
   const [update, setUpdate] = useState(false);
@@ -65,6 +68,7 @@ const UnapprovedQueList = ({ setMessage }) => {
   const [documents, setDocuments] = useState([]);
   const [themeOptions, setThemeOptions] = useState([]);
   const [profileOptions, setProfileOptions] = useState([]);
+  const [dateArray2, setDateArray2] = useState([]);
   const [current, setCurrent] = useState({
     name: '',
     email: '',
@@ -82,6 +86,15 @@ const UnapprovedQueList = ({ setMessage }) => {
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = documents.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(documents.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
 
   const handleError = (err) => {
     setLoading(false);
@@ -110,6 +123,20 @@ const UnapprovedQueList = ({ setMessage }) => {
         setLoading(false);
         console.log({ res });
         setDocuments(res.data.message);
+        const data = res.data.message;
+        let date = [];
+        data.forEach(item => {
+          date.push([]);
+        })
+        data.forEach(({ createdOn }, i) => {
+          const month = createdOn.slice(5, 7);
+          const day = createdOn.slice(8, 10);
+          const year = createdOn.slice(0, 4);
+          const hour = createdOn.slice(11, 13);
+          const min = createdOn.slice(14, 16);
+          date[i] = `${year}-${month}-${day} ${hour}:${min} ${hour >= 12 ? 'PM' : 'AM'}`;
+        })
+        setDateArray2(date);
       }
     })
   }, [update])
@@ -235,23 +262,23 @@ const UnapprovedQueList = ({ setMessage }) => {
               </div>
             </div>
             {
-              documents.map(({ id, theme, attachment, email, organization, highpriority, mobile, userprofile, name, question }, i) => {
+              currentRecords.map(({ id, theme, attachment, email, organization, highpriority, mobile, userprofile, name, question }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
-                      <p>{i + 1}</p>
+                      <p>{i + 1 + number * (currentPage - 1)}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{question}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>roleName</p>
+                      <p>{userprofile?.user_profile}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{name}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>date</p>
+                      <p>{dateArray2[i]}</p>
                     </div>
                     <div className={styles.two}>
                       <AntSwitch
@@ -652,6 +679,17 @@ const UnapprovedQueList = ({ setMessage }) => {
           </div>
         </div>
       </div>
+
+      <p className={styles.results}>Showing {number} of {documents.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
     </>
   )
 }
