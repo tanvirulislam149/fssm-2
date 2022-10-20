@@ -18,6 +18,7 @@
   padding: var(--fs-24) var(--s-30);
   display: flex;
   align-items: flex-end;
+  border-radius: var(--size-5);
 }
 
 .filter > div {

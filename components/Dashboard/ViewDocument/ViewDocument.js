@@ -122,7 +122,11 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
                   Sub Category
                 </div>
                 <div className={styles.details}>
-                  : Sub Category not provided
+                  : {
+                    currentDoc.sub_cat?.map(({ subcat_title }) => {
+                      return subcat_title + ', ';
+                    })
+                  }
                 </div>
               </div>
               <div className={styles.row3}>

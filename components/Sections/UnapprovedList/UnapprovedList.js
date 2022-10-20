@@ -184,7 +184,11 @@ const UnapprovedList = ({ searchResult, setMessage, setUpdated, updated, setDocI
         status: doc.status,
         geography: doc.geography,
         doc_type: doc.document_type === 'file' ? 'file' : 'URL',
-        categories: [],
+        categories: [
+          doc.sub_cat?.map(({ subcat_title }) => {
+            return subcat_title;
+          })
+        ][0],
         stake_holder: [
           doc.stake_holder?.map(({ stake_holderName }) => {
             return stake_holderName;

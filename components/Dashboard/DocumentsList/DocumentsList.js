@@ -16,7 +16,7 @@ import AlertCard from '../AlertCard/AlertCard';
 import Cookies from 'js-cookie';
 import { Pagination } from '@mui/material';
 
-const DocumentsList = ({ documents, dateArray }) => {
+const DocumentsList = ({ updating, setUpdating, documents, dateArray }) => {
   const [number, setNumber] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRecords, setCurrentRecords] = useState([]);
@@ -121,7 +121,11 @@ const DocumentsList = ({ documents, dateArray }) => {
         status: doc.status,
         geography: doc.geography,
         doc_type: doc.document_type === 'file' ? 'file' : 'URL',
-        categories: [],
+        categories: [
+          doc.sub_cat?.map(({ subcat_title }) => {
+            return subcat_title;
+          })
+        ][0],
         stake_holder: [
           doc.stake_holder?.map(({ stake_holderName }) => {
             return stake_holderName;
