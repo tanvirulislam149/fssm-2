@@ -178,6 +178,7 @@ const Themes = ({ setMessage }) => {
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m8').style.display = "none";
+            setTheme_title('');
           }}>
         </div>
         <div className={styles.modal_content2}>
@@ -185,6 +186,7 @@ const Themes = ({ setMessage }) => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m8').style.display = "none";
+              setTheme_title('');
             }}
           >
             <p>Edit Theme</p>
@@ -232,6 +234,7 @@ const Themes = ({ setMessage }) => {
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m19').style.display = "none";
+            setTheme_title('');
           }}>
         </div>
         <div className={styles.modal_content2}>
@@ -239,6 +242,7 @@ const Themes = ({ setMessage }) => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m19').style.display = "none";
+              setTheme_title('');
             }}
           >
             <p>Add Q & A Theme</p>

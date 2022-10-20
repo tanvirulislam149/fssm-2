@@ -26,10 +26,10 @@ const MapSection = ({ loading2, map, docId, setLoading2, update, setUpdate, addI
 
   useEffect(() => {
     const data = [];
-    map.forEach(obj => {
+    map && map.forEach(obj => {
       data.push(obj.id);
     })
-    setMapping(data);
+    map && setMapping(data);
   }, [map])
 
   const router = useRouter();
