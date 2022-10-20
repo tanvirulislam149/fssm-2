@@ -139,7 +139,7 @@ const ListDocumentsComp = ({ dateArray, documents }) => {
           </div>
           {
             currentRecords.length ?
-              currentRecords.map(({ id, description, title, theme, organization, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
+              currentRecords.map(({ id, sub_cat, description, title, theme, organization, language, geography, stake_holder, status, state, value_chain, citation, city }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
@@ -166,7 +166,13 @@ const ListDocumentsComp = ({ dateArray, documents }) => {
                       <p>{theme?.theme_title}</p>
                     </div>
                     <div className={styles.two}>
-                      <p>category</p>
+                      <p>
+                        {
+                          sub_cat?.map(({ subcat_title }) => {
+                            return subcat_title + ', ';
+                          })
+                        }
+                      </p>
                     </div>
                     <div className={styles.two}>
                       <p>
