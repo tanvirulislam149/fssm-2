@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress, FormControl, MenuItem, Select, Switch } from '@mui/material';
+import { CircularProgress, FormControl, MenuItem, Pagination, Select, Switch } from '@mui/material';
 import styles from "./Emails.module.css"
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -14,6 +14,9 @@ import { getEmail, updateEmail, createEmail, delEmail } from '../../../services/
 
 const Emails = ({ setMessage }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [docId, setDocId] = useState(null);
   const [update, setUpdate] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -28,6 +31,15 @@ const Emails = ({ setMessage }) => {
   })
 
   const { advancedSearchText } = useOptions();
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = documents.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(documents.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -170,11 +182,11 @@ const Emails = ({ setMessage }) => {
               </div>
             </div>
             {
-              documents.map(({ name, id, email, theme_expert, is_active }, i) => {
+              currentRecords.map(({ name, id, email, theme_expert, is_active }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
-                      <p>{i + 1}</p>
+                      <p>{i + 1 + number * (currentPage - 1)}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{name}</p>
@@ -222,6 +234,16 @@ const Emails = ({ setMessage }) => {
             }
           </div>}
       </div>
+      <p className={styles.results}>Showing {number} of {documents.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
       <DeletePopup docId={docId} handleDelete={handleDelete} />
 

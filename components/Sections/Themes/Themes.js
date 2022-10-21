@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress, FormControl, MenuItem, Select } from '@mui/material';
+import { CircularProgress, FormControl, MenuItem, Pagination, Select } from '@mui/material';
 import styles from "./Themes.module.css"
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -14,6 +14,9 @@ import { delTheme, getThemes, createTheme, updateTheme } from '../../../services
 
 const Themes = ({ setMessage }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [docId, setDocId] = useState(null);
   const [update, setUpdate] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -21,6 +24,15 @@ const Themes = ({ setMessage }) => {
   const [theme_title, setTheme_title] = useState('');
 
   const { advancedSearchText } = useOptions();
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = documents.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(documents.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -133,11 +145,11 @@ const Themes = ({ setMessage }) => {
               </div>
             </div>
             {
-              documents.map(({ id, theme_title }, i) => {
+              currentRecords.map(({ id, theme_title }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
-                      <p>{i + 1}</p>
+                      <p>{i + 1 + number * (currentPage - 1)}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{theme_title}</p>
@@ -170,6 +182,16 @@ const Themes = ({ setMessage }) => {
             }
           </div>}
       </div>
+      <p className={styles.results}>Showing {number} of {documents.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
       <DeletePopup docId={docId} handleDelete={handleDelete} />
 

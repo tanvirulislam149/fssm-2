@@ -274,7 +274,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
-                    <p>{i + 1}</p>
+                    <p>{i + 1 + number * (currentPage - 1)}</p>
                   </div>
                   <div className={styles.one}>
                     <p> {category_id?.category}</p>

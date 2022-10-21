@@ -51,6 +51,7 @@ const TelanganaTopSection = () => {
             <div className={styles.card}>
               <div className={styles.sub_heading}>
                 <h2>{homePageText.sub_title1}</h2>
+                <p>{homePageText.sub_title5}</p>
               </div>
               <div className={styles.card_1}>
                 <div className={styles.input_cont}>
@@ -102,6 +103,7 @@ const TelanganaTopSection = () => {
             <div className={styles.card}>
               <div className={styles.sub_heading}>
                 <h2>{homePageText.sub_title4}</h2>
+                <p>{homePageText.sub_title6}</p>
               </div>
               <div className={styles.card_3}>
                 <Link href='/qanda'><a>

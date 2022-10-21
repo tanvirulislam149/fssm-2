@@ -11,6 +11,8 @@ export const homePageText = {
   sub_title2: "Repository",
   sub_title3: "Curated Knowledge for user-profiles",
   sub_title4: "Help Desk",
+  sub_title5: "Enter Keywords Below",
+  sub_title6: "Ask a Subject Matter Expert",
   h1: "One Platform for practitioners to advance FSSM in India",
   repository: [
     { id: 2, title: "Govt-National/states" },
