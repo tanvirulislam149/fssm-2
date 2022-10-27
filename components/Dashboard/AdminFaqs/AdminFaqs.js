@@ -201,10 +201,7 @@ const AdminFaqs = () => {
                 <button
                   type='submit'
                   onClick={() => {
-                    if (layout === 2 && text.trim().length && ans.trim().length) {
-                      handleAdd();
-                      document.querySelector('.m2').style.display = "none";
-                    } else if (layout === 1 && text.trim().length && ans.trim().length && order.length) {
+                    if (text.trim().length) {
                       handleAdd();
                       document.querySelector('.m2').style.display = "none";
                     }

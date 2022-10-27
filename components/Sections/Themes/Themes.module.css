@@ -218,6 +218,13 @@
   font-size: var(--fs-1rem);
 }
 
+.results {
+  color: var(--light-gray-color);
+  font-weight: var(--fw-400);
+  margin-top: var(--fs-14);
+  margin-bottom: var(--s-10);
+}
+
 .select2 {
   width: var(--hundred);
   border: solid 1px var(--shade);

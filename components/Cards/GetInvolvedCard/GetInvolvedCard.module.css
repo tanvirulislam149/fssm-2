@@ -9,6 +9,11 @@
   padding-top: var(--s-60);
   height: var(--s-470);
   max-width: var(--s-340);
+  transition: all 0.5s ease-out;
+}
+
+.container:hover {
+  transform: scale(1.03);
 }
 
 .num {
@@ -49,6 +54,11 @@
   margin: var(--s-20);
   margin-top: 0;
   margin-bottom: var(--s-30);
+  transition: all 0.5s ease-out;
+}
+
+.body + a:hover {
+  transform: translateY(-10px);
 }
 
 .btn {
@@ -68,6 +78,7 @@
 
 .btn:hover {
   background: var(--blue-hov);
+  box-shadow: 0 10px 5px -2px var(--shadow);
 }
 
 .form {

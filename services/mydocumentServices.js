@@ -23,3 +23,9 @@ export const uploadMyDocs = (data, cb) => {
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }
+
+export const mapDocs = (id, data, cb) => {
+  axiosInstance.put(`dashboard/mapdocs/${id}/`, data)
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}

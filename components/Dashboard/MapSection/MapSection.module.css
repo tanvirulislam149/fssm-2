@@ -239,6 +239,24 @@
   color: var(--white-color) !important;
 }
 
+.final {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-10);
+}
+
+.btn5 {
+  background: var(--l-blue);
+  font-weight: var(--fw-400);
+  color: var(--white-color);
+  border-width: 0;
+  padding: var(--s-10) var(--s-30);
+}
+
+.btn5:hover {
+  background: var(--lb-hov);
+}
+
 @media (max-width: 950px) {
   .modal_content2 {
     width: var(--size-88);

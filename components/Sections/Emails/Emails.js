@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress, FormControl, MenuItem, Select, Switch } from '@mui/material';
+import { CircularProgress, FormControl, MenuItem, Pagination, Select, Switch } from '@mui/material';
 import styles from "./Emails.module.css"
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -14,6 +14,9 @@ import { getEmail, updateEmail, createEmail, delEmail } from '../../../services/
 
 const Emails = ({ setMessage }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [docId, setDocId] = useState(null);
   const [update, setUpdate] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -29,13 +32,22 @@ const Emails = ({ setMessage }) => {
 
   const { advancedSearchText } = useOptions();
 
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = documents.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(documents.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
+
   const handleChange = (event) => {
     setNumber(event.target.value);
   };
 
-  // useEffect(() => {
-  //   current.name !== '' && document.getElementById('span-click').click();
-  // }, [updated])
+  useEffect(() => {
+    current.name !== '' && document.getElementById('span-click').click();
+  }, [updated])
 
   const handleValues = (setFieldValue) => {
     setFieldValue('name', current.name);
@@ -72,41 +84,47 @@ const Emails = ({ setMessage }) => {
   const handleSubmit = (data) => {
     // let d = { name: data.name, email: data.email, is_active: data.is_active, theme_expert: 15 }
     // console.log(d)
-    // updateEmail(docId, data, (err, res) => {
-    //   if (err) return handleError(err);
-    //   if (res !== null) {
-    //     console.log({ res });
-    //     if (res.data.message === 'Updated Successfully') {
-    //       setMessage('Updated Successfully');
-    //       document ? document.querySelector('.m15').style.display = 'flex' : null;
-    //       setUpdate(!update);
-    //     }
-    //   }
-    // })
+    updateEmail(docId, data, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage('Updated Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
   const handleCreate = (data) => {
-    // createEmail(data, (err, res) => {
-    //   if (err) return handleError(err);
-    //   if (res !== null) {
-    //     console.log({ res });
-    //   }
-    // })
+    console.log({ data })
+    createEmail(data, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'User Profile Successfully created') {
+          setMessage('Email Added Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
-  // const handleDelete = (id) => {
-  //   delEmail(id, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       console.log({ res });
-  //       if (res.data.message === 'Delete Successfully') {
-  //         setMessage('Deleted Successfully');
-  //         document ? document.querySelector('.m15').style.display = 'flex' : null;
-  //         setUpdate(!update);
-  //       }
-  //     }
-  //   })
-  // }
+  const handleDelete = (id) => {
+    delEmail(id, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Delete Successfully') {
+          setMessage('Deleted Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
+  }
 
   return (
     <>
@@ -115,7 +133,7 @@ const Emails = ({ setMessage }) => {
           <h4 className={styles.label2}>Emails</h4>
           <button
             onClick={() => {
-              document.querySelector('.m9').style.display = "flex";
+              document.querySelector('.m18').style.display = "flex";
             }}
             className={styles.addTheme}>Add email</button>
         </div>
@@ -164,11 +182,11 @@ const Emails = ({ setMessage }) => {
               </div>
             </div>
             {
-              documents.map(({ name, id, email, theme_expert, is_active }, i) => {
+              currentRecords.map(({ name, id, email, theme_expert, is_active }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
-                      <p>{i + 1}</p>
+                      <p>{i + 1 + number * (currentPage - 1)}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{name}</p>
@@ -216,8 +234,18 @@ const Emails = ({ setMessage }) => {
             }
           </div>}
       </div>
+      <p className={styles.results}>Showing {number} of {documents.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
-      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
 
       <div id="myModal" className='modal2 m8'>
         <div
@@ -260,7 +288,7 @@ const Emails = ({ setMessage }) => {
                   document.querySelector('.m8').style.display = "none";
                 }}
               >
-                {({ resetForm, setFieldValue, values }) => (
+                {({ resetForm, setFieldValue }) => (
                   <Form>
                     <div className={styles.textInput2}>
                       <label htmlFor="name">Name <span>*</span></label>
@@ -312,18 +340,18 @@ const Emails = ({ setMessage }) => {
       </div>
 
       {/* Add email modal */}
-      <div id="myModal" className='modal2 m9'>
+      <div id="myModal" className='modal2 m18'>
         <div
           className={styles.bg}
           onClick={() => {
-            document.querySelector('.m9').style.display = "none";
+            document.querySelector('.m18').style.display = "none";
           }}>
         </div>
         <div className={styles.modal_content2}>
           <div
             className={styles.close}
             onClick={() => {
-              document.querySelector('.m9').style.display = "none";
+              document.querySelector('.m18').style.display = "none";
             }}
           >
             <p>Add Email</p>
@@ -333,31 +361,34 @@ const Emails = ({ setMessage }) => {
           <div className={styles.cover}>
             <div>
               <Formik
-                initialValues={{ name: '', email: '', theme_expert: '', is_active: '' }}
+                initialValues={{
+                  name: '',
+                  email: '',
+                  theme_expert: ''
+                }}
                 validationSchema={Yup.object({
                   name: Yup.string()
-                    .required('Required')
                     .test('is value valid?', 'Characters must consist of letters only', (val) => {
                       return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
                     }),
                   email: Yup.string()
-                    .required('Required')
                     .email('Invalid email address')
                     .test('is email valid?', 'Invalid email address', (val) => {
                       return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(val);
                     }),
                 })}
                 onSubmit={(values, actions) => {
-                  handleSubmit(values);
+                  handleCreate(values);
                   actions.resetForm();
-                  document.querySelector('.m9').style.display = "none";
+                  document.querySelector('.m18').style.display = "none";
                 }}
               >
-                {({ resetForm, setFieldValue, values }) => (
+                {({ resetForm, setFieldValue }) => (
                   <Form>
                     <div className={styles.textInput2}>
                       <label htmlFor="theme_expert">Theme <span>*</span></label>
                       <Field name='theme_expert' as='select' id='theme_expert' className={`${styles.select2} ${styles.form_select} form-select`}>
+                        <option value={''}>--Select--</option>
                         {themeOptions.map(title => {
                           return (
                             <option key={title} value={title}>{title}</option>
@@ -377,18 +408,21 @@ const Emails = ({ setMessage }) => {
                     </div>
 
                     <div className={styles.btn_cont}>
-                      <button type='submit' className={`${styles.btn3} ${styles.save}`}>Save</button>
+                      <button
+                        type='submit'
+                        className={`${styles.btn3} ${styles.save}`}>
+                        Save
+                      </button>
                       <button
                         className={`${styles.btn3} ${styles.cancel}`}
                         type='reset'
                         onClick={() => {
                           resetForm();
-                          document.querySelector('.m9').style.display = "none";
+                          document.querySelector('.m18').style.display = "none";
                         }}>
                         Cancel
                       </button>
                     </div>
-                    <span id='span-click' onClick={() => { handleValues(setFieldValue) }}></span>
                   </Form>
                 )}
               </Formik>

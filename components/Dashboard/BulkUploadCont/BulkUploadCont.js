@@ -34,7 +34,6 @@ const BulkUploadCont = () => {
 
   const handleError = (err) => {
     setLoading(false);
-    //setError(err.message);
     if (err === 'Refresh token expired') {
       Cookies.remove('access');
       Cookies.remove('refresh');
@@ -46,6 +45,8 @@ const BulkUploadCont = () => {
 
   const handleSubmit = (files, start, end, name, confirmation) => {
     setLoading(true);
+    files = files.filter(({ limit }) => limit === false);
+    files = files.filter(({ uploaded }) => !uploaded);
     uploadDocs(
       { document: files }
       , (err, res) => {
@@ -67,6 +68,7 @@ const BulkUploadCont = () => {
           }
         }
       })
+    files.forEach(file => file.uploaded = true);
   }
 
   const handleUpload = (index, start, end, name, confirmation) => {

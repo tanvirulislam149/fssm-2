@@ -14,6 +14,13 @@
   font-size: var(--fs-14);
 }
 
+.results {
+  color: var(--light-gray-color);
+  font-weight: var(--fw-400);
+  margin-top: var(--fs-14);
+  margin-bottom: var(--s-10);
+}
+
 .select svg {
   right: var(--size-3) !important;
   font-size: var(--fs-1rem) !important;

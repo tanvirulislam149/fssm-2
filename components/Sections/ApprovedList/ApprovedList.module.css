@@ -12,6 +12,13 @@
   background: var(--white-color);
 }
 
+.results {
+  color: var(--light-gray-color);
+  font-weight: var(--fw-400);
+  margin-top: var(--fs-14);
+  margin-bottom: var(--s-10);
+}
+
 .select > div {
   padding: 1px !important;
   padding-left: var(--fs-14) !important;

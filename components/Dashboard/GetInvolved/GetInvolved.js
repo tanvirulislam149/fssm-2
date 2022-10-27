@@ -10,13 +10,18 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import styles from "./GetInvolved.module.css"
 import { getData, delData } from '../../../services/adminGetInvolvedService';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Pagination } from '@mui/material';
 
 const GetInvolved = () => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [docId, setDocId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [update, setUpdate] = useState(false);
   const [documents, setDocuments] = useState([]);
+  const [dateArray2, setDateArray2] = useState([]);
   const [current, setCurrent] = useState({
     name: '',
     email: '',
@@ -30,6 +35,15 @@ const GetInvolved = () => {
     setNumber(event.target.value);
   };
 
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = documents.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(documents.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
+
   const handleError = (err) => {
     setLoading(false);
     console.log({ e: err });
@@ -40,7 +54,22 @@ const GetInvolved = () => {
       if (err) return handleError(err)
       if (res !== null) {
         setLoading(false);
+        console.log(res)
         setDocuments(res.data['getInvoled Data']);
+        //     const data = res.data['getInvoled Data'];
+        // let date = [];
+        // data.forEach(item => {
+        //   date.push([]);
+        // })
+        // data.forEach(({ createdOn }, i) => {
+        //   const month = createdOn.slice(5, 7);
+        //   const day = createdOn.slice(8, 10);
+        //   const year = createdOn.slice(0, 4);
+        //   const hour = createdOn.slice(11, 13);
+        //   const min = createdOn.slice(14, 16);
+        //   date[i] = `${year}-${month}-${day} ${hour}:${min} ${hour >= 12 ? 'PM' : 'AM'}`;
+        // })
+        // setDateArray2(date);
       }
     })
   }, [update])
@@ -117,11 +146,11 @@ const GetInvolved = () => {
                 </div>
               </div>
               {
-                documents.map(({ id, name, email, join_NFSSM, know_more, shortNote }, i) => {
+                currentRecords.map(({ id, name, email, join_NFSSM, know_more, shortNote }, i) => {
                   return (
                     <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                       <div className={styles.one}>
-                        <p>{i + 1}</p>
+                        <p>{i + 1 + number * (currentPage - 1)}</p>
                       </div>
                       <div className={styles.two}>
                         <p>{name}</p>
@@ -179,6 +208,16 @@ const GetInvolved = () => {
           </>
         }
       </div>
+      <p className={styles.results}>Showing {number} of {documents.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
       <div id="myModal" className='modal2 m10'>
         <div

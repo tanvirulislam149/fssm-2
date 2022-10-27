@@ -122,7 +122,11 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
                   Sub Category
                 </div>
                 <div className={styles.details}>
-                  : Sub Category not provided
+                  : {
+                    currentDoc.sub_cat?.map(({ subcat_title }) => {
+                      return subcat_title + ', ';
+                    })
+                  }
                 </div>
               </div>
               <div className={styles.row3}>
@@ -230,7 +234,7 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
                   Created On
                 </div>
                 <div className={styles.details}>
-                  : Created On not provided 2022-04-07 12:16
+                  : {currentDoc.date}
                 </div>
               </div>
               <div className={styles.row3}>
@@ -275,7 +279,7 @@ const ViewDocument = ({ click, setClick, currentDoc, setDocId }) => {
         </div>
       </div>
 
-      <MapSection update={update} setUpdate={setUpdate} addItemsText={addItemsText} loading2={loading2} setLoading2={setLoading2} />
+      <MapSection map={currentDoc.mapping?.length ? currentDoc.mapping : []} docId={currentDoc.id} update={update} setUpdate={setUpdate} addItemsText={addItemsText} loading2={loading2} setLoading2={setLoading2} />
     </>
   )
 }

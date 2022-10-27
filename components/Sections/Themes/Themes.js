@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress, FormControl, MenuItem, Select } from '@mui/material';
+import { CircularProgress, FormControl, MenuItem, Pagination, Select } from '@mui/material';
 import styles from "./Themes.module.css"
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -14,6 +14,9 @@ import { delTheme, getThemes, createTheme, updateTheme } from '../../../services
 
 const Themes = ({ setMessage }) => {
   const [number, setNumber] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentRecords, setCurrentRecords] = useState([]);
+  const [nPages, setNPages] = useState(1);
   const [docId, setDocId] = useState(null);
   const [update, setUpdate] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -21,6 +24,15 @@ const Themes = ({ setMessage }) => {
   const [theme_title, setTheme_title] = useState('');
 
   const { advancedSearchText } = useOptions();
+
+  useEffect(() => {
+    const indexOfLastRecord = currentPage * number;
+    const indexOfFirstRecord = indexOfLastRecord - number;
+    const records = documents.slice(indexOfFirstRecord, indexOfLastRecord);
+    setCurrentRecords(records);
+    const pageCount = Math.ceil(documents.length / number);
+    setNPages(pageCount);
+  }, [currentPage, documents, number])
 
   const handleChange = (event) => {
     setNumber(event.target.value);
@@ -44,40 +56,46 @@ const Themes = ({ setMessage }) => {
   }, [update])
 
   const handleSubmit = () => {
-    // updateTheme(docId, { theme_title }, (err, res) => {
-    //   if (err) return handleError(err);
-    //   if (res !== null) {
-    //     console.log({ res });
-    //     if (res.data.message === 'Updated Successfully') {
-    //       setMessage('Updated Successfully');
-    //       document ? document.querySelector('.m15').style.display = 'flex' : null;
-    //       setUpdate(!update);
-    //     }
-    //   }
-    // })
+    updateTheme(docId, { theme_title }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage('Updated Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
-  // const handleDelete = (id) => {
-  //   delTheme(id, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       console.log({ res });
-  //       if (res.data.message === 'Delete Successfully') {
-  //         setMessage('Deleted Successfully');
-  //         document ? document.querySelector('.m15').style.display = 'flex' : null;
-  //         setUpdate(!update);
-  //       }
-  //     }
-  //   })
-  // }
+  const handleDelete = (id) => {
+    delTheme(id, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Delete Successfully') {
+          setMessage('Deleted Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
+  }
 
-  const handleCreate = (data) => {
-    // createTheme(data, (err, res) => {
-    //   if (err) return handleError(err);
-    //   if (res !== null) {
-    //     console.log({ res });
-    //   }
-    // })
+  const handleCreate = () => {
+    createTheme({ theme_title }, (err, res) => {
+      setTheme_title('');
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'User Profile Successfully created') {
+          setMessage('Theme Added Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
   }
 
   return (
@@ -87,7 +105,7 @@ const Themes = ({ setMessage }) => {
           <h4 className={styles.label2}>Themes</h4>
           <button
             onClick={() => {
-              document.querySelector('.m9').style.display = "flex";
+              document.querySelector('.m19').style.display = "flex";
             }}
             className={styles.addTheme}>Add Theme</button>
         </div>
@@ -127,11 +145,11 @@ const Themes = ({ setMessage }) => {
               </div>
             </div>
             {
-              documents.map(({ id, theme_title }, i) => {
+              currentRecords.map(({ id, theme_title }, i) => {
                 return (
                   <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                     <div className={styles.one}>
-                      <p>{i + 1}</p>
+                      <p>{i + 1 + number * (currentPage - 1)}</p>
                     </div>
                     <div className={styles.two}>
                       <p>{theme_title}</p>
@@ -164,14 +182,25 @@ const Themes = ({ setMessage }) => {
             }
           </div>}
       </div>
+      <p className={styles.results}>Showing {number} of {documents.length} entries</p>
+      <Pagination
+        count={nPages}
+        variant="outlined"
+        shape="rounded"
+        page={currentPage}
+        color='primary'
+        onChange={(e, val) => {
+          setCurrentPage(val);
+        }} />
 
-      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
 
       <div id="myModal" className='modal2 m8'>
         <div
           className={styles.bg}
           onClick={() => {
             document.querySelector('.m8').style.display = "none";
+            setTheme_title('');
           }}>
         </div>
         <div className={styles.modal_content2}>
@@ -179,6 +208,7 @@ const Themes = ({ setMessage }) => {
             className={styles.close}
             onClick={() => {
               document.querySelector('.m8').style.display = "none";
+              setTheme_title('');
             }}
           >
             <p>Edit Theme</p>
@@ -221,18 +251,20 @@ const Themes = ({ setMessage }) => {
 
       {/* add theme modal */}
 
-      <div id="myModal" className='modal2 m9'>
+      <div id="myModal" className='modal2 m19'>
         <div
           className={styles.bg}
           onClick={() => {
-            document.querySelector('.m9').style.display = "none";
+            document.querySelector('.m19').style.display = "none";
+            setTheme_title('');
           }}>
         </div>
         <div className={styles.modal_content2}>
           <div
             className={styles.close}
             onClick={() => {
-              document.querySelector('.m9').style.display = "none";
+              document.querySelector('.m19').style.display = "none";
+              setTheme_title('');
             }}
           >
             <p>Add Q & A Theme</p>
@@ -245,12 +277,15 @@ const Themes = ({ setMessage }) => {
               <input
                 id='name'
                 type='text'
+                value={theme_title}
+                onChange={(e) => { setTheme_title(e.target.value); }}
                 className={styles.input} />
               <div className={styles.btn_cont}>
                 <button
                   type='reset'
                   onClick={() => {
-                    document.querySelector('.m9').style.display = "none"
+                    theme_title.trim().length && handleCreate();
+                    theme_title.trim().length ? document.querySelector('.m19').style.display = "none" : null;
                   }}
                   className={`${styles.btn3} ${styles.save}`}>
                   Save
@@ -260,7 +295,7 @@ const Themes = ({ setMessage }) => {
                   type='reset'
                   onClick={() => {
                     setTheme_title('');
-                    document.querySelector('.m9').style.display = "none";
+                    document.querySelector('.m19').style.display = "none";
                   }}>
                   Cancel
                 </button>
