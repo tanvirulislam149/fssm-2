@@ -224,13 +224,13 @@ const UnapprovedQueList = ({ setMessage }) => {
               <div className={styles.two}>
                 <p>Creator name</p>
               </div>
-              <div className={styles.two}>
+              <div className={`${styles.two} ${styles.date}`}>
                 <p>Creator On</p>
               </div>
               <div className={styles.two}>
                 <p>Approve</p>
               </div>
-              <div className={styles.two}>
+              <div className={styles.three}>
                 <p>Action</p>
               </div>
             </div>
@@ -250,8 +250,9 @@ const UnapprovedQueList = ({ setMessage }) => {
                     <div className={styles.two}>
                       <p>{name}</p>
                     </div>
-                    <div className={styles.two}>
-                      <p>date</p>
+                    <div className={`${styles.two} ${styles.date}`}>
+                      <p>2022-08-05</p>
+                      <p>07:53:34</p>
                     </div>
                     <div className={styles.two}>
                       <AntSwitch
@@ -260,8 +261,8 @@ const UnapprovedQueList = ({ setMessage }) => {
                         }}
                       />
                     </div>
-                    <div className={styles.two}>
-                      <div className={styles.two}>
+                    <div className={styles.three}>
+                      <div>
                         <div
                           title="View Question"
                           className={`${styles.btn} ${styles.editbtn}`}
@@ -315,7 +316,7 @@ const UnapprovedQueList = ({ setMessage }) => {
                         }}>
                         <DeleteOutlineOutlinedIcon sx={{ color: '#e95454', height: '15px', width: '15px' }} />
                       </div>
-                      <div className={styles.two}>
+                      <div>
                         <div
                           title="View Unapproved Answer"
                           className={`${styles.btn} ${styles.unapprovedAns}`}
@@ -331,7 +332,7 @@ const UnapprovedQueList = ({ setMessage }) => {
                           />
                         </div>
                       </div>
-                      <div className={styles.two}>
+                      <div>
                         <div
                           title="View Approved Answer"
                           className={`${styles.btn} ${styles.approvedAns}`}
