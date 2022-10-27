@@ -188,7 +188,7 @@ const Questions = ({ setMessage }) => {
               <div className={styles.two}>
                 <p>Creator name</p>
               </div>
-              <div className={`${styles.two} ${styles.date}`}>
+              <div className={styles.two}>
                 <p>Creator On</p>
               </div>
               <div className={styles.two}>
@@ -218,8 +218,6 @@ const Questions = ({ setMessage }) => {
                       <p>{name}</p>
                     </div>
                     <div className={`${styles.two} ${styles.date}`}>
-                      <p>2022-08-05</p>
-                      <p>07:53:34</p>
                       <p>{dateArray2[i]}</p>
                     </div>
                     <div className={styles.two}>
