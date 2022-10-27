@@ -71,54 +71,54 @@ const Questions = ({ setMessage }) => {
     console.log(err);
   }
 
-  // const handleDelete = (id) => {
-  //   delQuest(id, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       console.log({ res });
-  //       if (res.data.message === 'Delete Successfully') {
-  //         setMessage('Deleted Successfully');
-  //         document ? document.querySelector('.m15').style.display = 'flex' : null;
-  //         setUpdate(!update);
-  //       }
-  //     }
-  //   })
-  // }
+  const handleDelete = (id) => {
+    delQuest(id, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Delete Successfully') {
+          setMessage('Deleted Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
+  }
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getUnapprovedDocs({ params: 'True' }, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       setLoading(false);
-  //       console.log({ res });
-  //       setDocuments(res.data.message);
-  //     }
-  //   })
-  // }, [update])
+  useEffect(() => {
+    setLoading(true);
+    getUnapprovedDocs({ params: 'True' }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        setLoading(false);
+        console.log({ res });
+        setDocuments(res.data.message);
+      }
+    })
+  }, [update])
 
-  // const handleSwitch = (id) => {
-  //   changeApproval(id, { is_approved: false }, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       console.log({ res });
-  //       if (res.data.message === 'Updated Successfully') {
-  //         setMessage('Updated Successfully');
-  //         document ? document.querySelector('.m15').style.display = 'flex' : null;
-  //         setUpdate(!update);
-  //       }
-  //     }
-  //   })
-  // };
+  const handleSwitch = (id) => {
+    changeApproval(id, { is_approved: false }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+        if (res.data.message === 'Updated Successfully') {
+          setMessage('Updated Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
+        }
+      }
+    })
+  };
 
-  // const handleAnswers = (id, params) => {
-  //   getAnswers(id, { params }, (err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       console.log({ res });
-  //     }
-  //   })
-  // }
+  const handleAnswers = (id, params) => {
+    getAnswers(id, { params }, (err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        console.log({ res });
+      }
+    })
+  }
 
   return (
     <>
@@ -161,7 +161,7 @@ const Questions = ({ setMessage }) => {
               <div className={styles.two}>
                 <p>Creator name</p>
               </div>
-              <div className={styles.two}>
+              <div className={`${styles.two} ${styles.date}`}>
                 <p>Creator On</p>
               </div>
               <div className={styles.two}>
@@ -190,8 +190,9 @@ const Questions = ({ setMessage }) => {
                     <div className={styles.two}>
                       <p>{name}</p>
                     </div>
-                    <div className={styles.two}>
-                      <p>date</p>
+                    <div className={`${styles.two} ${styles.date}`}>
+                      <p>2022-08-05</p>
+                      <p>07:53:34</p>
                     </div>
                     <div className={styles.two}>
                       <p>0</p>
@@ -254,7 +255,7 @@ const Questions = ({ setMessage }) => {
           </div>}
       </div>
 
-      {/* <DeletePopup docId={docId} handleDelete={handleDelete} /> */}
+      <DeletePopup docId={docId} handleDelete={handleDelete} />
 
       <div id="myModal" className='modal2 m11'>
         <div
