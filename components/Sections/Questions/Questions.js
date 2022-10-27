@@ -217,7 +217,7 @@ const Questions = ({ setMessage }) => {
                     <div className={styles.two}>
                       <p>{name}</p>
                     </div>
-                    <div className={styles.two}>
+                    <div className={`${styles.two} ${styles.date}`}>
                       <p>{dateArray2[i]}</p>
                     </div>
                     <div className={styles.two}>
