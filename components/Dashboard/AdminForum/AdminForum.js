@@ -107,36 +107,34 @@ const AdminForum = () => {
     <>
       <div className={styles.container2}>
         <div className={styles.approveLabel}>
-          {layout !== 4 && <>
-            <button
-              className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-              onClick={() => {
-                if (layout === 1) return;
-                setLayout(1);
-                setUpdate(!update);
-                setReactKey(!reactKey);
-              }}>
-              Un Approved Topics
-            </button>
-            <button
-              className={layout === 2 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-              onClick={() => {
-                if (layout === 2) return;
-                setLayout(2);
-                setUpdate(!update);
-                setReactKey(!reactKey);
-              }}>
-              Approved Topics
-            </button>
-            <button
-              className={layout === 3 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
-              onClick={() => {
-                setLayout(3);
-                setReactKey(!reactKey);
-              }}>
-              Forum Categories
-            </button>
-          </>}
+          <button
+            className={layout === 1 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
+            onClick={() => {
+              if (layout === 1) return;
+              setLayout(1);
+              setUpdate(!update);
+              setReactKey(!reactKey);
+            }}>
+            Un Approved Topics
+          </button>
+          <button
+            className={layout === 2 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
+            onClick={() => {
+              if (layout === 2) return;
+              setLayout(2);
+              setUpdate(!update);
+              setReactKey(!reactKey);
+            }}>
+            Approved Topics
+          </button>
+          <button
+            className={layout === 3 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
+            onClick={() => {
+              setLayout(3);
+              setReactKey(!reactKey);
+            }}>
+            Forum Categories
+          </button>
           <button
             className={layout === 4 ? `${styles.activeBtn}` : `${styles.unapproveBtn}`}
             onClick={() => {
@@ -146,6 +144,9 @@ const AdminForum = () => {
             }}>
             Notifications
           </button>
+
+
+
         </div>
 
         <h4 className={styles.label2}>
