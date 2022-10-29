@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './ChangePassword.module.css';
 import { useRouter } from 'next/router';
+import { changePass } from '../../../services/authService';
 
 const ChangePassword = () => {
   const [passErr, setPassErr] = useState("");
@@ -8,6 +9,10 @@ const ChangePassword = () => {
 
   const handleNav = () => {
     navigate.push('/dashboard');
+  }
+
+  const handleError = (err) => {
+    console.log({ e: err })
   }
 
   const handleSubmit = (e) => {
@@ -20,7 +25,17 @@ const ChangePassword = () => {
     );
     if (pattern.test(pass)) {
       if (pass === confirmPass) {
-        console.log("matched");
+        changePass(
+          {
+            old_password: "tesuserkarthik2",
+            new_password: "testuser2"
+          },
+          (err, res) => {
+            if (err) return handleError(err)
+            if (res !== null) {
+              console.log(res);
+            }
+          });
       }
       else {
         setPassErr("Password didn't matched");
