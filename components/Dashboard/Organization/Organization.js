@@ -96,7 +96,8 @@ const Organization = () => {
           loading ?
             <div className={styles.justify_center}><CircularProgress /></div> :
             <OrganizationList
-              org={org} />
+              org={org}
+              setOrg={setOrg} />
         }
 
       </div>

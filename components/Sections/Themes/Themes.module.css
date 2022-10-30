@@ -482,3 +482,6 @@
   margin-right: 30px;
   padding: 7px 15px;
 }
+.error {
+  color: red;
+}

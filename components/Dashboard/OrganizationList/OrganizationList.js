@@ -6,11 +6,11 @@ import Image from "next/image";
 import close from "../../../assets/Close.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import DeletePopup from "../DeletePopup/DeletePopup";
-import { editOrgList, delOrg } from "../../../services/orgService";
+import { editOrgList, delOrg, getOrgList } from "../../../services/orgService";
 import { useForm } from "react-hook-form";
 import AlertCard from "../AlertCard/AlertCard";
 
-const OrganizationList = ({ org }) => {
+const OrganizationList = ({ org, setOrg }) => {
   const [number, setNumber] = useState(10);
   const [orgName, setOrgName] = useState("");
   const [docId, setDocId] = useState(0);
@@ -43,7 +43,15 @@ const OrganizationList = ({ org }) => {
     editOrgList(data, id, (err, res) => {
       if (err) return handleError(err)
       if (res !== null) {
-        console.log({ res: res.data.message });
+        // console.log({ res: res.data.message });
+        const { org_name } = data;
+        getOrgList({ search: org_name ? org_name : '' }, (err, res) => {
+          if (err) return handleError(err)
+          if (res !== null) {
+            // console.log(res.data.message)
+            setOrg(res.data.message)
+          }
+        })
         if (res.data.message === 'Updated Successfully') {
           setMessage("Updated Successfully");
           document.querySelector('.m15').style.display = "flex";

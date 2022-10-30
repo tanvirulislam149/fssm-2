@@ -18,6 +18,7 @@ const AdminFaqs = () => {
   const [ans, setAns] = useState('');
   const [order, setOrder] = useState('');
   const [update, setUpdate] = useState(false);
+  const [err, setErr] = useState("");
 
   const handleError = (err) => {
     setLoading(false);
@@ -47,19 +48,29 @@ const AdminFaqs = () => {
 
   const handleAdd = () => {
     console.log({ text, order, ans })
-    layout === 1 && addFaq({ ques: text, order: Number(order), ans }, (err, res) => {
-      if (err) return handleError(err);
-      if (res !== null) {
-        if (res.data.message === 'FAQ has been added') {
-          setMessage('FAQ has been added');
-          document ? document.querySelector('.m15').style.display = 'flex' : null;
-          setUpdate(!update);
-        }
-        setText('');
-        setOrder('');
-        setAns('');
+    var reg = new RegExp('^[0-9]*$');
+    if (layout === 1) {
+      if (reg.test(order)) {
+        document.querySelector('.m2').style.display = "none";
+        addFaq({ ques: text, order: Number(order), ans }, (err, res) => {
+          if (err) return handleError(err);
+          if (res !== null) {
+            if (res.data.message === 'FAQ has been added') {
+              setMessage('FAQ has been added');
+              document ? document.querySelector('.m15').style.display = 'flex' : null;
+              setUpdate(!update);
+            }
+            setText('');
+            setOrder('');
+            setAns('');
+            setErr("");
+          }
+        })
       }
-    })
+      else {
+        setErr("Please Enter only number")
+      }
+    }
 
     layout === 2 && addGlossary({ word: text, ans }, (err, res) => {
       if (err) return handleError(err);
@@ -182,10 +193,11 @@ const AdminFaqs = () => {
                 <label htmlFor='order'>Display Order</label>
                 <input
                   id='order'
-                  type='number'
+                  type='text'
                   value={order}
                   onChange={(e) => { setOrder(e.target.value); }}
-                  className={styles.input} />
+                  className={styles.input2} />
+                <p className={styles.error}>{err}</p>
               </>}
               <label htmlFor='ans'>Answer</label>
               <textarea
@@ -201,9 +213,9 @@ const AdminFaqs = () => {
                 <button
                   type='submit'
                   onClick={() => {
-                    if (text.trim().length) {
+                    if (text.trim().length && order.trim().length) {
                       handleAdd();
-                      document.querySelector('.m2').style.display = "none";
+                      // document.querySelector('.m2').style.display = "none";
                     }
                   }}
                   className={`${styles.btn3} ${styles.save}`}>Save</button>
