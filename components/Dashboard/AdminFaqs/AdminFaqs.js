@@ -196,8 +196,8 @@ const AdminFaqs = () => {
                   type='text'
                   value={order}
                   onChange={(e) => { setOrder(e.target.value); }}
-                  className={styles.input} />
-                <p>{err}</p>
+                  className={styles.input2} />
+                <p className={styles.error}>{err}</p>
               </>}
               <label htmlFor='ans'>Answer</label>
               <textarea

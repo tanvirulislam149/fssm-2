@@ -192,6 +192,17 @@
   border: solid 1px var(--shade);
   margin-bottom: var(--s-20);
 }
+.input2 {
+  padding: var(--s-8);
+  width: var(--hundred);
+  margin-top: var(--s-8);
+  border: solid 1px var(--shade);
+}
+
+.error {
+  margin-bottom: var(--s-20);
+  color: red;
+}
 
 .justify_center {
   display: flex;
