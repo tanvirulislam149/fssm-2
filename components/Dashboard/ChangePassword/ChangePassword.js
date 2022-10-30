@@ -20,29 +20,22 @@ const ChangePassword = () => {
     e.preventDefault();
     const pass = e.target.pass.value;
     const confirmPass = e.target.confirmPass.value;
-    const pattern = RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
-    );
-    if (pattern.test(pass)) {
-      if (pass === confirmPass) {
-        changePass(
-          {
-            old_password: "tesuserkarthik2",
-            new_password: "testuser2"
-          },
-          (err, res) => {
-            if (err) return handleError(err)
-            if (res !== null) {
-              console.log(res);
-            }
-          });
-      }
-      else {
-        setPassErr("Password didn't matched");
-      }
+    if (pass === confirmPass) {
+      // changePass(
+      //   {
+      //     old_password: "tesuserkarthik2",
+      //     new_password: "testuser2"
+      //   },
+      //   (err, res) => {
+      //     if (err) return handleError(err)
+      //     if (res !== null) {
+      //       console.log(res);
+      //     }
+      //   });
+      console.log(pass)
     }
     else {
-      setPassErr("Password should contain at least one uppercase, lowercase, number and character.")
+      setPassErr("Password didn't matched");
     }
   }
 
