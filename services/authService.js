@@ -73,7 +73,7 @@ export const resetPass = (data, uid, token, cb) => {
 }
 
 export const changePass = (data, cb) => {
-  axiosInstance.put('users/changepass/', data)
+  axiosInstance.post('users/changepass/', data)
     .then(res => cb(null, res))
     .catch(err => cb(err, null))
 }

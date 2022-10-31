@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import styles from './ChangePassword.module.css';
 import { useRouter } from 'next/router';
 import { changePass } from '../../../services/authService';
+import AlertCard from '../AlertCard/AlertCard';
 
 const ChangePassword = () => {
   const [passErr, setPassErr] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useRouter();
 
   const handleNav = () => {
@@ -21,18 +23,22 @@ const ChangePassword = () => {
     const pass = e.target.pass.value;
     const confirmPass = e.target.confirmPass.value;
     if (pass === confirmPass) {
-      // changePass(
-      //   {
-      //     old_password: "tesuserkarthik2",
-      //     new_password: "testuser2"
-      //   },
-      //   (err, res) => {
-      //     if (err) return handleError(err)
-      //     if (res !== null) {
-      //       console.log(res);
-      //     }
-      //   });
-      console.log(pass)
+      changePass(
+        {
+          newpass: pass,
+          confirmpass: confirmPass
+        },
+        (err, res) => {
+          if (err) return handleError(err)
+          if (res !== null) {
+            e.target.pass.value = "";
+            e.target.confirmPass.value = "";
+            if (res.data.message === 'Password updated successfully') {
+              setMessage('Password updated successfully');
+              document ? document.querySelector('.m15').style.display = 'flex' : null;
+            }
+          }
+        });
     }
     else {
       setPassErr("Password didn't matched");
@@ -92,6 +98,7 @@ const ChangePassword = () => {
           </div>
         </form>
       </div>
+      <AlertCard message={message} />
     </>
   )
 }
