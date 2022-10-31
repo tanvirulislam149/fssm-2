@@ -367,7 +367,10 @@ const Emails = ({ setMessage }) => {
                   theme_expert: ''
                 }}
                 validationSchema={Yup.object({
+                  theme_expert: Yup.string()
+                    .required("Please select a theme"),
                   name: Yup.string()
+                    .required("Invalid name")
                     .test('is value valid?', 'Characters must consist of letters only', (val) => {
                       return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
                     }),
@@ -395,6 +398,7 @@ const Emails = ({ setMessage }) => {
                           )
                         })}
                       </Field>
+                      <span className='form-error'><ErrorMessage name="theme_expert" /></span>
                     </div>
                     <div className={styles.textInput2}>
                       <label htmlFor="name">Name <span>*</span></label>
