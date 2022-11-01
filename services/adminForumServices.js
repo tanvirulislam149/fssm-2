@@ -12,6 +12,12 @@ export const getTopics = cb => {
     .catch(err => cb(err, null))
 }
 
+export const getNotifs = cb => {
+  axiosInstance.get('dashboard/notifs/')
+    .then(res => cb(null, res))
+    .catch(err => cb(err, null))
+}
+
 export const delTopic = (id, cb) => {
   axiosInstance.delete(`dashboard/disctopics/${id}/`)
     .then(res => cb(null, res))

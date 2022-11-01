@@ -47,7 +47,7 @@ const AdminFaqs = () => {
   }, [update])
 
   const handleAdd = () => {
-    console.log({ text, order, ans })
+    // console.log({ text, order, ans })
     var reg = new RegExp('^[0-9]*$');
     if (layout === 1) {
       if (reg.test(order)) {
