@@ -22,7 +22,6 @@ const Themes = ({ setMessage }) => {
   const [loading, setLoading] = useState(true);
   const [documents, setDocuments] = useState([]);
   const [theme_title, setTheme_title] = useState('');
-  const [err, setErr] = useState("");
 
   const { advancedSearchText } = useOptions();
 
@@ -85,25 +84,19 @@ const Themes = ({ setMessage }) => {
   }
 
   const handleCreate = () => {
-    setErr("");
-    if (/^[A-Za-z\s]*$/.test(theme_title)) {
-      createTheme({ theme_title }, (err, res) => {
-        setTheme_title('');
-        if (err) return handleError(err);
-        if (res !== null) {
-          document.querySelector('.m19').style.display = "none"
-          console.log({ res });
-          if (res.data.message === 'User Profile Successfully created') {
-            setMessage('Theme Added Successfully');
-            document ? document.querySelector('.m15').style.display = 'flex' : null;
-            setUpdate(!update);
-          }
+    createTheme({ theme_title }, (err, res) => {
+      setTheme_title('');
+      if (err) return handleError(err);
+      if (res !== null) {
+        document.querySelector('.m19').style.display = "none"
+        console.log({ res });
+        if (res.data.message === 'User Profile Successfully created') {
+          setMessage('Theme Added Successfully');
+          document ? document.querySelector('.m15').style.display = 'flex' : null;
+          setUpdate(!update);
         }
-      })
-    }
-    else {
-      setErr("Please enter only alphabets");
-    }
+      }
+    })
   }
 
   return (
@@ -288,7 +281,6 @@ const Themes = ({ setMessage }) => {
                 value={theme_title}
                 onChange={(e) => { setTheme_title(e.target.value); }}
                 className={styles.input} />
-              <p className={styles.error}>{err}</p>
               <div className={styles.btn_cont}>
                 <button
                   type='reset'

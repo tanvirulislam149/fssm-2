@@ -5,7 +5,7 @@ import ForumList from '../ForumList/ForumList';
 import styles from './AdminForum.module.css';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
-import { getForumCats, delTopic, delComment, getTopics, addCategory, delCategory } from '../../../services/adminForumServices';
+import { getForumCats, delTopic, delComment, getTopics, addCategory, delCategory, getNotifs } from '../../../services/adminForumServices';
 import CircularProgress from '@mui/material/CircularProgress';
 import AlertCard from '../AlertCard/AlertCard';
 import Cookies from 'js-cookie';
@@ -97,7 +97,18 @@ const AdminForum = () => {
       if (res !== null) {
         layout === 1 && setDocuments(res.data['Unapproved Topics']);
         layout === 2 && setDocuments(res.data['Approved Topics']);
-        layout === 4 && setDocuments([]);
+        setLoading(false);
+      }
+    })
+  }, [update, layout])
+
+  useEffect(() => {
+    setLoading(true);
+    getNotifs((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        // layout === 4 && setDocuments([]);
+        console.log(res);
         setLoading(false);
       }
     })
