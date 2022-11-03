@@ -108,7 +108,9 @@ const AdminForum = () => {
       if (err) return handleError(err);
       if (res !== null) {
         // layout === 4 && setDocuments([]);
-        console.log(res);
+        const result = [res.data["Notification Data For Admin"][0].cat_ref]
+        console.log(result);
+        layout === 4 && setDocuments(result);
         setLoading(false);
       }
     })
@@ -151,7 +153,7 @@ const AdminForum = () => {
             onClick={() => {
               setLayout(4);
               setReactKey(!reactKey);
-              setDocuments([]);
+              // setDocuments([]);
             }}>
             Notifications
           </button>

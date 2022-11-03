@@ -269,8 +269,8 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
             </div>
           </div>
           {currentRecords.length ?
-            layout !== 4 &&
-            currentRecords.map(({ creatorName, id, category_id, topic_name }, i) => {
+            // layout !== 4 &&
+            currentRecords.map(({ creatorName, id, category_id, topic_name, is_approved }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
@@ -291,7 +291,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
                   <div className={styles.two}>
                     <AntSwitch
                       key={reactKey}
-                      defaultChecked={layout === 2 || layout === 4 ? true : false}
+                      defaultChecked={layout === 2 ? true : layout === 4 && is_approved ? true : false}
                       onChange={() => { handleSwitch(document.querySelector('.m15'), id); }}
                     />
                   </div>
