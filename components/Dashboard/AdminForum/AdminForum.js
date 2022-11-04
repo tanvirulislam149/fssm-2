@@ -97,7 +97,7 @@ const AdminForum = () => {
       if (res !== null) {
         layout === 1 && setDocuments(res.data['Unapproved Topics']);
         layout === 2 && setDocuments(res.data['Approved Topics']);
-        console.log(res.data['Approved Topics'])
+        // console.log(res.data['Approved Topics'])
         setLoading(false);
       }
     })
@@ -108,7 +108,6 @@ const AdminForum = () => {
     getNotifs((err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        // layout === 4 && setDocuments([]);
         const result = [res.data["Notification Data For Admin"][0].cat_ref]
         console.log(res.data);
         layout === 4 && setDocuments(result);
