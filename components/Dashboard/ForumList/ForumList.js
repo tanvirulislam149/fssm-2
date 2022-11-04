@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import Image from 'next/image';
 import close from '../../../assets/Close.png';
-import { editTopicApproval, viewComments } from '../../../services/adminForumServices';
+import { editTopicApproval, getNotifs, viewComments } from '../../../services/adminForumServices';
 import EmailIcon from '@mui/icons-material/Email';
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -186,11 +186,36 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
     popup ? popup.style.display = 'flex' : null;
   }
 
+  // const handleComment = (popup) => {
+  //   getNotifs((err, res) => {
+  //     if (err) return handleError(err);
+  //     if (res !== null) {
+  //       const result = [res.data["Notification Data For Admin"][0]?.commentRef]
+  //       // handleDate(result, popup);
+  //       console.log(result);
+  //       setReplies(result);
+  //     }
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   replies.length && getNotifs((err, res) => {
+  //     if (err) return handleError(err);
+  //     if (res !== null) {
+  //       const result = [res.data["Notification Data For Admin"][0].commentRef]
+  //       handleDate(result, null);
+  //       console.log(result);
+  //       setReplies(result);
+  //     }
+  //   })
+  // }, [updated])
+
+
   const handleReplies = (val, popup) => {
     viewComments({ val }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log({ resy: res });
+        console.log(res.data['Topic Data'][0].replies);
         setReplies(res.data['Topic Data'][0].replies);
         handleDate(res.data['Topic Data'][0].replies, popup);
       }
@@ -269,8 +294,8 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
             </div>
           </div>
           {currentRecords.length ?
-            layout !== 4 &&
-            currentRecords.map(({ creatorName, id, category_id, topic_name }, i) => {
+            // layout !== 4 &&
+            currentRecords.map(({ creatorName, id, category_id, topic_name, is_approved }, i) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
@@ -291,7 +316,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
                   <div className={styles.two}>
                     <AntSwitch
                       key={reactKey}
-                      defaultChecked={layout === 2 || layout === 4 ? true : false}
+                      defaultChecked={layout === 2 ? true : layout === 4 && is_approved ? true : false}
                       onChange={() => { handleSwitch(document.querySelector('.m15'), id); }}
                     />
                   </div>
@@ -311,7 +336,8 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
                       onClick={() => {
                         setDocId(id);
                         setReplyId(id);
-                        handleReplies(id, document.querySelector('.m'));
+                        layout !== 4 && handleReplies(id, document.querySelector('.m'));
+                        layout === 4 && handleComment(document.querySelector('.m'));
                       }}
                     >
                       <RemoveRedEyeOutlinedIcon sx={{ color: 'white', height: '15px', width: '15px' }} />
@@ -350,14 +376,14 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
               document.querySelector('.m').style.display = "none";
               setReplies([]);
             }}>
-            <p>Approved Topic Answers</p>
+            <p>{layout === 2 ? "Approved Topic Answers" : "View Comment"}</p>
             <span><Image src={close} alt='icon' height={24} width={24} /></span>
           </div>
 
           <div className={styles.cover}>
             <div className={styles.content}>
               {
-                replies.length ? replies.map(({ id, creatorName, comment }, i) => {
+                replies.length ? replies.map(({ id, creatorName, dis_ref, comment }, i) => {
                   return (
                     <div key={id} className={styles.rep}>
                       <div className={styles.icon}>
@@ -374,7 +400,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
                       </div>
                       <div>
                         <p className={styles.name}>
-                          {creatorName}
+                          {layout === 2 ? creatorName : dis_ref?.creatorName}
                           <button
                             onClick={() => {
                               setMessage('comment');
