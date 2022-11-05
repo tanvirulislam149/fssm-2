@@ -97,7 +97,7 @@ const AdminForum = () => {
       if (res !== null) {
         layout === 1 && setDocuments(res.data['Unapproved Topics']);
         layout === 2 && setDocuments(res.data['Approved Topics']);
-        // console.log(res.data['Approved Topics'])
+        console.log(res.data['Approved Topics'])
         setLoading(false);
       }
     })

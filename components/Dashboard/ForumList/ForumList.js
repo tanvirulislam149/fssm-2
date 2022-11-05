@@ -186,17 +186,17 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
     popup ? popup.style.display = 'flex' : null;
   }
 
-  // const handleComment = (popup) => {
-  //   getNotifs((err, res) => {
-  //     if (err) return handleError(err);
-  //     if (res !== null) {
-  //       const result = [res.data["Notification Data For Admin"][0]?.commentRef]
-  //       // handleDate(result, popup);
-  //       console.log(result);
-  //       setReplies(result);
-  //     }
-  //   })
-  // }
+  const handleComment = (popup) => {
+    getNotifs((err, res) => {
+      if (err) return handleError(err);
+      if (res !== null) {
+        const result = [res.data["Notification Data For Admin"][0]?.commentRef]
+        handleDate(result, popup);
+        console.log(result);
+        setReplies(result);
+      }
+    })
+  }
 
   // useEffect(() => {
   //   replies.length && getNotifs((err, res) => {
