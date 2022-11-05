@@ -198,6 +198,8 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
     })
   }
 
+  // Checking second repo
+
   // useEffect(() => {
   //   replies.length && getNotifs((err, res) => {
   //     if (err) return handleError(err);
@@ -215,7 +217,7 @@ const ForumList = ({ documents, setUpdated, updated, docId, setMessage, setDocId
     viewComments({ val }, (err, res) => {
       if (err) return handleError(err);
       if (res !== null) {
-        console.log(res.data['Topic Data'][0].replies);
+        console.log(res.data);
         setReplies(res.data['Topic Data'][0].replies);
         handleDate(res.data['Topic Data'][0].replies, popup);
       }
