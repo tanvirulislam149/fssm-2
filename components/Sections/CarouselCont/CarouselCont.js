@@ -35,8 +35,8 @@ const CarouselCont = (props) => {
   return (
     <>
       <Carousel
-        swipeable={false}
-        draggable={false}
+        swipeable={true}
+        draggable={true}
         showDots={true}
         responsive={responsive}
         ssr={true} // means to render carousel on server-side.
