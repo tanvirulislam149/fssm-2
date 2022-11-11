@@ -3,6 +3,7 @@ import styles from './RepositoryCard.module.css';
 import Link from 'next/link';
 
 const RepositoryCard = ({ text, id }) => {
+  console.log(text)
   return (
     <>
       <Link href={'/knowledgecontent?category=' + `${id}`}><a>
