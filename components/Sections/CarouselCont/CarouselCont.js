@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const CarouselCont = () => {
+const CarouselCont = (props) => {
   const router = useRouter();
 
   const handleNav = (path) => {
@@ -35,20 +35,18 @@ const CarouselCont = () => {
   return (
     <>
       <Carousel
-        swipeable={true}
+        swipeable={false}
         draggable={false}
         showDots={true}
         responsive={responsive}
         ssr={true} // means to render carousel on server-side.
         infinite={true}
-        //autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        autoPlaySpeed={1000}
         keyBoardControl={true}
-        customTransition="all .5"
+        customTransition="transform 800ms ease-in-out"
         transitionDuration={500}
         containerClass="carousel-container"
-        removeArrowOnDeviceType={['tablet', 'mobile']}
-        //deviceType={this.props.deviceType}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        deviceType={props.deviceType}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         className={styles.container}

@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  align-items: end;
+  /* align-items: center; */
   grid-template-columns: 45% 47%;
   margin: var(--ma-homepage);
   margin-bottom: 0;
