@@ -21,9 +21,7 @@ const HomePageMidSection = () => {
             onClick={() => { handleRoute() }}
             style={styles.btn} />
         </div>
-        {/* <div> */}
         <CarouselCont />
-        {/* </div> */}
       </div>
     </>
   )
