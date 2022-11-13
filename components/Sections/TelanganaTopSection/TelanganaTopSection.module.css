@@ -96,7 +96,8 @@
 
 .sub_heading {
   color: var(--white-color);
-  background: var(--transparent-pink);
+  background: var(--pink);
+  opacity: 70%;
   height: var(--sub-heading-h);
   display: flex;
   flex-direction: column;
