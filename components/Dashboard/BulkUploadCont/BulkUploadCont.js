@@ -99,11 +99,12 @@ const BulkUploadCont = () => {
             <span
               className={`${styles.btn} ${styles.two}`}
               onClick={() => {
-                handleSubmit(uploadedFiles,
-                  document.querySelectorAll('.start'),
-                  document.querySelectorAll('.end'),
-                  document.querySelectorAll('.name'),
-                  document.querySelector('.m15'));
+                uploadedFiles.length ?
+                  handleSubmit(uploadedFiles,
+                    document.querySelectorAll('.start'),
+                    document.querySelectorAll('.end'),
+                    document.querySelectorAll('.name'),
+                    document.querySelector('.m15')) : "";
               }}
             >Start Upload</span>
             <span
