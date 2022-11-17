@@ -58,6 +58,7 @@
   padding-bottom: var(--fs-14);
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .one {
@@ -78,6 +79,10 @@
 
 .five {
   width: 12%;
+}
+
+.icon {
+  margin-left: 5px;
 }
 
 .view {
@@ -112,10 +117,10 @@
   padding: var(--fs-14) var(--size-3);
 }
 
-.pdf {
+/* .pdf {
   background: var(--white-color);
   padding: var(--s-10);
-}
+} */
 
 .btn {
   height: var(--fs-24);
