@@ -388,7 +388,7 @@ const DocumentsList = ({ updating, setUpdating, documents, dateArray }) => {
           }
         </div>
       </div>
-      <p className={styles.results}>Showing {list?.length + 1} of {number} entries</p>
+      <p className={styles.results}>Showing {list?.length + 1} of {number} enties</p>
       <Pagination
         count={nPages}
         variant="outlined"
