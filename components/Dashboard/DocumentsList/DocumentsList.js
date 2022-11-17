@@ -297,27 +297,27 @@ const DocumentsList = ({ updating, setUpdating, documents, dateArray }) => {
           <div className={styles.heading}>
             <div onClick={handleSerial} className={styles.one}>
               <p>S.NO</p>
-              <p className={styles.icon}>{serialIcon === "true" ? <RiArrowUpDownLine /> : serialIcon === "ascending" ? <GrAscend /> : <GrDescend />}</p>
+              <div className={styles.icon}>{serialIcon === "true" ? <RiArrowUpDownLine /> : serialIcon === "ascending" ? <GrAscend /> : <GrDescend />}</div>
             </div>
             <div className={styles.one}>
               <p>Thumbnail</p>
-              <p className={styles.icon}><RiArrowUpDownLine /></p>
+              <div className={styles.icon}><RiArrowUpDownLine /></div>
             </div>
             <div onClick={handleTitle} className={styles.two}>
               <p>Title</p>
-              <p className={styles.icon}>{titleIcon === "true" ? <RiArrowUpDownLine /> : titleIcon === "ascending" ? <GrAscend /> : <GrDescend />}</p>
+              <div className={styles.icon}>{titleIcon === "true" ? <RiArrowUpDownLine /> : titleIcon === "ascending" ? <GrAscend /> : <GrDescend />}</div>
             </div>
             <div onClick={handleDesc} className={styles.three}>
               <p>Document Name</p>
-              <p className={styles.icon}>{descIcon === "true" ? <RiArrowUpDownLine /> : descIcon === "ascending" ? <GrAscend /> : <GrDescend />}</p>
+              <div className={styles.icon}>{descIcon === "true" ? <RiArrowUpDownLine /> : descIcon === "ascending" ? <GrAscend /> : <GrDescend />}</div>
             </div>
             <div onClick={handleDate} className={styles.four}>
               <p>Created Date</p>
-              <p className={styles.icon}>{dateIcon === "true" ? <RiArrowUpDownLine /> : dateIcon === "ascending" ? <GrAscend /> : <GrDescend />}</p>
+              <div className={styles.icon}>{dateIcon === "true" ? <RiArrowUpDownLine /> : dateIcon === "ascending" ? <GrAscend /> : <GrDescend />}</div>
             </div>
             <div className={styles.five}>
               <p>Action</p>
-              <p className={styles.icon}><RiArrowUpDownLine /></p>
+              <div className={styles.icon}><RiArrowUpDownLine /></div>
             </div>
           </div>
           {currentRecords?.length ?
