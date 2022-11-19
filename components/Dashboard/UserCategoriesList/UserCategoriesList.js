@@ -190,7 +190,7 @@ const UserCategoriesList = ({ setMessage, loading2, setLoading2, update, setUpda
           }
         </div>
       </div> : null}
-      <p className={styles.results}>Showing {list?.length + 1} of {number} enties</p>
+      <p className={styles.results}>Showing {list?.length} of {number} enties</p>
       <Pagination
         count={nPages}
         variant="outlined"
