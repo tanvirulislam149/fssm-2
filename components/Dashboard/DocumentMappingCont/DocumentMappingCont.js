@@ -26,7 +26,7 @@ const DocumentMappingCont = () => {
 
   useEffect(() => {
     getUnmappedDocs((err, res) => {
-      if (err) return handleError(err)
+      // if (err) return handleError(err)
       if (res !== null) {
         setLoading(false);
         console.log({ r: res })

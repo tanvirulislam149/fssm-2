@@ -226,10 +226,11 @@ const UserCategoriesList = ({ setMessage, loading2, setLoading2, update, setUpda
                 validationSchema={Yup.object({
                   user_profile: Yup.string()
                     .required('Required')
-                    // .test('is value valid?', 'Characters must consist of letters only', (val) => {
-                    //   return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
-                    // })
-                    .min(4, '4 or more characters'),
+                  // .test('is value valid?', 'Characters must consist of letters only', (val) => {
+                  //   return /^(?![\s.]+$)[a-zA-Z\s.]*$/.test(val);
+                  // })
+                  // .min(4, '4 or more characters')
+                  ,
                   display_order: Yup.string()
                     .required('Required')
                     .test('is value a number?', 'Display order must be a number', (val) => {
