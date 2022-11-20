@@ -325,8 +325,8 @@ const DocumentsList = ({ updating, setUpdating, documents, dateArray }) => {
               return (
                 <div key={id} className={i % 2 !== 0 ? styles.row : styles.row2}>
                   <div className={styles.one}>
-                    {/* <p>{i + 1 + number * (currentPage - 1)}</p> */}
-                    <p>{id - 636 + number * (currentPage - 1)}</p>
+                    <p>{i + 1 + number * (currentPage - 1)}</p>
+                    {/* <p>{id - 636 + number * (currentPage - 1)}</p> */}
                   </div>
                   <div className={styles.one}>
                     <div className={styles.pdf}>
@@ -388,7 +388,7 @@ const DocumentsList = ({ updating, setUpdating, documents, dateArray }) => {
           }
         </div>
       </div>
-      <p className={styles.results}>Showing {list?.length + 1} of {number} enties</p>
+      <p className={styles.results}>Showing {list?.length ? `${list?.length}` : `${list?.length}`} of {number} enties</p>
       <Pagination
         count={nPages}
         variant="outlined"

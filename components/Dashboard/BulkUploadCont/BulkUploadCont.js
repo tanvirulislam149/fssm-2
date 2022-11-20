@@ -48,7 +48,7 @@ const BulkUploadCont = () => {
     files = files.filter(({ limit }) => limit === false);
     files = files.filter(({ uploaded }) => !uploaded);
     uploadDocs(
-      { document: files }
+      { "document": files }
       , (err, res) => {
         if (err) return handleError(err)
         if (res !== null) {
