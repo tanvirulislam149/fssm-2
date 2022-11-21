@@ -81,7 +81,7 @@ const BulkUploadCont = () => {
   }
 
   const handleNoData = () => {
-    setMessage("Documents have not been added")
+    setMessage("There is no document to upload")
     document.querySelector('.m15').style.display = "flex";
   }
 
