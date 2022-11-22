@@ -88,4 +88,6 @@ const FaqNavigation = () => {
   )
 }
 
-export default FaqNavigation 
+export default FaqNavigation
+
+// env added
