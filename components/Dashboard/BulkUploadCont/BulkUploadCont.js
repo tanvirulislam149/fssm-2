@@ -48,8 +48,10 @@ const BulkUploadCont = () => {
     setLoading(true);
     files = files.filter(({ limit }) => limit === false);
     files = files.filter(({ uploaded }) => !uploaded);
+    const data = new FormData();
+    data.append('File', files[0]);
     uploadDocs(
-      { "document": files }
+      { "document": data }
       , (err, res) => {
         if (err) return handleError(err)
         if (res !== null) {
